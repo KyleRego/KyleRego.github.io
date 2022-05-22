@@ -1,0 +1,27 @@
+/* background colors */
+
+.bg-light-blue {
+  background-color: rgb(113, 113, 255);
+}
+
+/* text color */
+
+.text-white {
+  color: white;
+}
+
+/* padding */
+
+.p-4 {
+  padding: 1rem;
+}
+
+/* flex box */
+
+.flex {
+  display: flex;
+}
+
+.flex-row {
+  flex-direction: row;
+}
