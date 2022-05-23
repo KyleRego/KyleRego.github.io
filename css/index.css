@@ -88,12 +88,27 @@
   width: 50vw;
 }
 
+@media screen and (max-width: 600px) {
+  .w-50-vw {
+    width: 100vw;
+  }
+}
+
 .w-full {
   width: 100%;
 }
 
 .w-auto {
   width: auto;
+}
+
+@media screen and (max-width: 600px) {
+  .w-auto {
+    height: auto;
+    width: 95%;
+    margin: auto;
+    padding: 0;
+  }
 }
 
 .max-w-100-percent {
@@ -128,6 +143,12 @@
 
 .flex-row {
   flex-direction: row;
+}
+
+@media screen and (max-width: 600px) {
+  .flex-row {
+    flex-direction: column;
+  }
 }
 
 .justify-between {

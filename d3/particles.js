@@ -38,7 +38,7 @@ const svg = d3.select('#particles-container')
               // .attr('width', svgWidth)
               // .attr('height', svgHeight)
               .style('background-color', 'black')
-              .on('mousemove', event => {
+              .on("ontouchstart" in document ? "touchmove" : "mousemove", event => {
                 let mousePosition = d3.pointer(event);
                 particles.push(createParticle(mousePosition[0], mousePosition[1]));
                 svg.selectAll('circle')
