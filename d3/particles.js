@@ -38,9 +38,24 @@ const svg = d3.select('#particles-container')
               // .attr('width', svgWidth)
               // .attr('height', svgHeight)
               .style('background-color', 'black')
-              .on("ontouchstart" in document ? "touchmove" : "mousemove", event => {
+              .on('mousemove', event => {
                 let mousePosition = d3.pointer(event);
                 particles.push(createParticle(mousePosition[0], mousePosition[1]));
+                svg.selectAll('circle')
+                    .data(particles, d => d.id)
+                    .enter()
+                    .append('circle')
+                    .attr('cx', d => d.x)
+                    .attr('cy', d => d.y)
+                    .attr('r', d => d.r)
+                    .attr('fill', d => d.color);
+
+              })
+              .on('click', event => {
+                let mousePosition = d3.pointer(event);
+                for (let i = 0; i < 25; i += 1) {
+                  particles.push(createParticle(mousePosition[0], mousePosition[1]));
+                }
                 svg.selectAll('circle')
                     .data(particles, d => d.id)
                     .enter()

@@ -30,18 +30,13 @@ function addTriangle(x, y, width, height) {
       .append('polygon')
       .attr('points', d => `${d[0]},${d[1]} ${d[2]},${d[3]} ${d[4]},${d[5]}`)
       .attr('fill', randomColor())
-      .on("ontouchstart" in document ? "touchmove" : "mousemove", (event, d) => {
+      .on('mousemove', (event, d) => {
         if (d.hasNotTriggeredEvent) {
           addTriangle(d[0], d[1], width / 2, height / 2);
           addTriangle(d[0] + width / 4, d[1] - height / 2, width / 2, height / 2);
           addTriangle(d[0] + width / 2, d[1], width / 2, height / 2);
           d.hasNotTriggeredEvent = false;
         }
-      })
-      .on('click', (event, d) => {
-        addTriangle(d[0], d[1], width / 2, height / 2);
-        addTriangle(d[0] + width / 4, d[1] - height / 2, width / 2, height / 2);
-        addTriangle(d[0] + width / 2, d[1], width / 2, height / 2);
       });
 }
 
