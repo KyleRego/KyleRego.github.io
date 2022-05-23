@@ -1,3 +1,12 @@
+/* use border-box pretty much everywhere */
+html {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
 /* background colors */
 
 .bg-light-blue {
@@ -12,14 +21,16 @@
   background-color: rgb(201, 199, 199);
 }
 
-.bg-white {
-  background-color: white;
-}
-
 /* text color */
 
 .text-white {
   color: white;
+}
+
+/* text align */
+
+.text-center {
+  text-align: center;
 }
 
 /* fonts */
@@ -70,8 +81,20 @@
   padding: 1rem;
 }
 
+.pl-4 {
+  padding-left: 1rem;
+}
+
+.pr-4 {
+  padding-right: 1rem;
+}
+
 .pt-4 {
   padding-top: 1rem;
+}
+
+.pb-4 {
+  padding-bottom: 1rem;
 }
 
 .pb-8 {
