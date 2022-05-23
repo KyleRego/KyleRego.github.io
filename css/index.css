@@ -10,10 +10,44 @@
   color: white;
 }
 
+/* fonts */
+
+.my-font {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+/* margin */
+
+.m-auto {
+  margin: auto;
+}
+
+.m-4 {
+  margin: 1rem;
+}
+
+.m-16 {
+  margin: 4rem;
+}
+
 /* padding */
 
 .p-4 {
   padding: 1rem;
+}
+
+/* width and height */
+
+.w-fit {
+  width: fit-content;
+}
+
+.w-50-vw {
+  width: 50vw;
+}
+
+.h-100-vh {
+  height: 100vh;
 }
 
 /* flex box */
@@ -24,4 +58,10 @@
 
 .flex-row {
   flex-direction: row;
+}
+
+/* display property */
+
+.block {
+  display: block;
 }

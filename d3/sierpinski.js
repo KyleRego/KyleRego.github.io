@@ -1,7 +1,10 @@
 const svgSierpinskiTriangle = d3.select('#sierpinski-triangle-container');
 const triangleContainerWidth = window.innerWidth / 2;
 const triangleContainerHeight = triangleContainerWidth * Math.pow(3, 0.5) / 2;
-svgSierpinskiTriangle.attr('width', triangleContainerWidth).attr('height', triangleContainerHeight);
+svgSierpinskiTriangle
+  .attr('width', triangleContainerWidth)
+  .attr('height', triangleContainerHeight)
+  .attr('fill', 'green');
 
 const initialSierpinskiTriangleWidth = triangleContainerWidth;
 const initialSierpinskiTriangleHeight = initialSierpinskiTriangleWidth * Math.pow(3, 0.5) / 2;
