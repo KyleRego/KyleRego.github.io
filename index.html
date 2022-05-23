@@ -16,15 +16,57 @@
     <span class="text-white my-font">Kyle Rego</span>
   </header>
   <main>
-    <section id="d3-examples h-100-vh">
-      <h2 class="p-4 m-auto w-fit my-font">
-        Colorful Particles and a Crazy Sierpinski Triangle (D3.js)
+
+    <section id="d3-examples" class="h-full">
+      <h2 class="p-4 m-auto w-fit my-font font-size-8">
+        Colorful particles and a crazy Sierpinski triangle (D3.js)
       </h2>
       <div class="flex flex-row">
-        <svg id="particles-container" class="w-50-vh"></svg>
-        <svg id="sierpinski-triangle-container" class="w-50-vh"></svg>
+        <svg id="particles-container" class="w-50-vw"></svg>
+        <svg id="sierpinski-triangle-container" class="w-50-vw"></svg>
       </div>
     </section>
+
+    <section id="anki-add-ons" class="h-full bg-light-gray pt-4">
+      <h2 class="p-4 m-auto w-fit my-font font-size-8">
+        Anki add-ons
+      </h2>
+      <div class="flex flex-row justify-around">
+        <div id="anki-magnifying-glass" class="w-50-vw">
+          <h3 class="w-fit m-auto my-font font-size-6 p-4">
+            <a href="https://ankiweb.net/shared/info/842653376">Anki magnifying glass</a>
+          </h3>
+          <p class="max-w-100-percent p-4 my-font">
+            Anki magnifying glass adds a keyboard shortcut to Anki that makes the mouse cursor a magnified square of the Anki window at the position of the mouse cursor. 
+            I would include an image of how this looks except for the fact that the mouse cursor doesn't appear in screenshots but I hope you get the idea.
+          </p>
+        </div>
+        <div id="anki-enumeration" class="w-50-vw">
+          <h3 class="w-fit m-auto my-font font-size-6 p-4">
+            <a href="https://ankiweb.net/shared/info/268751365">Anki enumeration tool</a>
+          </h3>
+          <img alt="Image of Anki Enumeration Tool" src="./images/anki-enumeration-tool.png" class="block w-auto max-h-400-px m-auto">
+          <p class="max-w-100-percent p-4 my-font">The free Anki enumeration tool adds a special flashcard making window to Anki which allows the user to quickly make a group of flashcards where each card constitutes one part of an entire enumeration.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="ankibooks" class="h-full bg-light-blue2 pt-4">
+      <h2 class="p-4 m-auto w-fit my-font font-size-8">
+        AnkiBooks2
+      </h2>
+      <div class="flex flex-row">
+        <p class="p-4 my-font w-50-vw">
+          <a href="https://ankibooks2.herokuapp.com">AnkiBooks2</a> is a clone of <a href="https://ankibooks.com">ankibooks.com</a> which I developed to learn Ruby on Rails. 
+          It is a web application that allows users to register, log in, and write books/articles. 
+          The articles are written in Markdown in the editor and rendered as HTML in the reader.
+          The fun thing is that there is a supported syntax extension to Markdown which is used to specify certain sentences of the article as Anki cloze deletion notes.
+          The articles are then downloadable as decks of Anki flashcards.
+        </p>
+        <img src="./images/ankibooks2.png" alt="Front page of AnkiBooks2" class="p-4 block w-auto max-h-400-px m-auto">
+      </div>
+    </section>
+
   </main>
   
 </body>
