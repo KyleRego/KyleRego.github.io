@@ -1,5 +1,5 @@
 const svgSierpinskiTriangle = d3.select('#sierpinski-triangle-container');
-const triangleContainerWidth = window.innerWidth / 2;
+const triangleContainerWidth = (window.innerWidth < 600) ? window.innerWidth : window.innerWidth / 2;
 const triangleContainerHeight = triangleContainerWidth * Math.pow(3, 0.5) / 2;
 svgSierpinskiTriangle
   .attr('width', triangleContainerWidth)
