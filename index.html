@@ -27,7 +27,7 @@
       </div>
     </section>
 
-    <section id="anki-add-ons" class="h-full bg-light-gray pt-4">
+    <section id="anki-add-ons" class="h-full bg-light-gray pt-4 pb-8">
       <h2 class="p-4 m-auto w-fit my-font font-size-8">
         Anki add-ons
       </h2>
@@ -36,35 +36,51 @@
           <h3 class="w-fit m-auto my-font font-size-6 p-4">
             <a href="https://ankiweb.net/shared/info/842653376">Anki magnifying glass</a>
           </h3>
-          <p class="max-w-100-percent p-4 my-font">
-            Anki magnifying glass adds a keyboard shortcut to Anki that makes the mouse cursor a magnified square of the Anki window at the position of the mouse cursor. 
-            I would include an image of how this looks except for the fact that the mouse cursor doesn't appear in screenshots but I hope you get the idea.
-          </p>
+          <div class="p-4">
+            <p class="max-w-100-percent mt-4 ml-4 my-font">
+              Anki magnifying glass adds a keyboard shortcut to Anki that makes the mouse cursor a magnified square of the Anki window at the position of the mouse cursor. 
+              I would include an image of how this looks except for the fact that the mouse cursor doesn't appear in screenshots but I hope you get the idea.
+            </p>
+            <p class="max-w-100-percent mt-4 ml-4 my-font">
+              The free Anki enumeration tool adds a special flashcard making window to Anki which allows the user to quickly make a group of flashcards where each card constitutes one part of an entire enumeration.
+            </p>
+            <p class="max-w-100-percent mt-4 ml-4 my-font">
+              I wrote these add-ons during the time when I was a medical student.
+              The magnifying glass was extremely nice for studying anatomy, where images often had very small details pointed to by labels.
+              I used the enumeration tool to remember the steps involved in physical exams (testing all of the cranial nerves for example).
+            </p>
+          </div>
         </div>
         <div id="anki-enumeration" class="w-50-vw">
           <h3 class="w-fit m-auto my-font font-size-6 p-4">
             <a href="https://ankiweb.net/shared/info/268751365">Anki enumeration tool</a>
           </h3>
           <img alt="Image of Anki Enumeration Tool" src="./images/anki-enumeration-tool.png" class="block w-auto max-h-400-px m-auto">
-          <p class="max-w-100-percent p-4 my-font">The free Anki enumeration tool adds a special flashcard making window to Anki which allows the user to quickly make a group of flashcards where each card constitutes one part of an entire enumeration.</p>
+          
         </div>
       </div>
     </section>
 
-    <section id="ankibooks" class="h-full bg-light-blue2 pt-4">
+    <section id="ankibooks" class="h-full pt-4 pb-8">
       <h2 class="p-4 m-auto w-fit my-font font-size-8">
         AnkiBooks2
       </h2>
-      <div class="flex flex-row">
-        <p class="p-4 my-font w-50-vw">
-          <a href="https://ankibooks2.herokuapp.com">AnkiBooks2</a> is a clone of <a href="https://ankibooks.com">ankibooks.com</a> which I developed to learn Ruby on Rails. 
-          It is a web application that allows users to register, log in, and write books/articles. 
-          The articles are written in Markdown in the editor and rendered as HTML in the reader.
-          The fun thing is that there is a supported syntax extension to Markdown which is used to specify certain sentences of the article as Anki cloze deletion notes.
-          The articles are then downloadable as decks of Anki flashcards.
-        </p>
+      
+        <div class="p-4 my-font">
+          <p>
+            <a href="https://ankibooks2.herokuapp.com">AnkiBooks2</a> is a clone of <a href="https://ankibooks.com">ankibooks.com</a> which I developed to learn Ruby on Rails. 
+            It allows users to register, log in, write books composed of articles, share the books with others, and generate downloadable Anki flashcards from the books. 
+            Articles are written in Markdown with a syntax extension to the <a href="https://marked.js.org">marked</a> parser for specifying which sentences become Anki notes.
+          </p>
+          <p class="mt-4">
+            Each user associated with a book is either an owner, editor, or reader of the book. Owners are able to share the book with others, lock certain articles from being edited, and control the public/private status of the book. Public books can be read without having to log in to the website.
+          </p>
+          <p class="mt-4">
+            Image uploading to articles is also implemented, and the images are included in the downloaded flashcards, however due to Heroku's ephemeral file system this is not supported in the deployed application.
+          </p>
+        </div>
         <img src="./images/ankibooks2.png" alt="Front page of AnkiBooks2" class="p-4 block w-auto max-h-400-px m-auto">
-      </div>
+      
     </section>
 
   </main>

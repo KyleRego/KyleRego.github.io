@@ -4,8 +4,8 @@
   background-color: rgb(113, 113, 255);
 }
 
-.bg-light-blue2 {
-  background-color: rgb(158, 232, 255);
+.bg-white {
+  background-color: rgba(255, 255, 255, 0.952);
 }
 
 .bg-light-gray {
@@ -60,6 +60,10 @@
   margin-top: 1rem;
 }
 
+.ml-4 {
+  margin-left: 1rem;
+}
+
 /* padding */
 
 .p-4 {
@@ -68,6 +72,10 @@
 
 .pt-4 {
   padding-top: 1rem;
+}
+
+.pb-8 {
+  padding-bottom: 2rem;
 }
 
 /* width and height */
