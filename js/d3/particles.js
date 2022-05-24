@@ -1,5 +1,3 @@
-// const svgWidth = '50vw';
-// const svgHeight = '100vh';
 const colorArray = ["#23171b","#271a28","#2b1c33","#2f1e3f","#32204a","#362354","#39255f","#3b2768",
                     "#3e2a72","#402c7b","#422f83","#44318b","#453493","#46369b","#4839a2","#493ca8",
                     "#493eaf","#4a41b5","#4a44bb","#4b46c0","#4b49c5","#4b4cca","#4b4ecf","#4b51d3",
@@ -35,9 +33,7 @@ const colorArray = ["#23171b","#271a28","#2b1c33","#2f1e3f","#32204a","#362354",
 
 let particles = [];
 const svg = d3.select('#particles-container')
-              // .attr('width', svgWidth)
-              // .attr('height', svgHeight)
-              .style('background-color', 'black')
+              .style('background-color', '#111')
               .on('mousemove', event => {
                 let mousePosition = d3.pointer(event);
                 particles.push(createParticle(mousePosition[0], mousePosition[1]));
@@ -92,7 +88,7 @@ function moveParticle(particle) {
   movedParticle.vy = particle.vy + Math.cos(particle.theta);
   movedParticle.r = particle.r * 0.9;
   movedParticle.color = particle.color;
-  movedParticle.isAlive = movedParticle.r > 1;
+  movedParticle.isAlive = movedParticle.r > 0.5;
   return movedParticle;
 }
 
