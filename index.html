@@ -17,81 +17,78 @@
   </header>
   <main>
 
-    <section id="d3-examples" class="h-full">
+    <section id="d3-examples" class="h-full bg-white">
       <h2 class="p-4 m-auto w-fit my-font font-size-8">
-        Colorful particles and a crazy Sierpinski triangle (D3.js)
+        Colorful particles and a crazy Sierpinski triangle
       </h2>
       <div class="flex flex-row">
-        <svg id="particles-container" class="w-50-vw"></svg>
+        <svg id="particles-container" class="w-50-vw h-half"></svg>
         <svg id="sierpinski-triangle-container" class="w-50-vw"></svg>
       </div>
     </section>
 
     <section id="anki-add-ons" class="h-full bg-light-gray pt-4 pb-8">
-      <h2 class="p-4 m-auto w-fit my-font font-size-8">
+      <h2 class="pl-4 pr-4 pt-4 m-auto w-fit my-font font-size-8">
         Anki add-ons
       </h2>
       <div class="flex flex-row justify-around">
+        
         <div id="anki-magnifying-glass" class="w-50-vw">
-          <h3 class="w-fit m-auto my-font font-size-6 p-4">
-            <a href="https://ankiweb.net/shared/info/842653376">Anki magnifying glass</a>
-          </h3>
           <div class="p-4 line-height">
             <p class="max-w-100-percent mt-4 ml-4 my-font">
-              Anki magnifying glass adds a keyboard shortcut to Anki that makes the mouse cursor a magnified square of the Anki window at the position of the mouse cursor.
+              <a href="https://ankiweb.net/shared/info/842653376">Anki magnifying glass</a> adds a keyboard shortcut to Anki that makes the mouse cursor a magnified square of the Anki window at the position of the mouse cursor.
             </p>
             <p class="max-w-100-percent mt-4 ml-4 my-font">
-              The Anki enumeration tool adds a flashcard making window to Anki which allows for quickly making a group of flashcards that together form an enumeration.
+              The <a href="https://ankiweb.net/shared/info/268751365">Anki enumeration tool</a> adds a flashcard making window to Anki which allows for quickly making a group of flashcards that together form an enumeration.
             </p>
             <p class="max-w-100-percent mt-4 ml-4 my-font">
-              I wrote these while I was a medical student at Quinnipiac University. The magnifying glass was really nice for studying anatomy. I used the enumeration tool to remember things like the steps involved in physical exams (testing all of the cranial nerves for example).
+              I wrote these while I was a medical student at Quinnipiac University. 
+              The magnifying glass was actually really nice for studying anatomy, and 
+              the enumeration tool was useful to remember things like the steps involved in physical exams (testing all of the cranial nerves for example).
             </p>
           </div>
         </div>
+
         <div id="anki-enumeration" class="w-50-vw">
-          <h3 class="w-fit m-auto my-font font-size-6 p-4">
-            <a href="https://ankiweb.net/shared/info/268751365">Anki enumeration tool</a>
-          </h3>
-          <img alt="Image of Anki Enumeration Tool" src="./images/anki-enumeration-tool.png" class="block w-auto max-h-400-px m-auto">
-          
+          <figure>
+            <img alt="Image of Anki Enumeration Tool" src="./images/anki-enumeration-tool.png" class="fit-image center-image">
+            <figcaption class="my-font text-center mt-2">The Anki enumeration tool (small window)</figcaption>
+          </figure>
         </div>
+
       </div>
     </section>
 
-    <section id="ankibooks" class="h-full pb-8">
-      <h2 class="p-4 m-auto w-fit my-font font-size-8">
+    <section id="ankibooks" class="h-full pb-8 bg-white">
+      <h2 class="pl-4 pr-4 pt-4 m-auto w-fit my-font font-size-8">
         AnkiBooks2
       </h2>
-      <p class="my-font line-height p-4">
+      <p class="my-font line-height p-4 ml-4 mr-4">
         <a href="https://ankibooks2.herokuapp.com">AnkiBooks2</a> is a Ruby on Rails clone of <a href="https://ankibooks.com">ankibooks.com</a>. It allows users to register, log in, write books/articles, and download Anki flashcard decks generated from the articles. There is a permissions system where for each book, a user is an owner, editor, or reader. Owners are able to share the book with others, lock articles from being edited, and control the public/private status of the book. Public books can be read without having to log in to the website. Image uploading to articles is also implemented, and the images are included in the downloaded flashcards, however due to Heroku's ephemeral file system this is not supported in the deployed application.
       </p>
-      <img src="./images/ankibooks2.png" alt="Front page of AnkiBooks2" class="block w-auto max-h-400-px m-auto">
-      
+      <figure>
+        <img src="./images/ankibooks2.png" alt="Front page of AnkiBooks2" class="fit-image center-image">
+        <figcaption class="my-font text-center mt-2">The front page of AnkiBooks2</figcaption>
+      </figure>
     </section>
 
 
     <section id="about-me" class="h-full bg-light-gray">
       <footer>
-        <h2 class="my-font font-size-8 w-fit m-auto p-4">
+        <h2 class="my-font font-size-8 w-fit m-auto pl-4 pr-4 pt-4">
           About
         </h2>
         <div class="text-center my-font">
-          <p class="p-4">
-          Thanks for reaching the bottom of my website.
-        </p>
-        <p class="p-4">
-          My name is Kyle and I am currently a web development student at Launch School.
-        </p>
-        <p class="p-4">
-          In the past I studied medicine for a year and I also have a degree in Physics from RPI.
-        </p>
-        <p class="p-4">
+          <p class="p-4 line-height ml-4 mr-4">
+          Thanks for reaching the bottom of my website.<br>
+          My name is Kyle and I am currently a web development student at Launch School.<br>
+          In the past I studied medicine for a year and I also have a degree in Physics from RPI.<br>
           Feel free to contact me at regoky[at]outlook.com
         </p>
         </div>
       </footer>  
     </section>
   </main>
-  
+
 </body>
 </html>

@@ -73,6 +73,10 @@ html {
   margin: 4rem;
 }
 
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
 .mt-4 {
   margin-top: 1rem;
 }
@@ -127,31 +131,25 @@ html {
   width: 100%;
 }
 
-.w-auto {
+.fit-image {
+  max-height: 400px;
   width: auto;
 }
 
 @media screen and (max-width: 600px) {
-  .w-auto {
+  .fit-image {
+    max-width: 95%;
     height: auto;
-    width: 95%;
-    margin: auto;
-    padding: 0;
   }
+}
+
+.center-image {
+  display: block;
+  margin: auto;
 }
 
 .max-w-100-percent {
   max-width: 100%;
-}
-
-.h-100-vh {
-  height: 100vh;
-}
-
-@media screen and (max-width: 600px) {
-  .h-100-vh {
-    height: 100%;
-  }
 }
 
 .h-full {
