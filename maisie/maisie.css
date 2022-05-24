@@ -1,0 +1,31 @@
+.maisie-body {
+  background: rgb(0,0,0);
+  background: linear-gradient(90deg, rgb(247, 255, 132) 0%, rgb(251, 166, 255) 100%);
+}
+
+.maisie-heading {
+  color: black;
+  margin: auto;
+  padding: 1rem;
+  font-family: cursive;
+  font-size: 4rem;
+  text-align: center;
+}
+
+.maisie-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.maisie-image {
+  max-height: 500px;
+  width: auto;
+}
+
+@media screen and (max-width: 600px) {
+  .maisie-image {
+    max-width: 95%;
+    height: auto;
+  }
+}
