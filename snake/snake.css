@@ -1,0 +1,41 @@
+.snake-container {
+  min-height: 100vh;
+  background-color: lightgray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game {
+  text-align: center;
+  margin: auto;
+  width: min-content;
+  height: auto;
+  font-size: 32px;
+  outline: none;
+}
+
+.board {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.square {
+  width: 25px;
+  height: 25px;
+  background-color: #222;
+  border: 1px solid white;
+}
+
+.snake {
+  background-color: lightgreen;
+}
+
+.food {
+  background-color: pink;
+}
