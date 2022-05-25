@@ -6,6 +6,29 @@
   align-items: center;
 }
 
+@media screen and (max-width: 600px) {
+  .snake-container {
+    display: none;
+  }
+}
+
+.message-for-mobile {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .message-for-mobile {
+    background-color: lightgray;
+    display: flex;
+    width: 95%;
+    height: 100vh;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
 .game {
   text-align: center;
   margin: auto;
