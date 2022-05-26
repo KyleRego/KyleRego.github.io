@@ -1,9 +1,8 @@
 .snake-container {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  height: 0; /* needed to make child div with height: 100% fill this div */
   min-height: 100vh;
   background-color: lightgray;
-  display: flex;
-  justify-content: start;
-  align-items: center;
 }
 
 .mobile-controls {
@@ -17,8 +16,8 @@
     align-items: center;
     flex-direction: column;
     width: fit-content;
-    margin: auto;
-    margin-top: 0.5rem;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .mobile-control {
@@ -31,6 +30,7 @@
     width: 75px;
     height: 75px;
     border-radius: 50%;
+    box-shadow: 0px 0px 4px 4px rgba(172, 172, 172, 0.808);
   }
 
   .middle-mobile-buttons-container {
@@ -43,18 +43,24 @@
 
 .game {
   text-align: center;
-  margin: auto;
   width: fit-content;
-  height: auto;
+  margin: auto;
+  height: 100%;
+  max-height: 100vh;
   font-size: 32px;
   outline: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .board {
   width: fit-content;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
   flex-direction: column;
+  box-shadow: 0px 0px 4px 4px rgba(172, 172, 172, 0.808);
 }
 
 .row {
