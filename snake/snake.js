@@ -23,7 +23,9 @@ class Game extends React.Component {
         onKeyDown={(e) => this.handleKeyPress(e)}
         tabIndex = "0"
       >
-      {this.state.isGameOver ? 'Game over!' : 'Snake'}
+        <h1>
+          {this.state.isGameOver ? 'Game over!' : 'Snake'}
+        </h1>
         <Board snakePositions={this.state.snakePositions} foodPosition={this.state.foodPosition}/>
         <div className="mobile-controls">
           <div 
