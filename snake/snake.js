@@ -23,13 +23,72 @@ class Game extends React.Component {
         tabIndex = "0"
       >
       {this.state.isGameOver ? 'Game over!' : 'Snake'}
-      <Board snakePositions={this.state.snakePositions} foodPosition={this.state.foodPosition}/>
+        <Board snakePositions={this.state.snakePositions} foodPosition={this.state.foodPosition}/>
+        <div className="mobile-controls">
+          <div 
+            onClick={this.setSnakeDirectionPositiveY.bind(this)}
+            className="mobile-control"
+          >
+            Up
+          </div>
+
+          <div className="middle-mobile-buttons-container">
+            <div 
+              onClick={this.setSnakeDirectionNegativeX.bind(this)}
+              className="mobile-control"
+            >
+              Left
+            </div>
+            
+            <div 
+              onClick={this.setSnakeDirectionPositiveX.bind(this)}
+              className="mobile-control"
+            >
+              Right
+            </div>
+          </div>
+
+          <div 
+            onClick={this.setSnakeDirectionNegativeY.bind(this)}
+            className="mobile-control"
+          >
+            Down
+          </div>
+        </div>
       </div>
     )
   }
 
   focusGame() {
     this.gameRef.current.focus();
+  }
+
+  setSnakeDirectionPositiveY() {
+    this.setState((state, props) => ({
+      snakePositions: state.snakePositions,
+      snakeDirection: 'positive-y',
+    }));
+  }
+
+  setSnakeDirectionNegativeY() {
+    this.setState((state, props) => ({
+      snakePositions: state.snakePositions,
+      snakeDirection: 'negative-y',
+    }));
+  }
+
+  setSnakeDirectionPositiveX() {
+    this.setState((state, props) => ({
+      snakePositions: state.snakePositions,
+      snakeDirection: 'positive-x',
+    }));
+  }
+
+  setSnakeDirectionNegativeX() {
+    this.setState((state, props) => ({
+      snakePositions: state.snakePositions,
+      snakeDirection: 'negative-x',
+    }));
   }
 
   componentDidMount() {
@@ -158,33 +217,20 @@ class Game extends React.Component {
     switch (event.key) {
       case 'Down':
       case 'ArrowDown':
-        this.setState((state, props) => ({
-          snakePositions: state.snakePositions,
-          snakeDirection: 'negative-y',
-        }));
+        this.setSnakeDirectionNegativeY();
         break;
       case 'Up':
       case 'ArrowUp':
-        this.setState((state, props) => ({
-          snakePositions: state.snakePositions,
-          snakeDirection: 'positive-y',
-        }));
+        this.setSnakeDirectionPositiveY();
         break;
       case 'Left':
       case 'ArrowLeft':
-        this.setState((state, props) => ({
-          snakePositions: state.snakePositions,
-          snakeDirection: 'negative-x',
-        }));
+        this.setSnakeDirectionNegativeX();
         break;
       case 'Right':
       case 'ArrowRight':
-        this.setState((state, props) => ({
-          snakePositions: state.snakePositions,
-          snakeDirection: 'positive-x',
-        }));
+        this.setSnakeDirectionPositiveX();
         break;
-
       default:
         break;
     }
@@ -205,7 +251,7 @@ class Board extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.state.squares);
+    //console.log(this.state.squares);
   }
 
   render() {
