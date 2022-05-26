@@ -27,37 +27,12 @@ class Game extends React.Component {
           {this.state.isGameOver ? 'Game over!' : 'Snake'}
         </h1>
         <Board snakePositions={this.state.snakePositions} foodPosition={this.state.foodPosition}/>
-        <div className="mobile-controls">
-          <div 
-            onClick={this.setSnakeDirectionPositiveY.bind(this)}
-            className="mobile-control"
-          >
-            Up
-          </div>
-
-          <div className="middle-mobile-buttons-container">
-            <div 
-              onClick={this.setSnakeDirectionNegativeX.bind(this)}
-              className="mobile-control"
-            >
-              Left
-            </div>
-            
-            <div 
-              onClick={this.setSnakeDirectionPositiveX.bind(this)}
-              className="mobile-control"
-            >
-              Right
-            </div>
-          </div>
-
-          <div 
-            onClick={this.setSnakeDirectionNegativeY.bind(this)}
-            className="mobile-control"
-          >
-            Down
-          </div>
-        </div>
+        <MobileControls 
+          onClickUp={this.setSnakeDirectionPositiveY.bind(this)}
+          onClickDown={this.setSnakeDirectionNegativeY.bind(this)}
+          onClickLeft={this.setSnakeDirectionNegativeX.bind(this)}
+          onClickRight={this.setSnakeDirectionPositiveX.bind(this)}
+        />
       </div>
     )
   }
@@ -215,8 +190,6 @@ class Game extends React.Component {
   }
 
   handleKeyPress(event) {
-    //console.log('A key was pressed.');
-    //console.log(event.key);
     switch (event.key) {
       case 'Down':
       case 'ArrowDown':
@@ -237,7 +210,6 @@ class Game extends React.Component {
       default:
         break;
     }
-    //console.log(this.state);
   }
 }
 
@@ -253,10 +225,6 @@ class Board extends React.Component {
     }
   }
 
-  componentDidMount() {
-    //console.log(this.state.squares);
-  }
-
   render() {
     return (
       <div className="board">
@@ -270,6 +238,44 @@ class Board extends React.Component {
       </div>
       
     )
+  }
+}
+
+class MobileControls extends React.Component {
+  render() {
+    return (
+      <div className="mobile-controls">
+          <div 
+            onClick={this.props.onClickUp}
+            className="mobile-control"
+          >
+            Up
+          </div>
+
+          <div className="middle-mobile-buttons-container">
+            <div 
+              onClick={this.props.onClickLeft}
+              className="mobile-control"
+            >
+              Left
+            </div>
+            
+            <div 
+              onClick={this.props.onClickRight}
+              className="mobile-control"
+            >
+              Right
+            </div>
+          </div>
+
+          <div 
+            onClick={this.props.onClickDown}
+            className="mobile-control"
+          >
+            Down
+          </div>
+      </div>
+    )  
   }
 }
 
