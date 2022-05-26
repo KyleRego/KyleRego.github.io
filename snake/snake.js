@@ -1,4 +1,5 @@
 const NUMBER_OF_SQUARES = 20 * 20;
+const timeInterval = 150;
 
 class Game extends React.Component {
   constructor(props) {
@@ -92,7 +93,7 @@ class Game extends React.Component {
   }
 
   componentDidMount() {
-    this.intervalId = setInterval(() => this.tick(), 100);
+    this.intervalId = setInterval(() => this.tick(), timeInterval);
     this.focusGame();
   }
 
@@ -234,7 +235,7 @@ class Game extends React.Component {
       default:
         break;
     }
-    console.log(this.state);
+    //console.log(this.state);
   }
 }
 
@@ -256,13 +257,16 @@ class Board extends React.Component {
 
   render() {
     return (
-      this.state.squares.map((row, rowIndex) => {
+      <div className="board">
+        {this.state.squares.map((row, rowIndex) => {
         let rowSnakePositions = this.props.snakePositions.filter(snakePosition => {
           return snakePosition[0] === rowIndex;
         }).map(rowSnakePosition => rowSnakePosition[1]);
         
         return (<Row row={row} rowSnakePositions={rowSnakePositions} foodPosition={this.props.foodPosition} rowIndex={rowIndex} key={rowIndex}/>)
-      })
+      })}
+      </div>
+      
     )
   }
 }
