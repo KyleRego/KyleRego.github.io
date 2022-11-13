@@ -11,3 +11,5 @@ theme_color: black
 
 # Build settings
 markdown: kramdown
+
+google_analytics: G-B9Y6YW21X4
