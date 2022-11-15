@@ -18,7 +18,7 @@ As an example to demonstrate this point, exercise 139 asks you to write a functi
 ; – (cons PositiveNumber List-of-amounts)
 {% endhighlight %}
 
-The `;` starts a comment and `'()` is the empty list. This data structure, the list of amounts, is either an empty list, or one positive number and a list of amounts. `cons` constructs a list where the first argument becomes the list's first element and the second argument, a list, becomes the rest of the list's data. These are accessed by the `first` and `rest` functions. Here is my solution (the book encourages writing function signatures and unit testing):
+The `;` starts a comment and `'()` is the empty list. This data structure, the list of amounts, is either an empty list, or one positive number and a list of amounts. `cons` constructs a list where the first argument becomes the list's first element and the second argument, a list, becomes the rest of the list's elements. These are accessed by the `first` and `rest` functions. Here is my solution (the book encourages writing function signatures and unit testing):
 
 {% highlight racket %}
 ; List-of-amounts -> Number
@@ -32,9 +32,9 @@ The `;` starts a comment and `'()` is the empty list. This data structure, the l
     [else (+ (first aloa) (sum (rest aloa)))]))
 {% endhighlight %}
 
-The definition of the list here has two cases: an empty list or a single number and a list. The function completely mirrors these two cases and since the data structure is recursive, the function uses recursion to handle it. To me that is kind of a cool idea, especially for an introduction to programming.
+The definition of the list here has two cases: an empty list or a single number and a list. The function completely mirrors these two cases and since the data structure is recursive, the function uses recursion to handle it. To me that is kind of a cool idea, especially coming from an introduction to programming.
 
-A later problem in the book is to count how many times a symbol appears in an S-expression:
+A later problem in the book (exercise 320) is to write a function to count how many times a symbol appears in an S-expression:
 
 {% highlight racket %}
 ; An S-expr is one of:
