@@ -8,7 +8,7 @@ When I was at the beginning of teaching myself programming, I found [teachyourse
 
 The teaching language used is a Lisp which evolves over the course of the book, starting as Beginning Student Language and progressing to Advanced Student Language. It is a nice language with a library for drawing shapes and images to the screen which makes making simple games quite approachable. Completing the book's exercises will have you making a snake game, a (very) simple version of Tetris, and a space invaders game.
 
-One of main ideas of the book seemed to me to be that the shape of the data structure is very important to the structure of the program. Therefore designing or understanding the data structure you are using is an important step in program design. 
+One of main takeaways for me was the idea that the data structure informs the structure of the program. Therefore designing or understanding the data structure you are using is an important step in program design. 
 
 As an example to demonstrate this point, exercise 139 asks you to write a function to sum a list of positive numbers. The definition of the data structure is recursive:
 
@@ -32,8 +32,41 @@ The `;` starts a comment and `'()` is the empty list. This data structure, the l
     [else (+ (first aloa) (sum (rest aloa)))]))
 {% endhighlight %}
 
-The definition of the list here has two cases: an empty list or a single number and a list. The function completely mirrors these two cases and since the data structure is recursive, the function uses recursion to handle it. To me that is kind of a cool idea.
+The definition of the list here has two cases: an empty list or a single number and a list. The function completely mirrors these two cases and since the data structure is recursive, the function uses recursion to handle it. To me that is kind of a cool idea, especially for an introduction to programming.
+
+A later problem in the book is to count how many times a symbol appears in an S-expression:
+
+{% highlight racket %}
+; An S-expr is one of:
+; - Number
+; - String
+; - Symbol
+; - [List-of S-expr]
+
+; S-expr Symbol -> Number
+; counts all occurrences of sy in sexp
+(check-expect (count 'world 'hello) 0)
+(check-expect (count '(world hello) 'hello) 1)
+(check-expect (count '(((world) hello) hello) 'hello) 2)
+
+(define (count sexp sy)
+  (local (; [List-of S-expr] Symbol -> Number
+          ; counts all occurrences of sy in sexp
+          (define (count-sl sexp sy)
+            (cond
+              [(empty? sexp) 0]
+              [else
+                (+ (count (first sexp) sy)
+                   (count-sl (rest sexp) sy))])))
+  (cond
+    [(number? sexp) 0 ]
+    [(string? sexp) 0 ]
+    [(symbol? sexp) (if (equal? sexp sy) 1 0) ]
+    [else (count-sl sexp sy) ])))
+{% endhighlight %}
+
+This pretty much shows the same idea with a somewhat more interesting type of data.
 
 While I haven't done much more Lisp programming than the exercises in this book, I think that reading this as a beginner was very worthwhile for me. I have thought about the lesson above regarding the importance of understanding the data structure in program design many times. 
 
-My review on this book: it's a buy (actually its free and you can read it at [htdp.org](https://htdp.org/))!
+My review on this book: it's a buy (actually it's free and you can read it at [htdp.org](https://htdp.org/))!
