@@ -3,7 +3,7 @@ remote_theme: broccolini/swiss
 title: Kyle Rego
 description: Mostly book reviews probably.
 baseurl: ""
-url: "https://kylerego.github.io/"
+url: "https://kylerego.github.io"
 github_repo: KyleRego.github.io
 github_username: KyleRego
 
