@@ -4,7 +4,7 @@ title:  "Launch School"
 date:   2022-11-17 10:00:00 -0500
 permalink: /launch-school
 ---
-[Launch School](https://launchschool.com) is a website that teaches a course on web development fundamentals (it is [not a coding bootcamp](https://medium.com/launch-school/were-not-a-bootcamp-c33901412c38)). Instead of focusing on any particular frameworks, the focus is on topics that don't change as quickly. I took the Ruby version of the course, but there is a separate track for people interested in Node instead of Ruby. Also, this post is about the [core curriculum](https://launchschool.com/courses), not the [capstone program](https://launchschool.com/capstone).
+[Launch School](https://launchschool.com) is a website that teaches a course on web development fundamentals (see this [article explaining it is not a coding bootcamp](https://medium.com/launch-school/were-not-a-bootcamp-c33901412c38)). Instead of focusing on any particular frameworks, the focus is on topics that don't change as quickly. I took the Ruby version of the course, but there is a separate track for people interested in Node instead of Ruby. Also, this post is about [the Launch School core curriculum](https://launchschool.com/courses), not [the Launch School capstone program](https://launchschool.com/capstone).
 
 The order of topics is roughly:
 - the Ruby programming language
@@ -12,7 +12,7 @@ The order of topics is roughly:
 - the Internet, the Internet protocol suite, HTTP, and TLS
 - web applications with Sinatra
 - SQL with Postgres
-- applications that interact with a database using the [`pg` gem](https://github.com/ged/ruby-pg)
+- applications that interact with a database using [the `pg` gem](https://github.com/ged/ruby-pg)
 - HTML and CSS
 - the JavaScript programming language
 - object-oriented programming (again but with JavaScript)
@@ -26,6 +26,6 @@ One thing to note is you need to pass assessments to progress to the next topic 
 
 For me, the Launch School course was a worthwhile investment. The topics covered are solid, the amount of practice is more than sufficent, and the assessments guarantee you will not pass without many of the necessary skills to work as a web developer.
 
-If you want to see what they're about for yourself, check out their [open book shelf](https://launchschool.com/books) which has some short and sweet (and free) books covering topics like [the command line](https://launchschool.com/books/command_line), [git](https://launchschool.com/books/git), [HTTP](https://launchschool.com/books/http), and [regular expressions](https://launchschool.com/books/regex).
+If you want to see what they're about for yourself, check out [Launch School's open book shelf](https://launchschool.com/books) which has some short and sweet (and free) books covering topics like the command line, git, HTTP, and regular expressions.
 
 My review on this course: it's a buy.
