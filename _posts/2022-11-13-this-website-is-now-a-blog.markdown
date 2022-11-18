@@ -3,6 +3,7 @@ layout: post
 title:  "This website is now a blog"
 date:   2022-11-13 10:00:00 -0500
 permalink: /this-website-is-now-a-blog
+emoji: 🤪
 ---
 Today I decided to turn my website into a Jekyll blog, using [the Swiss theme](https://github.com/broccolini/swiss). I think the posts will mostly be book reviews.
 

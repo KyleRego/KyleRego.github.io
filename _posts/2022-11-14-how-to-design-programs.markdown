@@ -4,6 +4,7 @@ title:  "How to Design Programs"
 date:   2022-11-14 10:30:00 -0500
 categories: lisp programming [book reviews] [computer science]
 permalink: /how-to-design-programs
+emoji: 😮
 ---
 When I was at the beginning of teaching myself programming, I found [teachyourselfcs.com](https://teachyourselfcs.com) which recommended two books for learning programming. I ended up reading the second one, [How to Design Programs, Second Edition](https://htdp.org/) and committed [my solutions to most of the book's exercises](https://github.com/KyleRego/htdp-solutions) to a GitHub repository.
 
