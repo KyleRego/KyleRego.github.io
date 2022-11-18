@@ -1,7 +1,7 @@
 remote_theme: broccolini/swiss
 
 title: Kyle Rego
-description: Mostly book reviews probably.
+description: A Ruby on Rails weblog that is currently focused on book reviews.
 baseurl: ""
 url: "https://kylerego.github.io"
 github_repo: KyleRego.github.io
