@@ -1,0 +1,11 @@
+.to-top-container {
+  bottom: 0;
+  position: sticky;
+  display: flex;
+  justify-content: right;
+}
+
+.to-top-link {
+  font-size: $prose-font-size;
+  text-decoration: none !important;
+}
