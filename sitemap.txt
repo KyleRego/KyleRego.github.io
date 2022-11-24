@@ -2,3 +2,4 @@ https://kylerego.github.io/
 https://kylerego.github.io/this-website-is-now-a-blog
 https://kylerego.github.io/how-to-design-programs
 https://kylerego.github.io/launch-school
+https://kylerego.github.io/metaprogramming-ruby
