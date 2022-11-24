@@ -1,8 +1,12 @@
 .to-top-container {
-  bottom: 0;
-  position: sticky;
-  display: flex;
-  justify-content: right;
+  display: none;
+
+  @media (min-width: $breakpoint-lg) {
+    bottom: 0;
+    position: sticky;
+    display: flex;
+    justify-content: right;
+  }
 }
 
 .to-top-link {
