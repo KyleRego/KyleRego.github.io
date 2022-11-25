@@ -156,6 +156,22 @@ html {
   height: 100%;
 }
 
+@media screen and (max-width: 600px) {
+  .h-full {
+    height: fit-content;
+  }
+}
+
+.square-mobile {
+  aspect-ratio: auto;
+}
+
+@media screen and (max-width: 600px) {
+  .square-mobile {
+    aspect-ratio: 1 / 1 ;
+  }
+}
+
 .h-auto {
   height: auto;
 }
