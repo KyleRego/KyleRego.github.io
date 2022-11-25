@@ -243,7 +243,7 @@ this_works
 #  => nil
 {% endhighlight %}
 
-You could also define additional methods with `foo` captured by closures, and if you did that in a scope, then `foo` would be a variable shared between those methods and inaccessible outside of them.
+You could also define additional methods with `foo` captured by closures so that they can share this variable. You could do this such that `foo` is private to the methods as well.
 
 ### Object#tap
 
