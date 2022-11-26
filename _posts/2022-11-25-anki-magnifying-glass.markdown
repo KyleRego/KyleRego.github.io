@@ -155,7 +155,7 @@ This is a good time to talk about how to read the Qt documentation. Take a look 
 
 > Returns the position of the cursor (hot spot) of the primary screen in global screen coordinates.
 
-`::` in the Qt documentation means `.` in Python. This is a static method which means its called on the class itself, not an instance of the class. The class on the left is the type of the returned value.
+`::` in the Qt documentation means `.` in Python. This is a static method which means it's called on the class itself, not an instance of the class. The class on the left is the type of the returned value.
 
 The documentation also notes this:
 
