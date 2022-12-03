@@ -6,12 +6,12 @@ pre {
   margin: $spacer-3 0;
   padding-left: 16px;
   width: 100%;
+  overflow-x: auto;
 
   @media (min-width: $breakpoint-lg) {
     width: (9 / 12 * 100%); // matches col-9
+    overflow-x: visible;
   }
-
-  overflow-x: auto;
 }
 
 code {
