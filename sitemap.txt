@@ -4,3 +4,4 @@ https://kylerego.github.io/how-to-design-programs
 https://kylerego.github.io/launch-school
 https://kylerego.github.io/metaprogramming-ruby
 https://kylerego.github.io/anki-magnifying-glass-mouse-cursor
+https://kylerego.github.io/anki-magnifying-glass-mouse-cursor-v2
