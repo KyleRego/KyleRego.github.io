@@ -209,7 +209,7 @@ end
 #  => nil
 {% endhighlight %}
 
-A block is one of the rare things in Ruby which is not an object. The object version of a block is a `Proc`, and a `lambda` is also a `Proc` with some important differences, like stricter arity and a different behaviour of `return`.
+A block is one of the rare things in Ruby which is not an object. The object version of a block is a `Proc`, and a `lambda` is also a `Proc` with some important differences, like stricter arity and a different behavior of `return`.
 
 ### Scope Gates
 
