@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-<article id="top-point" class="container px-2 mx-auto mb4" itemscope itemtype="http://schema.org/BlogPosting">
+<article id="article" class="container px-2 mx-auto mb4" itemscope itemtype="http://schema.org/BlogPosting">
   <h1 class="h0 
             {% if page.long_title %}h0-small{% endif %} 
             col-9 sm-width-full py-4 mt-3 inline-block" itemprop="name headline"
@@ -16,8 +16,8 @@ layout: default
         <div>
           {{ content | remove_first:page.excerpt }}
           {% unless page.short %}
-          <div class="to-top-container" title="Return to top">
-            <a href="#top-point" class="to-top-link">🎈</a>
+          <div class="to-top-container">
+            <a href="#article" title="Return to top" class="to-top-link">🎈</a>
           </div>
           {% endunless %}
         </div>
