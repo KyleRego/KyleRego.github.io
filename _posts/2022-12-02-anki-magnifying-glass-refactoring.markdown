@@ -144,21 +144,26 @@ from aqt import mw
 from aqt.qt import *
 
 config = mw.addonManager.getConfig(__name__)
-zoomwidth = zoomheight = config["larger square side (pixels)"]
-width = height = config["smaller square side (pixels)"]
+zoomwidth = zoomheight = config["larger square side length (pixels)"]
+width = height = config["smaller square side length (pixels)"]
+pos_x_crosshair = config["positive-x crosshair length (pixels)"]
+neg_x_crosshair = config["negative-x crosshair length (pixels)"]
+pos_y_crosshair = config["positive-y crosshair length (pixels)"]
+neg_y_crosshair = config["negative-y crosshair length (pixels)"]
+timeout_interval = config["delay to turn off zoom mouse (milliseconds)"]
+
 cursors_pushed_to_stack_per_shortcut = 10
 
-class AnkiMagnifyingGlassMouseCursor(QObject):
+class AnkiMagnifyingGlassMouseCursor():
     def __init__(self):
-        QObject.__init__(self)
-        self.timer = QTimer()
+        self.timer = QTimer(mw)
         self.timer.setSingleShot(True)
         self.timer.timeout.connect(self.reset_zoom_mouse)
         self.cursors_on_stack = 0
 
     def handle_zoom_mouse_shortcut(self):
-        self.timer.start(500) # the timer will time out after 500 milliseconds
         self.persist_zoom_mouse()
+        self.timer.start(timeout_interval)
 
     def persist_zoom_mouse(self):
         i = 0
@@ -173,8 +178,8 @@ class AnkiMagnifyingGlassMouseCursor(QObject):
 
             painter = QPainter(pixmap1)
             midx, midy = width/2, height/2
-            painter.drawLine(midx, midy-5, midx, midy+5)
-            painter.drawLine(midx-5, midy, midx+5, midy)
+            painter.drawLine(midx, midy-pos_y_crosshair, midx, midy+neg_y_crosshair)
+            painter.drawLine(midx-neg_x_crosshair, midy, midx+pos_x_crosshair, midy)
             painter.end()
 
             pixmap3 = pixmap1.scaled(zoomwidth, zoomheight)
@@ -184,11 +189,9 @@ class AnkiMagnifyingGlassMouseCursor(QObject):
         self.cursors_on_stack += cursors_pushed_to_stack_per_shortcut
 
     def reset_zoom_mouse(self):
-        k = 0
-        while k < self.cursors_on_stack:
+        while self.cursors_on_stack > 0:
             mw.app.restoreOverrideCursor()
-            k += 1
-        self.cursors_on_stack = 0
+            self.cursors_on_stack -= 1
 
 anki_magnifying_glass_mouse_cursor = AnkiMagnifyingGlassMouseCursor()
 
@@ -199,18 +202,33 @@ mw.form.menuTools.addAction(action)
 
 {% endhighlight %}
 
+We also have a new `config.json`:
+
+{% highlight json %}
+{
+"larger square side length (pixels)": 400, 
+"smaller square side length (pixels)": 200,
+"positive-x crosshair length (pixels)": 5,
+"negative-x crosshair length (pixels)": 5,
+"positive-y crosshair length (pixels)": 5,
+"negative-y crosshair length (pixels)": 5,
+"delay to turn off zoom mouse (milliseconds)": 500
+}
+{% endhighlight %}
+
+If you are testing this add-on and notice that the cursor resets once while holding Alt + C and then stays on afterwards, this may be because of a keyboard shortcut repeat delay, which you can change in your operating system settings.
+
 `QTimer` is a Qt class that emits a signal every `interval` milliseconds. The documentation refers to the `QTimer` emitting this signal as timing out. 
 
 {% highlight Python %}
 def __init__(self):
-    QObject.__init__(self)
-    self.timer = QTimer()
+    self.timer = QTimer(mw)
     self.timer.setSingleShot(True)
     self.timer.timeout.connect(self.reset_zoom_mouse)
     self.cursors_on_stack = 0
 {% endhighlight %}
 
-In the constructor, we add a `timer` attribute, an object instantiated from the `QTimer` class, to the `AnkiMagnifyingGlassMouseCursor` object. The `setSingleShot` method sets an attribute of the `QTimer` object that indicates it should only time out once.
+In the constructor, we add a `timer` attribute, an object instantiated from the `QTimer` class, to the `AnkiMagnifyingGlassMouseCursor` object. The argument to the constructor, `mw`, becomes the parent of the `QTimer`. This wasn't necessary but may help Qt manage memory. The `setSingleShot` method sets an attribute of the `QTimer` object that indicates it should only time out once.
 
 {% highlight Python %}
 self.timer.timeout.connect(self.reset_zoom_mouse)
@@ -220,12 +238,12 @@ This specifies that the `reset_zoom_mouse` function should run when the timer em
 
 {% highlight Python %}
 def handle_zoom_mouse_shortcut(self):
-    self.timer.start(500) # the timer will time out after 500 milliseconds
+    self.timer.start(timeout_interval)
     self.persist_zoom_mouse()
 {% endhighlight %}
 
-The trick that makes this work is that calling `start` on a timer that is already on stops it and restarts it. Every trigger of Alt + C causes the `persist_zoom_mouse` method to be called and also resets the timer that triggers `reset_zoom_mouse`. This pretty much works and now we only need to remember one keyboard shortcut: Alt + C to "see" small details.
+The trick that makes this work is that calling `start` on a timer that is already on stops it and restarts it. Every trigger of Alt + C causes the `persist_zoom_mouse` method to be called and also resets the timer that triggers `reset_zoom_mouse`. Now we only need to remember one keyboard shortcut: Alt + C to "see" small details.
 
-There are still improvements to be made here, such as moving the [magic numbers](https://en.wikipedia.org/wiki/Magic_number_(programming)) into constants and not using `while` loops, which don't feel completely right to me personally. I also notice `k` is not necessary in `reset_zoom_mouse` since we could just decrement `cursors_on_stack` until it is 0. Another thing we could do is extract the details of constructing the `timer` object to a constructor method of an additional class. I don't think those things are too important for a small program like this and they also don't have much to do with Anki add-on development specifically. 
+The [magic numbers](https://en.wikipedia.org/wiki/Magic_number_(programming)) that we had before are now less magical and can changed from the add-on configuration, except for the number of cursors pushed onto the stack per keyboard shortcut. I also noticed `k` was not necessary in `reset_zoom_mouse` since we could just decrement `cursors_on_stack` until it is 0. Another thing we could do is extract the details of constructing the `timer` object to a constructor method of an additional class, but I don't think that's too important.
 
 I hope this provides another helpful example. This will be the last Anki add-on case study from me, at least for a while. Cheers, and remember if you are stuck writing your add-on, take a step back and sleep on it. When you work on it again, consider it an opportunity to learn.
