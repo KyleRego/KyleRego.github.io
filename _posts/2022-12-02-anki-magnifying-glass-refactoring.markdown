@@ -135,7 +135,7 @@ class AnkiMagnifyingGlassMouseCursor():
 
 We had to pull in the [`time` module](https://docs.python.org/3/library/time.html#module-time) from the Python standard library to get the `time.time()` method. This method returns the number of seconds since 1970 as a floating point number.
 
-This is almost acceptable but the problem is `start_zoom_mouse` reaches `reset_zoom_mouse` even if Alt + C is being held down. This happens because the flow of execution does not allow the `last_time_triggered` to be updated. The zoom mouse keeps turning off and on while Alt + C is activated. This was a bit of a rookie mistake to try to be honest, but in my defense, it didn't take long to whip up.
+This is almost acceptable but the problem is `start_zoom_mouse` reaches `reset_zoom_mouse` even if Alt + C is being held down. This happens because the flow of execution does not allow the `last_time_triggered` to be updated. The zoom mouse keeps turning off and on while Alt + C is activated.
 
 After some research and trying out some other stuff, I found that using the `QTimer` class was a fairly straightforward approach. Here is the final version of `__init__.py` after using that in the implementation and doing some other refactoring:
 
@@ -244,6 +244,10 @@ def handle_zoom_mouse_shortcut(self):
 
 The trick that makes this work is that calling `start` on a timer that is already on stops it and restarts it. Every trigger of Alt + C causes the `persist_zoom_mouse` method to be called and also resets the timer that triggers `reset_zoom_mouse`. Now we only need to remember one keyboard shortcut: Alt + C to "see" small details.
 
-The [magic numbers](https://en.wikipedia.org/wiki/Magic_number_(programming)) that we had before are now less magical and can changed from the add-on configuration, except for the number of cursors pushed onto the stack per keyboard shortcut. I also noticed `k` was not necessary in `reset_zoom_mouse` since we could just decrement `cursors_on_stack` until it is 0. Another thing we could do is extract the details of constructing the `timer` object to a constructor method of an additional class, but I don't think that's too important.
+Some other changes unrelated to the main purpose were also made. The [magic numbers](https://en.wikipedia.org/wiki/Magic_number_(programming)) that we had in the implementation before are generally gone. Most of these constants can be changed from the configuration now. I also noticed `k` was not necessary in `reset_zoom_mouse` since we could just decrement `cursors_on_stack` until it is 0.
+
+There are still improvements to be made. We could extract the details of constructing the `timer` object to a constructor method of an additional class. We could also make some of the methods of our class private. The redundant `parent` variable in `persist_zoom_mouse` is still used. 
+
+If I were to continue developing this, my next priority would be pushing less cursors onto the stack so that the mouse can reset faster. To do that, we might try only pushing cursors onto the stack when the mouse cursor is moving.
 
 I hope this provides another helpful example. This will be the last Anki add-on case study from me, at least for a while. Cheers, and remember if you are stuck writing your add-on, take a step back and sleep on it. When you work on it again, consider it an opportunity to learn.
