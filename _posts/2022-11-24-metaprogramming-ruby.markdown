@@ -499,4 +499,4 @@ class MySubclass < MyClass; end
 #  => nil
 {% endhighlight %}
 
-**If you learned something here, you will learn a lot more by reading [Metaprogramming Ruby](https://www.amazon.com/Metaprogramming-Ruby-Program-Like-Pros/dp/1934356476)!**
+**If you learned something here, you should check out [Metaprogramming Ruby](https://www.amazon.com/Metaprogramming-Ruby-Program-Like-Pros/dp/1934356476).**

@@ -19,8 +19,6 @@ The order of topics is roughly:
 - object-oriented programming (again but with JavaScript)
 - the DOM and asynchronous programming
 
-There is also a section on regular expressions which can be studied at any point.
-
 The Launch School course does a great job including a lot of practice problems and exercises throughout. Some are classics, like implementing a sorting algorithm or linked list, while others have you designing a simple command line game or trying to spot a subtle logical error in a code snippet. I also found the course to be heavy in reading and light in watching videos compared to other resources, which I appreciated.
 
 One thing to note is you need to pass assessments to progress to the next topic (and the lowest passing grade is like an A-). Each assessment is a live coding interview, a written assessment, or a project. At certain points in the course, you have to pass more than one of these to continue. While I never failed an assessment, they are generally not easy, and people do commonly fail them.

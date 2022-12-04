@@ -70,15 +70,6 @@ mw.form.menuTools.addAction(action)
 "Time (unitless)": 100}
 {% endhighlight %}
 
-First let's get rid of the unused configuration value. Here is the new config file:
-
-{% highlight json %}
-{
-"larger square side (pixels)": 400, 
-"smaller square side (pixels)": 200
-}
-{% endhighlight %}
-
 My first attempt at refactoring was to use a class called `AnkiMagnifyingGlassMouseCursor` with attributes to track if the zoom mouse was on or off, the last time that the zoom mouse was triggered, and how many `QCursor` objects have been pushed on the stack. I was hoping to just have the zoom mouse turn off after a certain amount of time passed since the last time the keyboard shortcut was triggered. Keeping track of how many cursors are on the stack allows popping off the exact number that we need to in order to return to the normal mouse cursor.
 
 That lead to this code:
