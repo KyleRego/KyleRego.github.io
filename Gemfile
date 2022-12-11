@@ -20,3 +20,5 @@ gem "webrick", "~> 1.7"
 
 # Syntax highlighting
 gem "rouge"
+
+gem 'plantuml_builder'
