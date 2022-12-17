@@ -5,6 +5,13 @@ date:   2022-11-14 10:30:00 -0500
 categories: lisp programming [book reviews] [computer science]
 permalink: /how-to-design-programs
 emoji: 😮
+short: true
+book_review: true
+book_title: How to Design Programs, Second Edition
+book_author: Matthias Felleisen, Robert Bruce Findler, Matthew Flatt, Shriram Krishnamurthi
+book_publisher: MIT Press
+book_isbn: 9780262534802
+book_link: https://htdp.org/
 ---
 When I was at the beginning of teaching myself programming, I found [teachyourselfcs.com](https://teachyourselfcs.com) which recommended two books for learning programming. I ended up reading the second one, [How to Design Programs, Second Edition](https://htdp.org/) and committed [my solutions to most of the book's exercises](https://github.com/KyleRego/htdp-solutions) to a GitHub repository.
 

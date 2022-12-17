@@ -1,0 +1,22 @@
+@startuml
+  User -> BookService : new_book
+
+  activate BookService
+    return true
+  deactivate BookService
+
+  User -> BookService : setup_chapters
+  activate BookService
+    return true
+  deactivate BookService
+
+  User -> BookService : setup_index
+  activate BookService
+    return true
+  deactivate BookService
+
+  User -> BookService : book
+  activate BookService
+    return Book
+  deactivate BookService
+@enduml

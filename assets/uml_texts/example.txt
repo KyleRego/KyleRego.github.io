@@ -1,6 +1,4 @@
 @startuml
-  actor User
-
   User -> MyService : perform
   activate MyService
     return true
