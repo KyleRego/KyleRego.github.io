@@ -6,3 +6,5 @@ https://kylerego.github.io/metaprogramming-ruby
 https://kylerego.github.io/anki-magnifying-glass-mouse-cursor
 https://kylerego.github.io/anki-enumeration-tool
 https://kylerego.github.io/anki-magnifying-glass-mouse-cursor-v2
+https://kylerego.github.io/joke-article-to-play-with-mathml
+https://kylerego.github.io/practical-object-oriented-design
