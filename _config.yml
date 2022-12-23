@@ -15,3 +15,6 @@ highlighter: rouge
 
 google_analytics: G-B9Y6YW21X4
 emoji: 🙃
+
+plugins:
+  - jekyll-sitemap

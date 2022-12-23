@@ -21,4 +21,6 @@ gem "webrick", "~> 1.7"
 # Syntax highlighting
 gem "rouge"
 
+gem 'jekyll-sitemap'
+
 gem 'plantuml_builder'

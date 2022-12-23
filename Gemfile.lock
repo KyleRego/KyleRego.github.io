@@ -261,6 +261,7 @@ PLATFORMS
 DEPENDENCIES
   github-pages
   http_parser.rb (~> 0.6.0)
+  jekyll-sitemap
   plantuml_builder
   rouge
   tzinfo (>= 1, < 3)
