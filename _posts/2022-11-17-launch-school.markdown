@@ -2,6 +2,7 @@
 layout: post
 title:  "Launch School"
 date:   2022-11-17 10:00:00 -0500
+categories: programming [launch school]
 permalink: /launch-school
 emoji: 🙂
 short: true

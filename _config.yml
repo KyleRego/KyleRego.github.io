@@ -16,5 +16,12 @@ highlighter: rouge
 google_analytics: G-B9Y6YW21X4
 emoji: 🙃
 
+defaults:
+  -
+    scope:
+      path:            "the-old-website/**/*.html"
+    values:
+      sitemap:         false
+
 plugins:
   - jekyll-sitemap
