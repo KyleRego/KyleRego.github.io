@@ -10,7 +10,7 @@ long_title: false
 mathjax: false
 ---
 
-The purpose of this post is to show a few examples of Anki add-ons I wrote while I was in medical school. I hope this will be helpful to someone new to programming who wants to write an Anki add-on. This post also condenses the content of three separate posts on this topic. The exact content of the three original posts can be seen in [the commit which deleted them](#). Before the case studies, I also want to provide some background on what you may need to study to write Anki add-ons in general.
+The purpose of this post is to show a few examples of Anki add-ons I wrote while I was in medical school. I hope this will be helpful to someone new to programming who wants to write an Anki add-on. This post also condenses the content of three separate posts on this topic. The exact content of the three original posts can be seen in [the commit which deleted them](https://github.com/KyleRego/KyleRego.github.io/commit/f3e5b60c401b72c124ffd693e3dd707b47fd609e). Before the case studies, I also want to provide some background on what you may need to study to write Anki add-ons in general.
 
 - [Background](#background)
 - [Anki magnifying glass mouse cursor](#case-study-the-anki-magnifying-glass-mouse-cursor)
