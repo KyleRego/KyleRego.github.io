@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Anki add-on source case studies
+title: How to write an Anki add-on (case studies)
 date: 2022-12-31 08:30:00 -0500
 categories: programming python pyqt anki
 permalink: /anki-add-on-source-case-studies
@@ -10,7 +10,7 @@ long_title: false
 mathjax: false
 ---
 
-The purpose of this post is to show a few examples of Anki add-ons I wrote while I was in medical school. I hope this will be helpful to someone new to programming who wants to write an Anki add-on. This post also condenses the content of three separate posts on this topic. The exact content of the three original posts can be seen in [the commit which deleted them](https://github.com/KyleRego/KyleRego.github.io/commit/f3e5b60c401b72c124ffd693e3dd707b47fd609e). Before the case studies, I also want to provide some background on what you may need to study to write Anki add-ons in general.
+The purpose of this post is to show a few examples of Anki add-ons I wrote while I was in medical school. I hope this will be helpful to someone new to programming who wants to write an Anki add-on. This post condenses the content of three separate posts on this topic. The exact content of the three original posts can be seen in [the commit which deleted them](https://github.com/KyleRego/KyleRego.github.io/commit/f3e5b60c401b72c124ffd693e3dd707b47fd609e). Before the case studies, I also want to provide some background on what you may need to study to write Anki add-ons in general.
 
 - [Background](#background)
 - [Anki magnifying glass mouse cursor](#case-study-the-anki-magnifying-glass-mouse-cursor)
@@ -132,9 +132,11 @@ from aqt import mw
 from aqt.qt import *
 {% endhighlight %}
 
-This is just importing parts of Anki into our add-on so that we can use them. `mw` is the Anki main window object. An object is an instance of a class. When an object is created using a class as the template, we say it was instantiated. The class defines what data and behavior the objects instantiated from it have.
+This is just importing parts of Anki into our add-on so that we can use them. `mw` is the Anki main window object. An object is an instance of a class; when an object is created using a class as a template, we can say that the object was instantiated from the class. The class defines what data and behavior the objects instantiated from it will have. The Anki main window object's class is `AnkiQt`. We will see later that we can ask `mw` for the Anki collection object.
 
-The Anki main window object's class is `AnkiQt`. An important feature of classes and object-oriented programming is inheritance. This allows a class to inherit the data and behavior of another class, which it can then add to or override. `AnkiQt` inherits from the Qt class `QMainWindow`. We will see later that we can ask `mw` for the Anki collection.
+An important feature of classes and object-oriented programming is inheritance. This allows a class (the child class) to inherit the data and behavior of another class (the parent class). The child class can then add additional data and behavior to what it inherited. The child class can also define its own version of the things it inherits, which overrides them. 
+
+`AnkiQt` inherits from the Qt class `QMainWindow`, which itself inherits from `QWidget`. A widget is just any element you can see on the screen. Python (and C++) support multiple inheritance, where a class is not limited to having only one parent class. `QWidget` inherits from both `QObject` and `QPaintDevice`. The point is that when you are reading the docs trying to figure out how to use a specific class, you should inspect closely the more general behavior it has inherited from other classes.
 
 ## Reading config.json
 
@@ -157,7 +159,7 @@ cursors_pushed_to_stack_per_shortcut = 10
 
 We will see what this means later.
 
-It is a good idea to define any constant values at the beginning of the program. We could instead replace every reference to `cursors_pushed_to_stack_per_shortcut` with the literal 10; this would be considered a magic number. By defining the value in one place and referencing it, we avoid having to make changes to many places in the code when we are essentially changing one thing.
+It is a good idea to define any constant values at the beginning of the program. We could instead replace every reference to `cursors_pushed_to_stack_per_shortcut` with the literal 10; this would be considered a magic number. By defining the value in one place and referencing it with a variable, if we have to change that value, we avoid having to make changes to many places in the code.
 
 ## Registering the actions
 
@@ -170,13 +172,11 @@ action.triggered.connect(anki_magnifying_glass_mouse_cursor.handle_zoom_mouse_sh
 mw.form.menuTools.addAction(action)
 {% endhighlight %}
 
-There are two examples here showing how to instantiate an object in Python. `anki_magnifying_glass_mouse_cursor` is instantiated from the `AnkiMagnifyingGlassMouseCursor` class, and `action` is instantiated from the `QAction` class, which we get from PyQt/Qt. The reason why `action` is instantiated with some arguments `"Zoom Mouse"` and the Anki main window object and the other object is not has to do with the definitions of the class constructors. 
+There are two examples here showing how to instantiate an object from a class in Python. `anki_magnifying_glass_mouse_cursor` is an instance of `AnkiMagnifyingGlassMouseCursor`, and `action` is an instance of `QAction` which we get from PyQt/Qt. The reason why `action` is instantiated with some arguments and the other object does not has to do with the definitions of the class constructors. 
 
-The constructor of a class is a method that is called when an object is instantiated from the class and its purpose is to set up the object. When we study the `AnkiMagnifyingGlassMouseCursor` class later, we will see its constructor does not need any arguments.
+The constructor of a class is a method that is called when an object is instantiated from the class, and its purpose is just to set up the object. In Python, the name of the constructor method is `__init__`.
 
-The `QAction` class represents an abstraction for user commands. We have instantiated one with some descriptive text and a parent object, the Anki main window object.
-
-Then we do three things: 
+The `QAction` class represents an abstraction for user commands. We do three things with it: 
 - We specify that this action should be triggered with the keyboard shortcut Alt + C.
 - We specify that the `handle_zoom_mouse_shortcut` method of `anki_magnifying_glass_mouse_cursor` should run when the action is triggered.
 - We add this action so that it can be triggered from the menu tools.
@@ -194,9 +194,9 @@ class AnkiMagnifyingGlassMouseCursor():
         self.cursors_on_stack = 0
 {% endhighlight %}
 
-This first line shows how to start the definition of a class in Python, and the rest is the constructor, which in Python is called `__init__` and takes `self`, which represents the object it is constructing, as the first argument.
+This shows how to start the definition of a classand the constructor. The constructor has a parameter `self` which represents the object it is constructing.
 
-The constructor generally defines what data an object instantiated from the class should have. In this case, it is giving it a timer which itself is an instance of `QTimer`. The argument to the constructor, `mw`, becomes the parent of the `QTimer`. This wasn't strictly necessary but may help Qt manage memory. `mw` is available here without needing to be passed in explicitly because of the variable scoping rules of Python.
+The constructor generally defines what data an object instantiated from the class should have by giving the object attributes. In this case, it is giving it an attribute `self.timer` which is an instance of `QTimer` and an attribute `self.cursors_on_stack` with the integer value 0. `mw` is available here without needing to be passed in explicitly because of the variable scoping rules of Python.
 
 `QTimer` is a Qt class that emits a signal every `interval` milliseconds. The documentation refers to the `QTimer` emitting this signal as timing out. The `setSingleShot` method sets an attribute of the `QTimer` object that indicates it should only time out once.
 
@@ -210,7 +210,7 @@ This specifies that the `reset_zoom_mouse` function should run when the timer em
 self.cursors_on_stack = 0
 {% endhighlight %}
 
-This is related to the `cursors_pushed_to_stack_per_shortcut` variable that we defined in the beginning. Again, we will see what these are doing later.
+This is related to the `cursors_pushed_to_stack_per_shortcut` variable that we defined in the beginning, but we are still not quite at the relevant part to explain what this means.
 
 ## The handle zoom mouse shortcut method
 
@@ -255,32 +255,30 @@ The important part of this function is the body of the `while` loop. We'll look 
 parent: AnkiQt = mw
 {% endhighlight %}
 
-This just makes a variable `parent` also pointing to the Anki main window object. `mw` is in scope inside the function even though it wasn't passed as an argument due to the scoping rules of Python. Having two variables referencing this object was probably unnecessary (oops).
+This just makes a variable `parent` also pointing to the Anki main window object. `mw` is again in scope even though it wasn't passed in explicitly. Having two variables referencing this object was probably unnecessary (oops).
 
-This is also showing a type hint. It doesn't do anything but provide some documentation that the `parent` variable is an instance of `AnkiQt`.
+This is also showing a type hint. It doesn't do anything except provide us with a reminder that the `parent` variable is an instance of `AnkiQt`.
 
 {% highlight Python %}
 point1: QPoint = QCursor.pos()
 point2: QPoint = parent.mapFromGlobal(point1)
 {% endhighlight %}
 
-This is a good time to talk about how to read the Qt documentation. Take a look at [QCursor::pos()](https://doc.qt.io/qt-6/qcursor.html#pos). Here are the relevant bits:
+Take a look at the documentation for [QCursor::pos()](https://doc.qt.io/qt-6/qcursor.html#pos). Here are the relevant bits:
 
 > QPoint QCursor::pos()
 
 > Returns the position of the cursor (hot spot) of the primary screen in global screen coordinates.
 
-`::` in the Qt documentation means `.` in Python. This is a static method which means it's called on the class itself, not an instance of the class. The class on the left is the type of the returned value.
+`::` in the Qt documentation means `.` in Python. This is a static method which means it's called on the class itself, not an instance of the class. The class on the left (`QPoint`) is the type of the returned value.
 
 The documentation also notes this:
 
 > You can call QWidget::mapFromGlobal() to translate it to widget coordinates.
 
-This one is not a static method, so we call it on `parent`, which references the Anki main window object. `QWidget` is inherited by a lot of other classes in Qt, including `QMainWindow`, which is the parent class of `AnkiQt`. Therefore `AnkiQt` inherits this method from `QWidget`.
+This one is not a static method, so we call it on `parent`, which references the Anki main window object. `QWidget` is inherited by a lot of other classes in Qt, including `QMainWindow`, which is the parent class of `AnkiQt` as was discussed earlier. Therefore `AnkiQt` inherits this method from `QWidget`. Essentially these 2 lines of code are just getting us the position of the mouse cursor in terms of the coordinates of the Anki main window.
 
-This method is also overloaded, which means we can pass it different combinations of arguments. It will determine the correct implementation of the method to use from the types of the arguments you pass it. A lot of the Qt methods are like this. This is why earlier we could have just as well instantiated the `QTimer` object without passing it `mw` as an argument.
-
-Comparing the Python methods to their Qt documentation will help a lot in order to understand the Qt documentation for methods you don't have Python examples of.
+This method is also overloaded which means we can pass it different combinations of argument types. It will determine the correct implementation of the method to use from the types of the arguments you pass it. The reason it is overloaded here is it can also take a `QPointF` argument, which is different from `QPoint` in that it defines the coordinate using floating point numbers instead of integers. Many methods in Qt are overloaded so this is another thing to pay attention to as you read the docs.
 
 {% highlight Python %}
 size = QSize(width, height)
@@ -299,8 +297,8 @@ This makes an object which represents a map of the pixels on the screen specifie
 {% highlight Python %}
 painter = QPainter(pixmap1)
 midx, midy = width/2, height/2
-painter.drawLine(midx, midy-5, midx, midy+5)
-painter.drawLine(midx-5, midy, midx+5, midy)
+painter.drawLine(midx, midy-pos_y_crosshair, midx, midy+neg_y_crosshair)
+painter.drawLine(midx-neg_x_crosshair, midy, midx+pos_x_crosshair, midy)
 painter.end()
 {% endhighlight %}
 
@@ -319,7 +317,7 @@ mw.app.setOverrideCursor(newcursor)
 
 This makes a mouse cursor where the image of it is our pixel map, and then sets the "application override cursor" to be this cursor.
 
-From reading the Qt documentation, the cursors are stored on a stack. This data structure is like a stack of books on a table--you can put a book on top, and you can take the top book off. `setOverrideCursor` pushes a cursor onto the stack. `cursors_pushed_to_stack_per_shortcut` is exactly what it sounds like, and `self.cursors_on_stack` keeps track of how many cursors are on the stack.
+Finally we are at the point to say what the stack related to the cursors is about. From reading the Qt documentation, the cursors are stored on a stack. This data structure is like a stack of books on a table--you can only put a book on top, and you can only take the top book off.`setOverrideCursor` pushes a cursor onto the stack. `cursors_pushed_to_stack_per_shortcut` is exactly what it sounds like, and `self.cursors_on_stack` keeps track of how many cursors are on the stack. By keeping track of exactly how many cursors are on the stack, we will be able to pop off no more and no less than exactly what we need to restore the original mouse cursor.
 
 ## reset_zoom_mouse
 
@@ -338,7 +336,7 @@ The second add-on we will look at is the [Anki enumeration tool](https://ankiweb
 
 ![A review of the Anki enumeration tool](/assets/anki-add-on-images/anki-enumeration-tool-review.png)
 
-It is at least as useful an example of an Anki add-on as the first case study.
+It will at least hopefully provide a good learning example.
 
 {% highlight Python %}
 from aqt import mw
@@ -443,7 +441,7 @@ action.triggered.connect(showoscedialog)
 
 ## What does this add-on do?
 
-"Enumeration tool" is added to the Tools (the images are from an older version of the add-on where it was "OSCE Notes Maker" instead):
+"Enumeration tool" is added to the Tools (this image, and some of the other images, are from an older version of the add-on where it was "OSCE Notes Maker" instead--if you are looking at the live add-on, it will say Enumeration tool):
 
 ![Anki tools menu with the enumeration tool](/assets/anki-add-on-images/anki-enumeration-tool-button.png)
 
@@ -531,13 +529,13 @@ class OsceDialog(QDialog):
         QDialog.__init__(self)
 {% endhighlight %}
 
-What is different about this class is we are inheriting the `QDialog` class. The first thing the constructor does is call the constructor of the parent class which is necessary to set up the object correctly.
+This shows how to define a class that inherits from another class. The first thing the constructor does is call the constructor of the parent class, which is necessary to set up the object correctly.
 
 {% highlight Python %}
 self.setWindowTitle("Enumeration tool")
 {% endhighlight %}
 
-This sets the title of the window. It's similar to the `<title>` element in HTML. `self` is the object we are constructing. In general `self` is a reference to the current instance of the class.
+This sets the title of the window. It's similar to the `<title>` element in HTML, which is the text you see in the browser tab. For example, the title of this web page is "How to write an Anki add-on (case studies)" which you should be able to see in the tab if you are using a web browser on a computer.
 
 {% highlight Python %}
 self.layout = QVBoxLayout()
@@ -555,14 +553,14 @@ This makes the first label.
 self.noteseditor = QPlainTextEdit()
 {% endhighlight %}
 
-This instantiates an object from the `QPlainTextEdit` class and creates an attribute of the object we are making, `self.noteseditor`, which references it. This becomes the multiline text field where we enter the steps of the enumeration.
+This attribute is the multiline text input field where we enter the steps of the enumeration.
 
 {% highlight Python %}
 self.layout.addWidget(label1)
 self.layout.addWidget(self.noteseditor)
 {% endhighlight %}
 
-This adds the label and multi-line text editor we made to the layout.
+This adds the label and multiline text input field we just made to the layout.
 
 {% highlight Python %}
 label2 = QLabel("Enter name of deck below")
@@ -581,7 +579,7 @@ self.layout.addWidget(label4)
 self.layout.addWidget(self.tag_taker)
 {% endhighlight %}
 
-All of this is pretty similar to what we already saw except for the `QLineEdit` class, which is just a single line text field.
+All of this is pretty similar to what we already saw except for the `QLineEdit` class, which is just a single line text input field.
 
 {% highlight Python %}
 label5 = QLabel("Press button below to make notes")
@@ -591,13 +589,13 @@ self.layout.addWidget(label5)
 self.layout.addWidget(self.button)
 {% endhighlight %}
 
-The unique thing here is the button class and the line specifying that clicking the button will trigger the `makeNotes` method of the object we are constructing.
+The new thing here is the button class and the line specifying that clicking the button will trigger the `makeNotes` method of the object we are constructing.
 
 {% highlight Python %}
 self.setLayout(layout)
 {% endhighlight %}
 
-The `setLayout` method comes from `QWidget` and takes an argument of type `QLayout`. `QLayout` is inherited by `QBoxLayout`, which is inherited by `QVBoxLayout`, so this works. The argument becomes the layout manager for the receiver of the method.
+The `setLayout` method works for any `QWidget` and takes an argument of type `QLayout`. `QLayout` is inherited by `QBoxLayout`, which is inherited by `QVBoxLayout`, so this works. The argument becomes the layout manager for the receiver of the method, which is the object we are constructing.
 
 ## makeNotes
 
@@ -647,7 +645,7 @@ model_to_use: Union[None, NoteType] = mw.col.models.byName(notetype_name)
 
 The first thing to notice is the use of a union type in the type hint. `model_to_use` can be `None` if no note type is found or it can be an instance of the Anki class `NoteType`.
 
-With this we are also starting to get out of the Qt stuff and into the Anki data structure. `mw.col` is the `Collection` object--the official Anki add-on writing documentation has a lot to say about this. Here it is giving us access into the note types and also letting us ask for one by name. In the Anki source, model is another term for note type.
+With this we are also starting to get out of the Qt stuff and into the Anki data structure. `mw.col` is the `Collection` object--the official Anki add-on writing documentation has a lot to say about this. Here it is giving us access into the note types and also letting us ask for one by name. In the Anki source, model is sometimes another term for note type.
 
 {% highlight Python %}
 if model_to_use is None:
@@ -675,13 +673,13 @@ These lines are just getting the title of the cards to create and name of the de
 did = mw.col.decks.id(deck_name)
 {% endhighlight %}
 
-Here we again using the Anki collection object which we can ask the Anki main window for. This object's `decks` attribute is an instance of the `DeckManager` class. This has a method `id` which, as we see here, can take a deck name string argument and return the id of that deck.
+Here we are again asking the Anki main window for the collection object. The collection object's `decks` method returns an instance of the `DeckManager` class. This has a method `id` which, as we see here, can take a deck name string argument and return the id of that deck.
 
 {% highlight Python %}
 mw.col.decks.select(did)
 {% endhighlight %}
 
-This finds a deck by id and sets that to be the current deck.
+This finds a deck in the collection by id and selects that as the current deck.
 
 {% highlight Python %}
 deck = mw.col.decks.get(did)
@@ -718,7 +716,7 @@ for content in notes_content:
     mw.col.addNote(new_note)
 {% endhighlight %}
 
-This is where the notes are made. Note how we don't specify here what model to use for the new note or what deck to put it in. The `<br>` is the [line break HTML element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/br)--it prevents the title and first line of the content from being on the same line.
+This is where the notes are made. As some evidence for what I was just explaining about why it may have been necessary to set both the deck id of the model and the model id of the deck, note how we don't specify here what model to use for the new note or what deck to put it in. The `<br>` is the [line break HTML element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/br). Here it prevents the title and first line of the content from being on the same line.
 
 Reading the source, it looks like `newNote` is deprecated and `new_note` (a method called `new_note`--not the variable I called `new_note` above) should be used instead. Both are methods of `Collection` but it looks like `new_note` takes the model to use as an argument instead of just defaulting to the current model of the selected deck.
 
