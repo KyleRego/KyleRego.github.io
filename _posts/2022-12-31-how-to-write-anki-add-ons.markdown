@@ -6,7 +6,7 @@ categories: programming python pyqt anki
 permalink: /anki-add-on-source-case-studies
 emoji: 😇
 short: false
-long_title: false
+long_title: true
 mathjax: false
 ---
 

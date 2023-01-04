@@ -4,6 +4,8 @@ title: Kyle Rego
 description: A Ruby on Rails weblog that is currently focused on book reviews.
 baseurl: ""
 url: "https://kylerego.github.io"
+email: regoky@outlook.com
+
 github_repo: KyleRego.github.io
 github_username: KyleRego
 
@@ -25,3 +27,7 @@ defaults:
 
 plugins:
   - jekyll-sitemap
+
+collections:
+  notes:
+    output: true
