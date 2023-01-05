@@ -1,0 +1,59 @@
+---
+layout: post
+title:  "The infinite square well"
+categories: physics
+permalink: /the-infinite-square-well
+emoji: 😋
+mathjax: true
+note_category: Physics
+---
+
+The infinite square well is a toy problem in Modern Physics (a sophomore Physics course) that is interesting because it is an example of a solvable Schrodinger equation. The general time-independent version of this is the following:
+
+$$ \hat {H} \Psi = E \Psi $$
+
+We are looking for eigenfunctions of the Hamiltonian which we call the wave functions. The classical Hamiltonian in one dimension (x) is the following:
+
+$$ H(x, p) = \frac { p^2 } { 2m } + V(x) $$
+
+This operator represents momentum in Quantum Mechanics: 
+
+$$ \frac { \hbar } { i } \frac { \delta } { \delta x } $$
+
+With these substitutions, the following is the Schrodinger equation to solve:
+
+$$ - \frac { \hbar^2 } { 2m } \frac { d^2 \Psi } { d x^2 } + V(x) \Psi = E \Psi $$
+
+The following potential completes the definition of the problem:
+
+$$ V(x)= 
+\begin{cases}
+0 & 0\leq x \leq a \\ 
+\infty & \text{elsewhere}
+\end{cases} $$
+
+The particle cannot exist outside of the square well because the potential energy there would be $$ \infty $$. We only need to solve the equation where $$ V(x) = 0 $$.
+
+If we define k in the following way:
+
+$$ k = \frac { \sqrt {2mE} } { \hbar } $$
+
+Then inside the well, this is the equation we need to solve:
+
+$$ \frac { d^2 \Psi } { dx^2 } = -k^2 \Psi $$
+
+By inspection, this is a very common differential equation (a mass on a spring with no friction and a pendulum with the small angle approximation are examples) with the following solution:
+
+$$ \Psi(x) = A \sin(kx) + B \cos(kx) $$
+
+To determine the specific form of the solution, we need to consider the boundary conditions. $$ \Psi = 0 $$ at $$ x = 0 $$ implies that $$ B = 0 $$. It also follows from $$ \Psi = 0 $$ at $$ x = a $$ that:
+
+$$ ka = 0, \pm \pi, \pm 2 \pi, ... $$
+
+With this and the definition of $$ k $$ from before, this is the solution:
+
+$$ \Psi_{n}(x) = \sqrt { \frac {2} {a} } \sin( \frac { n \pi } { a } x) $$
+
+$$ E_{n} = \frac {n^2 \pi^2 \hbar^2} {2 m a^2} = \frac {n^2 h^2} {8 m a^2} $$
+
+where the last simplification is due to replacing the reduced form of the Planck constant.

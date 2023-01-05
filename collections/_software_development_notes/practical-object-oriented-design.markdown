@@ -4,7 +4,7 @@ title:  "Practical Object-Oriented Design"
 date:   2022-12-17 13:00:00 -0500
 categories: ruby programming [book reviews]
 permalink: /practical-object-oriented-design
-emoji: 🙂
+emoji: 😃
 long_title: true
 book_review: true
 book_title: Practical Object-Oriented Design&#58; An Agile Primer Using Ruby 2nd Edition
@@ -12,7 +12,9 @@ book_author: Sandi Metz
 book_publisher: Addison-Wesley Professional
 book_isbn: 978-0134456478
 book_link: https://www.amazon.com/Practical-Object-Oriented-Design-Agile-Primer/dp/0134456475/ref=asc_df_0134456475/?tag=hyprod-20&linkCode=df0&hvadid=312140868236&hvpos=&hvnetw=g&hvrand=14386545144526420910&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9002169&hvtargid=pla-362760961647&psc=1
+note_category: Software development
 ---
+
 The subject of [Practical Object-Oriented Design: An Agile Primer Using Ruby]({{page.book_link}}) is object-oriented design, the goal of which is to produce code that will be easily changeable in the future. When the requirements of the application inevitably change, it will be the existing design that determines if the necessary code changes are joyful or painful. We should strive for code that works now, is reusable, and can be easily adapted in the future.
 
 The book uses Ruby and MiniTest but is really about general principles. The audience is mainly junior programmers who have worked on object-oriented applications. The actual code examples are mostly about bicycles and may be somewhat interesting if you enjoy things like geometry and mechanical advantage.

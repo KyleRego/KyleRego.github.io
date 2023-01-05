@@ -1,12 +1,13 @@
 ---
 layout: post
 title:  "Launch School"
-date:   2022-11-17 10:00:00 -0500
 categories: programming [launch school]
 permalink: /launch-school
 emoji: 🙂
 short: true
+note_category: Software development
 ---
+
 [Launch School](https://launchschool.com) is a website that teaches a course on web development fundamentals ([it is not a coding bootcamp](https://medium.com/launch-school/were-not-a-bootcamp-c33901412c38)). Instead of focusing on any particular frameworks, the focus is on topics that don't change as quickly. I took the Ruby version of the course, but there is a separate track for people interested in Node instead of Ruby.
 
 The order of topics is roughly:

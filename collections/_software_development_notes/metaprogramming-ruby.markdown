@@ -11,7 +11,9 @@ book_author: Paolo Perrotta
 book_publisher: Pragmatic Bookshelf
 book_isbn: 978-1934356470
 book_link: https://www.amazon.com/Metaprogramming-Ruby-Program-Like-Pros/dp/1934356476
+note_category: Software development
 ---
+
 Metaprogramming: writing code that writes code. With the Ruby programming language, almost every language construct is an object, and objects can be manipulated at runtime. [Metaprogramming Ruby](https://www.amazon.com/Metaprogramming-Ruby-Program-Like-Pros/dp/1934356476) describes the common Ruby programming patterns related to this idea. The book finishes with some sightseeing of these patterns in Ruby on Rails. 
 
 My review: it's a buy (also, I read the first edition but there is a second edition that may be even better). Some terse notes about Ruby programming follow.

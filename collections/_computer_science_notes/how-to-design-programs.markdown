@@ -1,7 +1,6 @@
 ---
 layout: post
 title:  "How to Design Programs"
-date:   2022-11-14 10:30:00 -0500
 categories: lisp programming [book reviews] [computer science]
 permalink: /how-to-design-programs
 emoji: 😮
@@ -12,7 +11,9 @@ book_author: Matthias Felleisen, Robert Bruce Findler, Matthew Flatt, Shriram Kr
 book_publisher: MIT Press
 book_isbn: 9780262534802
 book_link: https://htdp.org/
+note_category: Computer science
 ---
+
 When I was at the beginning of teaching myself programming, I found [teachyourselfcs.com](https://teachyourselfcs.com) which recommended two books for learning programming. I ended up reading the second one, [How to Design Programs, Second Edition](https://htdp.org/) and committed [my solutions to most of the book's exercises](https://github.com/KyleRego/htdp-solutions) to a GitHub repository.
 
 The teaching language used is a Lisp which evolves over the course of the book, starting as Beginning Student Language and progressing to Advanced Student Language. It is a nice language with a library for drawing shapes and images to the screen which makes making simple games quite approachable. Completing the book's exercises will have you making a snake game, a (very) simple version of Tetris, and a space invaders game.

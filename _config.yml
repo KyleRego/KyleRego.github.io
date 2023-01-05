@@ -28,6 +28,12 @@ defaults:
 plugins:
   - jekyll-sitemap
 
+collections_dir: collections
+
 collections:
-  notes:
+  computer_science_notes:
+    output: true
+  physics_notes:
+    output: true
+  software_development_notes:
     output: true
