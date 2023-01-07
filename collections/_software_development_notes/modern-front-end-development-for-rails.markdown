@@ -15,23 +15,9 @@ book_link: https://www.amazon.com/Modern-Front-End-Development-Rails-Webpacker/d
 note_category: Software development
 ---
 
+**This note is a work in progress.**
+
 The book is about the front-end development tools that pair with Ruby on Rails. It uses Rails 6.1.
-
-# Typescript
-
-This extends JavaScript to add type checking which makes some runtime errors less likely.
-
-# webpack
-
-Converts all of the front-end assets from a structure that is easy to maintain for developers to something that is better for the web browser.
-
-# Webpacker
-
-Rails wrapper around webpack
-
-# Redux
-
-Implements the reducer pattern and is commonly used with React.
 
 # Hotwire
 
@@ -165,3 +151,18 @@ CSS properties:
 - `animation`
   - This defines an animation between styles
 
+# Typescript
+
+This extends JavaScript to add type checking which makes some runtime errors less likely.
+
+# webpack
+
+Converts all of the front-end assets from a structure that is easy to maintain for developers to something that is better for the web browser.
+
+# Webpacker
+
+Rails wrapper around webpack
+
+# Redux
+
+Implements the reducer pattern and is commonly used with React.

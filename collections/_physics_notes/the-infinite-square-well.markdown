@@ -56,4 +56,4 @@ $$ \Psi_{n}(x) = \sqrt { \frac {2} {a} } \sin( \frac { n \pi } { a } x) $$
 
 $$ E_{n} = \frac {n^2 \pi^2 \hbar^2} {2 m a^2} = \frac {n^2 h^2} {8 m a^2} $$
 
-where the last simplification is due to replacing the reduced form of the Planck constant.
+where the last simplification is due to $$ \hbar = h/2\pi $$.

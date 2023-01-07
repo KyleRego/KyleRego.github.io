@@ -6,6 +6,7 @@ permalink: /service-oriented-design-with-ruby-and-rails
 emoji: 🥳
 long_title: false
 book_review: true
+long_title: true
 book_title: Service-Oriented Design with Ruby and Rails
 book_author: Paul Dix
 book_publisher: Addison-Wesley Professional
@@ -13,6 +14,8 @@ book_isbn: 978-0321659361
 book_link: https://www.amazon.com/Service-Oriented-Design-Rails-Addison-Wesley-Professional/dp/0321659368
 note_category: Software development
 ---
+
+**This note is a work in progress.**
 
 # What is a service?
 
@@ -195,65 +198,30 @@ The `Last-Modified` and `ETag` headers can be used for validation caching. Eithe
 
 Rack::Cache implements a gateway proxy as Rack middleware and supports both time expiration and validation caching. There are other options that offer more configuration and possibly better performance but may be significantly harder to install.
 
-# XML
+## XML
 
-Sometimes you need to integrate with an applicaton that gives data as XML. REXML is included with Ruby and Nokogiri is the best option otherwise according to the author at the time they wrote this book. For a clear and easy to use API, the client should generally only expose data from the response that is needed.
-REXML is a full XML parsing library in pure Ruby and included in the standard library, with full support for XPAth
-XPath
-This is a language for addressing elements in an XML document
+Sometimes you need to integrate with an applicaton that gives data as XML. REXML and Nokogiri were two good options at the time the book was written. XPath is a language for addressing elements in an XML document and both REXML and Nokogiri have support for it. Nokogiri also has support for addressing elements using CSS3 selectors and is faster than REXML because it is backed by C libraries but this also makes it more complex to install.
 
-Generally its a good idea to have a class for each logical grouping of data that you are parsing. By using attribute readers and keeping the logic of parsing the XML in a single public method this makes it easy to understand what data it holds and where parsing happens. It's also a good practice to pass a Ruby object to the constructor rather than an unparsed XML string.
+It's a good idea to maintain a class for each logical grouping of data that you are parsing. Attribute readers and keeping the logic of parsing the XML in a single public method help to make it easy to understand what data the class holds and where the parsing happens. It's also a good practice to pass a Ruby object to the constructor rather than an unparsed XML string.
 
-Nokogiri - parse HTML and XML backed by C libraries which makes it very fast
-also includes support for CSS3 selectors and support for XPath and other things to traverse the document tree
+## SOAP (Simple Object Access Protocol)
 
-There are some packages that need to be installed for Nokogiri to work, once set up the Nokogiri gem can be installed.
+This is a specification for implementing a web service with XML. A service using this specification exposes its interface through a Web Services Description Language (WSDL) file, which itself is an XML file. Inspecting this is the easiest way to explore a SOAP service's interface.
 
-With Nokogiri, CSS selectors or XPath selectors may be used.
+# Security
 
-SOAP
-Simple Object Access Protocol
-specification for implementing a web service with XML
-A service using this specification exposes its interface through a Web Services Description Language (WSDL) file
-This is itself an XML file and looking at it is the easiest way to explore the service's interface.
+The three main things to make sure you have are authentication, authorisation, and encryption. Authentication is making sure the user is who they say they are and that the message received from them has not been tampered with. Authorization is about what the user is allowed, or authorized to do. Encryption is making sure that an intercepted message cannot be understood.
 
-security
+## HTTP authentication
 
-authentication, authorisation, and encryption
+HTTP authentication is as simple as adding an Authorization header to the message by the client and instructing the server to bounce requests based on the header. Since the username and password are cleartext in the header, this needs to be done over HTTPS.
 
-authentication
- - the user is who they say they are and their message has not been tampered with
+Signing requests with a signature is one way to prevent man-in-the-middle attacks. HMAC (a hash-based message authentication code) is one of the easiest ways to do this; the server and client have a shared key which is used by the client and server to create the signature, which allows the server to verify that the signature it gets using the key is the same as what it received from the client.
 
-authorisation
- - what the user is allowed to do
+An issue with this is it does not prevent replay attacks where a listener could intercept a request and then send it later so it can inspect the respones. To prevent this, a time should be included in the request so that the server can make sure it is close to the time it receives the request.
 
-encryption
- - prevent being able to understand an intercepted message
+Another issue with this is a shared secret must be provided to the client which introduces the possibility of it being intercepted.
 
-HTTP authentication
-- on client side, simply add an Authorization header
-- the server then looks at this header for any request it receives, possibly does not allow through certain ones
+The RSA algorithm and using public/private key pairs avoids this. The client creates a pair of keys and sends one to the server (the public key). The client encrypts its messages to the server with its private key and then the server is able to decrypt them using the public key.
 
-This is very easy to implement but since the username and password are cleartext in the header, this needs to be done over HTTPS.
-
-signing requests
-- makes sure that the request has not been modified (man in the middle attack)
-- validate a client's identity by assigning them a unique value only they could send
-
-HMAC is one of the easiest ways to sign a request
-- this uses a shared key, the client uses the key to create a signature which is sent to the server in a header, but sometimes the query string or body
-- the server receives the message and signs it with the same key and then verifies it gets the same signature
-
-this does not prevent replay attacks, where a listener intercepts a request, and then sends it later so it can see the response. A time should be included in the query parameters additionally so that the server can make sure it is close to the time it receives the request
-
-a shared secret must be provided to the client which is not good, a man in the middle could learn the secret
-
-RSA algorithm and public/private key avoids this
-client creates a pair of keys and sends the public key to the server
-the client encrypts a message using its private key, and the server is able to decrypt it with the public key
-
-signature may go in the X-Auth-Sig header
-
-SSL can also be used to authenticate, the server's digital certificate tells the client that the server is who they say they are
-
-
+The client can also verify that the server is who they say they are using the server's SSL certificate.

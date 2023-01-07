@@ -10,7 +10,7 @@ long_title: true
 mathjax: false
 ---
 
-The purpose of this post is to show a few examples of Anki add-ons I wrote while I was in medical school. I hope this will be helpful to someone new to programming who wants to write an Anki add-on. This post condenses the content of three separate posts on this topic. The exact content of the three original posts can be seen in [the commit which deleted them](https://github.com/KyleRego/KyleRego.github.io/commit/f3e5b60c401b72c124ffd693e3dd707b47fd609e). Before the case studies, I also want to provide some background on what you may need to study to write Anki add-ons in general.
+I am going to explain the source code of two Anki add-ons that I wrote while I was in medical school, in the hopes that it will be useful to someone new to programming who wants to write Anki add-ons. This post condenses the content of three separate posts on this topic. The exact content of the three original posts can be seen in [the commit which deleted them](https://github.com/KyleRego/KyleRego.github.io/commit/f3e5b60c401b72c124ffd693e3dd707b47fd609e). Before the case studies, I also want to provide some background on what you may need to study to write Anki add-ons in general.
 
 - [Background](#background)
 - [Anki magnifying glass mouse cursor](#case-study-the-anki-magnifying-glass-mouse-cursor)
@@ -18,17 +18,17 @@ The purpose of this post is to show a few examples of Anki add-ons I wrote while
 
 # Background
 
-There are two topics to familiarize yourself with to write an Anki add-on: Python and PyQt. Python is one of the most popular programming languages and a very good one for people who want to get things done quickly. Qt (pronounced "cute") is a C++ library for creating cross-platform graphical user interfaces. PyQt lets you use Qt through Python.
+There are two main topics to learn about to write Anki add-ons:
+- Python
+- PyQt
 
-For Python, I recommend [Python Crash Course, 2nd Edition](https://www.amazon.com/Python-Crash-Course-2nd-Edition/dp/1593279280). The first 200 pages or so teach Python and are all you really need to read. The rest of the book is about completing projects which could be a fun time if you find yourself enjoying Python.
+Python is a very popular and approachable programming language. PyQt lets you use Qt through Python. Qt (pronounced "cute") is a C++ library for creating cross-platform graphical user interfaces. 
 
-For PyQt, I did consult [Create GUI Applications with Python & PyQt5](https://leanpub.com/create-simple-gui-applications). I recommend reading this once you have identified you need a deeper understanding of PyQt to make progress on your add-on.
+I recommend reading the first 200 pages or so of [Python Crash Course, 2nd Edition](https://www.amazon.com/Python-Crash-Course-2nd-Edition/dp/1593279280) to learn Python. I also read [Create GUI Applications with Python & PyQt5](https://leanpub.com/create-simple-gui-applications) which was helpful.
 
-You will also have to refer to the official documentation. Unfortunately, I found that the PyQt docs were somewhat incomplete compared to the Qt documentation. Eventually I was only reading the Qt docs. Since Qt is a C++ library and not Python, it takes some time to understand how to read its documentation to understand PyQt.
+You should also read the official documentation. The Python docs are pretty good. The PyQt docs were somewhat incomplete compared to the Qt documentation at the time I developed these add-ons so I found I had to refer to the Qt docs a lot. Since Qt is a C++ library and not Python, it may take some time to understand how to read its documentation, even once you have a solid grasp of Python.
 
-I also recommend checking out [Anki Scripting For Non-programmers](https://www.juliensobczak.com/write/2020/12/26/anki-scripting-for-non-programmers.html). This is a really good article about writing Python scripts that create Anki flashcards. 
-
-The last resource is the [official documentation about writing Anki add-ons](https://addon-docs.ankiweb.net/). This has the most up-to-date information about what you need to do and you're probably going to be reading this a lot as you write your add-on.
+You should also read the [official documentation about writing Anki add-ons](https://addon-docs.ankiweb.net/) which has the most up-to-date information on this topic.
 
 # Case study: the Anki magnifying glass mouse cursor
 
