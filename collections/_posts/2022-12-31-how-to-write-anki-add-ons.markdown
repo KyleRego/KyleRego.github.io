@@ -24,9 +24,9 @@ There are two main topics to learn about to write Anki add-ons:
 
 Python is a very popular and approachable programming language. PyQt lets you use Qt through Python. Qt (pronounced "cute") is a C++ library for creating cross-platform graphical user interfaces. 
 
-I recommend reading the first 200 pages or so of [Python Crash Course, 2nd Edition](https://www.amazon.com/Python-Crash-Course-2nd-Edition/dp/1593279280) to learn Python. I also read [Create GUI Applications with Python & PyQt5](https://leanpub.com/create-simple-gui-applications) which was helpful.
+I recommend reading the first 200 pages or so of [Python Crash Course, 2nd Edition](https://www.amazon.com/Python-Crash-Course-2nd-Edition/dp/1593279280) to learn Python. I also read [Create GUI Applications with Python & PyQt5](https://leanpub.com/create-simple-gui-applications).
 
-You should also read the official documentation. The Python docs are pretty good. The PyQt docs were somewhat incomplete compared to the Qt documentation at the time I developed these add-ons so I found I had to refer to the Qt docs a lot. Since Qt is a C++ library and not Python, it may take some time to understand how to read its documentation, even once you have a solid grasp of Python.
+You should also refer to the official documentation. The Python docs are pretty good but the PyQt docs are somewhat incomplete compared to the Qt documentation. You may find that you need to read the Qt docs to get the full picture. Since Qt is a C++ library and not Python, it may take some time to understand how to read its documentation, even once you have a solid grasp of Python.
 
 You should also read the [official documentation about writing Anki add-ons](https://addon-docs.ankiweb.net/) which has the most up-to-date information on this topic.
 
@@ -194,9 +194,9 @@ class AnkiMagnifyingGlassMouseCursor():
         self.cursors_on_stack = 0
 {% endhighlight %}
 
-This shows how to start the definition of a classand the constructor. The constructor has a parameter `self` which represents the object it is constructing.
+This shows how to start the definition of a class and the constructor. The constructor has a parameter `self` which represents the object it is constructing.
 
-The constructor generally defines what data an object instantiated from the class should have by giving the object attributes. In this case, it is giving it an attribute `self.timer` which is an instance of `QTimer` and an attribute `self.cursors_on_stack` with the integer value 0. `mw` is available here without needing to be passed in explicitly because of the variable scoping rules of Python.
+The constructor generally defines what data an object instantiated from the class should have by giving the object attributes. In this case, it is giving it an attribute `self.timer` which is an instance of `QTimer` and an attribute `self.cursors_on_stack` with the integer value 0. `mw` is available here without needing to be passed in explicitly because of Python scoping rules.
 
 `QTimer` is a Qt class that emits a signal every `interval` milliseconds. The documentation refers to the `QTimer` emitting this signal as timing out. The `setSingleShot` method sets an attribute of the `QTimer` object that indicates it should only time out once.
 
@@ -317,7 +317,7 @@ mw.app.setOverrideCursor(newcursor)
 
 This makes a mouse cursor where the image of it is our pixel map, and then sets the "application override cursor" to be this cursor.
 
-Finally we are at the point to say what the stack related to the cursors is about. From reading the Qt documentation, the cursors are stored on a stack. This data structure is like a stack of books on a table--you can only put a book on top, and you can only take the top book off.`setOverrideCursor` pushes a cursor onto the stack. `cursors_pushed_to_stack_per_shortcut` is exactly what it sounds like, and `self.cursors_on_stack` keeps track of how many cursors are on the stack. By keeping track of exactly how many cursors are on the stack, we will be able to pop off no more and no less than exactly what we need to restore the original mouse cursor.
+Finally we are at the point to say what the stack related to the cursors is about. From reading the Qt documentation, the cursors are stored on a stack. This data structure is like a stack of books on a table--you can only put a book on top, and you can only take the top book off. `setOverrideCursor` pushes a cursor onto the stack. `cursors_pushed_to_stack_per_shortcut` is exactly what it sounds like, and `self.cursors_on_stack` keeps track of how many cursors are on the stack. By keeping track of exactly how many cursors are on the stack, we will be able to pop off no more and no less than exactly what we need to restore the original mouse cursor.
 
 ## reset_zoom_mouse
 
@@ -336,7 +336,7 @@ The second add-on we will look at is the [Anki enumeration tool](https://ankiweb
 
 ![A review of the Anki enumeration tool](/assets/anki-add-on-images/anki-enumeration-tool-review.png)
 
-It will at least hopefully provide a good learning example.
+It will hopefully at least provide a good learning example.
 
 {% highlight Python %}
 from aqt import mw

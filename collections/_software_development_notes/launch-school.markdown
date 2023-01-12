@@ -22,7 +22,7 @@ The order of topics is roughly:
 - object-oriented programming (again but with JavaScript)
 - the DOM and asynchronous programming
 
-Some other topics which show up throughout are testing and regular expressions.
+Some other topics which show up throughout are testing and regular expressions. During the course you also program an HTTP server in bash, a framework using Rack, and several web applications using Sinatra.
 
 The Launch School course does a great job including a lot of practice problems and exercises throughout. Some are classics, like implementing a sorting algorithm or linked list, while others have you designing a simple command line game or trying to spot a subtle logical error in a code snippet. I also found the course to be heavy in reading and light in watching videos compared to other resources, which I appreciated.
 

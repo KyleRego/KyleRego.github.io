@@ -210,7 +210,7 @@ This is a specification for implementing a web service with XML. A service using
 
 # Security
 
-The three main things to make sure you have are authentication, authorisation, and encryption. Authentication is making sure the user is who they say they are and that the message received from them has not been tampered with. Authorization is about what the user is allowed, or authorized to do. Encryption is making sure that an intercepted message cannot be understood.
+The three main things to make sure you have are authentication, authorisation, and encryption. Authentication is making sure the user is who they say they are and that the message received from them has not been tampered with. Authorization is about what the user is allowed, or authorized to do. Encryption is making sure that an intercepted message cannot be understood. Just having one thing in place for each of these three security aspects is not sufficient, but some things contribute to multiple of these aspects anyway.
 
 ## HTTP authentication
 
@@ -225,3 +225,13 @@ Another issue with this is a shared secret must be provided to the client which 
 The RSA algorithm and using public/private key pairs avoids this. The client creates a pair of keys and sends one to the server (the public key). The client encrypts its messages to the server with its private key and then the server is able to decrypt them using the public key.
 
 The client can also verify that the server is who they say they are using the server's SSL certificate.
+
+## authorization
+
+Firewall can restrict access to only a set of known IP addresses and restrict what ports they can connect to
+
+RBAC role-based access control - with this, a user has one or more roles, and roles determine if the user is allowed access to the resource
+
+## encryption
+
+SSL is the obvious solution. With an SSL certificate all communication with the service will be encrypted.
