@@ -14,22 +14,22 @@ The order of topics is roughly:
 - the Ruby programming language
 - object-oriented programming
 - the Internet, the Internet protocol suite, HTTP, and TLS
-- web applications with Sinatra
 - SQL with Postgres
 - applications that interact with a database using [the `pg` gem](https://github.com/ged/ruby-pg)
 - HTML and CSS
 - the JavaScript programming language
+- how to solve programming problems in general with JavaScript
 - object-oriented programming (again but with JavaScript)
 - the DOM and asynchronous programming
 
-Some other topics which show up throughout are testing and regular expressions. During the course you also program an HTTP server in bash, a framework using Rack, and several web applications using Sinatra.
+Some other topics which show up throughout are unit testing and regular expressions. During the course you also program an HTTP server in bash, a framework using Rack, and several web applications using Sinatra. If your goal is to create web applications with Ruby on Rails, this course will not teach you that directly. However, once you have completed most of the back-end portion of this course, learning the basics of Rails will be very easy.
 
-The Launch School course does a great job including a lot of practice problems and exercises throughout. Some are classics, like implementing a sorting algorithm or linked list, while others have you designing a simple command line game or trying to spot a subtle logical error in a code snippet. I also found the course to be heavy in reading and light in watching videos compared to other resources, which I appreciated.
+The course includes a lot of practice problems and exercises that I feel people studying tutorials and Udemy courses are missing. Some of them are classics (think sorting algorithms and linked lists) while others ask you to spot subtle logical errors in code snippets. A lot of the exercises lead you through creating command line games or Sinatra web applications.
 
-One thing to note is you need to pass assessments to progress to the next topic (and the lowest passing grade is like an A-). Each assessment is a live coding interview, a written assessment, or a project. At certain points in the course, you have to pass more than one of these to continue. While I never failed an assessment, they are generally not easy, and people do commonly fail them.
+One thing to note is you need to pass assessments to progress to the next topic (and the lowest passing grade is like an A-). Each assessment is a live coding interview, a written assessment, or a project. At certain points in the course, you have to pass more than one of these to continue. While I never failed an assessment, they are generally not easy, and people do commonly fail them. Sometimes I found myself as prepared as I possibly could be for an assessment with time to spare, which I used to learn about things like D3, React, and Rails.
 
-For me, the Launch School course was a worthwhile investment. The topics covered are solid, the amount of practice is more than sufficent, and the assessments guarantee you will not pass without many of the necessary skills to work as a web developer.
+For me, the Launch School course was a worthwhile investment. The topics covered are solid, the amount of practice is more than sufficent, and the assessments guarantee you will not pass without many of the necessary skills to work as a web developer. There are some topics I might suggest be added to the course such as design patterns and additional theory around the design of tests, such as when it is appropriate to use a double. While the course ensures you learn about and are using git at the very beginning, I think it would be good to also cover common branching strategies, squashing commits, and merging vs. rebasing. I can understand why object-relational mapping is not included (the focus on fundamentals and keeping the course not too long) but I think that would be a good thing to possibly cover too, after all the raw SQL they make you write.
 
-If you want to see what they're about for yourself, check out [Launch School's open book shelf](https://launchschool.com/books) which has some short and sweet (and free) books covering topics like the command line, git, HTTP, and regular expressions.
+If you want to see what they're about for yourself, check out [Launch School's open book shelf](https://launchschool.com/books) which has some short and sweet (and free) books covering topics like the Linux command line, git, HTTP, and regular expressions.
 
 My review on this course: it's a buy.
