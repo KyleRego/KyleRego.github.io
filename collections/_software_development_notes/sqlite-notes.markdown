@@ -5,7 +5,6 @@ categories: programming SQL SQLite
 permalink: /sqlite-notes
 emoji: 😸
 short: true
-long_title: true
 mathjax: false
 book_review: true
 book_title: Using SQLite

@@ -5,7 +5,6 @@ date:   2022-12-17 13:00:00 -0500
 categories: ruby programming [book reviews]
 permalink: /practical-object-oriented-design
 emoji: 😃
-long_title: true
 book_review: true
 book_title: Practical Object-Oriented Design&#58; An Agile Primer Using Ruby 2nd Edition
 book_author: Sandi Metz

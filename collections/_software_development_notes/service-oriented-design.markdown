@@ -4,9 +4,7 @@ title:  "Service-Oriented Design with Ruby and Rails"
 categories: ruby rails programming [book reviews]
 permalink: /service-oriented-design-with-ruby-and-rails
 emoji: 🥳
-long_title: false
 book_review: true
-long_title: true
 book_title: Service-Oriented Design with Ruby and Rails
 book_author: Paul Dix
 book_publisher: Addison-Wesley Professional
@@ -67,7 +65,7 @@ Code reuse is another good reason to use services. If multiple applications have
 
 # Converting a monolith into services
 
-A Rails application usually starts as a single code base with tests and a single database. **Usually there is a server hosting the application server and web server and a server for the database.** Background processes which are tightly coupled to the application server will also be running. More complexity usually comes with the addition of Memcached and more servers to handle more HTTP requests behind a load balancer. Upgrading the hardware and determining where queries can be optimized by performance logging are common next steps when the database is unable to keep up with the number of requests.
+A Rails application usually starts as a single code base with tests and a single database. There may be a server hosting the application server and web server and a different physical server for the database. Background processes which are tightly coupled to the application server will also be running. More complexity usually comes with the addition of Memcached and more servers to handle more HTTP requests behind a load balancer. Upgrading the hardware and determining where queries can be optimized by performance logging are common next steps when the database is unable to keep up with the number of requests.
 
 The parts of the application which are very well defined should be the first considered to be extracted as services.
 
@@ -226,12 +224,16 @@ The RSA algorithm and using public/private key pairs avoids this. The client cre
 
 The client can also verify that the server is who they say they are using the server's SSL certificate.
 
-## authorization
+## Authorization
 
-Firewall can restrict access to only a set of known IP addresses and restrict what ports they can connect to
+A firewall can restrict access to only a set of known IP addresses, and also restrict what ports they can connect to. Role-based access control assigns users to roles and their roles determine what they are allowed to access.
 
-RBAC role-based access control - with this, a user has one or more roles, and roles determine if the user is allowed access to the resource
+## Encryption
 
-## encryption
+With an SSL certificate, all communication with the service will be encrypted. This is the most obvious solution.
 
-SSL is the obvious solution. With an SSL certificate all communication with the service will be encrypted.
+# Messaging
+
+Asynchronous messaging can also be used for services to communicate with each other. This usually involves queues.
+
+RabbitMQ is an open-source implementation of the AMQP standard.

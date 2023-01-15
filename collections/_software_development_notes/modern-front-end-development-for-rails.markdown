@@ -5,7 +5,6 @@ date:   2022-12-23 12:45:00 -0500
 categories: ruby rails programming [book reviews]
 permalink: /modern-front-end-development-for-rails
 emoji: 🥳
-long_title: true
 book_review: true
 book_title: Modern Front-End Development for Rails&#58; Hotwire, Stimulus, Turbo, and React 1st Edition
 book_author: Noel Rappin

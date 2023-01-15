@@ -1,7 +1,8 @@
 remote_theme: KyleRego/swiss
 
 title: Kyle Rego
-description: A Ruby on Rails weblog that is currently focused on book reviews.
+html_title: Kyle Rego - Massachusetts Web Developer
+description: Weblog and notes about Physics, CS, and software.
 baseurl: ""
 url: "https://kylerego.github.io"
 email: regoky@outlook.com
