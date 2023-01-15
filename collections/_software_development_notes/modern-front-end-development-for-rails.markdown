@@ -1,7 +1,6 @@
 ---
 layout: post
 title:  "Modern Front-End Development for Rails"
-date:   2022-12-23 12:45:00 -0500
 categories: ruby rails programming [book reviews]
 permalink: /modern-front-end-development-for-rails
 emoji: 🥳
@@ -14,7 +13,7 @@ book_link: https://www.amazon.com/Modern-Front-End-Development-Rails-Webpacker/d
 note_category: Software development
 ---
 
-**This note is a work in progress.**
+**This note is a work in progress. This book is really excellent though.**
 
 This book is about the front-end development tools that pair with Ruby on Rails. It uses Rails 6.1. These are mainly Hotwire, React, Webpacker, and TypeScript.
 

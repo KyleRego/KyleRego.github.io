@@ -1,7 +1,6 @@
 ---
 layout: post
 title:  "Practical Object-Oriented Design"
-date:   2022-12-17 13:00:00 -0500
 categories: ruby programming [book reviews]
 permalink: /practical-object-oriented-design
 emoji: 😃

@@ -13,7 +13,7 @@ book_link: https://www.amazon.com/Service-Oriented-Design-Rails-Addison-Wesley-P
 note_category: Software development
 ---
 
-**This note is a work in progress.**
+**This note is a work in progress. This book is really excellent though.**
 
 # What is a service?
 

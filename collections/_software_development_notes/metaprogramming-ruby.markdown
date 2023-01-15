@@ -1,7 +1,6 @@
 ---
 layout: post
 title:  "Metaprogramming Ruby"
-date:   2022-11-24 13:30:00 -0500
 categories: ruby programming [book reviews]
 permalink: metaprogramming-ruby
 emoji: 😍
