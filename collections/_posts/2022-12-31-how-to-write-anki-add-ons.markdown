@@ -11,10 +11,6 @@ mathjax: false
 
 I am going to explain the source code of two Anki add-ons that I wrote while I was in medical school, in the hopes that it will be useful to someone new to programming who wants to write Anki add-ons. This post condenses the content of three separate posts on this topic. The exact content of the three original posts can be seen in [the commit which deleted them](https://github.com/KyleRego/KyleRego.github.io/commit/f3e5b60c401b72c124ffd693e3dd707b47fd609e). Before the case studies, I also want to provide some background on what you may need to study to write Anki add-ons in general.
 
-- [Background](#background)
-- [Anki magnifying glass mouse cursor](#case-study-the-anki-magnifying-glass-mouse-cursor)
-- [Anki enumeration tool](#case-study-the-anki-enumeration-tool)
-
 # Background
 
 There are two main topics to learn about to write Anki add-ons:

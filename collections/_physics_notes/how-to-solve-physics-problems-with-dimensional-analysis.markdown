@@ -10,10 +10,6 @@ note_category: Physics
 
 I will demonstrate how this works by solving a simple problem in a standard way and then again using the dimensional analysis technique.
 
-- [Problem](#problem)
-- [Solution using elementary Physics](#solution-using-elementary-physics)
-- [Solution using dimensional analysis](#solution-using-dimensional-analysis)
-
 # Problem
 
 Determine the horizontal distance $$ d $$ a projectile travels before hitting the ground after being fired at 45 degrees above the horizontal at a speed of $$ v $$. Ignore non-conservative forces and the curvature of the Earth.

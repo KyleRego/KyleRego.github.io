@@ -19,12 +19,6 @@ note_category: Software development
 
 A service is a system that responds to HTTP requests. A broader definition may be a system that provides some functionality through a standard interface. This book generally uses the first definition and focuses on services which follow a RESTful paradigm.
 
-## First example
-
-The hello world example of this book is a simple user management service implemented using Sinatra and ActiveRecord. A client library for using the service is implemented with Typhoeus, an HTTP library created by the book's author. User management is a good example of something which may be extracted to a service. If an organisation has many applications to log in to, extracting the logic of this to a single service used by all of them as a single sign on point is worth considering.
-
-Tests are written for the public interface of the service and also the client library using RSpec. The client tests make calls to the service, so the service needs to be running locally for the tests to pass. This is favored over mocking the service responses.
-
 # Service-oriented design
 
 A service-oriented approach provides many advantages, but it does require more up-front design around how to separate logic and data in an application. Amazon's service-oriented approach to its internal systems informed its development of Amazon Web Services. The parts of a Rails application that are best extracted to services are those with the most stable and well understood requirements.
@@ -112,10 +106,6 @@ This may involve multiple-GET calls or calls that return multiple models. Multi-
 # Final API design
 
 There is a lot of flexibility around designing the API endpoints and a lot of it has to do with aesthetics. Some considerations include representing data in the URL vs the body of the request and what HTTP method to use. Keeping the interface RESTful, as well as keeping API endpoints and data descriptive and human readable, are worthy goals.
-
-# Second example
-
-The second example is implemented in three different ways: once each with Rails, Sinatra, and Rack. This was a bit like a Goldilocks problem to me. Rails was overkill, Rack did not provide enough structure, and Sinatra seemed appropriate.
 
 # Running requests in parallel
 
@@ -230,10 +220,46 @@ A firewall can restrict access to only a set of known IP addresses, and also res
 
 ## Encryption
 
-With an SSL certificate, all communication with the service will be encrypted. This is the most obvious solution.
+With an SSL certificate, all communication with the service will be encrypted.
 
 # Messaging
 
 Asynchronous messaging can also be used for services to communicate with each other. This usually involves queues.
 
-RabbitMQ is an open-source implementation of the AMQP standard.
+RabbitMQ is an open-source implementation of the AMQP standard. This is an application layer protocol for software sending and receiving messages between distributed systems. Two client libraries for interacting with AMQP/RabbitMQ are the AMQP Client and Bunny.
+
+The following discussion about queues, exchanges and bindings, and durability focuses on these ideas in AMQP/RabbitMQ.
+
+## Queues
+
+The client can send a message to the server to create a queue in an idempotent way. Messages are added to the queue and workers take the messages off the queue. 
+
+## Exchanges and Bindings
+
+An exchange is a kind of message router which receives messages and then routes them to queues. Producer refers to a process which sends messages to exchanges.
+
+### Direct Exchanges
+
+A direct exchange sends messages to queues based on a direct match between the routing key of the message and the routing keys of the bindings which are related to the queues. Queues can have multiple bindings.
+
+### Fanout Exchanges
+
+A fanout exchange sends messages to a set of queues which are bound to it and does not look at the routing keys.
+
+### Topic Exchanges
+
+A topic exchange can match messages to queues using wildcards in the bindings, with a somewhat different syntax compared to regular expressions.
+
+## Durability
+
+Durability refers to the ability to survive server restarts or crashes. In this context we are thinking about if the exchanges and queues have durability. Persistence refers to whether the messages will remain on the disk after server restarts or crashes. With RabbitMQ, durability can be set on the exchanges and queues and persistence can be set on the messages.
+
+## The Cap Theorem
+
+This theorem states that only two of consistency, availability, and partition tolerance can be strictly maintained in a distributed system.
+
+Consistency refers to data consistency across replicated systems. Availability is the system's ability to serve requests. Partition tolerance is the ability to tolerate failures in network connectivity.
+
+If the requirement for consistency is weakened to eventual consistency then all three can be maintained. Designing for eventual consistency takes some effort on the part of the application programmer.
+
+# Web Hooks and External Services

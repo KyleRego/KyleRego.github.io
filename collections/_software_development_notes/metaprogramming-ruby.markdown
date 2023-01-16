@@ -17,29 +17,6 @@ Metaprogramming: writing code that writes code. With the Ruby programming langua
 
 My review: it's a buy (also, I read the first edition but there is a second edition that may be even better). Some terse notes about Ruby programming follow.
 
-- [The Ruby Object Model](#the-ruby-object-model)
-  - [Open Classes/Monkey Patching](#open-classesmonkey-patching)
-  - [Namespaces](#namespaces)
-  - [Kernel Methods](#kernel-methods)
-- [Methods](#methods)
-  - [Ghost Methods](#ghost-methods)
-  - [Object#send](#objectsend)
-  - [Module#define_method](#moduledefine_method)
-- [Closures](#closures)
-  - [Scope Gates](#scope-gates)
-  - [Scope Flattening](#scope-flattening)
-  - [Object#tap](#objecttap)
-  - [BasicObject#instance_eval](#basicobjectinstance_eval)
-  - [Deferring evaluation](#deferring-evaluation)
-- [Class Definitions](#class-definitions)
-  - [Singleton Methods](#singleton-methods)
-  - [Class instance variables](#class-instance-variables)
-- [More stuff](#more-stuff)
-  - [Kernel#eval](#kerneleval)
-  - [Kernel#binding](#kernelbinding)
-  - [Here documents](#here-documents)
-  - [Hook Methods](#hook-methods)
-
 # The Ruby Object Model
 
 Classes in Ruby are objects with class `Class`. `Class` inherits from `Module` and adds a few methods like `initialize` and `new`. The superclass of `Module` is `Object`. With `irb`:
@@ -51,7 +28,7 @@ Classes in Ruby are objects with class `Class`. `Class` inherits from `Module` a
  => Object
 {% endhighlight %}
 
-### Open Classes/Monkey patching
+## Open Classes/Monkey patching
 
 {% highlight ruby %}
 class String
@@ -69,7 +46,7 @@ str.mock # => "tHeRe iS No wAy tO CoNvEy sArCaSm wItH TeXt"
 
 This adds an instance method to `String`.
 
-### Namespaces
+## Namespaces
 
 Constants in Ruby are references which begin with a capital letter and include classes and modules. A module used as a container for constants is a namespace:
 
@@ -91,7 +68,7 @@ MyContainer::MyClass.new("a class in a namespace").hello
 #  => nil
 {% endhighlight %}
 
-### Kernel Methods
+## Kernel Methods
 
 The `Kernel` module is included into the `Object` class and thus is available to every object in Ruby. A lot of commonly used methods, like `puts` and `p`, live in this module:
 
@@ -102,7 +79,7 @@ Kernel.private_instance_methods.grep(/^p/)
 
 # Methods
 
-### Ghost Methods
+## Ghost Methods
 
 With this, you define `method_missing` earlier in the method lookup path than `BasicObject`:
 
@@ -136,7 +113,7 @@ person.address   # => nil
 
 The `name=` method is missing so, at first approximation, the `OpenStruct#method_missing` handles this by chomping `=` from the missing method name and using the result as a key in an instance variable hash with `"John Smith"` as the value. It also allows calling arbitrary getters like `name` and `address` to access this hash.
 
-### Object#send
+## Object#send
 
 Here are two ways to call a method:
 
@@ -176,7 +153,7 @@ end
 
 MiniTest might get an array like `public_instance_methods(true).grep(/^test_/)` and then iterate through it and call `send` with each method name. I have read the source a bit to see if it's really that simple, and obviously it's not, but that is generally what it does.
 
-### Module#define_method
+## Module#define_method
 
 Similarly, here are two ways to define a method:
 
@@ -218,7 +195,7 @@ end
 
 A block is one of the rare things in Ruby which is not an object. The object version of a block is a `Proc`, and a `lambda` is also a `Proc` with some important differences, like stricter arity and a different behavior of `return`.
 
-### Scope Gates
+## Scope Gates
 
 `class`, `module`, and `def` are keywords in Ruby which open a new scope.
 
@@ -234,7 +211,7 @@ throws_an_error
 # undefined local variable or method `foo' for main:Object (NameError)
 {% endhighlight %}
 
-### Scope Flattening
+## Scope Flattening
 
 We can get around this by not using the `def` keyword to define the method:
 
@@ -252,7 +229,7 @@ this_works
 
 You could also define additional methods with `foo` captured by closures so that they can share this variable. You could do this such that `foo` is private to the methods as well.
 
-### Object#tap
+## Object#tap
 
 If you have a long method chain for some reason and want to see what the return value is at points in it, you can use `tap`:
 
@@ -271,7 +248,7 @@ string.tap { |s| p s }
 
 `tap` pretty much just yields `self` to the block and then returns `self`.
 
-### BasicObject#instance_eval
+## BasicObject#instance_eval
 
 This lets you evaluate a block in the context of an object (`self` in the block becomes the receiver):
 
@@ -292,7 +269,7 @@ end
 #  => nil
 {% endhighlight %}
 
-### Deferring evaluation
+## Deferring evaluation
 
 We can create a `Proc` and then execute it later:
 
@@ -310,7 +287,7 @@ my_proc.call("an argument")
 
 # Class Definitions
 
-### Singleton Methods
+## Singleton Methods
 
 A singleton method is a method defined on a specific object:
 
@@ -374,7 +351,7 @@ MyClass.yell
 #  => nil
 {% endhighlight %}
 
-### Class instance variables
+## Class instance variables
 
 Class variables (*bad!*) in Ruby (which start with `@@`) are shared between all the instances of the class including instances of child classes:
 
@@ -442,9 +419,9 @@ puts MyChildClass.count
 #  => nil
 {% endhighlight %}
 
-# More stuff
+# Extras
 
-### Kernel#eval
+## Kernel#eval
 
 You can use this method to execute arbitrary code passed to it as a string:
 
@@ -456,7 +433,7 @@ eval "puts 'hello from eval'"
 
 **But you should consider the risk of code injection.** You could create a sandbox, taking advantage of the global variable `$SAFE` and that Ruby tracks which objects are "tainted" or unsafe. Or just do whatever you need to do a different way.
 
-### Kernel#binding
+## Kernel#binding
 
 You can create a Binding object which stores the scope in which it was created, and pass this as the first optional argument to `Kernel#eval`:
 
@@ -474,7 +451,7 @@ eval "puts y", my_binding
 #  => nil
 {% endhighlight %}
 
-### Here documents
+## Here documents
 
 If you want to pass a string to `eval` spanning multiple lines you can use a here document:
 
@@ -490,7 +467,7 @@ puts str
 #  => nil
 {% endhighlight %}
 
-### Hook Methods
+## Hook Methods
 
 These are methods that are called when certain things happen. You can overwrite them to hook on additional behavior:
 
