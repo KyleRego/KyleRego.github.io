@@ -5,7 +5,6 @@ date: 2022-12-31 08:30:00 -0500
 categories: programming python pyqt anki
 permalink: /anki-add-on-source-case-studies
 emoji: 😇
-short: false
 mathjax: false
 ---
 

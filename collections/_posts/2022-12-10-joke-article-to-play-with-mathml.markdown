@@ -5,9 +5,9 @@ date:   2022-12-10 14:00:00 -0500
 categories: math joke
 permalink: /joke-article-to-play-with-mathml
 emoji: 👻
-short: true
 mathjax: true
 ---
+
 One semester in college I took a course on complex variables. It was pretty easy but there was one homework problem that was tricky enough that I still remember it. The problem was to calculate the Taylor series of the following function:
 
 $$ f(z) = \frac {1} {1 + cos(z)} $$

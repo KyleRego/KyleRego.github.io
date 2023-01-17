@@ -4,7 +4,6 @@ title:  "Launch School"
 categories: programming [launch school]
 permalink: /launch-school
 emoji: 🙂
-short: true
 note_category: Software development
 ---
 

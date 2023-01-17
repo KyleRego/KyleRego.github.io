@@ -4,7 +4,6 @@ title: The Linux Command Line
 categories: linux
 permalink: /the-linux-command-line
 emoji: 🤨
-short: true
 mathjax: false
 book_review: true
 book_title: The Linux Command Line

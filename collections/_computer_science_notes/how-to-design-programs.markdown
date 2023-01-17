@@ -4,7 +4,6 @@ title:  "How to Design Programs"
 categories: lisp programming [book reviews] [computer science]
 permalink: /how-to-design-programs
 emoji: 😮
-short: true
 book_review: true
 book_title: How to Design Programs, Second Edition
 book_author: Matthias Felleisen, Robert Bruce Findler, Matthew Flatt, Shriram Krishnamurthi

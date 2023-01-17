@@ -4,7 +4,6 @@ title: Anki schema
 categories: programming SQL anki
 permalink: /anki-schema
 emoji: 😋
-short: false
 mathjax: false
 book_review: false
 note_category: Software development

@@ -4,7 +4,6 @@ title: Design Patterns in Ruby
 categories: programming ruby
 permalink: /design-patterns-in-ruby
 emoji: 🥹
-short: false
 mathjax: false
 book_review: true
 book_title: Design Patterns in Ruby
