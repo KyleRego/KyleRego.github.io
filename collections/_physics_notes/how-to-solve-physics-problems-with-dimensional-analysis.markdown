@@ -7,7 +7,7 @@ emoji: 🫠
 mathjax: true
 ---
 
-I will demonstrate how this works by solving a simple problem in a standard way and then again using the dimensional analysis technique.
+This is a really dirty way to solve hard physical problems without much effort. I will demonstrate how it works by solving a simple problem in a standard way and then again using dimensional analysis.
 
 # Problem
 

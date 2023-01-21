@@ -11,12 +11,6 @@ mathjax: false
 
 The Gang of Four popularized the ideas of design patterns, which are common solutions to problems in object-oriented programming. This book focuses on 14 of the original 23 GoF patterns.
 
-- [The Template Method](#the-template-method)
-- [The Strategy](#the-strategy)
-- [The Observer](#the-observer)
-- [The Composite](#the-composite)
-- [The Iterator](#the-iterator)
-
 # The Template Method
 
 This is a method of an abstract class that calls abstract methods that concrete child classes must implement. This separates code that stays that same (the algorithm) vs. code that changes (the details supplied by the child classes) which helps defend against change.

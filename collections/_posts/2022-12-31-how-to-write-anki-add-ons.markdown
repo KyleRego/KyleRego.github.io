@@ -332,7 +332,7 @@ The second add-on we will look at is the [Anki enumeration tool](https://ankiweb
 
 It will hopefully at least provide a good learning example.
 
-{% highlight Python %}
+{% highlight Python %}{% raw %}
 from aqt import mw
 from aqt.qt import *
 from aqt.utils import showInfo
@@ -431,7 +431,7 @@ action = QAction()
 action.setText("Enumeration tool")
 mw.form.menuTools.addAction(action)
 action.triggered.connect(showoscedialog)
-{% endhighlight %}
+{% endraw %}{% endhighlight %}
 
 ## What does this add-on do?
 
@@ -479,7 +479,7 @@ This makes an instance of the `OsceDialog` class--the superclass of `OsceDialog`
 
 ## The OsceDialog class and constructor
 
-{% highlight Python %}
+{% highlight Python %}{% raw %}
 class OsceDialog(QDialog):
     def __init__(self):
         QDialog.__init__(self)
@@ -513,7 +513,7 @@ class OsceDialog(QDialog):
         self.layout.addWidget(self.button)
 
         self.setLayout(self.layout)
-{% endhighlight %}
+{% endraw %}{% endhighlight %}
 
 This class represents the enumeration creation window.
 

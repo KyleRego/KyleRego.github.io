@@ -7,15 +7,17 @@ emoji: 🥳
 mathjax: false
 ---
 
-**This note is a work in progress. This book is really excellent though.**
+These are notes about using a services-oriented approach with Ruby on Rails applications mostly based on the book with the same name as the title of this article. The book is excellently written and dense with many complete code examples and useful takeaways related to the topic and related issues. Although it is a bit old and microservices, which this book does not even mention, are a much hotter topic, this book is definitely still worth reading. My review: it's a buy.
 
 # What is a service?
 
-A service is a system that responds to HTTP requests. A broader definition may be a system that provides some functionality through a standard interface. This book generally uses the first definition and focuses on services which follow a RESTful paradigm.
+A service is a system that responds to HTTP requests. It may also be defined as a system that provides some functionality through a standard interface.
 
 # Service-oriented design
 
-A service-oriented approach provides many advantages, but it does require more up-front design around how to separate logic and data in an application. Amazon's service-oriented approach to its internal systems informed its development of Amazon Web Services. The parts of a Rails application that are best extracted to services are those with the most stable and well understood requirements.
+There are many advantages to the service-oriented approach with the disadvantage that it requires more up-front design around the separation of logic and data. Amazon's service-oriented approach to its internal systems informed its development of Amazon Web Services.
+
+The parts of a Rails application that are best extracted to services are those with the most stable and well understood requirements.
 
 ## Isolation
 
@@ -23,11 +25,11 @@ Services can be tested, optimized, and deployed separately. The time required to
 
 ### Business logic isolation
 
-Services isolated based on business logic generally have their own application code (multiple code bases) but have shared data stores and run on shared systems. They should not communicate with each other through the database. This may be a necessary step when migrating an existing large Rails application to services.
+Services isolated based on business logic generally have their own application code but have shared data stores and run on shared systems. They should not communicate with each other through the database. Isolation by business logic may be a necessary step when migrating an existing large Rails application to services.
 
 ### Shared system isolation
 
-These services have their own databases but are still running on shared systems. This can be a tricky situation to manage which may affect scaling.
+These services have their own databases but are still running on shared systems. This can be tricky to manage and may affect scaling.
 
 ### Full isolation
 
@@ -35,39 +37,47 @@ Each service has its own completely separate code base, data store, and server.
 
 ## Scalability
 
-Applications that rely on services can scale to a greater complexity. With services, the different parts of the application can be scaled individually. By splitting data into multiple data stores, the individual optimization needs of each part can be met separately, rather than trying to optimize a single database for the needs of every use case.
+There are many advantages to services in terms of scaling. The absolute size of the application in terms of the code base scales better with services than as a monolith.
 
-Services make it easier to scale team size since developers only need to be familiar with certain services. Services allow the absolute size of the application in terms of the code base to scale in an easier way than if it were a monolith. A very large application has too much code for anyone to be familiar with, and the tests take longer to run. 
+Services allow the different parts of the application to scale independently of each other. By splitting data into multiple data stores, the individual optimization needs of each part can be met separately, rather than trying to optimize a single database for the needs of every use case.
 
-Properly designed services may be more agile than a monolith. Versioning the services can be important here and it may be necessary to maintain the ability to run multiple versions of a service simultaneously. As long as an update to the API of a service is purely additive, the service can remain at the same version.
+A very large application has too much code for anyone to be familiar with. Services naturally allow developers to focus on the certain parts of the application they are responsible for. This allows the number of developers working on the application to scale.
+
+Having many test suites for the services rather than one for a monolith means that the tests will be easier to run which saves time and also makes the tests more useful.
+
+Properly designed services may be more agile than a monolith despite more up-front design.
+
+Versioning the services can be an important consideration. It may be necessary to to run multiple versions of a service simultaneously. As long as an update to the API of a service is purely additive, the service can remain at the same version.
 
 ## Robustness
 
-This is similar to encapsulation in object-oriented design. In that context, encapsulation refers to being able to change the underlying implementation of a class without any part of the application which depends on that class breaking. A service encapsulates an entire section of an application.
+This is similar to encapsulation in object-oriented design. The implementation of a service should be able to change without its public interface changing.
 
 ## Interoperability
 
-If a section of the application would benefit from being implemented with a language or technology other than Ruby and Rails, then the service may be implemented using that other technology.
+The services which integrate with a Ruby on Rails application do not necessarily have to be created with Rails or Ruby if a different technology would be better for the use case.
 
-Code reuse is another good reason to use services. If multiple applications have shared functionality, they could use a shared service for that functionality. Exposing a public API for an application with services may be as simple as exposing an already existing API to the public.
+If multiple applications have shared functionality, they can use a shared service for that functionality.
+
+Exposing a public API for an application that already uses services may be as simple as exposing an already existing API to the public.
 
 # Converting a monolith into services
 
-A Rails application usually starts as a single code base with tests and a single database. There may be a server hosting the application server and web server and a different physical server for the database. Background processes which are tightly coupled to the application server will also be running. More complexity usually comes with the addition of Memcached and more servers to handle more HTTP requests behind a load balancer. Upgrading the hardware and determining where queries can be optimized by performance logging are common next steps when the database is unable to keep up with the number of requests.
+A Rails application usually starts as a single code base with tests and a single database. There may be a server hosting the application server and web server and a different physical server for the database. There are generally also background processes which are tightly coupled to the application server. Additional complexity usually arrives as the addition of Memcached and additional servers behind a load balancer. Eventually the database cannot keep up with the number of requests and it becomes necessary to upgrade the hardware and optimize database queries.
 
-The parts of the application which are very well defined should be the first considered to be extracted as services.
+The parts of the application which are very well defined are the first candidates to be extracted as services.
 
-When breaking up parts of a monolith into services, associations between models may need to reach across from one service to another. It will need to be decided which services should own which models. Some considerations about this are the read and write/update frequency of different models and which joins occur the most frequently.
+When breaking up parts of a monolith into services, associations between models may need to reach from one service to another. The first step may be to extract only models into services. If this is the case, which services should own what models is an important design decision. Some considerations about this are the read and write/update frequency of different models and which joins occur the most frequently.
 
-The first step may be to extract only models into services. Applications that have many views will benefit from having the views and controllers also broken into services. There are different forms that the final service-oriented design can take.
+Applications that have many views will also benefit from having the views and controllers broken into services. The final service-oriented design can vary considerably in form.
 
 # Service and API design
 
-Services generally do require more up-front design but will help to improve flexibility in the long run. Some of the hardest service-oriented design decisions are around how to partition an application into different services.
+Services require more up-front design but maintain flexibility in the long term. Some of the hardest service-oriented design decisions are around how to partition an application into different services.
 
 ## Iteration speed
 
-Services are best used for parts of the application with well defined requirements and a stable API. When these conditions are met, optimization of the service should generally not be disruptive. Typically, the project will start out as a Rails monolith, and as certain parts become more stable they can be extracted into services. Parts of the application that are being frequently changed may generally be kept within the standard framework of Rails.
+Services are best used for the parts of the application with well defined requirements and a stable API. When these conditions are met, optimization of the service should generally not be disruptive. Parts of the application being changed frequently should be kept within the standard Rails framework.
 
 ## Logical function
 
@@ -75,11 +85,11 @@ The Amazon Simple Storage Service (S3) is a good example of a service that extra
 
 ## Read/write frequency
 
-Some data may need to be read very frequently while other data may need to be written to very frequently. Since there can be tradeoffs when trying to optimize both of these cases at the same time, dividing functionality into services that deal only with one or the other can allow these cases to be optimized separately.
+Some data may need to be read very frequently while other data may need to be written to very frequently. Since there can be tradeoffs when trying to optimize both of these cases at the same time, dividing functionality into services that deal only with one or the other can allow these considerations to be optimized separately.
 
 ## Join frequency
 
-Joins are expensive, and joins that reach across the boundaries of services are even more so but may be a necessary tradeoff.
+Joins are expensive, and joins that reach across the boundaries of services are even more so, but are a necessary tradeoff.
 
 ## Versioning services
 
@@ -89,17 +99,17 @@ Internally facing APIs should support multiple versions of a service only while 
 
 ## API design
 
-URIs should by as conventional as possible, and the Rails conventions are a good starting point. Response status codes should also be conventional and the book describes many common ones. It is also a good idea to use the response headers around HTTP caching. Following standard conventions makes it easier to develop shared client libraries across all services.
+URIs should be as conventional as possible and the Rails conventions are a good starting point. Response status codes should also be conventional. It is also a good idea to use the response headers related to HTTP caching. Following standard conventions makes it easier to develop shared client libraries across all services.
 
 Joins should occur at the highest level in the service call stack to avoid redundant calls to multiple services. Some of the services may not need all of the join data. Caching at the level of the application server is preferable since the services should only have to cache data that they are responsible for. Another considerations is the number of sequential service calls necessary to perform a nested join.
 
-APIs should generally start out relatively atomic and working for general cases. More advanced, specific functionality that is needed can be implemented in a later stage of development for very frequent client use cases. This should not be added too aggressively because it increases the complexity of caching and error handling.
+APIs should generally start out relatively atomic and working for general cases. More advanced, specific functionality that is needed can be implemented in later stages of development for very frequent client use cases. This should not be added too aggressively because it increases the complexity of caching and error handling.
 
-This may involve multiple-GET calls or calls that return multiple models. Multi-get refers to retrieving data for multiple IDs at once and may be the response to a GET or POST request. A GET request would probably have a query string with the list of ids. The issue with that is the limitation on the URL length. Web browser URL limits are generally the shortest but may not matter if the service is only responding to requests from other services. Nginx and Apache have longer URL length limits but these still may not be long enough. A POST request may include the list of IDs as a JSON array in the request body or the params hash format expected by Sinatra and Rails applications. The response may be a JSON array of objects or a JSON hash where the IDs are keys and the values are the requested records.
+This may involve multiple-GET calls or calls that return multiple models. Multi-get refers to retrieving data for multiple IDs at once and may be the response to a GET or POST request. A GET request would probably have a query string with the list of ids. The issue with that is the limitation on the URL length. Web browsers have the shortest URL length limits but may not matter if the service is only responding to requests from other services. Nginx and Apache have longer URL length limits but these still may not be long enough. A POST request may include the list of IDs as a JSON array in the request body or the params hash format expected by Sinatra and Rails applications. The response may be a JSON array of objects or a JSON hash where the IDs are keys and the values are the requested records.
 
 # Final API design
 
-There is a lot of flexibility around designing the API endpoints and a lot of it has to do with aesthetics. Some considerations include representing data in the URL vs the body of the request and what HTTP method to use. Keeping the interface RESTful, as well as keeping API endpoints and data descriptive and human readable, are worthy goals.
+There is a lot of flexibility around designing the API endpoints and a lot of it is essentially aesthetics. Some considerations include representing data in the URL vs the body of the request and what HTTP method to use. Keeping the interface RESTful, as well as keeping API endpoints and data descriptive and human readable, are worthy goals.
 
 # Running requests in parallel
 
@@ -257,6 +267,10 @@ Consistency refers to data consistency across replicated systems. Availability i
 If the requirement for consistency is weakened to eventual consistency then all three can be maintained. Designing for eventual consistency takes some effort on the part of the application programmer.
 
 # Web Hooks and External Services
+
+Web hooks are basically service endpoints that are triggered in response to some event. For example, pushing code to a repository may send a request to a service endpoint to trigger that service to run the application's test suite.
+
+There are some things to consider when integrating with external services. Separating jobs related to different services into different queues may avoid the issue of one service being down affecting the jobs related to a different service. It is a good idea to track metrics around what is happening in the job queues. It should also be kept in mind that external services may limit the number of requests handled from a single consumer.
 
 {% include book_attribution.html
   book_title = "Service-Oriented Design with Ruby and Rails"
