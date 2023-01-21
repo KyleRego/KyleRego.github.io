@@ -1,17 +1,10 @@
 ---
 layout: post
-title: SQLite notes
+title: SQLite
 categories: programming SQL SQLite
-permalink: /sqlite-notes
+permalink: /sqlite
 emoji: 😸
 mathjax: false
-book_review: true
-book_title: Using SQLite
-book_author: Jay A. Kreibich
-book_publisher: O'Reilly Media
-book_isbn: 978-0596521189
-book_link: https://www.amazon.com/Using-SQLite-Small-Reliable-Choose/dp/0596521189
-note_category: Software development
 ---
 
 SQLite provides a relational database management system (RDBMS) that does not use a client/server architecture. The database (the definition of the database schema as well as the data) is itself just a single file, which conveniently is cross-platform.
@@ -57,3 +50,11 @@ id             tags   sfld
 # System Catalogs
 
 These are data structures which keep system state data. They start with the prefix `sqlite_` in SQLite. The most important one is the `sqlite_master` table, which has five columns: `type`, `name`, `tbl_name`, `rootpage`, and `sql`. `name` and `tbl_name` will have the same value for tables. The `sql` column usually holds the original SQL statement used to create the object, but it will reflect any modifications such as `ALTER TABLE` commands applied to a table after the original `CREATE TABLE`.
+
+{% include book_attribution.html
+  book_title = "Using SQLite"
+  book_author = "Jay A. Kreibich"
+  book_publisher = "O'Reilly Media"
+  book_isbn = "978-0596521189"
+  book_link = "https://www.amazon.com/Using-SQLite-Small-Reliable-Choose/dp/0596521189"
+%}

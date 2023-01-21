@@ -2,15 +2,9 @@
 layout: post
 title: Design Patterns in Ruby
 categories: programming ruby
-permalink: /design-patterns-in-ruby
+permalink: /design-patterns
 emoji: 🥹
 mathjax: false
-book_review: true
-book_title: Design Patterns in Ruby
-book_author: Russ Olsen
-book_publisher: Addison-Wesley Professional
-book_isbn: 978-0321490452
-book_link: https://www.amazon.com/Design-Patterns-Ruby-Russ-Olsen/dp/0321490452
 ---
 
 **This note is a work in progress. This book is really excellent though.**
@@ -111,3 +105,11 @@ The `each` method in Ruby is basically the *internal* iterator pattern. Sometime
 Including the `Enumerable` module into a class and defining an instance method `each` will give that class many useful methods such as `include?` and `all`. If the objects that are being iterated over do not implement `<=>`, they will need to implement this for all of the methods to work.
 
 There are other internal iterators in Ruby such as `Array#reverse_each` and `String#each_byte`. The `ObjectSpace` module has a method `each_object` which iterates through all of the objects that are currently known to the Ruby interpreter.
+
+{% include book_attribution.html 
+  book_title = "Design Patterns in Ruby"
+  book_author = "Russ Olsen"
+  book_publisher = "Addison-Wesley Professional"
+  book_isbn = "978-0321490452"
+  book_link = "https://www.amazon.com/Design-Patterns-Ruby-Russ-Olsen/dp/0321490452"
+%}

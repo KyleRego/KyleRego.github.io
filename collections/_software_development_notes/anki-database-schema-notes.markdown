@@ -5,8 +5,6 @@ categories: programming SQL anki
 permalink: /anki-schema
 emoji: 😋
 mathjax: false
-book_review: false
-note_category: Software development
 ---
 
 **This note is a work in progress.**

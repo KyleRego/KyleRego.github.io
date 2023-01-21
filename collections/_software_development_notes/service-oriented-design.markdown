@@ -1,16 +1,10 @@
 ---
 layout: post
 title:  "Service-Oriented Design with Ruby and Rails"
-categories: ruby rails programming [book reviews]
+categories: ruby rails programming
 permalink: /service-oriented-design-with-ruby-and-rails
 emoji: 🥳
-book_review: true
-book_title: Service-Oriented Design with Ruby and Rails
-book_author: Paul Dix
-book_publisher: Addison-Wesley Professional
-book_isbn: 978-0321659361
-book_link: https://www.amazon.com/Service-Oriented-Design-Rails-Addison-Wesley-Professional/dp/0321659368
-note_category: Software development
+mathjax: false
 ---
 
 **This note is a work in progress. This book is really excellent though.**
@@ -263,3 +257,11 @@ Consistency refers to data consistency across replicated systems. Availability i
 If the requirement for consistency is weakened to eventual consistency then all three can be maintained. Designing for eventual consistency takes some effort on the part of the application programmer.
 
 # Web Hooks and External Services
+
+{% include book_attribution.html
+  book_title = "Service-Oriented Design with Ruby and Rails"
+  book_author = "Paul Dix"
+  book_publisher = "Addison-Wesley Professional"
+  book_isbn = "978-0321659361"
+  book_link = "https://www.amazon.com/Service-Oriented-Design-Rails-Addison-Wesley-Professional/dp/0321659368"
+%}

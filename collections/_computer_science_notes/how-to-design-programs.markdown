@@ -4,12 +4,6 @@ title:  "How to Design Programs"
 categories: lisp programming [book reviews] [computer science]
 permalink: /how-to-design-programs
 emoji: 😮
-book_review: true
-book_title: How to Design Programs, Second Edition
-book_author: Matthias Felleisen, Robert Bruce Findler, Matthew Flatt, Shriram Krishnamurthi
-book_publisher: MIT Press
-book_isbn: 9780262534802
-book_link: https://htdp.org/
 note_category: Computer science
 ---
 
@@ -79,3 +73,11 @@ This pretty much shows the same idea with a somewhat more interesting type of da
 While I haven't done much more Lisp programming than the exercises in this book, I think that reading this as a beginner was very worthwhile for me. I have thought about the lesson above regarding the importance of understanding the data structure in program design many times. 
 
 My review on this book: it's a buy (actually it's free and you can read it at [htdp.org](https://htdp.org/))!
+
+{% include book_attribution.html
+  book_title = "How to Design Programs, Second Edition"
+  book_author = "Matthias Felleisen, Robert Bruce Findler, Matthew Flatt, Shriram Krishnamurthi"
+  book_publisher = "MIT Press"
+  book_isbn = "9780262534802"
+  book_link = "https://htdp.org/"
+%}

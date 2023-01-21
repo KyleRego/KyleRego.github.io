@@ -5,7 +5,6 @@ categories: physics
 permalink: /the-infinite-square-well
 emoji: 😋
 mathjax: true
-note_category: Physics
 ---
 
 The infinite square well is a toy problem in Modern Physics (a sophomore Physics course) that is interesting because it is an example of a solvable Schrodinger equation. The general time-independent version of this is the following:

@@ -1,16 +1,10 @@
 ---
 layout: post
 title:  "Modern Front-End Development for Rails"
-categories: ruby rails programming [book reviews]
+categories: ruby rails programming
 permalink: /modern-front-end-development-for-rails
 emoji: 🥳
-book_review: true
-book_title: Modern Front-End Development for Rails&#58; Hotwire, Stimulus, Turbo, and React 1st Edition
-book_author: Noel Rappin
-book_publisher: Pragmatic Bookshelf
-book_isbn: 9781680507218
-book_link: https://www.amazon.com/Modern-Front-End-Development-Rails-Webpacker/dp/1680507214
-note_category: Software development
+mathjax: false
 ---
 
 **This note is a work in progress. This book is really excellent though.**
@@ -164,3 +158,11 @@ Rails wrapper around webpack
 # Redux
 
 Implements the reducer pattern and is commonly used with React.
+
+{% include book_attribution.html
+  book_title = "Modern Front-End Development for Rails&#58; Hotwire, Stimulus, Turbo, and React 1st Edition"
+  book_author = "Noel Rappin"
+  book_publisher = "Pragmatic Bookshelf"
+  book_isbn = "9781680507218"
+  book_link = "https://www.amazon.com/Modern-Front-End-Development-Rails-Webpacker/dp/1680507214"
+%}

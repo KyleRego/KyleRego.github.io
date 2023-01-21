@@ -5,13 +5,6 @@ categories: linux
 permalink: /the-linux-command-line
 emoji: 🤨
 mathjax: false
-book_review: true
-book_title: The Linux Command Line
-book_author: William Shotts
-book_publisher: No Starch Press
-book_isbn: 978-1593279523
-book_link: https://www.amazon.com/Linux-Command-Line-2nd-Introduction/dp/1593279523/ref=pd_lpo_1?pd_rd_w=eL39R&content-id=amzn1.sym.116f529c-aa4d-4763-b2b6-4d614ec7dc00&pf_rd_p=116f529c-aa4d-4763-b2b6-4d614ec7dc00&pf_rd_r=19H682R4ZHTTHEDGZREZ&pd_rd_wg=dj0A0&pd_rd_r=8097b80d-6697-4717-83e6-ae25375e8ce9&pd_rd_i=1593279523&psc=1
-note_category: Software development
 ---
 
 **This note is a work in progress (*clearly*). This book is really excellent though.**
@@ -186,3 +179,11 @@ Linux Filesystem Hierarchy Standard - this is a specification that most Linux di
 when using ls -l, if the first character is l then it is a special type of file called a symbolic link, or soft link or symlink
 
 it is a file but the purpose of it is to point to a file elsewhere
+
+{% include book_attribution.html
+book_title = "The Linux Command Line"
+book_author = "William Shotts"
+book_publisher = "No Starch Press"
+book_isbn = "978-1593279523"
+book_link = "https://www.amazon.com/Linux-Command-Line-2nd-Introduction/dp/1593279523/ref=pd_lpo_1?pd_rd_w=eL39R&content-id=amzn1.sym.116f529c-aa4d-4763-b2b6-4d614ec7dc00&pf_rd_p=116f529c-aa4d-4763-b2b6-4d614ec7dc00&pf_rd_r=19H682R4ZHTTHEDGZREZ&pd_rd_wg=dj0A0&pd_rd_r=8097b80d-6697-4717-83e6-ae25375e8ce9&pd_rd_i=1593279523&psc=1"
+%}
