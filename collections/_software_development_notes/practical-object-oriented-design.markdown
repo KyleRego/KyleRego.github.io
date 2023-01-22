@@ -7,9 +7,9 @@ emoji: 😃
 mathjax: false
 ---
 
-The subject of [Practical Object-Oriented Design: An Agile Primer Using Ruby]({{page.book_link}}) is object-oriented design, the goal of which is to produce code that will be easily changeable in the future. When the requirements of the application inevitably change, it will be the existing design that determines if the necessary code changes are joyful or painful. We should strive for code that works now, is reusable, and can be easily adapted in the future.
+[Practical Object-Oriented Design: An Agile Primer Using Ruby]({{page.book_link}}) is about object-oriented design and principles to design code that will be easily changeable in the future. When the requirements of the application inevitably change, it will be the existing design that determines if the necessary code changes are joyful or painful. We should strive for code that works now, is reusable, and can be easily adapted in the future.
 
-The book uses Ruby and MiniTest but is really about general principles. The audience is mainly junior programmers who have worked on object-oriented applications. The actual code examples are mostly about bicycles and may be somewhat interesting if you enjoy things like geometry and mechanical advantage.
+The book uses Ruby and MiniTest but is really about general principles. The audience is mainly junior programmers who have worked on object-oriented applications. The actual code examples are mostly about bicycles and may be somewhat interesting if you enjoy things like geometry and mechanical advantage. In general, the book is excellent and highly recommended if you are a Ruby programmer. My review: it's a buy.
 
 The goal is to write code that is TRUE (transparent, reasonable, usable, and exemplary), SOLID, and DRY.
 
@@ -26,23 +26,25 @@ Some of the general takeaways I got were:
 - Instead of calling `super` in the child class, you might have the parent class call a hook method, which the child class is expected to implement.
 - If an object is deciding what message to send to its collaborators by checking their classes in a case statement, this may indicate the need for a duck type.
 
-One of the themes which I found to be quite specific to this book is the idea that you should focus at least as much on the messages sent between the objects as the objects themselves. Objects take the spotlight in object-oriented programming so it is easy to not think about the messages sent between the objects as much.
+# Messages
 
-UML sequence diagrams are used to make the discussion about messages more comprehensible. I made the following one using the [plantuml builder gem](https://github.com/svernidub/plantuml_builder) (which works well despite having only 6 commits since it was developed over 3 years ago):
+One of the themes of this book book is the idea that the "messages" sent between the objects are as important, or even more important, than the objects themselves.
+
+UML sequence diagrams are used to make the abstract discussion easier to follow. I made the following one using the [plantuml builder gem](https://github.com/svernidub/plantuml_builder):
 
 ![An example UML sequence diagram](/assets/uml_images/example.png)
 
 These diagrams show the objects as two identical boxes connected by vertical lines. The horizontal lines are the messages. In this diagram, the `User` object calls the `perform` method of the other object which returns `true`. The box on the vertical line for `MyService` represents the `MyService` object executing the method.
 
-Focusing on the messages can be very revealing about what the objects have to know in order to work. An object knowing things about other objects is a form of coupling between the objects, and of course loosely coupled code is better than tightly coupled code.
+This kind of diagram showing one object calling the method of another looks a lot like a client sending an HTTP message to a server and then receiving a response. This is essentially what is meant by the messages mental model. Of course it is not actually HTTP. Here it's an object sending a message to another object that it wants that object to execute a method and give it the return value.
 
-Ideally the object should only have to know what it wants back in order to send the right message. It may not be necessary for it to know the type of the object it sends the message to, and it definitely shouldn't know how that object works internally. The less that an object needs to know in order to work, the more reusable it is, and the easier it will be to test.
+Focusing on the messages can be very revealing about what the objects have to know in order to work. An object knowing things about other objects is a form of coupling between the objects, and of loosely coupled code is better than tightly coupled code.
 
-Here is an example of `User` knowing way too much about how `BookService` works (this also shows `BookService` is exposing methods in its public interface that it probably shouldn't):
+Ideally the object should only have to know what it wants back in order to send the right message. For example, an object that needs to call multiple methods of another object in a specific order for something to happen knows way too much about that other object. It may not be necessary for it to know the type of the object it sends the message to, and it definitely shouldn't know how that object works internally. The less that an object needs to know in order to work, the more reusable it is, and the easier it will be to test.
 
-![UML sequence diagram showing an object that knows too much about how another object works](/assets/uml_images/knows_how_it_works.png)
+# Dependencies
 
-Something that the object has to know in order to work is also a type of dependency. The more dependencies the object has, the more likely it is to break when the dependencies change. The book discusses many ways dependencies can manifest and potential ways to minimize them. 
+Something that the object has to know in order to work is a type of dependency. The more dependencies the object has, the more likely it is to break when the dependencies change. The book discusses many ways dependencies can manifest and potential ways to minimize them. 
 
 Some examples would be:
 - Using keyword arguments instead of positional arguments replaces a dependency on argument order with one on the argument names, which is preferable.
@@ -51,7 +53,7 @@ Some examples would be:
 
 The direction of dependencies is another important thing to consider. The worst situation to be in would be having a class that is both very likely to change and has a lot of dependencies. A good rule of thumb is a class should only depend on things that are less likely to change than itself.
 
-The last and longest chapter in the book is about testing.
+# Testing
 
 Any method in the public interface of an object should be tested. Usually this is done by making assertions about what the method returns. This covers the incoming messages to the object. 
 
@@ -71,8 +73,6 @@ To test parent and child classes:
 - Write a module for any methods the child classes are expected to implement and include that into the child test classes. 
 - Add tests to the child test classes for anything that is specific to those child classes.
 - To finish testing the parent class, create a child class of it to serve as a double, and in that double class stub any methods that the child classes are expected to implement.
-
-In general this book is excellent and highly recommended if you are a Ruby programmer. My review: it's a buy.
 
 {% include book_attribution.html
   book_title = "Practical Object-Oriented Design: An Agile Primer Using Ruby 2nd Edition"

@@ -21,7 +21,7 @@ This is a command line tool for interacting with a SQLite database. It is analog
 
 The `collection.anki21` file is a SQLite database. I exported some old cards from Anki that I had tagged "sql" and then unzipped the resulting `*.apkg` file to get this to use as an example.
 
-This shell shows the `sqlite>` prompt to which you can give dot-commands or SQL commands. `.exit` or `.quit` will exit the sqlite3 interface. `.headers on` and `.mode column` make the output easier to read. `.schema` will output the DDL SQL statements (like `CREATE TABLE`) used to define the database schema. `.read filename` can be used to execute a list of dot-commands and SQL statements from a file.
+This shell shows the `sqlite>` prompt to which you can give dot-commands or SQL commands. `.exit` or `.quit` will exit the sqlite3 interface. `.headers on` and `.mode column` make the output easier to read. `.schema` will output the DDL SQL statements (like `CREATE TABLE`) used to define the database schema. `.dump` dumps all the SQL needed to recreate both the schema and the data. `.read filename` can be used to execute a list of dot-commands and SQL statements from a file. To see a list of all the dot-commands, use `.help`.
 
 ## Example
 

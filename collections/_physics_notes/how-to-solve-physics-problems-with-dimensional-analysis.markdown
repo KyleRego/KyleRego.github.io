@@ -7,13 +7,13 @@ emoji: 🫠
 mathjax: true
 ---
 
-This is a really dirty way to solve hard physical problems without much effort. I will demonstrate how it works by solving a simple problem in a standard way and then again using dimensional analysis.
+This is a really dirty way to solve certain physical problems without much effort. I will demonstrate how it works by solving a simple problem in a standard way and then again using dimensional analysis.
 
-# Problem
+# Projectile motion problem
 
 Determine the horizontal distance $$ d $$ a projectile travels before hitting the ground after being fired at 45 degrees above the horizontal at a speed of $$ v $$. Ignore non-conservative forces and the curvature of the Earth.
 
-# Solution using elementary Physics
+## Solution using elementary Physics
 
 The equation of motion is Newton's second law where the mass is constant:
 
@@ -27,15 +27,15 @@ $$ F_{x} = m a_{x} = 0 \\
 $$ F_{y} = m a_{y} = -mg \\
   \rightarrow a_{y} = -g $$
 
-Acceleration is the derivative of velocity:
+Acceleration is the derivative of velocity, so we can integrate it to determine $$ \vec v(t) $$:
 
 $$ a_{x} = 0 = \frac{dv_{x}}{dt} \\
-  \rightarrow v_{x} = C = v_{xi} $$
+  \rightarrow v_{x}(t) = C = v_{xi} $$
 
 $$ a_{y} = -g = \frac{dv_{y}}{dt} \\
   \rightarrow v_{y}(t) = -gt + C = -gt + v_{yi} $$
 
-Velocity is the derivative of position:
+Velocity is similarly the derivative of position:
 
 $$ v_{x} = \frac{dx}{dt} = v_{xi} \\
   \rightarrow x(t) = v_{xi}t + C = v_{xi}t + x_{i} $$
@@ -71,11 +71,11 @@ Since $$ x(t_{f}) = x_{f} $$ this is the solution:
 $$ d = x_{f} = \frac{\sqrt 2}{2} v \frac{\sqrt 2}{g} v \\
   \rightarrow d = \frac{v^2}{g} $$
 
-This is a nice special case of the general solution which would treat the angle, which was 45 degrees in this case, generally.
+This is a nice special case of the general solution which would treat the angle generally.
 
-# Solution using dimensional analysis
+## Solution using dimensional analysis
 
-To solve the problem using the dimensional analysis, just think about the units. The solution $$ d $$ has units of length and it will be a function of $$ v $$, $$ g $$, and $$ \theta $$, which have units of length/time, length/time$$^2$$, and angular units (technically a ratio of lengths, and thus unitless) respectively. The units on the right-hand side and left-hand side of the solution must be equal. This is only satisfied by:
+To solve the problem using dimensional analysis, just think about the units. The solution $$ d $$ has units of length and it will be a function of $$ v $$, $$ g $$, and $$ \theta $$, which have units of length/time, length/time$$^2$$, and angular units (technically a ratio of lengths, and thus unitless) respectively. The units on the right-hand side and left-hand side of the solution must be equal. This is only satisfied by:
 
 $$ d = \alpha(\theta)\frac{v^2}{g} $$
 
@@ -83,6 +83,14 @@ In this case there are only a few parameters and figuring out how to arrange the
 
 $$ d = \sin(2\theta)\frac{v^2}{g} $$
 
-It is a limitation of the dimensional analysis that we cannot calculate the dimensionless constant. However, we could experimentally measure $$ d $$ for different $$ \theta $$ and constant $$ v $$ and curve fit the measurements. By doing so, we could determine $$ \alpha(\theta) = \sin(2\theta) $$.
+It is a limitation of the dimensional analysis that we cannot calculate the unitless constant. However, we could experimentally measure $$ d $$ for different $$ \theta $$ and constant $$ v $$ and curve fit the measurements. By doing so, we could determine $$ \alpha(\theta) = \sin(2\theta) $$.
 
 There are other limitations too. Some of the physical parameters could be combined in such a way that they produce additional dimensionless parameters that could appear in the solution. Even so, since this can be used to find solutions to some problems that would be very difficult to solve, it is a good technique to keep in mind.
+
+{% include book_attribution.html
+  book_title = "Introduction to the Foundations of Applied Mathematics"
+  book_author = "Mark H. Holmes"
+  book_publisher = "Springer"
+  book_isbn = "978-0387877495"
+  book_link = "https://www.amazon.com/Introduction-Foundations-Applied-Mathematics-Texts/dp/0387877495"
+%}
