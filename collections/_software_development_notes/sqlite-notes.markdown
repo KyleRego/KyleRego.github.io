@@ -7,13 +7,11 @@ emoji: 😸
 mathjax: false
 ---
 
-SQLite provides a relational database management system (RDBMS) that does not use a client/server architecture. The database (the definition of the database schema as well as the data) is itself just a single file, which conveniently is cross-platform.
-
-SQLite has some unique features such as a dynamic type system and the ability to use an in-memory SQLite database as a data structure. If you take advantage of this, instead of writing the procedural code to access and update an object, you can just tell the database engine what needs to be done and it will do it for you very efficiently.
+SQLite provides a relational database management system (RDBMS) that has a dynamic type system and does not use a client/server architecture. The database (the definition of the database schema as well as the data) is itself just a single file, which conveniently is cross-platform. It is also possible to use a SQLite database as an in-memory object/data structure.
 
 # sqlite3
 
-This is a command line tool for interacting with a SQLite database. It is analogous to the `mysql` and `pgsql` applications.
+This is a command line tool for interacting with a SQLite database. It is like the `mysql` and `pgsql` applications.
 
 {% highlight console %}
  $ sqlite3 collection.anki21
@@ -49,7 +47,7 @@ id             tags   sfld
 
 # System Catalogs
 
-These are data structures which keep system state data. They start with the prefix `sqlite_` in SQLite. The most important one is the `sqlite_master` table, which has five columns: `type`, `name`, `tbl_name`, `rootpage`, and `sql`. `name` and `tbl_name` will have the same value for tables. The `sql` column usually holds the original SQL statement used to create the object, but it will reflect any modifications such as `ALTER TABLE` commands applied to a table after the original `CREATE TABLE`.
+These are data structures which keep system state data. In SQLite, they start with the prefix `sqlite_`. The most important one is the `sqlite_master` table, which has five columns: `type`, `name`, `tbl_name`, `rootpage`, and `sql`. `name` and `tbl_name` will have the same value for tables. The `sql` column usually holds the original SQL statement used to create the object, but it will reflect any modifications such as `ALTER TABLE` commands applied to a table after the original `CREATE TABLE`.
 
 {% include book_attribution.html
   book_title = "Using SQLite"
