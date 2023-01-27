@@ -15,6 +15,8 @@ The Bash shell prompt is `username@machinename` following by the current working
 
 # Commands
 
+There are several different types of commands. They can be compiled binaries, programs written in scripting languages, shell builtins which are programs built into the shell itself, shell scripts which are incorporated into the environment, or aliases.
+
 - `date`
   - Shows the current date
 - `cal`
@@ -31,19 +33,79 @@ The Bash shell prompt is `username@machinename` following by the current working
   - Lists the files and directories in the current working directory
   - If a directory is given as an argument, the output is as if that argument was the current working directory
   - It can also take multiple directories as arguments at the same time
-  - The options are described below
+  - The short options can be strung together preceded by a single dash (for example `ls -lah`).
+    - `-l`
+      - Changes the output to the long format version
+    - `-t`
+      - Sorts the files in the output by last time modified
+    - `-a`
+      - Shows hidden files
+    - `-A`
+      - Same as `-a` except skips `.` and `..`
+    - `-S`
+      - Sorts the files in the output by file size
+    - `-r`
+      - Reverses the order of files in the output
+    - `-h`
+      - In combination with long format, shows file size in a more human-readable format
+    - `-l`
+      - Changes the output to display all of the following in order:
+        - If the file is a file (`-`), directory (`d`), or symbolic link (`l`)
+        - The access rights
+        - The number of hard links
+        - The file's owner's username
+        - The file's group's name
+        - The file size in bytes
+        - The date and time it was last time modified
+        - The name of the file
+        - If it's a symlink, an arrow and a second filename
 - `cd`
   - Changes the current working directory
   - Can take relative or absolute path names as arguments
   - With no arguments, changes the current working directory to the home directory
-  - `.` refers to the current working directory (and `..` refers to the parent directory) but `./` can be omitted by default
-    - For example, `cd ./directory_name` and `cd directory_name` do the same thing
+  - `.` refers to the current working directory
+    - `./` can be omitted by default
+      - For example, `cd ./directory_name` and `cd directory_name` do the same thing
+  - `..` refers to the parent directory
 - `file <filename>`
   - Outputs information about the type of the file
 - `less <filename>`
   - This is an example of a pager
   - Allows viewing the file contents and scrolling up and down
   - `q` to exit
+- `mkdir <directory_name>`
+  - Creates a new directory
+- `cp <filename1> <filename2>`
+  - Copies a file or directory
+  - `-r` is necessary to recursively copy the contents of a directory
+- `mv <filename1> <filename2>`
+  - Moves or renames a file
+- `rm`
+  - Deletes files and directories
+  - `-r` is necessary to recursively delete the contents of a directory
+  - Should be used carefully
+- `ln`
+  - Creates hard or symbolic links
+- `type`
+  - Displays a command's type
+- `which`
+  - Displays an executable's location
+- `help`
+  - Displays helpful information for shell builtins
+  - Many commands also support the `--help` option
+- `man`
+  - Display a command's manual page
+  - Most Linux systems will use `less` to display the manual
+- `apropos`
+  - Display appropriate commands from the man pages based on a search term
+- `whatis`
+  - Displays one-line summary of a command's man page
+- `info`
+  - An alernative to `man` that displays a hypertext man page
+- `alias`
+  - With no arguments, displays all of the alias commands that are available in the environment 
+  - With an argument, creates a new command which is an alias, however it does not persist after the shell session.
+  - `alias bw="cd; cd blog/website"`
 
 # Files
 
@@ -52,36 +114,6 @@ Linux organizes files in a hierarchical tree-like directory structure which star
 In contrast to Windows which has a separate file system tree for every storage device, Linux has only one regardless of the number of storage devices. Storage devices are "mounted" at specific places by the system administrator.
 
 Punctuation characters in Linux filenames should be limited to periods, dashes, and underscores (no spaces). There is also no concept of file extensions in Linux. Filenames that begin with a dot are hidden. To see them, use `ls` with the `-a` option. Filenames in Linux are also case-sensitive. 
-
-## ls options
-
-The short options can be strung together preceded by a single dash (for example `ls -lah`).
-
-- `-l`
-  - Changes the output to the long format version
-- `-t`
-  - Sorts the files in the output by last time modified
-- `-a`
-  - Shows hidden files
-- `-A`
-  - Same as `-a` except skips `.` and `..`
-- `-S`
-  - Sorts the files in the output by file size
-- `-r`
-  - Reverses the order of files in the output
-- `-h`
-  - In combination with long format, shows file size in a more human-readable format
-- `-l`
-  - Changes the output to display all of the following in order:
-    - If the file is a file (`-`), directory (`d`), or symbolic link (`l`)
-    - The access rights
-    - The number of hard links
-    - The file's owner's username
-    - The file's group's name
-    - The file size in bytes
-    - The date and time it was last time modified
-    - The name of the file
-    - If it's a symlink, an arrow and a second filename
 
 ## Linux Filesystem Hierarchy Standard
 
@@ -120,6 +152,8 @@ Most Linux distributions conform to this standard somewhat closely.
   - System binaries and things generally reserved for the root user
 - `/tmp`
   - Temporary transient files
+- `/usr/share/doc`
+  - Documentation files may reside here
 - `/var`
   - Data that is likely to change
 - `/var/log`
