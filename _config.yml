@@ -38,3 +38,5 @@ collections:
     output: true
   software_development_notes:
     output: true
+  linklogs:
+    output: true
