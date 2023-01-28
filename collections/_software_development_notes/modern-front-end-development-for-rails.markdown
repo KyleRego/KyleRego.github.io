@@ -7,7 +7,7 @@ emoji: 🥳
 mathjax: false
 ---
 
-**This note is a work in progress. This book is really excellent though.**
+**These notes are a work in progress.**
 
 This book is about the front-end development tools that pair with Ruby on Rails 6.1.
 

@@ -7,7 +7,7 @@ emoji: 🥹
 mathjax: false
 ---
 
-**This note is a work in progress. The "Design Patterns in Ruby" book is really excellent though. In the future, this note should describe design patterns in more languages than just Ruby.**
+**These notes are a work in progress. In the future, this may describe design patterns in more languages than just Ruby.**
 
 The Gang of Four popularized the ideas of design patterns, which are common solutions to problems in object-oriented programming. This book focuses on 14 of the original 23 GoF patterns.
 

@@ -7,7 +7,7 @@ emoji: 🤨
 mathjax: false
 ---
 
-**This note is a work in progress and subject to change.**
+**These notes are a work in progress.**
 
 A shell is a program that passes commands from the user to the operating system. Typically the user interacts with the shell using a terminal emulator. Almost all Linux distributions include a shell called Bash.
 
