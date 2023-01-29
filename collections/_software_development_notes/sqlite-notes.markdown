@@ -1,6 +1,6 @@
 ---
 layout: post
-title: SQLite
+title: SQLite notes
 categories: programming SQL SQLite
 permalink: /sqlite
 emoji: 😸

@@ -25,9 +25,9 @@ As an example to demonstrate this point, exercise 320 asks you write a function 
 ; – (cons S-expr List-of S-expr)
 {% endhighlight %}
 
-In the teaching Lisp used by this textbook, the `;` starts a comment and `'()` is the empty list.
+In the teaching Lisp used by this textbook, the `;` starts a comment and `'()` is the empty list. `cons` constructs a list where the first argument becomes the list's first element and the second argument, a list, becomes the rest of the list's elements. These are accessed by the `first` and `rest` functions.
 
-`cons` constructs a list where the first argument becomes the list's first element and the second argument, a list, becomes the rest of the list's elements. These are accessed by the `first` and `rest` functions. Here is my solution (the book encourages writing function signatures and unit testing):
+Here is my solution (the book encourages writing function signatures and unit testing):
 
 {% highlight racket %}
 ; S-expr Symbol -> Number
@@ -52,7 +52,7 @@ In the teaching Lisp used by this textbook, the `;` starts a comment and `'()` i
     [else (count-sl sexp sy) ])))
 {% endhighlight %}
 
-This function is recursive in a way that completely mirrors the recursive definition of the data type, which I think is kind of a cool idea. Most of the work in writing this function is simply appreciating the structure of the data that it needs to process.
+This function is recursive in a way that completely mirrors the recursiveness of the data type definition, and it kind of writes itself after the recursive structure of the data type is understood.
 
 My review on this book: it's a buy (actually it's free and you can read it at [htdp.org](https://htdp.org/))!
 

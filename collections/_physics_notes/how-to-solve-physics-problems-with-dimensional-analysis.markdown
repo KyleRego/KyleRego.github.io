@@ -35,7 +35,7 @@ $$ a_{x} = 0 = \frac{dv_{x}}{dt} \\
 $$ a_{y} = -g = \frac{dv_{y}}{dt} \\
   \rightarrow v_{y}(t) = -gt + C = -gt + v_{yi} $$
 
-Velocity is similarly the derivative of position:
+And then we can integrate the velocity too, to get the position or displacement:
 
 $$ v_{x} = \frac{dx}{dt} = v_{xi} \\
   \rightarrow x(t) = v_{xi}t + C = v_{xi}t + x_{i} $$
@@ -55,7 +55,7 @@ $$ x(t) = \frac{\sqrt 2}{2}vt $$
 
 $$ y(t) = -\frac{1}{2}gt^{2} + \frac{\sqrt 2}{2}vt $$
 
-If you're wondering why I derived these equations which you probably learned in high school, it's because it takes me about 30 seconds to do so and it's a more general approach which also works when the net force on the mass is not constant (such as if there was a drag force negatively proportional to the velocity).
+If you're wondering why I derived these equations which you probably learned in high school, it's because it's fun and easy to do and it's a more general approach which also works when the net force on the mass is not constant (such as if there was a drag force negatively proportional to the velocity).
 
 Now comes the physical intuition part, where we will use this equation that we noted earlier:
 

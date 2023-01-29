@@ -127,8 +127,8 @@ If state is shared among many different components then this becomes a little mo
 # CSS
 
 For a review on CSS:
-- [Learn CSS Layout](learnlayout.com)
-- [Hell Yes! CSS!](wizardzines.com/zines/css).
+- [Learn CSS Layout](https://learnlayout.com)
+- [Hell Yes! CSS!](https://wizardzines.com/zines/css/).
 
 Webpacker provides support for CSS, css processers like PostCSS, and variant languages of CSS like Sass and SCSS. In a Rails view, Webpacker also provides some helper methods like `asset_pack_path` and `image_pack_tag`.
 

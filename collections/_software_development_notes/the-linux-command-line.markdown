@@ -246,6 +246,22 @@ The `chown` command is used to change the owner and group owner of a file or dir
 
 The `passwd` command is used to set or change your password. With superuser privileges, you can also set the password of other users.
 
+# Processes
+
+When the system starts, it starts a few processes and a program called `init` that runs a series of `init scripts` located in `/etc`. Many of these are `daemon programs` which run in the background and have no user interface. Processes are assigned `process IDs` (PIDS) with `init` always have the PID 1.
+
+In general, when processes launch other processes they are called `parent processes` and the processes they launch are `child processes`. 
+
+The `ps` command shows the processes related to the current terminal session. The `x` option (with no leading dash) will show more processes not limited to the current terminal session. A handy set of options is `aux` (no leading dash again) which shows the user each process belongs to.
+
+The `top` command shows the system process ordered by activity and continuously updated. This program accepts `h` to show help and `q` to exit. In Windows, the Task Manager serves the same function as `top` but consumes more computational resources and is slower.
+
+To launch a program such that it is immediately placed in the background, use `<program> &`. A process in the background can be seen with the `ps` command and its jobspec (job number) can be seen from the `jobs` command. To bring the process into the foreground, use `fg %<jobspec>`.
+
+The `kill` command is used to terminate a process. `kill <PID>` sends the `TERM` signal to the process identified by the PID argument. Other signals that can be sent to processes are `INT` (Ctrl + C) and `TSTP` (Ctrl + Z). Use `kill -l` to see all the signals used by the system (there are a lot).
+
+Other commands related to monitoring the processes are `pstree`, `vmstat`, `xload`, and `tload`. `pstree` will show which processes are parents of others. Commands related to shutting down the system are `halt`, `poweroff`, `reboot`, and `shutdown`. 
+
 {% include book_attribution.html
 book_title = "The Linux Command Line"
 book_author = "William Shotts"
