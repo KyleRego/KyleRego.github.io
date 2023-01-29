@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How to write an Anki add-on (case studies)
+title: How to write Anki add-ons by example
 date: 2022-12-31 08:30:00 -0500
 categories: programming python pyqt anki
 permalink: /anki-add-on-case-studies
@@ -8,9 +8,9 @@ emoji: 😇
 mathjax: false
 ---
 
-I am going to explain the source code of two Anki add-ons that I wrote while I was in medical school, in the hopes that it will be useful to someone new to programming who wants to write Anki add-ons. Before the case studies, I also want to provide some background on what you may need to study to write Anki add-ons in general.
+I am going to explain the source code of two Anki add-ons that I wrote while I was in medical school, in the hopes that it will be useful to someone new to programming who wants to write Anki add-ons. Before the examples, I also want to provide some background on what you may need to study to write Anki add-ons in general.
 
-It should also be noted that these examples are not meant to show Python best practices or even good software development practices (even though there are a few comments on general design principles here). They are largely only intended to provide some examples of Anki add-ons for non-programmers to learn from.
+It should be noted that these examples are not meant to show Python best practices or even good software development practices (despite a few comments on general program design). They are largely only intended to provide some examples of Anki add-on code with additional context for non-programmers to learn from.
 
 This post condenses the content of three separate posts on this topic. The exact content of the three original posts can be seen in [the commit which deleted them](https://github.com/KyleRego/KyleRego.github.io/commit/f3e5b60c401b72c124ffd693e3dd707b47fd609e).
 
@@ -24,7 +24,7 @@ Python is a very popular and approachable programming language. PyQt lets you us
 
 I recommend reading the first 200 pages or so of [Python Crash Course, 2nd Edition](https://www.amazon.com/Python-Crash-Course-2nd-Edition/dp/1593279280) to learn Python and [Create GUI Applications with Python & PyQt5](https://leanpub.com/create-simple-gui-applications) if you want to read a book about PyQt too.
 
-You should also refer to the official documentation of Python, PyQt, and Qt. Since Qt is a C++ library and not Python, it may take some time to understand how to read its documentation, even once you have a solid grasp of Python. I will explain some of the differences to keep in mind when reading the Qt docs with examples later.
+You should also refer to the official documentation of Python, PyQt, and Qt. Since Qt is a C++ library and not Python, it may take some time to understand how to read its documentation, even once you have a solid grasp of Python. I will explain some of the things to keep in mind when reading the Qt docs with the examples later.
 
 You should also read the [official documentation about writing Anki add-ons](https://addon-docs.ankiweb.net/) which has the most up-to-date information on this topic.
 

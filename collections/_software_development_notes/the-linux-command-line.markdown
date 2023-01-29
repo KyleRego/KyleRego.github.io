@@ -9,13 +9,17 @@ mathjax: false
 
 **These notes are a work in progress.**
 
-A shell is a program that passes commands from the user to the operating system. Typically the user interacts with the shell using a terminal emulator. Almost all Linux distributions include a shell called Bash.
+A *shell* is a program that passes commands from the user to the operating system. Typically the user interacts with the shell using a *terminal emulator*. Almost all Linux distributions include a shell called *Bash*.
 
-The Bash shell prompt is `username@machinename` following by the current working directory, followed by `$` (or `#` if superuser). The up key can be used to see previous commands and usually the last 1000 commands are remembered by default.
+The Bash shell prompt is `username@machinename` followed by (and separated by `:`) the current working directory followed by `$` (or `#` if superuser) e.g. `regoky@LAPTOP:~/projects$`.
 
 # Commands
 
-There are several different types of commands. They can be compiled binaries, programs written in scripting languages, shell builtins which are programs built into the shell itself, shell scripts which are incorporated into the environment, or aliases.
+There are several different types of commands. They can be compiled binaries, programs written in scripting languages such as Ruby, *shell builtins* which are programs built into the shell itself, shell scripts which are incorporated into the environment, or aliases.
+
+The up key can be used to see previous commands. By default, usually the last 1000 commands are remembered. The command history list is kept in `bash_history` in the home directory and can be viewed at any time with `history | less`.
+
+The tab key can be used to take advantage of *completion* which saves you the trouble of having to type what the rest of what the shell can infer you were going to.
 
 - `date`
   - Shows the current date
@@ -50,8 +54,10 @@ There are several different types of commands. They can be compiled binaries, pr
       - In combination with long format, shows file size in a more human-readable format
     - `-l`
       - Changes the output to display all of the following in order:
-        - If the file is a file (`-`), directory (`d`), or symbolic link (`l`)
-        - The access rights
+        - If the file is a file (`-`), directory (`d`), symbolic link (`l`), a character special file (`c`), or block special file (`d`)
+        - 9 characters describing the access rights of the file owner, the file's group owner, and the world
+          - E.g. `-rwx------` is a file where the owner has read, write, and execution access and nobody else has any access
+          - E.g. `-rwxr-xr--` is a file where the owner has full access, but the group cannot edit it, and the world can only read it
         - The number of hard links
         - The file's owner's username
         - The file's group's name
@@ -103,21 +109,23 @@ There are several different types of commands. They can be compiled binaries, pr
 - `info`
   - An alernative to `man` that displays a hypertext man page
 - `alias`
-  - With no arguments, displays all of the alias commands that are available in the environment 
+  - With no arguments, displays all of the alias commands that are available in the environment.
   - With an argument, creates a new command which is an alias, however it does not persist after the shell session.
-  - `alias bw="cd; cd blog/website"`
+  - E.g. `alias bw="cd; cd blog/website"`
 
-# Files
+# Linux files
+
+Filenames in Linux are case-sensitive. Punctuation characters in Linux filenames should be limited to periods, dashes, and underscores (filenames should not have spaces in Linux). There is also no concept of file extensions in Linux.
+
+Filenames that begin with a dot are hidden. To see them, use `ls` with the `-a` option. 
+
+# The Linux Filesystem Hierarchy Standard
+
+Most Linux distributions conform to this standard somewhat closely.
 
 Linux organizes files in a hierarchical tree-like directory structure which starts with the root directory (`/`).
 
 In contrast to Windows which has a separate file system tree for every storage device, Linux has only one regardless of the number of storage devices. Storage devices are "mounted" at specific places by the system administrator.
-
-Punctuation characters in Linux filenames should be limited to periods, dashes, and underscores (no spaces). There is also no concept of file extensions in Linux. Filenames that begin with a dot are hidden. To see them, use `ls` with the `-a` option. Filenames in Linux are also case-sensitive. 
-
-## Linux Filesystem Hierarchy Standard
-
-Most Linux distributions conform to this standard somewhat closely.
 
 - `/`
   - The root directory
@@ -133,6 +141,12 @@ Most Linux distributions conform to this standard somewhat closely.
   - Defines when the jobs will run
 - `/etc/fstab`
   - Table of storage devices and mount points
+- `/etc/group`
+  - Defines the groups
+- `/etc/passwd`
+  - Defines users' login names, uid, gid, home directories, login shells
+- `/etc/shadow`
+  - Information about the users' passwords
 - `/home`
   - Location of the home directories
 - `/lib`
@@ -141,7 +155,7 @@ Most Linux distributions conform to this standard somewhat closely.
   - Mount points for USB drives and other things which are mounted automatically when inserted
 - `/mnt` 
   - Mount points for removable devices that have been mounted manually 
-  - **TODO** - Is this where the Windows file system is mounted in WSL2?
+  - **TODO** - Is this where the Windows file system is in WSL2?
 - `/opt`
   - Optional things like commercial products
 - `/proc`
@@ -158,6 +172,79 @@ Most Linux distributions conform to this standard somewhat closely.
   - Data that is likely to change
 - `/var/log`
   - Log files
+
+# I/O redirection
+
+Programs typically send the data they are designed to produce and output to the *standard output* and they send status and error messages to the *standard error*. `stdout` and `stderr` are special files linked to the screen and not saved to the disk. Many programs take input from the *standard input* (`stdin`) which is instead linked to the keyboard.
+
+To redirect standard output to a specific file, use the `>` operator followed by the filename to redirect output too following the command. This will always rewrite the destination file. To append to the destination file, use the `>>` operator instead.
+
+To redirect standard error, use `2>`. The 2 is the file descriptor that the shell refers to the standard error internally (it also refers to the standard input as 0 and the standard output as 1).
+
+Both the standout output and standard error can be redirect to the same file at the same time with `ls > output.txt 2>&1` (and `ls &> output.txt` in recent Bash versions) showing how to do so. The redirection of standard error must occur after the redirection of standard output.
+
+The system includes a special file, `dev/null`, to redirect output to when you want to silence the output. This file accepts the output and does nothing with it (it is a bit bucket).
+
+The pipe operator `|` allows piping the standard output of one command into the standard input of another command. A useful command to pipe the standard output from a different command into is `less` e.g. `ls | less`. Several commands combined in a pipeline are sometimes referred to as *filters* and common commands used in this way include `sort` and `uniq`.
+
+- `cat <filename>`
+  - This sends the contents of a file to the standard output.
+- `wc <filename>`
+  - Displays the number of lines, words, and bytes in files.
+- `grep <pattern> <filename>`
+  - Displays the lines in the file which match the pattern
+  - With the `v` option:
+    - Displays the lines that do not match the pattern instead
+- `tee <filename>`
+  - Receives standard input and copies it to a file as well as the standard output.
+  - This is useful for capturing the standard output at an intermediate point in a pipeline.
+
+# Expansion
+
+`echo *s` shows *pathname expansion* of the pattern into matching filenames.
+
+`echo ~` shows *tilde expansion* of `~` into the home directory.
+
+Other types of shell expansions include:
+  - *arithmetic expansion* e.g. `echo $(($((4 / 2)) + $((3 * 2))))`
+  - *brace expansion* e.g. `echo 1-{a,b,c}` which outputs `1-a 1-b 1-c`
+  - *parameter expansion* e.g. `echo $USER`
+  - *command substitution* e.g. `echo $(ls)`
+
+Double quotes cause most special characters to lose their special meaning but do not suppress `\``, `$`, or `\`. Single quotes will suppress all expansions.
+
+The *escape character* `\` can be used to suppress individual special characters. This character is also part of the notation of the *control codes*, which are the first 32 characters in ASCII. The control codes include `\t` (09) which represents a tab, `\n` (10 or 0A) which represents a newline, and `\r` (13 or 0D) which represents a carriage return.
+
+# The Unix security model
+
+A user may own certain files and directories. A user can also belong to a group which can be granted access to files and directories by the owners of those files and directories. The owners can also specify the permissions that everybody else (the *world*) has to their files and directories.
+
+The `id` command will output some information about your identity and groups.
+
+Access rights are defined in terms of read access, write access, and execution access for the file's owner, the file's group owner, and the world.
+
+The first 10 characters of the output of the `ls -l` command are called the *file attributes*.
+
+The `chmod` command is used to change the permissions of a file or directory. This can only be done by the file's owner or the superuser. It can take the permissions as an octal number:
+
+| Octal | Binary | Permissions |
+| ----- | ------ |----------- |
+| 0 | 000 | - - - |
+| 1 | 001 | - - x |
+| 2 | 010 | - w - |
+| 3 | 011 | - w x |
+| 4 | 100 | r - - |
+| 5 | 101 | r - x |
+| 6 | 110 | r w - |
+| 7 | 111 | r w x |
+
+For example, `chmod 755 a.txt` sets the file attributes of `a.txt` as `-rwxr-xr-x`. There is also an alternative symbolic notation.
+
+The `su` command is used to start a shell as a different user. `sudo` allows an ordinary user to execute commands as a different user. Using `sudo` requires the user's password, not the superuser's. To start a shell as the superuser using `su -`, the superuser's password must be entered.
+
+The `chown` command is used to change the owner and group owner of a file or directory and requires superuser privileges to use.
+
+The `passwd` command is used to set or change your password. With superuser privileges, you can also set the password of other users.
 
 {% include book_attribution.html
 book_title = "The Linux Command Line"
