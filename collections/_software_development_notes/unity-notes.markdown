@@ -41,6 +41,12 @@ After selecting a GameObject, the F key brings the object into focus (the mouse 
 
 After selecting a GameObject, the Y key opens the Transform gizmo.
 
+# Importing assets
+
+Assets can be downloaded for free or purchased from both the web and the Unity Asset Store.
+
+A texture for the terrain should be an image with a repeating pattern such the image can be reused over the whole terrain without there being obvious borders between the repeated images. 
+
 {% include book_attribution.html
   book_title = "Hands-On Unity 2022 Game Development, Third Edition"
   book_author = "Nicolas Alejandro Borromeo"

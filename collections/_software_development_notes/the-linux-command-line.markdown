@@ -19,7 +19,7 @@ There are several different types of commands. They can be compiled binaries, pr
 
 The up key can be used to see previous commands. By default, usually the last 1000 commands are remembered. The command history list is kept in `bash_history` in the home directory and can be viewed at any time with `history | less`.
 
-The tab key can be used to take advantage of *completion* which saves you the trouble of having to type what the rest of what the shell can infer you were going to.
+The tab key can be used to take advantage of *completion* which saves you the trouble of having to type the rest of what the shell can infer you were going to.
 
 - `date`
   - Shows the current date
@@ -119,9 +119,9 @@ Filenames in Linux are case-sensitive. Punctuation characters in Linux filenames
 
 Filenames that begin with a dot are hidden. To see them, use `ls` with the `-a` option. 
 
-# The Linux Filesystem Hierarchy Standard
+# The Linux filesystem
 
-Most Linux distributions conform to this standard somewhat closely.
+Linux distributions generally follow the [Linux Filesystem Hierarchy Standard](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard) but there are differences between distributions.
 
 Linux organizes files in a hierarchical tree-like directory structure which starts with the root directory (`/`).
 
@@ -145,6 +145,8 @@ In contrast to Windows which has a separate file system tree for every storage d
   - Defines the groups
 - `/etc/passwd`
   - Defines users' login names, uid, gid, home directories, login shells
+- `/etc/profile`
+  - A global configuration file for the environment that applies to all users
 - `/etc/shadow`
   - Information about the users' passwords
 - `/home`
@@ -155,7 +157,8 @@ In contrast to Windows which has a separate file system tree for every storage d
   - Mount points for USB drives and other things which are mounted automatically when inserted
 - `/mnt` 
   - Mount points for removable devices that have been mounted manually 
-  - **TODO** - Is this where the Windows file system is in WSL2?
+- `/mct/c`
+  - This is where WSL mounts the Windows `C:` drive
 - `/opt`
   - Optional things like commercial products
 - `/proc`
@@ -167,7 +170,7 @@ In contrast to Windows which has a separate file system tree for every storage d
 - `/tmp`
   - Temporary transient files
 - `/usr/share/doc`
-  - Documentation files may reside here
+  - Documentation files
 - `/var`
   - Data that is likely to change
 - `/var/log`
@@ -260,7 +263,30 @@ To launch a program such that it is immediately placed in the background, use `<
 
 The `kill` command is used to terminate a process. `kill <PID>` sends the `TERM` signal to the process identified by the PID argument. Other signals that can be sent to processes are `INT` (Ctrl + C) and `TSTP` (Ctrl + Z). Use `kill -l` to see all the signals used by the system (there are a lot).
 
-Other commands related to monitoring the processes are `pstree`, `vmstat`, `xload`, and `tload`. `pstree` will show which processes are parents of others. Commands related to shutting down the system are `halt`, `poweroff`, `reboot`, and `shutdown`. 
+Other commands related to monitoring the processes are `pstree`, `vmstat`, `xload`, and `tload`. `pstree` will show which processes are parents of others. Commands related to shutting down the system are `halt`, `poweroff`, `reboot`, and `shutdown`.
+
+# The environment
+
+The shell stores `environment variables`, `shell variables`, `aliases`, and `shell functions` in the environment.
+
+The `set` builtin in Bash will output the environment variables, shell variables, and shell functions. The `printenv` command will output only the environment variables. Neither displays the aliases, but these can be seen using the `alias` command.
+
+When the user logs in, the environment is established from configuration files including files in the user's home directory that allow the user to customize their default environment, e.g. `~/.bash_profile`. `PATH` is an important environment variable to know; it contains the list of directories that is searched to find, for example, the binary of a command when the command is used. 
+
+Poking around my own system, I can see the following is part of my `~/.profile` (the Ubuntu equivalent of `.bash_profile`):
+  
+{% highlight bash %}{% raw %}
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+{% endraw %}{% endhighlight %}
+
+This is using parameter expansion to add to the PATH variable the `$HOME/bin` directory (a place for the user to put their own scripts).
+
+Unless you are the system administator, only make changes to these things in the home directory. Environmental variables should be defined in `.profile` or `.bash_profile` and everything else should be defined in `.bashrc`. Everything else includes customizing the shell prompt.
+
+`export PATH` informs the shell to make `PATH` available to the shell's child processes.
 
 {% include book_attribution.html
 book_title = "The Linux Command Line"
