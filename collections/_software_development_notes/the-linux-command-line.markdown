@@ -7,8 +7,6 @@ emoji: 🤨
 mathjax: false
 ---
 
-**These notes are a work in progress.**
-
 A *shell* is a program that passes commands from the user to the operating system. Typically the user interacts with the shell using a *terminal emulator*. Almost all Linux distributions include a shell called *Bash*.
 
 The Bash shell prompt is `username@machinename` followed by (and separated by `:`) the current working directory followed by `$` (or `#` if superuser) e.g. `regoky@LAPTOP:~/projects$`.
@@ -216,6 +214,8 @@ Other types of shell expansions include:
 
 Double quotes cause most special characters to lose their special meaning but do not suppress `\``, `$`, or `\`. Single quotes will suppress all expansions.
 
+## The escape character and control codes
+
 The *escape character* `\` can be used to suppress individual special characters. This character is also part of the notation of the *control codes*, which are the first 32 characters in ASCII. The control codes include `\t` (09) which represents a tab, `\n` (10 or 0A) which represents a newline, and `\r` (13 or 0D) which represents a carriage return.
 
 # The Unix security model
@@ -287,6 +287,14 @@ This is using parameter expansion to add to the PATH variable the `$HOME/bin` di
 Unless you are the system administator, only make changes to these things in the home directory. Environmental variables should be defined in `.profile` or `.bash_profile` and everything else should be defined in `.bashrc`. Everything else includes customizing the shell prompt.
 
 `export PATH` informs the shell to make `PATH` available to the shell's child processes.
+
+# Package management
+
+A package file is a compressed file collection that constitutes a software package.  The two major families of Linux packaging systems are the Debian family (`.deb`) and the Red Hat family (`.rpm`). 
+
+# The locale
+
+The `locale` is a concept introduced by the POSIX standards which allows selecting the correct character set for a particular location. Use the `locale` command to see the locale settings.
 
 {% include book_attribution.html
 book_title = "The Linux Command Line"

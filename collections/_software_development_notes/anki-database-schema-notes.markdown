@@ -7,10 +7,12 @@ emoji: 😋
 mathjax: false
 ---
 
-**These notes are a work in progress, very incomplete, and are subject to change.**
+These are my notes on the Anki database schema and data. They probably will continue to change over time and may include a lot more detail on some parts than others.
 
 Related:
 - [SQLite notes](/sqlite) - this page explains using `sqlite3` to inspect SQLite databases
+- [Ankidroid document on the Anki schema](https://github.com/ankidroid/Anki-Android/wiki/Database-Structure)
+- [Comments on the Anki database design](https://www.natemeyvis.com/on-ankis-database.html)
 
 Unzipping `*.apkg` (`unzip 日本語.apkg` in Unix-like operating systems) created by exporting an Anki deck creates three files:
 - `collection.anki2`
@@ -606,7 +608,7 @@ I'm not sure what the tags associated with this table would be.
 
 ## The notes table
 
-This table is expected to have the data about the notes. In Anki, you create notes and study cards. Creating a note creates one or more cards to study according to the note type.
+This table is expected to have the notes data. In Anki, you create notes and study cards. Creating a note creates one or more cards to study according to the note type.
 
 {% highlight sql %}
 sqlite> select sql from sqlite_master where name = "notes";
@@ -629,7 +631,7 @@ CREATE TABLE notes (
 )
 {% endhighlight %}
 
-This includes a comment about the `flds` column deliberately using the integer type for ordering.
+This includes a comment about the `sfld` (sort field) column deliberately using the integer type.
 
 ### The id, guid, mid, mod, and usn columns
 
@@ -653,13 +655,14 @@ id             guid        mid            mod         usn
 {% endhighlight %}
 
 - id
-  - The primary key id
+  - The primary key id of the note record
   - Based on the time the note was created
 - guid
   - A globally unique id
 - mid
+  - The note's model (note type) id
 - mod
-  - The model (note type) id
+  - Last time modified?
 - usn
 
 ### The tags column
@@ -685,29 +688,540 @@ id             tags
 1674512230110
 {% endhighlight %}
 
-Here we can see that the single test note has three tags and the rest have no tags.
+Here we can see that the single test note has three tags and the rest have no tags. The tags are a string of the tag names separated by spaces.
 
 ### The flds column
 
 {% highlight console %}{% raw %}
-sqlite> select flds from notes;
+sqlite> select flds from notes where id = 1674512180609;
 flds
-
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Sunday<span style="color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);">日</span><span style="color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);">にち</span>
-Monday<span style="color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);">月</span><span style="color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);">げつ</span>
-Tuesday<span style="color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);">火</span><span style="color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);">か</span>
-Wednesday<span style="color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);">水</span><span style="color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);">すい</span>
-Thursday<span style="color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);">木</span><span style="color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);">もく</span>
-Friday<span style="color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);">金</span><span style="color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);">きん</span>
-Saturday<span style="color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);">土</span><span style="color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);">ど</span>
-red<span style="color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);">赤</span><span style="color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);">あか</span>
-blue<span style="color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);">青</span><span style="color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);">あお</span>
-white<span style="color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);">白</span><span style="color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);">しろ</span>
-black<span style="color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);">黒</span><span style="color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);">くろ</span>
+---------------------------------------------
 Basic card exampleBack of basic card example
-
-A&nbsp;{{c1::cloze deletion note}}More context
 {% endraw %}{% endhighlight %}
 
-**TODO** - Figure out the character/character encoding being used to separate the fields here.
+`flds` stores the values of the fields. The individual fields are separated from each other in the `flds` by one of the ASCII control codes, the unit separator (31 or `1F` in hexadecimal). It looks like this in the `sqlite3` interface:
+
+![The unit separator character in the sqlite3 command line program](/assets/anki-schema-images/unit-separator-1.png)
+
+This is how it looks in VS Code:
+
+![The unit separator character in VS Code](/assets/anki-schema-images/unit-separator-2.png)
+
+Here is the `flds` for one of the Kanji Vocabulary Type notes:
+
+{% highlight console %}
+sqlite> select flds from notes where id = 1674512029545;
+flds
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+black<span style="color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);">黒</span><span style="color: rgb(34, 34, 34); background-color: rgb(255, 255, 255);">くろ</span>
+{% endhighlight %}
+
+There are some HTML elements here with inline CSS styling due to me copy and pasting these characters from a web page into Anki. The HTML content of the fields can be seen in the note editor by toggling on the HTML editor:
+
+![Anki note editor with HTML editor toggled on](/assets/anki-schema-images/anki-screenshot-6.png)
+
+This explains why I added the following CSS to the Kanji Vocabulary Type:
+
+{% highlight css %}
+span {
+  background-color: transparent !important;
+}
+{% endhighlight %}
+
+### The sfld column
+
+{% highlight console %}{% raw %}
+sqlite> select sfld from notes;
+sfld
+-----------------------------
+Sunday
+Monday
+Tuesday
+Wednesday
+Thursday
+Friday
+Saturday
+red
+blue
+white
+black
+Basic card example
+A {{c1::cloze deletion note}}
+{% endraw %}{% endhighlight %}
+
+This stores the specific field which is used for sorting the notes.
+
+### The csum, flags, and data columns
+
+{% highlight console %}
+sqlite> select csum, flags, data from notes;
+csum        flags  data
+----------  -----  ----
+3160264773  0
+2469325584  0
+1122253665  0
+1448524215  0
+1979915743  0
+3513182276  0
+386284624   0
+2023260176  0
+1285194446  0
+1384968071  0
+1181468878  0
+3930697018  0
+3693921969  0
+{% endhighlight %}
+
+The `csum` is some kind of checksum used to detect duplicates.
+
+## The cards table
+
+{% highlight sql %}
+sqlite> select sql from sqlite_master where name = "cards";
+sql
+----------------------------
+CREATE TABLE cards (
+  id integer PRIMARY KEY,
+  nid integer NOT NULL,
+  did integer NOT NULL,
+  ord integer NOT NULL,
+  mod integer NOT NULL,
+  usn integer NOT NULL,
+  type integer NOT NULL,
+  queue integer NOT NULL,
+  due integer NOT NULL,
+  ivl integer NOT NULL,
+  factor integer NOT NULL,
+  reps integer NOT NULL,
+  lapses integer NOT NULL,
+  left integer NOT NULL,
+  odue integer NOT NULL,
+  odid integer NOT NULL,
+  flags integer NOT NULL,
+  data text NOT NULL
+)
+{% endhighlight %}
+
+### The id, nid, did, ord, and mod colums
+
+{% highlight sql %}
+sqlite> select id, nid, did, ord, mod from cards;
+id             nid            did            ord  mod
+-------------  -------------  -------------  ---  ----------
+1674448195869  1674448195864  1674511921387  0    1674511933
+1674448195872  1674448195864  1674511921387  1    1674511933
+1674448195873  1674448195864  1674511921387  2    1674511933
+1674448236928  1674448236927  1674511921387  0    1674511933
+1674448236929  1674448236927  1674511921387  1    1674511933
+1674448236930  1674448236927  1674511921387  2    1674511933
+1674448258663  1674448258661  1674511921387  0    1674511933
+1674448258664  1674448258661  1674511921387  1    1674511933
+1674448258665  1674448258661  1674511921387  2    1674511933
+1674448280030  1674448280029  1674511921387  0    1674511933
+1674448280031  1674448280029  1674511921387  1    1674511933
+1674448280032  1674448280029  1674511921387  2    1674511933
+1674448302294  1674448302294  1674511921387  0    1674511933
+1674448302295  1674448302294  1674511921387  1    1674511933
+1674448302296  1674448302294  1674511921387  2    1674511933
+1674448334464  1674448334463  1674511921387  0    1674511933
+1674448334465  1674448334463  1674511921387  1    1674511933
+1674448334466  1674448334463  1674511921387  2    1674511933
+1674448351508  1674448351508  1674511921387  0    1674511933
+1674448351509  1674448351508  1674511921387  1    1674511933
+1674448351510  1674448351508  1674511921387  2    1674511933
+1674511981515  1674511981514  1674511952800  0    1674512341
+1674511981516  1674511981514  1674511952800  1    1674512339
+1674511981517  1674511981514  1674511952800  2    1674512338
+1674511997096  1674511997096  1674511952800  0    1674512093
+1674511997097  1674511997096  1674511952800  1    1674511997
+1674511997098  1674511997096  1674511952800  2    1674511997
+1674512012783  1674512012783  1674511952800  0    1674512323
+1674512012784  1674512012783  1674511952800  1    1674512012
+1674512012785  1674512012783  1674511952800  2    1674512012
+1674512029545  1674512029545  1674511952800  0    1674512029
+1674512029546  1674512029545  1674511952800  1    1674512029
+1674512029547  1674512029545  1674511952800  2    1674512029
+1674512180609  1674512180609  1674512125442  0    1674512180
+1674512230119  1674512230110  1674512188946  0    1674512230
+{% endhighlight %}
+
+- id
+  - The primary key id of the card record
+- nid
+  - The id of the note that the card is created from
+- did
+  - The id of the deck that the card belongs to
+- ord
+  - e.g. a note that creates three cards will create three cards with `oid` 0, 1, and 2
+- mod
+  - last time modified
+
+### The usn, type, queue, and due columns
+
+{% highlight sql %}
+sqlite> select id, usn, type, queue, due from cards;
+id             usn   type  queue  due
+-------------  ----  ----  -----  ----------
+1674448195869  5875  1     3      2133
+1674448195872  5875  2     2      2133
+1674448195873  5875  2     2      2133
+1674448236928  5875  2     2      2133
+1674448236929  5875  2     2      2133
+1674448236930  5875  2     2      2133
+1674448258663  5875  2     2      2133
+1674448258664  5875  2     2      2133
+1674448258665  5875  2     2      2133
+1674448280030  5875  2     2      2133
+1674448280031  5875  2     2      2133
+1674448280032  5875  2     2      2133
+1674448302294  5875  2     2      2133
+1674448302295  5875  2     2      2133
+1674448302296  5875  2     2      2133
+1674448334464  5875  2     2      2133
+1674448334465  5875  2     2      2133
+1674448334466  5875  1     3      2133
+1674448351508  5875  2     2      2133
+1674448351509  5875  2     2      2133
+1674448351510  5875  2     2      2133
+1674511981515  -1    1     -1     2133
+1674511981516  -1    0     -1     0
+1674511981517  -1    0     -1     0
+1674511997096  -1    1     1      1674512758
+1674511997097  5875  0     0      1
+1674511997098  5875  0     0      1
+1674512012783  -1    1     -1     2133
+1674512012784  5875  0     0      2
+1674512012785  5875  0     0      2
+1674512029545  5875  0     0      3
+1674512029546  5875  0     0      3
+1674512029547  5875  0     0      3
+1674512180609  -1    0     0      4
+1674512230119  -1    0     0      5
+{% endhighlight %}
+
+- usn
+- type
+- queue
+- due
+
+### The ivl, factor, reps, and lapses columns
+
+{% highlight sql %}
+sqlite> select id, ivl, factor, reps, lapses from cards;
+id             ivl  factor  reps  lapses
+-------------  ---  ------  ----  ------
+1674448195869  0    0       3     0
+1674448195872  1    1750    3     0
+1674448195873  1    1750    2     0
+1674448236928  1    1750    4     0
+1674448236929  1    1750    3     0
+1674448236930  1    1750    3     0
+1674448258663  1    1750    2     0
+1674448258664  1    1750    4     0
+1674448258665  1    1750    2     0
+1674448280030  1    1750    6     0
+1674448280031  1    1750    4     0
+1674448280032  1    1750    5     0
+1674448302294  1    1750    7     0
+1674448302295  1    1750    3     0
+1674448302296  1    1750    3     0
+1674448334464  1    1750    4     0
+1674448334465  1    1750    3     0
+1674448334466  0    0       5     0
+1674448351508  1    1750    3     0
+1674448351509  1    1750    3     0
+1674448351510  1    1750    2     0
+1674511981515  0    0       1     0
+1674511981516  0    0       0     0
+1674511981517  0    0       0     0
+1674511997096  0    0       1     0
+1674511997097  0    0       0     0
+1674511997098  0    0       0     0
+1674512012783  0    0       1     0
+1674512012784  0    0       0     0
+1674512012785  0    0       0     0
+1674512029545  0    0       0     0
+1674512029546  0    0       0     0
+1674512029547  0    0       0     0
+1674512180609  0    0       0     0
+1674512230119  0    0       0     0
+{% endhighlight %}
+
+- ivl
+- factor
+- reps
+  - The number of times the card has been reviewed
+- lapses
+
+### The left, odue, odid, flags, and data columns
+
+{% highlight console %}{% raw %}
+sqlite> select id, left, odue, odid, flags, data from cards;
+id             left  odue  odid  flags  data
+-------------  ----  ----  ----  -----  ----
+1674448195869  1001  0     0     0      {}
+1674448195872  1001  0     0     0      {}
+1674448195873  1001  0     0     0      {}
+1674448236928  1001  0     0     0      {}
+1674448236929  1001  0     0     0      {}
+1674448236930  1001  0     0     0      {}
+1674448258663  1001  0     0     0      {}
+1674448258664  1001  0     0     0      {}
+1674448258665  1001  0     0     0      {}
+1674448280030  1001  0     0     0      {}
+1674448280031  1001  0     0     0      {}
+1674448280032  1001  0     0     0      {}
+1674448302294  1001  0     0     0      {}
+1674448302295  1001  0     0     0      {}
+1674448302296  1001  0     0     0      {}
+1674448334464  1001  0     0     0      {}
+1674448334465  1001  0     0     0      {}
+1674448334466  1001  0     0     0      {}
+1674448351508  1001  0     0     0      {}
+1674448351509  1001  0     0     0      {}
+1674448351510  1001  0     0     0      {}
+1674511981515  1002  0     0     0      {}
+1674511981516  0     0     0     0      {}
+1674511981517  0     0     0     0      {}
+1674511997096  1002  0     0     0      {}
+1674511997097  0     0     0     0      {}
+1674511997098  0     0     0     0      {}
+1674512012783  1001  0     0     0      {}
+1674512012784  0     0     0     0      {}
+1674512012785  0     0     0     0      {}
+1674512029545  0     0     0     0      {}
+1674512029546  0     0     0     0      {}
+1674512029547  0     0     0     0      {}
+1674512180609  0     0     0     0      {}
+1674512230119  0     0     0     0      {}
+{% endraw %}{% endhighlight %}
+
+- left
+- odue
+- odid
+  - The original deck id of a card in a filtered deck
+- flags
+  - An integer which represents a flag color such as turquoise
+  - Although I flagged a few cards before the export, they were not exported
+- data
+
+## The revlog table
+
+`revlog` stores the data tracked around the reviews.
+
+{% highlight sql %}
+sqlite> select sql from sqlite_master where name = "revlog";
+sql
+----------------------------
+CREATE TABLE revlog (
+  id integer PRIMARY KEY,
+  cid integer NOT NULL,
+  usn integer NOT NULL,
+  ease integer NOT NULL,
+  ivl integer NOT NULL,
+  lastIvl integer NOT NULL,
+  factor integer NOT NULL,
+  time integer NOT NULL,
+  type integer NOT NULL
+)
+{% endhighlight %}
+
+### The id, cid, usn, ease, and ivl columns
+
+{% highlight sql %}
+sqlite> select id, cid, usn, ease, ivl from revlog;
+id             cid            usn   ease  ivl
+-------------  -------------  ----  ----  ------
+1674448510823  1674448195869  0     2     -43500
+1674448515642  1674448236928  0     1     -600
+1674448522329  1674448258663  0     3     -86400
+1674448525510  1674448280030  0     1     -600
+1674448529857  1674448302294  0     1     -600
+1674448535769  1674448334464  0     1     -600
+1674448539349  1674448351508  0     1     -600
+1674448544960  1674448195872  0     1     -600
+1674448546621  1674448236929  0     1     -600
+1674448548221  1674448258664  0     1     -600
+1674448549412  1674448280031  0     1     -600
+1674448551411  1674448302295  0     1     -600
+1674448553823  1674448334465  0     1     -600
+1674448556032  1674448351509  0     1     -600
+1674448563509  1674448195873  0     3     -86400
+1674448575224  1674448236930  0     1     -600
+1674448586062  1674448258665  0     3     -86400
+1674448590300  1674448280032  0     1     -600
+1674448594568  1674448302296  0     1     -600
+1674448596960  1674448334466  0     1     -600
+1674448601266  1674448351510  0     3     -86400
+1674448623521  1674448236928  0     1     -600
+1674448629400  1674448280030  0     1     -600
+1674448634633  1674448280031  0     1     -600
+1674448640599  1674448236930  0     3     -86400
+1674448646188  1674448302294  0     1     -600
+1674448651139  1674448195872  0     3     -86400
+1674448656727  1674448334464  0     1     -600
+1674448660953  1674448302295  0     3     -86400
+1674448663833  1674448334465  0     3     -86400
+1674448672996  1674448280030  0     1     -600
+1674448677772  1674448236929  0     3     -86400
+1674448680101  1674448351508  0     3     -86400
+1674448704072  1674448280032  0     1     -600
+1674448709888  1674448351509  0     3     -86400
+1674448711993  1674448280031  0     3     -86400
+1674448716265  1674448258664  0     1     -600
+1674448722239  1674448302296  0     3     -86400
+1674448737856  1674448236928  0     3     -86400
+1674448767375  1674448280030  0     1     -600
+1674448784770  1674448334466  0     1     -600
+1674448796344  1674448302294  0     1     -600
+1674448808865  1674448334464  0     3     -86400
+1674448818474  1674448280032  0     1     -600
+1674448837508  1674448302294  0     1     -600
+1674448840336  1674448258664  0     3     -86400
+1674448857054  1674448302294  0     1     -600
+1674448868053  1674448334466  0     3     -86400
+1674448876128  1674448280030  0     3     -86400
+1674448887160  1674448280032  0     3     -86400
+1674448890659  1674448302294  0     3     -86400
+1674510829783  1674448258664  5871  3     1
+1674510835872  1674448195872  5871  3     1
+1674510850628  1674448302296  5871  3     1
+1674510858915  1674448302294  5871  3     1
+1674510862722  1674448280031  5871  3     1
+1674510878597  1674448195869  5871  1     -600
+1674510884615  1674448280032  5871  3     1
+1674510889396  1674448236928  5871  3     1
+1674510891831  1674448258663  5871  3     1
+1674510896937  1674448334465  5871  3     1
+1674510900344  1674448236929  5871  3     1
+1674510902905  1674448351509  5871  3     1
+1674510931417  1674448351508  5871  3     1
+1674510944474  1674448258665  5871  3     1
+1674510950329  1674448236930  5871  3     1
+1674510971959  1674448334466  5871  1     -600
+1674510975776  1674448302295  5871  3     1
+1674510983169  1674448351510  5871  3     1
+1674510985879  1674448334464  5871  3     1
+1674510988959  1674448280030  5871  3     1
+1674510996283  1674448195873  5871  3     1
+1674511000165  1674448195869  5871  3     -86400
+1674511065444  1674448334466  5871  3     -86400
+1674512086900  1674511981515  -1    2     -43500
+1674512093076  1674511997096  -1    1     -600
+1674512097649  1674512012783  -1    3     -86400
+{% endhighlight %}
+
+- id
+  - The primary key id of the review record
+- cid
+  - The id of the card that was reviewed
+- usn
+- ease
+- ivl
+
+### The lastIvl, factor, time, and type columns
+
+{% highlight sql %}
+sqlite> select id, lastIvl, factor, time, type from revlog;
+id             lastIvl  factor  time    type
+-------------  -------  ------  ------  ----
+1674448510823  -600     0       120000  0
+1674448515642  -600     0       4797    0
+1674448522329  -600     0       6668    0
+1674448525510  -600     0       3168    0
+1674448529857  -600     0       4334    0
+1674448535769  -600     0       5893    0
+1674448539349  -600     0       3563    0
+1674448544960  -600     0       5595    0
+1674448546621  -600     0       1648    0
+1674448548221  -600     0       1583    0
+1674448549412  -600     0       1174    0
+1674448551411  -600     0       1988    0
+1674448553823  -600     0       2396    0
+1674448556032  -600     0       2196    0
+1674448563509  -600     0       7462    0
+1674448575224  -600     0       11696   0
+1674448586062  -600     0       10821   0
+1674448590300  -600     0       4216    0
+1674448594568  -600     0       4252    0
+1674448596960  -600     0       2391    0
+1674448601266  -600     0       4298    0
+1674448623521  -600     0       22236   0
+1674448629400  -600     0       5864    0
+1674448634633  -600     0       5221    0
+1674448640599  -600     0       5954    0
+1674448646188  -600     0       5586    0
+1674448651139  -600     0       4927    0
+1674448656727  -600     0       5564    0
+1674448660953  -600     0       4209    0
+1674448663833  -600     0       2867    0
+1674448672996  -600     0       9163    0
+1674448677772  -600     0       4762    0
+1674448680101  -600     0       2311    0
+1674448704072  -600     0       23971   0
+1674448709888  -600     0       5798    0
+1674448711993  -600     0       2092    0
+1674448716265  -600     0       1273    0
+1674448722239  -600     0       5926    0
+1674448737856  -600     0       15603   0
+1674448767375  -600     0       29518   0
+1674448784770  -600     0       17379   0
+1674448796344  -600     0       11551   0
+1674448808865  -600     0       12498   0
+1674448818474  -600     0       9587    0
+1674448837508  -600     0       19011   0
+1674448840336  -600     0       2803    0
+1674448857054  -600     0       16718   0
+1674448868053  -600     0       10982   0
+1674448876128  -600     0       8062    0
+1674448887160  -600     0       11015   0
+1674448890659  -600     0       3475    0
+1674510829783  -86400   1750    4766    0
+1674510835872  -86400   1750    6063    0
+1674510850628  -86400   1750    14735   0
+1674510858915  -86400   1750    8271    0
+1674510862722  -86400   1750    3774    0
+1674510878597  -600     0       15843   0
+1674510884615  -86400   1750    5988    0
+1674510889396  -86400   1750    4748    0
+1674510891831  -86400   1750    2402    0
+1674510896937  -86400   1750    5074    0
+1674510900344  -86400   1750    3376    0
+1674510902905  -86400   1750    2537    0
+1674510931417  -86400   1750    28486   0
+1674510944474  -86400   1750    13040   0
+1674510950329  -86400   1750    5830    0
+1674510971959  -86400   0       21602   0
+1674510975776  -86400   1750    3799    0
+1674510983169  -86400   1750    7364    0
+1674510985879  -86400   1750    2668    0
+1674510988959  -86400   1750    3048    0
+1674510996283  -86400   1750    7289    0
+1674511000165  -600     0       3851    0
+1674511065444  -600     0       65252   0
+1674512086900  -600     0       4399    0
+1674512093076  -600     0       6168    0
+1674512097649  -600     0       4560    0
+{% endhighlight %}
+
+- lastIvl
+- factor
+- time
+  - The time that the review took in milliseconds
+- type
+
+## The graves table
+
+{% highlight sql %}
+sqlite> select sql from sqlite_master where name = "graves";
+sql
+------------------------
+CREATE TABLE graves (
+  usn integer NOT NULL,
+  oid integer NOT NULL,
+  type integer NOT NULL
+)
+{% endhighlight %}
+
+The graves table contains references to things that have been deleted locally so that the sync can delete them remotely.
