@@ -1,6 +1,6 @@
 ---
 layout: post
-title: The Linux Command Line
+title: "The Linux Command Line"
 categories: linux
 permalink: /the-linux-command-line
 emoji: 🤨
@@ -296,7 +296,7 @@ A package file is a compressed file collection that constitutes a software packa
 
 The `locale` is a concept introduced by the POSIX standards which allows selecting the correct character set for a particular location. Use the `locale` command to see the locale settings.
 
-{% include book_attribution.html
+{% include attribution-book.html
 book_title = "The Linux Command Line"
 book_author = "William Shotts"
 book_publisher = "No Starch Press"

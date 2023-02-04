@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Anki schema
+title: "Anki schema notes"
 categories: programming SQL anki
 permalink: /anki-schema
 emoji: 😋
@@ -32,7 +32,7 @@ With a relatively clean Anki slate, I backed up the few Anki notes I still had, 
 I then deleted the last deck, suspended some cards, flagged some cards, completed some reviews, and buried a card before exporting the deck:
 
 {% highlight console %}{% raw %}
-$ unzip 日本語.apkg
+ $ unzip 日本語.apkg
 Archive:  日本語.apkg
   inflating: collection.anki2
   inflating: collection.anki21
@@ -52,9 +52,28 @@ The Kanji Vocabulary Type has three custom card types. This explains why 2 notes
 
 One last thing to mention is that I have at times edited the output of the `sqlite3` program below (mostly removing extra whitespace).
 
+## The not yet unzipped database
+
+If you look at the `*.apkg` file exported from Anki with `sqlite3` without unzipping it first, you will see this:
+
+{% highlight sql %}
+sqlite> select * from sqlite_master;
+type   name  tbl_name  rootpage  sql
+-----  ----  --------  --------  --------------------------------------------------
+table  zip   zip       0         CREATE VIRTUAL TABLE zip USING zipfile('日本語.apkg')
+
+sqlite> select name from zip;
+name
+-----------------
+collection.anki2
+collection.anki21
+0
+media
+{% endhighlight %}
+
 # The collection.anki21 SQLite database
 
-Inspection of `sqlite_master` shows there is a `col` table, a `notes` table, a `cards` table, a `revlog` table, and a `graves` table. There are also two tables called `sqlite_stat1` and `sqlite_stat4` and 7 indexes. The indexes are data structures in the database which allow the database engine to execute certain queries, usually the most common ones, more efficiently. They are similar to the index of a textbook which allows you to see what page numbers mention specific keywords or the index of websites that Google maintains that it uses to serve results.
+Inspection of `sqlite_master` shows there is a `col` table, a `notes` table, a `cards` table, a `revlog` table, and a `graves` table. There are also two tables called `sqlite_stat1` and `sqlite_stat4` and 7 indexes. The indexes are data structures in the database which allow the database engine to execute certain queries, usually the most common ones, more efficiently. They are similar to the index of a textbook which allows you to see what page numbers mention specific keywords or the index of websites that Google maintains that it uses to serve results. I suspect the `sqlite_stat1` and `sqlite_stat4` tables are used by SQLite and are not specific to Anki.
 
 {% highlight console %}
 sqlite> .mode box
@@ -922,3 +941,98 @@ CREATE TABLE graves (
 {% endhighlight %}
 
 The graves table contains references to things that have been deleted locally so that the sync can delete them remotely. `select * from graves;` did not return any rows so I guess it is not really used in the deck export.
+
+# The collection.anki2 SQLite database
+
+Inspecting this SQLite database exported from my version of Anki (2.1.54) it is not very interesting.
+
+{% highlight sql %}
+sqlite> select name, sql from sqlite_master;
+col|CREATE TABLE col (
+  id integer PRIMARY KEY,
+  crt integer NOT NULL,
+  mod integer NOT NULL,
+  scm integer NOT NULL,
+  ver integer NOT NULL,
+  dty integer NOT NULL,
+  usn integer NOT NULL,
+  ls integer NOT NULL,
+  conf text NOT NULL,
+  models text NOT NULL,
+  decks text NOT NULL,
+  dconf text NOT NULL,
+  tags text NOT NULL
+)
+notes|CREATE TABLE notes (
+  id integer PRIMARY KEY,
+  guid text NOT NULL,
+  mid integer NOT NULL,
+  mod integer NOT NULL,
+  usn integer NOT NULL,
+  tags text NOT NULL,
+  flds text NOT NULL,
+  -- The use of type integer for sfld is deliberate, because it means that integer values in this
+  -- field will sort numerically.
+  sfld integer NOT NULL,
+  csum integer NOT NULL,
+  flags integer NOT NULL,
+  data text NOT NULL
+)
+cards|CREATE TABLE cards (
+  id integer PRIMARY KEY,
+  nid integer NOT NULL,
+  did integer NOT NULL,
+  ord integer NOT NULL,
+  mod integer NOT NULL,
+  usn integer NOT NULL,
+  type integer NOT NULL,
+  queue integer NOT NULL,
+  due integer NOT NULL,
+  ivl integer NOT NULL,
+  factor integer NOT NULL,
+  reps integer NOT NULL,
+  lapses integer NOT NULL,
+  left integer NOT NULL,
+  odue integer NOT NULL,
+  odid integer NOT NULL,
+  flags integer NOT NULL,
+  data text NOT NULL
+)
+revlog|CREATE TABLE revlog (
+  id integer PRIMARY KEY,
+  cid integer NOT NULL,
+  usn integer NOT NULL,
+  ease integer NOT NULL,
+  ivl integer NOT NULL,
+  lastIvl integer NOT NULL,
+  factor integer NOT NULL,
+  time integer NOT NULL,
+  type integer NOT NULL
+)
+ix_notes_usn|CREATE INDEX ix_notes_usn ON notes (usn)
+ix_cards_usn|CREATE INDEX ix_cards_usn ON cards (usn)
+ix_revlog_usn|CREATE INDEX ix_revlog_usn ON revlog (usn)
+ix_cards_nid|CREATE INDEX ix_cards_nid ON cards (nid)
+ix_cards_sched|CREATE INDEX ix_cards_sched ON cards (did, queue, due)
+ix_revlog_cid|CREATE INDEX ix_revlog_cid ON revlog (cid)
+ix_notes_csum|CREATE INDEX ix_notes_csum ON notes (csum)
+sqlite_stat1|CREATE TABLE sqlite_stat1(tbl,idx,stat)
+sqlite_stat4|CREATE TABLE sqlite_stat4(tbl,idx,neq,nlt,ndlt,sample)
+graves|CREATE TABLE graves (
+  usn integer NOT NULL,
+  oid integer NOT NULL,
+  type integer NOT NULL
+)
+
+sqlite> .mode column
+sqlite> .headers on
+sqlite> select * from cards;
+id             nid            did  ord  mod         usn  type  queue  due  ivl  factor  reps  lapses  left  odue  odid  flags  data
+-------------  -------------  ---  ---  ----------  ---  ----  -----  ---  ---  ------  ----  ------  ----  ----  ----  -----  ----
+1675291807717  1675291807717  1    0    1675291807  -1   0     0      1    0    0       0     0       0     0     0     0      {}
+sqlite> select * from notes;
+id             guid        mid            mod         usn  tags  flds                                          sfld
+                       csum        flags  data
+-------------  ----------  -------------  ----------  ---  ----  --------------------------------------------  -------------------------------------------  ----------  -----  ----
+1675291807717  x+=^uPIU4W  1675291807710  1675291807  -1         This file requires a newer version of Anki.  This file requires a newer version of Anki.  2258790693  0
+{% endhighlight %}

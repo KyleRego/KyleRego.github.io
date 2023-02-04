@@ -272,7 +272,7 @@ Web hooks are basically service endpoints that are triggered in response to some
 
 There are some things to consider when integrating with external services. Separating jobs related to different services into different queues may avoid the issue of one service being down affecting the jobs related to a different service. It is a good idea to track metrics around what is happening in the job queues. It should also be kept in mind that external services may limit the number of requests handled from a single consumer.
 
-{% include book_attribution.html
+{% include attribution-book.html
   book_title = "Service-Oriented Design with Ruby and Rails"
   book_author = "Paul Dix"
   book_publisher = "Addison-Wesley Professional"

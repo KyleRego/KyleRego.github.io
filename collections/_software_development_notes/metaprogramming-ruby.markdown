@@ -479,7 +479,7 @@ class MySubclass < MyClass; end
 
 **If you learned something here, you should check out [Metaprogramming Ruby](https://www.amazon.com/Metaprogramming-Ruby-Program-Like-Pros/dp/1934356476).**
 
-{% include book_attribution.html
+{% include attribution-book.html
   book_title = "Metaprogramming Ruby: Program Like the Ruby Pros"
   book_author = "Paolo Perrotta"
   book_publisher = "Pragmatic Bookshelf"

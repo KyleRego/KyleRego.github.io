@@ -9,7 +9,7 @@ note_category: Computer science
 
 When I was at the beginning of teaching myself programming, I found [teachyourselfcs.com](https://teachyourselfcs.com) which recommended some books for learning programming. I ended up reading one of them, [How to Design Programs](https://htdp.org/) and committed [my solutions to most of the book's exercises](https://github.com/KyleRego/htdp-solutions) to a GitHub repository.
 
-By my own interpretation, the main idea of this textbook is that the structure of the data informs the structure of the program. Designing or understanding the structure of the data is critical in program design.
+By my own interpretation, the main idea of this textbook is that the structure of the data informs the structure of the program. Designing or understanding the structure of the data is therefore critical in program design.
 
 As an example to demonstrate this point, exercise 320 asks you write a function to count how many times a symbol appears in an S-expression. The following is the definition of this data type, which is recursive:
 
@@ -56,7 +56,7 @@ This function is recursive in a way that completely mirrors the recursiveness of
 
 My review on this book: it's a buy (actually it's free and you can read it at [htdp.org](https://htdp.org/))!
 
-{% include book_attribution.html
+{% include attribution-book.html
   book_title = "How to Design Programs, Second Edition"
   book_author = "Matthias Felleisen, Robert Bruce Findler, Matthew Flatt, Shriram Krishnamurthi"
   book_publisher = "MIT Press"

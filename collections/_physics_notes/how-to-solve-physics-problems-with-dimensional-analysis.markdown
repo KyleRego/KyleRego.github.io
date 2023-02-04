@@ -87,7 +87,7 @@ It is a limitation of the dimensional analysis that we cannot calculate the unit
 
 There are other limitations too. Some of the physical parameters could be combined in such a way that they produce additional dimensionless parameters that could appear in the solution. Even so, since this can be used to find solutions to some problems that would be very difficult to solve, it is a good technique to keep in mind.
 
-{% include book_attribution.html
+{% include attribution-book.html
   book_title = "Introduction to the Foundations of Applied Mathematics"
   book_author = "Mark H. Holmes"
   book_publisher = "Springer"

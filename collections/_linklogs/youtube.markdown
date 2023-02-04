@@ -1,6 +1,6 @@
 ---
 layout: post
-title: YouTube videos
+title: "YouTube videos"
 categories: miscellaneous
 permalink: /youtube-videos
 emoji: 📹

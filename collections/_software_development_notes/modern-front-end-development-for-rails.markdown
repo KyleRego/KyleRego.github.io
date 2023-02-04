@@ -159,7 +159,7 @@ Rails wrapper around webpack
 
 Implements the reducer pattern and is commonly used with React.
 
-{% include book_attribution.html
+{% include attribution-book.html
   book_title = "Modern Front-End Development for Rails&#58; Hotwire, Stimulus, Turbo, and React 1st Edition"
   book_author = "Noel Rappin"
   book_publisher = "Pragmatic Bookshelf"

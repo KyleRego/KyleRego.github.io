@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Design Patterns in Ruby
+title: "Design Patterns in Ruby"
 categories: programming ruby
 permalink: /design-patterns
 emoji: 🥹
@@ -100,7 +100,7 @@ Including the `Enumerable` module into a class and defining an instance method `
 
 There are other internal iterators in Ruby such as `Array#reverse_each` and `String#each_byte`. The `ObjectSpace` module has a method `each_object` which iterates through all of the objects that are currently known to the Ruby interpreter.
 
-{% include book_attribution.html 
+{% include attribution-book.html 
   book_title = "Design Patterns in Ruby"
   book_author = "Russ Olsen"
   book_publisher = "Addison-Wesley Professional"

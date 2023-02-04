@@ -74,7 +74,7 @@ To test parent and child classes:
 - Add tests to the child test classes for anything that is specific to those child classes.
 - To finish testing the parent class, create a child class of it to serve as a double, and in that double class stub any methods that the child classes are expected to implement.
 
-{% include book_attribution.html
+{% include attribution-book.html
   book_title = "Practical Object-Oriented Design: An Agile Primer Using Ruby 2nd Edition"
   book_author = "Sandi Metz"
   book_publisher = "Addison-Wesley Professional"

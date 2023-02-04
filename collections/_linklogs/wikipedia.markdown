@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Wikipedia
+title: "Wikipedia"
 categories: miscellaneous
 permalink: /wikipedia
 emoji: 📘
