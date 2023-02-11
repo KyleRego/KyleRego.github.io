@@ -19,7 +19,7 @@ YouTube has a lot of great content. This linklog is a collection of different Yo
 ## Video games
 
 - [Detroit](https://www.youtube.com/watch?v=ww_A0Mzw1EE)
-  - In my opinion, the most entertaining playthrough of a video game on the platform.
+  - The most entertaining playthrough of a video game on the platform.
 
 ## The most American guy living in Korea
 

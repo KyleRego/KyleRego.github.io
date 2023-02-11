@@ -11,6 +11,8 @@ A *shell* is a program that passes commands from the user to the operating syste
 
 The Bash shell prompt is `username@machinename` followed by (and separated by `:`) the current working directory followed by `$` (or `#` if superuser) e.g. `regoky@LAPTOP:~/projects$`.
 
+TODO - Reorganize these notes by dispersing the long list of commands
+
 # Commands
 
 There are several different types of commands. They can be compiled binaries, programs written in scripting languages such as Ruby, *shell builtins* which are programs built into the shell itself, shell scripts which are incorporated into the environment, or aliases.

@@ -7,11 +7,11 @@ emoji: 😮
 note_category: Computer science
 ---
 
-When I was at the beginning of teaching myself programming, I found [teachyourselfcs.com](https://teachyourselfcs.com) which recommended some books for learning programming. I ended up reading one of them, [How to Design Programs](https://htdp.org/) and committed [my solutions to most of the book's exercises](https://github.com/KyleRego/htdp-solutions) to a GitHub repository.
+When I was at the beginning of teaching myself programming, I found [teachyourselfcs.com](https://teachyourselfcs.com) which recommended some books for learning programming. The one I ended up reading was [How to Design Programs](https://htdp.org/).
 
 By my own interpretation, the main idea of this textbook is that the structure of the data informs the structure of the program. Designing or understanding the structure of the data is therefore critical in program design.
 
-As an example to demonstrate this point, exercise 320 asks you write a function to count how many times a symbol appears in an S-expression. The following is the definition of this data type, which is recursive:
+As an example to demonstrate this point, exercise 320 from the book asks you write a function which counts how many times a symbol appears in an S-expression. The following definition of the S-expression data type is recursive:
 
 {% highlight racket %}
 ; An S-expr is one of:
@@ -52,7 +52,7 @@ Here is my solution (the book encourages writing function signatures and unit te
     [else (count-sl sexp sy) ])))
 {% endhighlight %}
 
-This function is recursive in a way that completely mirrors the recursiveness of the data type definition, and it kind of writes itself after the recursive structure of the data type is understood.
+The recursiveness of this function parallels the data type definition in every aspect.
 
 My review on this book: it's a buy (actually it's free and you can read it at [htdp.org](https://htdp.org/))!
 

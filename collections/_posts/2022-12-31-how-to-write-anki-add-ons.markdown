@@ -752,4 +752,4 @@ def make_osce_notes(a: str) -> Sequence[str]:
 
 # Conclusion
 
-I hope these examples will help you understand the tools which are at your disposal to write your own Anki add-on. If I wrote something here that you believe to be incorrect, please [let me know](mailto:regoky@outlook.com). A pull request to improve the article would also be welcome. My final advice is this: if you get frustrated while trying to create your Anki add-on, take a step back and sleep on it. When you work on it again, consider it an opportunity to learn.
+I hope this article will help you write your own Anki add-on. If I have described something incorrectly, please [let me know](mailto:regoky@outlook.com). My final advice: if you get frustrated while trying to create your Anki add-on, sleep on it or go for a walk. When you work on it again, consider it an opportunity to learn.

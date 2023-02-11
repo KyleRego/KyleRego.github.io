@@ -17,6 +17,8 @@ An `example group` is declared using the `describe` method and an `example` is d
 
 Although RSpec does not use the "given, when, then" words or Gherkin language as explicitly as Cucumber, RSpec does have roots in BDD and the specs can be designed with these terms in mind. While Cucumber generally describes the application behavior from the outside, RSpec focuses on much more granular application behavior (specifically, the objects).
 
+The `subject` method is intended to be used to setup an instance variable with the object being described. The return value of a block passed to this method becomes the subject. The subject may be defined in other ways too, like calling a class method.
+
 {% include attribution-book.html
   book_title = "The RSpec Book: Behaviour Driven Development with RSpec, Cucumber, and Friends"
   book_author = "David Chelimsky, Dave Astels, Bryan Helmkamp, Dan North, Zach Dennis, Aslak Hellesoy"

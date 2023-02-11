@@ -8,22 +8,35 @@ mathjax: false
 ---
 
 This linklog includes links around:
-- Advice on learning CS and software development
+- Articles with advice about CS and software development
+- Some free online textbooks
 - Tech news
-- Book recommendations
+- Book recommendation websites
+- Other stuff
 
-## Computer Science/software development
+## Articles with advice about Computer Science and software development
 
 - [Teach yourself CS](https://teachyourselfcs.com/)
 - [Teach yourself programming in 10 years](http://norvig.com/21-days.html)
 - [Signs that you're a bad programmer](http://www.yacoset.com/Home/signs-that-you-re-a-bad-programmer)
+- [Rich Programmer Food](http://steve-yegge.blogspot.com/2007/06/rich-programmer-food.html)
+
+## Free online textbooks
+
+- [Structure and Interpretation of Programs](https://mitp-content-server.mit.edu/books/content/sectbyfn/books_pres_0/6515/sicp.zip/full-text/book/book-Z-H-4.html)
+- [How to Design Programs](https://htdp.org/2022-8-7/Book/index.html)
+- [Web Browser Engineering](https://browser.engineering/)
 
 ## Hacker news
 
 - [Hacker news](https://news.ycombinator.com/)
 - [Lindy hacker news](https://hn.lindylearn.io/)
 
-## Book recommendations
+## Book recommendation websites
 
 - [Hacker news books](https://hackernewsbooks.com/)
 - [Shepherd](https://shepherd.com/)
+
+## Other stuff
+
+- [Kids can't use computers](http://www.coding2learn.org/blog/2013/07/29/kids-cant-use-computers/)

@@ -7,7 +7,7 @@ emoji: 😃
 mathjax: false
 ---
 
-**These notes are a work in progress.**
+**Learning Unity and developing a game are long term goals of mine. These notes are mostly to help me maintain my progress while I am focused on other things.**
 
 Unity is a game development framework/engine with an editor and C# API.
 

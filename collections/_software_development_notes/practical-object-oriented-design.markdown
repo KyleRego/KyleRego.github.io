@@ -28,19 +28,21 @@ Some of the general takeaways I got were:
 
 # Messages
 
-One of the themes of this book book is the idea that the "messages" sent between the objects are as important, or even more important, than the objects themselves.
+One of the themes of the book is the idea that the "messages" sent between the objects are as important, or even more important, than the objects themselves.
 
-UML sequence diagrams are used to make the abstract discussion easier to follow. I made the following one using the [plantuml builder gem](https://github.com/svernidub/plantuml_builder):
+The book uses UML sequence diagrams to make the somewhat abstract discussion around this easier to understand. The following example is from the [plantuml builder gem](https://github.com/svernidub/plantuml_builder):
 
 ![An example UML sequence diagram](/assets/uml_images/example.png)
 
 These diagrams show the objects as two identical boxes connected by vertical lines. The horizontal lines are the messages. In this diagram, the `User` object calls the `perform` method of the other object which returns `true`. The box on the vertical line for `MyService` represents the `MyService` object executing the method.
 
-This kind of diagram showing one object calling the method of another looks a lot like a client sending an HTTP message to a server and then receiving a response. This is essentially what is meant by the messages mental model. Of course it is not actually HTTP. Here it's an object sending a message to another object that it wants that object to execute a method and give it the return value.
+These diagrams show that the interaction between objects is a lot like the interaction between clients and servers. The object says to a second object: I want the return value of this method I know you respond to. The second object does something and then sends a message back to the first object with the return value.
 
-Focusing on the messages can be very revealing about what the objects have to know in order to work. An object knowing things about other objects is a form of coupling between the objects, and of loosely coupled code is better than tightly coupled code.
+Focusing on the messages can be very revealing about what the objects have to know in order to work. An object knowing things about other objects is a form of coupling between the objects. Loosely coupled code is generally better than tightly coupled code.
 
-Ideally the object should only have to know what it wants back in order to send the right message. For example, an object that needs to call multiple methods of another object in a specific order for something to happen knows way too much about that other object. It may not be necessary for it to know the type of the object it sends the message to, and it definitely shouldn't know how that object works internally. The less that an object needs to know in order to work, the more reusable it is, and the easier it will be to test.
+Ideally the object should only have to know what it wants back in order to send the right message. For example, an object that needs to call multiple methods of another object in a specific order for something to happen knows too much about that object.
+
+An object should not know anything about how other objects work internally. Objects may not even need to know the types of the other objects they are interacting with. The less that an object needs to know in order to work, the more reusable it is, and the easier it will be to test.
 
 # Dependencies
 

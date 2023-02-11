@@ -7,9 +7,9 @@ emoji: 🥳
 mathjax: false
 ---
 
-**These notes are a work in progress.**
+**These are my notes on [Modern Front-End Development for Rails&#58; Hotwire, Stimulus, Turbo, and React 1st Edition](https://www.amazon.com/Modern-Front-End-Development-Rails-Webpacker/dp/1680507214).**
 
-This book is about the front-end development tools that pair with Ruby on Rails 6.1.
+TODO - finish reading this book and check the notes for any mistakes.
 
 # Hotwire
 

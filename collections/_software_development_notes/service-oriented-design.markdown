@@ -7,7 +7,7 @@ emoji: 🥳
 mathjax: false
 ---
 
-These are notes about using a services-oriented approach with Ruby on Rails applications mostly based on [Service Oriented Design with Ruby and Rails](https://www.amazon.com/Service-Oriented-Design-Rails-Addison-Wesley-Professional/dp/0321659368). The book is excellently written and dense with many complete code examples and useful takeaways related to the topic and related issues. It is a bit old (it does not mention microservices once) but it is still definitely worth reading. My review: it's a buy.
+These are notes on [Service Oriented Design with Ruby and Rails](https://www.amazon.com/Service-Oriented-Design-Rails-Addison-Wesley-Professional/dp/0321659368). This book has a lot of complete code examples and useful advice about the topic. It is a bit old but still worth reading. My review: it's a buy.
 
 # What is a service?
 
