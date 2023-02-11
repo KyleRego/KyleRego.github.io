@@ -453,10 +453,10 @@ eval "puts y", my_binding
 If you want to pass a string to `eval` spanning multiple lines you can use a here document:
 
 {% highlight Ruby %}
-str = <<A_HEREDOC
+str = <<-DESC
 hello
   world
-A_HEREDOC
+DESC
 
 puts str
 # hello

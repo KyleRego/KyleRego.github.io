@@ -124,25 +124,6 @@ Event handling in React is specified by a prop with a name like `onClick` and a 
 
 If state is shared among many different components then this becomes a little more complicated. If there is a common parent to all elements that share the state, it is common to have the state be owned by the parent and for the parent to send the state down to the children as props as well as the setting functions for changing the state. A component cannot change its own props, but it can change a state which would cause itself to be re-rendered with new props.
 
-# CSS
-
-For a review on CSS:
-- [Learn CSS Layout](https://learnlayout.com)
-- [Hell Yes! CSS!](https://wizardzines.com/zines/css/).
-
-Webpacker provides support for CSS, css processers like PostCSS, and variant languages of CSS like Sass and SCSS. In a Rails view, Webpacker also provides some helper methods like `asset_pack_path` and `image_pack_tag`.
-
-## CSS animations
-
-CSS properties:
-- `transform` 
-  - This uses transformation functions such as `rotate`, `scale`, `skew`, and `translate` to rotate, scale, skew, or translate an element.
-- `transition`
-  - This defines how the element changes between two states such as the duration it changes over.
-  - It works for transitions caused by JavaScript and also transitions between states defined by pseudo-classes such as `:hover`.
-- `animation`
-  - This defines an animation between styles
-
 # Typescript
 
 This extends JavaScript to add type checking which makes some runtime errors less likely.

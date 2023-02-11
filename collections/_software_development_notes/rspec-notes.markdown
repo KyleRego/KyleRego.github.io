@@ -3,19 +3,25 @@ layout: post
 title:  "RSpec notes"
 categories: ruby programming rspec
 permalink: /rspec-notes
-emoji: 🥵
+emoji: 🧪
 mathjax: false
 ---
 
-RSpec is described as a DSL for testing and describing the behavior of objects.
+RSpec is described as a BDD tool for Ruby programmers and DSL for testing and describing the behavior of objects.
 
-Usually the RSpec tests are written in a directory `spec` that has additional directories that parallel the structure of the application source code files. This kind of mapping between the application files and spec files makes the project easy to understand and helps facilitate finding and switching to relevant files easily.
+Although RSpec does not explicitly use the "given, when, then" words or Gherkin language like Cucumber, the specs can be designed with the same intention (to provide executable documentation). While Cucumber generally describes the application behavior of features from the outside, RSpec focuses on much more granular application behavior (specifically, the objects).
 
-The `rspec` command is used to run the RSpec test suite. If given a file or directory argument, it runs the subset of the test suite inside that file or directory. The `--format doc` option formats the output in a way that reflects the nested structure of the example groups in the test suite.
+Usually the RSpec tests are written in a directory `spec` that has additional directories and files that parallel the structure of the application directories and source code files (e.g. the specs for `app/models/book.rb` are expected to be in `spec/app/models/book_spec.rb`). This kind of mapping helps make understanding the project and finding the relevant files easier.
+
+# The rspec command
+
+The `rspec` command is used to run the RSpec test suite. If given a file or directory argument, it runs the subset of the test suite inside that file or directory. A line number can be appended to a file argument (e.g. `rspec spec/example.rb:10`) to run the subset of tests in that file specified by the line number.
+
+The `--format doc` option formats the output in a way that reflects the nested structure of the example groups in the test suite. To see all of the options, use the `--help` option.
+
+# The specs
 
 An `example group` is declared using the `describe` method and an `example` is declared using the `it` method. A good practice is to only have a single expectation per example.
-
-Although RSpec does not use the "given, when, then" words or Gherkin language as explicitly as Cucumber, RSpec does have roots in BDD and the specs can be designed with these terms in mind. While Cucumber generally describes the application behavior from the outside, RSpec focuses on much more granular application behavior (specifically, the objects).
 
 The `subject` method is intended to be used to setup an instance variable with the object being described. The return value of a block passed to this method becomes the subject. The subject may be defined in other ways too, like calling a class method.
 
