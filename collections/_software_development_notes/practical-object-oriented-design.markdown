@@ -7,9 +7,11 @@ emoji: 😃
 mathjax: false
 ---
 
-[Practical Object-Oriented Design: An Agile Primer Using Ruby]({{page.book_link}}) is about object-oriented design and principles to design code that will be easily changeable in the future. When the requirements of the application inevitably change, it will be the existing design that determines if the necessary code changes are joyful or painful. We should strive for code that works now, is reusable, and can be easily adapted in the future.
+[Practical Object-Oriented Design: An Agile Primer Using Ruby]({{page.book_link}}) is about object-oriented design: principles to design code that will be maintainable into the future. When the requirements of the application inevitably change, it will be the existing design that determines if the necessary code changes are joyful or painful. We should strive for code that works now, is reusable, and can be easily adapted in the future.
 
-The book uses Ruby and MiniTest but is really about general principles. The audience is mainly junior programmers who have worked on object-oriented applications. The actual code examples are mostly about bicycles and may be somewhat interesting if you enjoy things like geometry and mechanical advantage. In general, the book is excellent and highly recommended if you are a Ruby programmer. My review: it's a buy.
+The book explores this topic using Ruby and MiniTest. The code examples are mostly about bicycles and may be somewhat interesting if you enjoy things like geometry and mechanical advantage. In general, the book is excellent and highly recommended if you are a Ruby programmer. My review: it's a buy.
+
+# Summary
 
 The goal is to write code that is TRUE (transparent, reasonable, usable, and exemplary), SOLID, and DRY.
 
@@ -30,7 +32,7 @@ Some of the general takeaways I got were:
 
 One of the themes of the book is the idea that the "messages" sent between the objects are as important, or even more important, than the objects themselves.
 
-The book uses UML sequence diagrams to make the somewhat abstract discussion around this easier to understand. The following example is from the [plantuml builder gem](https://github.com/svernidub/plantuml_builder):
+The book uses UML sequence diagrams to make the somewhat abstract discussion around this easier to understand. The following example is an example made with the [plantuml builder gem](https://github.com/svernidub/plantuml_builder):
 
 ![An example UML sequence diagram](/assets/uml_images/example.png)
 
@@ -38,11 +40,7 @@ These diagrams show the objects as two identical boxes connected by vertical lin
 
 These diagrams show that the interaction between objects is a lot like the interaction between clients and servers. The object says to a second object: I want the return value of this method I know you respond to. The second object does something and then sends a message back to the first object with the return value.
 
-Focusing on the messages can be very revealing about what the objects have to know in order to work. An object knowing things about other objects is a form of coupling between the objects. Loosely coupled code is generally better than tightly coupled code.
-
-Ideally the object should only have to know what it wants back in order to send the right message. For example, an object that needs to call multiple methods of another object in a specific order for something to happen knows too much about that object.
-
-An object should not know anything about how other objects work internally. Objects may not even need to know the types of the other objects they are interacting with. The less that an object needs to know in order to work, the more reusable it is, and the easier it will be to test.
+Focusing on the messages can be very revealing about what the objects know about other objects. Objects knowing things about other objects is a form of coupling between them. The less that an object needs to know in order to work, the more reusable it is, and the easier it will be to test. Ideally, an object should only have to know what it wants back to send the right message. It should not know anything about what the object which can give it what it wants works internally and it may not need to know that object's type. An object that needs to call multiple methods of another object in a specific order for something to happen knows too much about that object.
 
 # Dependencies
 
@@ -53,13 +51,13 @@ Some examples would be:
 - Wrapping a method around the access logic into a data structure contains the dependency the object has on knowing the structure of the data.
 - Dependency injection
 
-The direction of dependencies is another important thing to consider. The worst situation to be in would be having a class that is both very likely to change and has a lot of dependencies. A good rule of thumb is a class should only depend on things that are less likely to change than itself.
+The direction of dependencies is another important thing to consider. A good rule of thumb is a class should only depend on things that are less likely to change than itself.
 
 # Testing
 
 Any method in the public interface of an object should be tested. Usually this is done by making assertions about what the method returns. This covers the incoming messages to the object. 
 
-But when is it necessary to test outgoing messages of the object? Using the terminology from the book, there are two types of outgoing messages: queries and commands.
+But when is it necessary to test outgoing messages of the object? Using the terminology from the book, there are two types of outgoing messages: *queries* and *commands*.
 
 Queries have no side effects and do not need to be tested. Tests for them will be tests of the object for which they are incoming messages. Queries can generally be stubbed.
 

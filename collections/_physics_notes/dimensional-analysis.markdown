@@ -7,7 +7,7 @@ emoji: 🫠
 mathjax: true
 ---
 
-This is a really dirty way to solve certain physical problems without much effort. I will demonstrate how it works by solving a simple problem in a standard way and then again using dimensional analysis.
+This is a way to solve certain physical problems without much effort. I will demonstrate how it works by solving a simple problem in a standard way and then again using dimensional analysis.
 
 # Projectile motion problem
 

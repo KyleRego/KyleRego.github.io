@@ -1,5 +1,5 @@
-# kylerego.github.io
+# KyleRego.github.io
 
-This repository contains the source Markdown files of my Jekyll blog posts, notes, and linklogs that can be seen at [kylerego.github.io](https://kylerego.github.io).
+This repo contains the Markdown files and assets of my Jekyll website: [kylerego.github.io](https://kylerego.github.io). It also includes this URL's original website as a git submodule.
 
-The Jekyll theme is in a separate repository: [KyleRego/swiss](https://github.com/KyleRego/swiss).
+The theme, a fork of [Swiss](https://github.com/broccolini/swiss), is in a separate repository: [KyleRego/swiss](https://github.com/KyleRego/swiss).
