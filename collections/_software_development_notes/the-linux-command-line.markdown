@@ -243,7 +243,7 @@ The `chmod` command is used to change the permissions of a file or directory. Th
 | 6 | 110 | r w - |
 | 7 | 111 | r w x |
 
-For example, `chmod 755 a.txt` sets the file attributes of `a.txt` as `-rwxr-xr-x`. There is also an alternative symbolic notation.
+The binary representation shows why these are called permission bits. For example, `chmod 755 a.txt` sets the file attributes of `a.txt` as `-rwxr-xr-x`. There is also an alternative symbolic notation.
 
 The `su` command is used to start a shell as a different user. `sudo` allows an ordinary user to execute commands as a different user. Using `sudo` requires the user's password, not the superuser's. To start a shell as the superuser using `su -`, the superuser's password must be entered.
 

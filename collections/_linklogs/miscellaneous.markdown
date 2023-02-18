@@ -23,6 +23,7 @@ This linklog includes links around:
 
 ## Free online textbooks
 
+- [Free programming books list](https://ebookfoundation.github.io/free-programming-books/books/free-programming-books-subjects.html)
 - [Structure and Interpretation of Programs](https://mitp-content-server.mit.edu/books/content/sectbyfn/books_pres_0/6515/sicp.zip/full-text/book/book-Z-H-4.html)
 - [How to Design Programs](https://htdp.org/2022-8-7/Book/index.html)
 - [Web Browser Engineering](https://browser.engineering/)

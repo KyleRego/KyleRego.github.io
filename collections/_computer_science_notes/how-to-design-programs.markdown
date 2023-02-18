@@ -52,7 +52,7 @@ Here is my solution (the book encourages writing function signatures and unit te
     [else (count-sl sexp sy) ])))
 {% endhighlight %}
 
-The recursiveness of this function parallels the data type definition in every aspect.
+This function mirrors the data type definition in every aspect, which I think is kind of interesting.
 
 My review on this book: it's a buy (actually it's free and you can read it at [htdp.org](https://htdp.org/))!
 

@@ -9,14 +9,10 @@ mathjax: true
 
 [SuperMemo Guru](https://supermemo.guru/wiki/SuperMemo_Guru) has the highest density of wrong (but interesting) models of any MediaWiki instance on the web (in my opinion). You thought Wikipedia was a bad source to cite?
 
-- [Learntropy](https://supermemo.guru/wiki/Learntropy)
-  - This concept may be a helpful mental model.
 - [War of the networks](https://supermemo.guru/wiki/War_of_the_networks)
   - This process is described as having consequences in "phenomena that are too many to list" which must be a lot because the "overlapping phenomena involved in the process are [a list of about 20 different biological processes]" was not too many to list.
 - [Two components of sleep](https://supermemo.guru/wiki/Two_components_of_sleep)
   - I think that (for most healthy people) falling asleep easily is related to alignment with the circadian rhythm (adjusted by the suprachiasmatic nucleus sampling light sensory input) and hormonal pressure due to adenosine (to which caffeine, which has a half-life of $$5 \pm 1$$ hours in the human body, is an antagonist).
-- [School dropouts](https://supermemo.guru/wiki/School_dropouts)
-  - An interesting article about formal education vs. self learning. Wozniak is critical of school but also describes how his own **10 years** in college helped him a lot.
 - [Genius checklist](https://supermemo.guru/wiki/Genius_checklist)
   - A lot of self-help advice summarized. To summarize it even more: improve discipline and form habits (exercise and don't do drugs) to reduce stress and get adequate sleep to improve health to help with discipline and forming habits to always be learning (also formulate knowledge so it is general, easy to remember, and easy to use and also write things down) and be optimistic, patient, and passionate with creative goals to work toward.
 - [How to solve any problem?](https://supermemo.guru/wiki/How_to_solve_any_problem%3F)

@@ -475,9 +475,147 @@ If you want to adapt this script for your own purposes, you will need to install
    "vers"=>[]}}
 {% endraw %}{% endhighlight %}
 
-This has a lot of information about the note types, including the fields, HTML card templates, CSS, and LaTeX.
+This has a lot of information about the note types, including the fields, HTML card templates, CSS, and LaTeX. If you're not familiar with HTML and CSS, the best resource to read is the [MDN web docs](https://developer.mozilla.org/en-US/docs/Web/HTML).
 
 It appears when exporting a note type like "Basic," it exports it with a name that has some kind of randomly generated string appended to it and separated by a dash. there is also weirdly a tag "linux-command-line" which I'm not sure where it came from. I think I did have that tag on some cards before, but I deleted those cards and can't see that tag anywhere anymore.
+
+To take a closer look at one of the hashes representing a note type in the models:
+
+{% highlight ruby %}{% raw %}
+
+{"id"=>1674448040667, # the id of this note type; 
+                      # also appears to be the key in the hash where this object is the value
+   "name"=>"Kanji Vocabulary Type", # the name of the note type
+   "type"=>0, # from the Cloze note type above, this looks to be 1 for cloze deletion note types
+              # for non-cloze note types like this one, it is 0 instead
+   "mod"=>1675271389, # the last time that the note type was modified, in seconds since the epoch 
+   "usn"=>0, # update sequence number; indicates if version on client or server is newer
+             # see AnkiDroid document for more info on usn
+   "sortf"=>0, # specify field used by browser to sort notes
+   "did"=>1620832072954, # deck id or default deck that notes of this type are added to?
+   "tmpls"=> [{}, {}, {}], # array of hashes representing the templates
+   "flds"=> [{} {} {}], # array of hashes representing the fields
+   "css"=>
+    ".card {\n" + # note the escape character (\) in control characters (e.g. \\, \n, and \")
+    " font-family: arial;\n" +
+    " font-size: 40px;\n" +
+    " text-align: center;\n" +
+    " color: black;\n" +
+    " background-color: transparent;\n" +
+    "}", # CSS styling; refer to MDN if you need help with CSS
+   "latexPre"=> # LaTeX preamble
+    "\\documentclass[12pt]{article}\n" +
+    "\\special{papersize=3in,5in}\n" +
+    "\\usepackage[utf8]{inputenc}\n" +
+    "\\usepackage{amssymb,amsmath}\n" +
+    "\\pagestyle{empty}\n" +
+    "\\setlength{\\parindent}{0in}\n" +
+    "\\begin{document}\n",
+   "latexPost"=>"\\end{document}", # LaTeX postamble
+   "latexsvg"=>false,
+   "req"=>[[0, "any", [0, 1]], [1, "any", [1, 2]], [2, "any", [0, 2]]],
+      # looks to be related to the card types
+      # (what fields must be present for the card type to be used by the note)
+      # deprecated?
+   "tags"=>["japanese"], # note types can have tags?
+   "vers"=>[]}
+{% endraw %}{% endhighlight %}
+
+Where the following is the value of `tmpls` from the above, which is the note type's card types:
+
+{% highlight ruby %}{% raw %}
+
+[{"name"=>"Card 1", # name of the card type
+  "ord"=>0, # related to the order of the card types
+            # 0 for the first card type, 1 for the second, etc.
+  "qfmt"=>"{{Kanji}} / {{Meaning}}<br>What is the pronunciation?",
+    # the HTML of the front side of the card (question format?) with templating
+    # e.g. {{Kanji}} represents the value of the Kanji field of the note.
+    # the values in the fields can inject additional HTML into the markup
+  "afmt"=>
+    "{{FrontSide}}\n" +
+    "\n" +
+    "<hr id=answer>\n" +
+    "\n" + # refer to MDN for help with HTML
+    "<span style=\"font-size: 64px\">{{Hiragana}}</span>\n" +
+    "<br>\n", # the HTML of the back side of the card (answer format?)
+  "bqfmt"=>"",
+    # related to how the browser displays the question?
+  "bafmt"=>"",
+    # related to how the browser displays the answer?
+  "did"=>nil, # deck id of the card type?
+              # if its nil in Ruby, then its NULL in the database
+  "bfont"=>"",
+    # font style used by browser when showing this card type?
+  "bsize"=>0},
+    # font size used by browser when showing this card type?
+    # 0 is probably not the font size it's actually using
+  {"name"=>"Card 2",
+  "ord"=>1,
+  "qfmt"=>
+    "<span style=\"font-size: 24px\">{{Hiragana}}</span>\n" +
+    "<br>\n" +
+    "<span style=\"font-size:64px\">{{Kanji}}</span>\n" +
+    "<br>What is the meaning in English?",
+  "afmt"=>
+    "{{FrontSide}}\n" +
+    "\n" +
+    "<hr id=answer>\n" +
+    "\n" +
+    "{{Meaning}}\n" +
+    "<br>\n",
+  "bqfmt"=>"",
+  "bafmt"=>"",
+  "did"=>nil,
+  "bfont"=>"",
+  "bsize"=>0},
+  {"name"=>"Card 3",
+  "ord"=>2,
+  "qfmt"=>
+    "{{Hiragana}} / {{Meaning}}\n" +
+    "<br>\n" +
+    "What is the Japanese word?",
+  "afmt"=>
+    "{{FrontSide}}\n" +
+    "\n" +
+    "<hr id=answer>\n" +
+    "\n" +
+    "<span style=\"font-size: 64px\">{{Kanji}}</span>",
+  "bqfmt"=>"",
+  "bafmt"=>"",
+  "did"=>nil,
+  "bfont"=>"",
+  "bsize"=>0}]
+{% endraw %}{% endhighlight %}
+
+And this is the real `flds` which are the fields of the note type:
+
+{% highlight ruby %}{% raw %}
+
+[{"name"=>"Meaning", # name of the field
+  "ord"=>0, # related to the order of the fields
+  "sticky"=>false, # when adding a note, does this field keep its value afterwards
+  "rtl"=>false, # right to left, for certain languages written right to left?
+  "font"=>"Arial", # font style for the editing font
+  "size"=>20, # size for the editing font
+  "description"=>""}, # default value when the field is empty
+  {"name"=>"Kanji",
+  "ord"=>1,
+  "sticky"=>false,
+  "rtl"=>false,
+  "font"=>"Arial",
+  "size"=>20,
+  "description"=>"",
+  "media"=>[]},
+  {"name"=>"Hiragana",
+  "ord"=>2,
+  "sticky"=>false,
+  "rtl"=>false,
+  "font"=>"Arial",
+  "size"=>20,
+  "description"=>"",
+  "media"=>[]}]
+{% endraw %}{% endhighlight %}
 
 ### The decks column
 
