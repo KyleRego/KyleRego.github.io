@@ -9,7 +9,8 @@ mathjax: false
 
 Wikipedia is the free online Encyclopedia that anyone can edit, and the last word in many of my Google searches.
 
-- [Reliability of Wikipedia](https://en.wikipedia.org/wiki/Reliability_of_Wikipedia)
+- [ABC Software Metric](https://en.wikipedia.org/wiki/ABC_Software_Metric)
 - [All models are wrong](https://en.wikipedia.org/wiki/All_models_are_wrong)
 - [Paradox of tolerance](https://en.wikipedia.org/wiki/Paradox_of_tolerance)
+- [Reliability of Wikipedia](https://en.wikipedia.org/wiki/Reliability_of_Wikipedia)
 - [World Wide Web](https://en.wikipedia.org/wiki/World_Wide_Web)

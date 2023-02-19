@@ -512,7 +512,8 @@ To take a closer look at one of the hashes representing a note type in the model
     "\\setlength{\\parindent}{0in}\n" +
     "\\begin{document}\n",
    "latexPost"=>"\\end{document}", # LaTeX postamble
-   "latexsvg"=>false,
+   "latexsvg"=>false, # "create scalable images with dvisvgm" option
+                      # the LaTeX values can be edited from "Options" in "Manage Note Types"
    "req"=>[[0, "any", [0, 1]], [1, "any", [1, 2]], [2, "any", [0, 2]]],
       # looks to be related to the card types
       # (what fields must be present for the card type to be used by the note)
@@ -1082,7 +1083,7 @@ The graves table contains references to things that have been deleted locally so
 
 # The collection.anki2 SQLite database
 
-Inspecting this SQLite database exported from my version of Anki (2.1.54) it is not very interesting.
+Inspecting this SQLite database exported from my version of Anki (2.1.54) is not very interesting.
 
 {% highlight sql %}
 sqlite> select name, sql from sqlite_master;

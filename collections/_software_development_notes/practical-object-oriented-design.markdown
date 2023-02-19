@@ -34,7 +34,7 @@ One of the themes of the book is the idea that the "messages" sent between the o
 
 The book uses UML sequence diagrams to make the somewhat abstract discussion around this easier to understand. The following example is an example made with the [plantuml builder gem](https://github.com/svernidub/plantuml_builder):
 
-![An example UML sequence diagram](/assets/uml_images/example.png)
+![An example UML sequence diagram](/assets/uml-images/example.png)
 
 These diagrams show the objects as two identical boxes connected by vertical lines. The horizontal lines are the messages. In this diagram, the `User` object calls the `perform` method of the other object which returns `true`. The box on the vertical line for `MyService` represents the `MyService` object executing the method.
 
