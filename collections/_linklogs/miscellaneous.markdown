@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Miscellaneous"
+title: "Miscellaneous links"
 categories: miscellaneous
 permalink: /miscellaneous-linklog
 emoji: 🪵
@@ -42,3 +42,4 @@ This linklog includes links around:
 
 - [Kids can't use computers](http://www.coding2learn.org/blog/2013/07/29/kids-cant-use-computers/)
 - [A little bit of slope makes up for a lot of y-intercept](https://gist.github.com/gtallen1187/e83ed02eac6cc8d7e185)
+- [Explained from First Principles](https://explained-from-first-principles.com/)

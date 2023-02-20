@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "The Linux Command Line"
-categories: linux
+title: "Linux/Bash notes"
+categories: linux bash cli
 permalink: /the-linux-command-line
 emoji: 🤨
 mathjax: false

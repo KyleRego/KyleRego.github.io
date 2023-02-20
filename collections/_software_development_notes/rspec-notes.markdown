@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "RSpec notes"
-categories: ruby programming rspec
+categories: ruby programming rspec bdd
 permalink: /rspec-notes
 emoji: 🧪
 mathjax: true

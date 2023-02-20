@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Unity notes"
-categories: programming [game development] unity
+categories: programming [game development] unity C#
 permalink: /unity
 emoji: 😃
 mathjax: false

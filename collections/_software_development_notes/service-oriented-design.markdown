@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Service-Oriented Design with Ruby and Rails"
+title:  "Service-Oriented Design (book)"
 categories: ruby rails programming
 permalink: /service-oriented-design-with-ruby-and-rails
 emoji: 🥳

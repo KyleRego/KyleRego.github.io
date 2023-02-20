@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Anki schema notes"
-categories: programming SQL anki
+categories: programming sql sqlite anki
 permalink: /anki-schema
 emoji: 😋
 mathjax: false
@@ -73,7 +73,7 @@ media
 
 # The collection.anki21 SQLite database
 
-Inspection of `sqlite_master` shows there is a `col` table, a `notes` table, a `cards` table, a `revlog` table, and a `graves` table. There are also two tables called `sqlite_stat1` and `sqlite_stat4` and 7 indexes. The indexes are data structures in the database which allow the database engine to execute certain queries, usually the most common ones, more efficiently. They are similar to the index of a textbook which allows you to see what page numbers mention specific keywords or the index of websites that Google maintains that it uses to serve results. I suspect the `sqlite_stat1` and `sqlite_stat4` tables are used by SQLite and are not specific to Anki.
+Inspection of `sqlite_master` shows there is a `col` table, a `notes` table, a `cards` table, a `revlog` table, and a `graves` table. There are also two tables called `sqlite_stat1` and `sqlite_stat4` and 7 indexes. The indexes are data structures in the database which allow the database engine to execute certain queries, usually the most common ones, more efficiently. They are similar to the index of a textbook which allows you to see what page numbers mention specific keywords or the index of websites that Google maintains that it uses to serve results. I would guess that `sqlite_stat1` and `sqlite_stat4` are tables used by SQLite.
 
 {% highlight console %}
 sqlite> .mode box
@@ -607,7 +607,7 @@ And this is the real `flds` which are the fields of the note type:
   "font"=>"Arial",
   "size"=>20,
   "description"=>"",
-  "media"=>[]},
+  "media"=>[]}, # media used by the field? Not always present apparently
   {"name"=>"Hiragana",
   "ord"=>2,
   "sticky"=>false,
@@ -624,8 +624,8 @@ This column also has a JSON value that is easier to see as a Ruby hash:
 
 {% highlight ruby %}
 {"1"=>
-  {"id"=>1,
-   "mod"=>0,
+  {"id"=>1, # the default deck has an id of 1
+   "mod"=>0, 
    "name"=>"Default",
    "usn"=>0,
    "lrnToday"=>[0, 0],
@@ -640,27 +640,27 @@ This column also has a JSON value that is easier to see as a Ruby hash:
    "extendNew"=>0,
    "extendRev"=>0},
  "1675271334388"=>
-  {"id"=>1675271334388,
-   "mod"=>1675291140,
-   "name"=>"日本語",
-   "usn"=>-1,
-   "lrnToday"=>[2141, 0],
+  {"id"=>1675271334388, # non-default deck ids are milliseconds since the epoch
+   "mod"=>1675291140, # last time modified in seconds since the epoch
+   "name"=>"日本語", # name of the deck
+   "usn"=>-1, # update sequence number
+   "lrnToday"=>[2141, 0], # see AnkiDroid document
    "revToday"=>[2141, 0],
    "newToday"=>[2141, 3],
    "timeToday"=>[2141, 15391],
-   "collapsed"=>false,
-   "browserCollapsed"=>false,
-   "desc"=>"",
-   "dyn"=>0,
-   "conf"=>1,
-   "extendNew"=>0,
-   "extendRev"=>0},
+   "collapsed"=>false, # whether deck is collapsed in main window
+   "browserCollapsed"=>false, # whether deck is collapsed in browser
+   "desc"=>"", # description
+   "dyn"=>0, # 0 if not a filtered deck, 1 if a filtered deck
+   "conf"=>1, # id of object in dconf (deck configurations or options)
+   "extendNew"=>0, # related to custom study?
+   "extendRev"=>0}, # related to custom study?
  "1675271788510"=>
   {"id"=>1675271788510,
    "mod"=>1675271788,
-   "name"=>"日本語::Subdeck - Basic with image",
+   "name"=>"日本語::Subdeck - Basic with image", # Parent::Child syntax indicates a child deck
    "usn"=>0,
-   "lrnToday"=>[0, 0],
+   "lrnToday"=>[0, 0], # for a brand new deck not studied, these seem to be [0, 0]
    "revToday"=>[0, 0],
    "newToday"=>[0, 0],
    "timeToday"=>[0, 0],

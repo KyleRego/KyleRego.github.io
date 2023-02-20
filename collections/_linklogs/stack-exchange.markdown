@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Stack Exchange"
+title: "Stack Exchange links"
 categories: miscellaneous
 permalink: /stack-exchange
 emoji: ❓

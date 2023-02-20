@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "HtDP"
+title:  "HtDP (book)"
 categories: lisp programming [book reviews] [computer science]
 permalink: /how-to-design-programs
 emoji: 😮

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "SQLite notes"
-categories: programming SQL SQLite
+categories: programming sql sqlite
 permalink: /sqlite
 emoji: 😸
 mathjax: false

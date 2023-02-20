@@ -22,3 +22,5 @@ gem "webrick", "~> 1.7"
 gem "rouge"
 
 gem 'jekyll-sitemap'
+
+gem "liquid", ">= 4.0.4"

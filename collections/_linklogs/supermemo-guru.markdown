@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "SuperMemo Guru"
+title: "SuperMemo Guru links"
 categories: miscellaneous
 permalink: /supermemo-guru
 emoji: 🧠

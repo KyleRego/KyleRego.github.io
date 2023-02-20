@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Cucumber notes"
-categories: cucumber programming
+categories: cucumber testing programming bdd
 permalink: /cucumber-notes
 emoji: 🥒
 mathjax: false

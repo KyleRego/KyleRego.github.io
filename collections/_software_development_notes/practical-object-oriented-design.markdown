@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Practical Object-Oriented Design"
+title:  "Object-Oriented Design (book)"
 categories: ruby programming
 permalink: /practical-object-oriented-design
 emoji: 😃
