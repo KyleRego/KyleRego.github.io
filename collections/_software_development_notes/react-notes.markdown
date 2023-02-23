@@ -3,21 +3,25 @@ layout: post
 title:  "React notes"
 categories: javascript react programming
 permalink: /react-notes
-emoji: 
+emoji: 🫡
 mathjax: false
 ---
 
-React is currently the most popular JavaScript framework.
+React is the most popular JavaScript web framework (library) in 2022.
 
-React is declarative (we declare what the output should be with respect to the state and React figures out how to make it happen). React needs to know when the state changes, so we must use specific functions provided by React to change the state.
+I have less than 10 hours of experience thinking about React so these notes may contain errors. I spent an afternoon programming a snake game with React once and then a long time after that read [Modern Front-End Development for Rails](https://www.amazon.com/Modern-Front-End-Development-Rails-Webpacker/dp/1680507214) which had some chapters on React.
 
-The rendering logic is on the client. Output is described using JSX, some kind of hybrid mini language between HTML and JS that generates HTML. React consumes JSON sent from the server and handles any updates that are needed when the state changes.
+I took these notes because as a web developer, it's very likely I will use React in the future. It made sense to me to write down my temporary understanding as a starting point for when that day comes.
+
+React is declarative: the programmer declares what the output should be with respect to the state, and React figures out how to make it happen. For this to work, React needs to know when the state changes, so specific functions provided by React must be used to change the state. React consumes JSON sent from the server and handles any updates that are needed when the state changes. This means that the rendering logic is completely on the client.
+
+The output is described using JSX which is a hybrid language between HTML and JS that generates HTML. 
 
 Most React code will be inside a React component. A component is like a template combining data with markup (JSX) that results in HTML that is sent to the DOM. JSX allows mixing JavaScript with HTML and also calls to other React components.
 
-Components can be a function that returns a JSX element or a class with a `render` method that returns a JSX element. Functional components are the future apparently, but class components that were written already obviously will continue to exist all over the place.
+Components can be a function that returns a JSX element or a class with a `render` method that returns a JSX element. Functional components are said to be the future but a lot of class components have already been written and will continue to exist for a long time.
 
-An idiom for JSX is to enclose a multiline return value in parenthesis. HTML elements in JSX look pretty normal and other React components appear basically the same. If inside the angle brackets starts a word with a lowercase letter then React will know its HTML, if its an uppercase letter then React will know its a component.
+An idiom for JSX is to enclose a multiline return value in parenthesis. HTML elements in JSX and React components look a lot like normal HTML. If a word inside angle brackets starts with a lowercase letter then React will know its HTML. If it begins with an uppercase letter instead, then React will know its a component.
 
 `class` is a reserved word in JavaScript so in JSX it is replaced by `className`. The interpolation markers are curly braces and can contain arbitrary JavaScript expressions (that return a value).
 

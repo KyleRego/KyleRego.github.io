@@ -13,11 +13,34 @@ When the page is loaded, Stimulus looks for some special HTML attributes which i
 
 ## The data-controller attribute
 
-The `data-controller` attribute specifies the Stimulus controller to instantiate. Conventions are used around naming and file locations which allows Stimulus to find the correct controller. The Stimulus controller has the same scope as the element which caused it to be instantiated, so any target elements need to be children of that element.
+The `data-controller` attribute specifies the Stimulus controller to instantiate. File location and naming conventions allow Stimulus to find the right controller. A Stimulus controller has the same scope as the element which caused it to be instantiated so any target elements need to be children of that element.
 
-You can have the same `data-controller` attribute/value on many different elements in the same page, and separate instances of the controller will be instantiated. You can also have a single `data-controller` attribute with a value that causes multiple Stimulus controllers to be instantiated.
+You can have the same `data-controller` attribute/value on many different elements in the same page which will cause separate instances of the controller to be instantiated. You can also have a single `data-controller` attribute with a value that causes multiple Stimulus controllers to be instantiated.
 
 The `connect` method of the Stimulus controller is invoked at the moment the controller is instantiated.
+
+### Example
+
+A new Rails application may include this Stimulus controller:
+
+{% highlight javascript %}
+// app/javascript/controllers/hello_controller.js
+import { Controller } from "@hotwired/stimulus"
+
+export default class extends Controller {
+  connect() {
+    this.element.textContent = "Hello World!"
+  }
+}
+{% endhighlight %}
+
+The value of the `data-controller` attribute in this case would be `"hello"`:
+
+{% highlight html %}
+<div data-controller="hello"></div>
+{% endhighlight %}
+
+This `div` will have its `textContent` set to "Hello World!" when Stimulus instantiates the controller.
 
 ## The data-action attribute and action descriptors
 

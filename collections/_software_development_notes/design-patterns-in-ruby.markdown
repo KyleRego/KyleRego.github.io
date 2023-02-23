@@ -7,7 +7,7 @@ emoji: 🥹
 mathjax: false
 ---
 
-**In the future, this page may describe design patterns more generally than just the ones most relevant to Ruby. This page is currently just my notes on [Design Patterns in Ruby](https://www.amazon.com/Design-Patterns-Ruby-Russ-Olsen/dp/0321490452)**
+**In the future, this page may describe design patterns more generally than just the ones most relevant to Ruby. Currently these are just my notes from reading [Design Patterns in Ruby](https://www.amazon.com/Design-Patterns-Ruby-Russ-Olsen/dp/0321490452)**
 
 The Gang of Four popularized the ideas of design patterns, which are common solutions to problems in object-oriented programming. This book focuses on 14 of the original 23 GoF patterns.
 

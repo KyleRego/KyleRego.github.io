@@ -477,7 +477,7 @@ If you want to adapt this script for your own purposes, you will need to install
 
 This has a lot of information about the note types, including the fields, HTML card templates, CSS, and LaTeX. If you're not familiar with HTML and CSS, the best resource to read is the [MDN web docs](https://developer.mozilla.org/en-US/docs/Web/HTML).
 
-It appears when exporting a note type like "Basic," it exports it with a name that has some kind of randomly generated string appended to it and separated by a dash. there is also weirdly a tag "linux-command-line" which I'm not sure where it came from. I think I did have that tag on some cards before, but I deleted those cards and can't see that tag anywhere anymore.
+It appears when exporting a note type like "Basic," it exports it with a name that has some kind of randomly generated string appended to it and separated by a dash. There is also a tag "linux-command-line" that I'm not sure where it came from. I think I did have that tag on some cards before, but I deleted those cards and can't see that tag anywhere anymore.
 
 To take a closer look at one of the hashes representing a note type in the models:
 
