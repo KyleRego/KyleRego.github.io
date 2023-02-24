@@ -12,6 +12,7 @@ Wikipedia is the free online Encyclopedia that anyone can edit, and the last wor
 - [Reliability of Wikipedia](https://en.wikipedia.org/wiki/Reliability_of_Wikipedia)
 
 ## Health
+- [Empty calories](https://en.wikipedia.org/wiki/Empty_calories)
 - [Protein leverage hypothesis](https://en.wikipedia.org/wiki/Protein_leverage_hypothesis)
 - [Satiety value](https://en.wikipedia.org/wiki/Satiety_value)
 
@@ -22,6 +23,7 @@ Wikipedia is the free online Encyclopedia that anyone can edit, and the last wor
 ## Software
 - [ABC Software Metric](https://en.wikipedia.org/wiki/ABC_Software_Metric)
 - [Active record pattern](https://en.wikipedia.org/wiki/Active_record_pattern)
+- [Big Design Up Front](https://en.wikipedia.org/wiki/Big_Design_Up_Front)
 - [Cyclomatic complexity](https://en.wikipedia.org/wiki/Cyclomatic_complexity)
 - [https://en.wikipedia.org/wiki/Technical_debt](Technical debt)
 - [World Wide Web](https://en.wikipedia.org/wiki/World_Wide_Web)

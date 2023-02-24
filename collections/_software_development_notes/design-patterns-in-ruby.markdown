@@ -7,17 +7,15 @@ emoji: 🥹
 mathjax: false
 ---
 
-**In the future, this page may describe design patterns more generally than just the ones most relevant to Ruby. Currently these are just my notes from reading [Design Patterns in Ruby](https://www.amazon.com/Design-Patterns-Ruby-Russ-Olsen/dp/0321490452)**
+These are some notes I took while reading [Design Patterns in Ruby](https://www.amazon.com/Design-Patterns-Ruby-Russ-Olsen/dp/0321490452), mostly to help me remember the patterns. In the future, this page may describe many more, including ones that are not relevant to Ruby.
 
-The Gang of Four popularized the ideas of design patterns, which are common solutions to problems in object-oriented programming. This book focuses on 14 of the original 23 GoF patterns.
+The Gang of Four popularized the ideas of *design patterns*, which are common solutions to problems in object-oriented programming.
 
 # The Template Method
 
-This is a method of an abstract class that calls abstract methods that concrete child classes must implement. This separates code that stays that same (the algorithm) vs. code that changes (the details supplied by the child classes) which helps defend against change.
+The template method pattern involves a method of an abstract class that calls abstract methods that concrete child classes must implement. This separates code that stays that same (the algorithm of the template method) from code that changes (the concrete details).
 
-When the methods used in the template method do actually have concrete implementations in the parent class, they are called hook methods. This allows the parent class to define a default behavior which the child classes can either use or override. Leaving the implementations of the hook methods empty is a common design choice but they may also contain some code.
-
-A pitfall to avoid with the template method pattern is to overdesign by trying to cover every future possibility by adding additional hook/abstract methods that are not strictly needed.
+When the methods used in the template method have concrete implementations in the parent class, they are called *hook methods*. It is common to leave these as empty methods but they may also provide a default implementation.
 
 {% highlight ruby %}
 class AbstractClass
@@ -42,11 +40,11 @@ end
 
 # The Strategy
 
-This is similar to the template method but uses composition and delegation instead of inheritance. The strategies are objects which implement a common interface and are used by an object called the context.
+The strategy pattern is similar to the template method pattern but uses composition and delegation instead of inheritance. The *strategies* are objects which implement a common interface and are used by an object called the *context*.
 
-The context may just pass any data its strategy object needs as arguments. The context object may also pass itself to the strategy so that the strategy can call methods on it to get any data that it needs.
+The context may pass any data its strategy object needs as arguments, including itself.
 
-The strategy objects may be instances of sibling classes, instances of duck type classes, or Ruby Proc objects in simple cases. The strategy objects just need to implement the same interface.
+The strategy objects may be instances of sibling classes, instances of duck type classes, or Ruby Proc objects in simple cases--the essential thing is they implement the same interface.
 
 {% highlight Ruby %}
 class ContextClass
@@ -68,9 +66,9 @@ context.call
 
 # The Observer
 
-This pattern involves a subject object which keeps track of observer objects which it may do by holding an array of them in an instance variable. When the subject changes, iteration over the observers allows each to have some behavior invoked in response to the change. If the design is kept this simple then all subject classes may inherit from a parent subject class which implements this interface. However, due to single inheritance in Ruby it is probably a better idea to include the subject interface as a module. In fact, the Ruby standard library comes with a module called Observable for this purpose.
+The observer pattern involves an object called the *subject* which keeps track of objects called *observers* (having the observers in an array/instance variable is one way). A state change in the subject triggers iteration over the observers so that they can all respond to the change. Ruby has a module called `Observable` that can be used to simplify implementing this pattern.
 
-Another variation is using Proc objects as the observers and when the subject changes, each Proc object is called. When the subject passes itself as an argument to the method call on the observers, this is the pull approach since the observers must *pull* anything they need from the subject. If the subject sends the observers particular details instead, it is the *push* approach.
+The observers may be Proc objects that are called when the state changes. The *pull approach* refers to when the subject passes itself as an argument to the observer method called in response to the state change. Each observer can then "pull" what it needs from the subject by calling its methods. In the *push approach*, the subject only sends specific arguments to the observers.
 
 {% highlight Ruby %}
 class Subject
@@ -90,7 +88,7 @@ end
 
 # The Composite
 
-This is a tree of objects that all share a common interface which is called the component. There is at least one object called the composite and the non-composite objects are called the leafs. The composite objects have children and the leaf objects do not.
+The composite pattern is a tree of objects that all share a common interface which is called the *component*. The objects are either *composites* or *leafs* and there is at least one composite object. The difference between the composite objects and the leaf objects is that the leaf objects do not have children.
 
 # The Iterator
 
