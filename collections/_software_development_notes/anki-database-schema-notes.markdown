@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Anki schema notes"
+title: "Anki schema"
 categories: programming sql sqlite anki
 permalink: /anki-schema
 emoji: 😋

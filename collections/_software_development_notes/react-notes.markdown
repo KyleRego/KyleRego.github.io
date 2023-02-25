@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "React notes"
+title:  "React"
 categories: javascript react programming
 permalink: /react-notes
 emoji: 🫡

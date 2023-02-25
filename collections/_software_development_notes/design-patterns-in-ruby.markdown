@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Design Patterns in Ruby"
+title: "Design Patterns"
 categories: programming ruby
 permalink: /design-patterns
 emoji: 🥹
@@ -92,11 +92,7 @@ The composite pattern is a tree of objects that all share a common interface whi
 
 # The Iterator
 
-The `each` method in Ruby is basically the *internal* iterator pattern. Sometimes there are practical reasons to use an *external* iterator (an iterator object) instead, such as merging two sorted arrays into one sorted array. Using external iterators in this case allows you to iterate through each array independently of the other which simplifies constructing the resulting sorted array.
-
-Including the `Enumerable` module into a class and defining an instance method `each` will give that class many useful methods such as `include?` and `all`. If the objects that are being iterated over do not implement `<=>`, they will need to implement this for all of the methods to work.
-
-There are other internal iterators in Ruby such as `Array#reverse_each` and `String#each_byte`. The `ObjectSpace` module has a method `each_object` which iterates through all of the objects that are currently known to the Ruby interpreter.
+The `each` and `reverse_each` methods in Ruby are examples of *internal* iterators. Sometimes an *external* iterator (an iterator object) is useful (e.g. merging two sorted arrays into one sorted array).
 
 {% include attribution-book.html 
   book_title = "Design Patterns in Ruby"

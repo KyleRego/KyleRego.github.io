@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Unity notes"
+title: "Unity"
 categories: programming [game development] unity C#
 permalink: /unity
 emoji: 😃

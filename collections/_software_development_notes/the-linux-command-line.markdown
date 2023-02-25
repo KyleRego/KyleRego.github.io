@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Linux/Bash notes"
+title: "Linux CLI/Bash"
 categories: linux bash cli
 permalink: /the-linux-command-line
 emoji: 🤨

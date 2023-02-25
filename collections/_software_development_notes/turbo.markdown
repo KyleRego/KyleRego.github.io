@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  "Turbo notes"
+title:  "Turbo"
 categories: javascript rails programming turbo hotwire
 permalink: /turbo-notes
-emoji: 💪
+emoji: 😃
 mathjax: false
 ---
 

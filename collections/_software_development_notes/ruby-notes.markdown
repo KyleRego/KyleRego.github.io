@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Ruby notes"
+title:  "Ruby"
 categories: ruby programming
 permalink: /ruby-notes
 emoji: 😍
