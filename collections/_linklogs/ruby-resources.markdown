@@ -7,7 +7,7 @@ emoji: 🍎
 mathjax: false
 ---
 
-This linklog is my collection of documentation, resources, articles, and libraries related to Ruby and Rails.
+This is a collection of links to documentation, resources, articles, and libraries related to Ruby and Rails.
 
 ## Documentation
 

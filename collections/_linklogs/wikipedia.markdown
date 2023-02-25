@@ -23,9 +23,14 @@ Wikipedia is the free online Encyclopedia that anyone can edit, and the last wor
 ## Software
 - [ABC Software Metric](https://en.wikipedia.org/wiki/ABC_Software_Metric)
 - [Active record pattern](https://en.wikipedia.org/wiki/Active_record_pattern)
+- [Agile software development](https://en.wikipedia.org/wiki/Agile_software_development)
 - [Big Design Up Front](https://en.wikipedia.org/wiki/Big_Design_Up_Front)
 - [Cyclomatic complexity](https://en.wikipedia.org/wiki/Cyclomatic_complexity)
-- [https://en.wikipedia.org/wiki/Technical_debt](Technical debt)
+- [Dependency inversion principle](https://en.wikipedia.org/wiki/Dependency_inversion_principle)
+- [SOLID](https://en.wikipedia.org/wiki/SOLID)
+- [Technical debt](https://en.wikipedia.org/wiki/Technical_debt)
+- [Waterfall model](https://en.wikipedia.org/wiki/Waterfall_model)
+- [Web service](https://en.wikipedia.org/wiki/Web_service)
 - [World Wide Web](https://en.wikipedia.org/wiki/World_Wide_Web)
 
 ## Philosophy
