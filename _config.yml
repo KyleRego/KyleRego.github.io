@@ -32,11 +32,7 @@ plugins:
 collections_dir: collections
 
 collections:
-  computer_science_notes:
-    output: true
-  physics_notes:
-    output: true
-  software_development_notes:
+  notes:
     output: true
   linklogs:
     output: true

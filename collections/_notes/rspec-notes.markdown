@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "RSpec"
+title:  "RSpec notes"
 categories: ruby programming rspec bdd
 permalink: /rspec-notes
 emoji: 🧪

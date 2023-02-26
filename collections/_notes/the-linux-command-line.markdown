@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Linux CLI/Bash"
+title: "Linux/Bash notes"
 categories: linux bash cli
-permalink: /the-linux-command-line
+permalink: /the-linux-command-line-notes
 emoji: 🤨
 mathjax: false
 ---

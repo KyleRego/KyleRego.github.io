@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Unity"
+title: "Unity notes"
 categories: programming [game development] unity C#
-permalink: /unity
+permalink: /unity-notes
 emoji: 😃
 mathjax: false
 ---

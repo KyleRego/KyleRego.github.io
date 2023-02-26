@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Stimulus"
+title:  "Stimulus notes"
 categories: javascript rails programming stimulus hotwire
 permalink: /stimulus-notes
 emoji: 🥳

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Cucumber"
+title:  "Cucumber notes"
 categories: cucumber testing programming bdd
 permalink: /cucumber-notes
 emoji: 🥒
