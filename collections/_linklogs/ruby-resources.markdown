@@ -28,12 +28,14 @@ This is a collection of links to documentation, resources, articles, libraries, 
 ## Books
 
 - [Design Patterns in Ruby](https://www.amazon.com/Design-Patterns-Ruby-Russ-Olsen/dp/0321490452/ref=sr_1_1?crid=2NPII8XEZBIRI&keywords=design+patterns+ruby&qid=1675739319&s=books&sprefix=design+patterns+ruby%2Cstripbooks%2C100&sr=1-1&ufe=app_do%3Aamzn1.fos.18ed3cb5-28d5-4975-8bc7-93deae8f9840)
+  - Explanations of the 14 (out of the original 23) GoF design patterns that are most useful to Ruby programmers.
 - [Metaprogramming Ruby](https://www.amazon.com/Metaprogramming-Ruby-Program-Like-Pros/dp/1934356476)
-  - Reading this caused me to retroactively understand a lot of Ruby code I had seen before but never looked at too closely (`class << self` comes to mind). It's a great introduction to a lot of the sharp knives that come with Ruby.
+  - If you have seen things like `class << self` in your code base and don't know what that means yet, I would read this book.
 - [Practical Object-Oriented Design: An Agile Primer Using Ruby](https://www.amazon.com/Practical-Object-Oriented-Design-Agile-Primer/dp/0134456475/ref=pd_lpo_2?pd_rd_w=fujt0&content-id=amzn1.sym.116f529c-aa4d-4763-b2b6-4d614ec7dc00&pf_rd_p=116f529c-aa4d-4763-b2b6-4d614ec7dc00&pf_rd_r=Z8EPG65DMRBH054G5PM1&pd_rd_wg=XEGYO&pd_rd_r=de83e3d0-a6af-42b1-abbb-3da70ee64f75&pd_rd_i=0134456475&psc=1)
-  - I think this book is really good (it's a buy). It definitely helped me think about object-oriented programs and their accompanying test suites in a different way. The messages between objects, dependencies, and how to test incoming vs. outgoing messages are lessons I have thought about many times since reading this book.
+  - This book changed the way I think about object-oriented programs and their accompanying test suites. The messages between objects, dependencies, and how to test incoming vs. outgoing messages are lessons I have thought about many times since reading this book.
 - [Modern Front-End Development for Rails: Hotwire, Stimulus, Turbo, and React (1st Edition)](https://www.amazon.com/Modern-Front-End-Development-Rails-Webpacker/dp/1680507214)
-  - This book is really good too. I mainly read it to learn about Hotwire, and it exceeded my expectations. It's not a bad introduction to React either if you happen to be interested in that too.
+  - I mainly read this to learn about Hotwire and it exceeded my expectations (it's probably not a bad introduction to React either).
 - [Rails Anti-patterns](https://www.amazon.com/Rails-AntiPatterns-Refactoring-Addison-Wesley-Professional/dp/0321604814)
+  - This book shows examples of what not to do in Rails applications. It is a bit old as it focuses on Rails 3, but in my opinion, the common anti-patterns of Rails 3 should be avoided in newer versions too.
 - [Service-Oriented Design with Ruby and Rails](https://www.amazon.com/Service-Oriented-Design-Rails-Addison-Wesley-Professional/dp/0321659368)
   - This book is a little old but definitely still worth reading (it's a buy), especially if you are a developer spending your workdays toiling on a Rails monolith and daydreaming about smaller code bases.

@@ -21,7 +21,7 @@ The order of topics is roughly:
 - object-oriented programming (again but with JavaScript)
 - the DOM and asynchronous programming
 
-I didn't complete the very last part of the course since I got a software developer job before I finished.
+I didn't complete the very last part of the course since I got a job as a software developer before I finished, which was my goal anyway. If the job I got had been a front-end role, I would have continued and finished the course, but I realized quickly that the job was going to be 95% Ruby and 5% JavaScript.
 
 Other topics which appear diffusely throughout the course are unit testing and regular expressions. At points you will also program an HTTP server in Bash, a framework using Rack, and several web applications using Sinatra. If your goal is to create web applications with Ruby on Rails, this course will not teach you that directly. However, once you have completed most of the back-end portion of this course, learning the basics of Rails will be very easy.
 

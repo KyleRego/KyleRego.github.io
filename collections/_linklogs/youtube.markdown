@@ -7,7 +7,7 @@ emoji: 📹
 mathjax: false
 ---
 
-YouTube has a lot of great content. This linklog is a collection of different YouTube videos that I think are worth watching, depending on your interests.
+This page collects links of YouTube videos that I think are worth watching, depending on your interests.
 
 ## Math
 

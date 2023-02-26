@@ -36,3 +36,5 @@ collections:
     output: true
   linklogs:
     output: true
+  reviews:
+    output: true

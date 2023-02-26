@@ -1,10 +1,9 @@
 ---
 layout: post
-title:  "HtDP (book)"
+title:  "How to Design Programs"
 categories: lisp programming [book reviews] [computer science]
 permalink: /how-to-design-programs
 emoji: 😮
-note_category: Computer science
 ---
 
 When I was at the beginning of teaching myself programming, I found [teachyourselfcs.com](https://teachyourselfcs.com) which recommended some books for learning programming. The one I ended up reading was [How to Design Programs](https://htdp.org/).

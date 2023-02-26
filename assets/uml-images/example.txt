@@ -1,6 +1,0 @@
-@startuml
-  User -> MyService : perform
-  activate MyService
-    return true
-  deactivate MyService
-@enduml
