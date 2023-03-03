@@ -2,12 +2,13 @@
 layout: post
 title: "Ruby and Rails resources"
 categories: ruby programming
-permalink: /ruby-linklog
+permalink: /ruby
 emoji: 🍎
 mathjax: false
+small_title: true
 ---
 
-This is a collection of links to documentation, resources, articles, libraries, and books related to Ruby and Rails.
+This page is a collection of links to documentation, articles, libraries, and books related to Ruby and Rails.
 
 ## Documentation
 
@@ -18,12 +19,9 @@ This is a collection of links to documentation, resources, articles, libraries, 
 - [How to make a gem](https://guides.rubygems.org/make-your-own-gem/)
 - [RubyGems .gemspec reference](https://guides.rubygems.org/specification-reference/)
 
-## Libraries
+## Articles
 
-- [rdoc](https://github.com/ruby/rdoc)
-- [rubyzip](https://github.com/rubyzip/rubyzip)
-- [simplecov](https://github.com/simplecov-ruby/simplecov)
-- [sqlite3](https://github.com/sparklemotion/sqlite3-ruby)
+- [The Case Against Monkey Patching](https://shopify.engineering/the-case-against-monkey-patching)
 
 ## Books
 
@@ -36,6 +34,15 @@ This is a collection of links to documentation, resources, articles, libraries, 
 - [Modern Front-End Development for Rails: Hotwire, Stimulus, Turbo, and React (1st Edition)](https://www.amazon.com/Modern-Front-End-Development-Rails-Webpacker/dp/1680507214)
   - I mainly read this to learn about Hotwire and it exceeded my expectations (it's probably not a bad introduction to React either).
 - [Rails Anti-patterns](https://www.amazon.com/Rails-AntiPatterns-Refactoring-Addison-Wesley-Professional/dp/0321604814)
-  - This book shows examples of what not to do in Rails applications. It is a bit old as it focuses on Rails 3, but in my opinion, the common anti-patterns of Rails 3 should be avoided in newer versions too.
+  - Examples of what not to do in Rails applications. It is a bit old as it focuses on Rails 3, but the common anti-patterns of Rails 3 are anti-patterns in newer versions too.
+- [The RSpec Book](https://www.amazon.com/RSpec-Book-Behaviour-Development-Cucumber/dp/1934356379)
+  - A solid introduction to RSpec, BDD, Cucumber, and more.
 - [Service-Oriented Design with Ruby and Rails](https://www.amazon.com/Service-Oriented-Design-Rails-Addison-Wesley-Professional/dp/0321659368)
-  - This book is a little old but definitely still worth reading (it's a buy), especially if you are a developer spending your workdays toiling on a Rails monolith and daydreaming about smaller code bases.
+  - A little old but definitely still worth reading (it's a buy), especially if you are a developer spending your workdays toiling on a Rails monolith and daydreaming about smaller code bases.
+
+## Libraries
+
+- [rdoc](https://github.com/ruby/rdoc)
+- [rubyzip](https://github.com/rubyzip/rubyzip)
+- [simplecov](https://github.com/simplecov-ruby/simplecov)
+- [sqlite3](https://github.com/sparklemotion/sqlite3-ruby)

@@ -1,10 +1,11 @@
 ---
 layout: post
-title: "Japanese resources"
+title: "Japanese"
 categories: japanese
-permalink: /japanese-linklog
+permalink: /japanese
 emoji: 🗾
 mathjax: false
+small_title: true
 ---
 
 This page links to some resources for learning the Japanese language.

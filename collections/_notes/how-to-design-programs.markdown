@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "How to Design Programs"
+title:  "How to Design Programs (review)"
 categories: lisp programming [book reviews] [computer science]
 permalink: /how-to-design-programs
 emoji: 😮

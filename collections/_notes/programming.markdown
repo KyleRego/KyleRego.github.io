@@ -2,7 +2,7 @@
 layout: post
 title: "Programming resources"
 categories: programming software
-permalink: /software-development-linklog
+permalink: /programming
 emoji: 💻
 mathjax: false
 ---
@@ -13,6 +13,20 @@ mathjax: false
 - [Teach yourself programming in 10 years](http://norvig.com/21-days.html)
 - [Signs that you're a bad programmer](http://www.yacoset.com/Home/signs-that-you-re-a-bad-programmer)
 - [Rich Programmer Food](http://steve-yegge.blogspot.com/2007/06/rich-programmer-food.html)
+
+## Wikipedia articles
+
+- [ABC Software Metric](https://en.wikipedia.org/wiki/ABC_Software_Metric)
+- [Active record pattern](https://en.wikipedia.org/wiki/Active_record_pattern)
+- [Agile software development](https://en.wikipedia.org/wiki/Agile_software_development)
+- [Big Design Up Front](https://en.wikipedia.org/wiki/Big_Design_Up_Front)
+- [Cyclomatic complexity](https://en.wikipedia.org/wiki/Cyclomatic_complexity)
+- [Dependency inversion principle](https://en.wikipedia.org/wiki/Dependency_inversion_principle)
+- [SOLID](https://en.wikipedia.org/wiki/SOLID)
+- [Technical debt](https://en.wikipedia.org/wiki/Technical_debt)
+- [Waterfall model](https://en.wikipedia.org/wiki/Waterfall_model)
+- [Web service](https://en.wikipedia.org/wiki/Web_service)
+- [World Wide Web](https://en.wikipedia.org/wiki/World_Wide_Web)
 
 ## Websites to find more interesting articles
 
@@ -27,7 +41,7 @@ mathjax: false
 - [How to Design Programs](https://htdp.org/2022-8-7/Book/index.html)
 - [Web Browser Engineering](https://browser.engineering/)
 
-## Websites for book recommendations
+## Book recommendation websites
 
 - [Hacker news books](https://hackernewsbooks.com/)
 - [Shepherd](https://shepherd.com/)

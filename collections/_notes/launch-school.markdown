@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Launch School"
+title:  "Launch School (review)"
 categories: programming ruby javascript sql [launch school]
 permalink: /launch-school
 emoji: 🙂

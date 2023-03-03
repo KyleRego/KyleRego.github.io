@@ -1,10 +1,11 @@
 ---
 layout: post
-title: "SuperMemo Guru links"
+title: "SuperMemo Guru"
 categories: miscellaneous
 permalink: /supermemo-guru
 emoji: 🧠
 mathjax: true
+small_title: true
 ---
 
 [SuperMemo Guru](https://supermemo.guru/wiki/SuperMemo_Guru) has the highest density of wrong (but interesting) models of any MediaWiki instance on the web (in my opinion). You thought Wikipedia was a bad source to cite?
