@@ -185,7 +185,7 @@ The `QAction` class represents an abstraction for user commands. We do three thi
 - We specify that the `handle_zoom_mouse_shortcut` method of `anki_magnifying_glass_mouse_cursor` should run when the action is triggered.
 - We add this action so that it can be triggered from the menu tools.
 
-![Anki tools menu with the zoom mouse action](/assets/anki-add-on-images/anki-zoom-mouse-tool-menu-option.png)
+![Anki tools menu with the zoom mouse action](/assets/anki-add-on-case-studies/anki-zoom-mouse-tool-menu-option.png)
 
 ## The AMGMC class and constructor
 
@@ -338,7 +338,7 @@ This method resets the mouse to its normal state. The `restoreOverrideCursor` me
 
 The second add-on we will look at is the [Anki enumeration tool](https://ankiweb.net/shared/info/268751365). This add-on is somewhat flawed, but at least one person found it useful:
 
-![A review of the Anki enumeration tool](/assets/anki-add-on-images/anki-enumeration-tool-review.png)
+![A review of the Anki enumeration tool](/assets/anki-add-on-case-studies/anki-enumeration-tool-review.png)
 
 It will hopefully at least provide a good learning example.
 
@@ -447,15 +447,15 @@ action.triggered.connect(showoscedialog)
 
 "Enumeration tool" is added to the Tools (this image, and some of the other images, are from an older version of the add-on where it was "OSCE Notes Maker" instead--if you are looking at the live add-on, it will say Enumeration tool):
 
-![Anki tools menu with the enumeration tool](/assets/anki-add-on-images/anki-enumeration-tool-button.png)
+![Anki tools menu with the enumeration tool](/assets/anki-add-on-case-studies/anki-enumeration-tool-button.png)
 
 Here is what you get by clicking the button (except the fields would all be empty--I have filled them out here):
 
-![The special enumeration note-making window](/assets/anki-add-on-images/anki-osce-notes-maker-filled-out.png)
+![The special enumeration note-making window](/assets/anki-add-on-case-studies/anki-osce-notes-maker-filled-out.png)
 
 There is no deck called Temporary, but there is a note type called Basic. Clicking the Create Notes button creates a Temporary deck and makes three notes:
 
-![The enumeration notes made by the add-on](/assets/anki-add-on-images/anki-enumeration-notes.png)
+![The enumeration notes made by the add-on](/assets/anki-add-on-case-studies/anki-enumeration-notes.png)
 
 The Basic note type isn't a cloze deletion type so these notes won't work, but the more serious problem is that the information is repeated over three notes. Each of the three notes creates one card. What you actually want is one note creating three cards--this is the biggest flaw with this add-on. 
 
@@ -661,7 +661,7 @@ if model_to_use is None:
 
 The `showInfo` function is a nice helper that does this:
 
-![The output of the showInfo function](/assets/anki-add-on-images/anki-enumeration-tool-model-not-found-info.png)
+![The output of the showInfo function](/assets/anki-add-on-case-studies/anki-enumeration-tool-model-not-found-info.png)
 
 So if the user enters something for the name of a note type which is not a note type in their Anki collection, they get this message.
 

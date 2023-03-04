@@ -13,7 +13,7 @@ Related:
 - [AnkiDroid document on the Anki schema](https://github.com/ankidroid/Anki-Android/wiki/Database-Structure)
 - [Comments on the Anki database](https://www.natemeyvis.com/on-ankis-database.html)
 
-It may be a good idea to read the appendix at the end, which explains using `sqlite3` to inspect SQLite databases, before the rest of the page.
+If you're interested in these notes, it may be a good idea to begin with the appendix at the end, which explains using `sqlite3` to inspect SQLite databases.
 
 # Introduction
 
@@ -22,9 +22,9 @@ Unzipping the `*.apkg` file (`unzip 日本語.apkg` with Linux) created by expor
 - `collection.anki21`
 - `media`
 
-The following notes are based on inspection of the data in `collection.anki21.` I think that if your version of Anki exports a deck with this file, it's the right one to look at.
+The following notes are based on inspection of the data in `collection.anki21.` This is probably the right database to look at for newer versions of Anki.
 
-I recently removed most of my ~50,000+ Anki cards. I just backed them up in the cloud because it was causing my Anki to take a few seconds to open and close and they were mostly about medicine and anatomy which I don't care about anymore (bye bye "In addition to the \{\{c4::VL::a thalamic nucleus\}\}, the \{\{c1::interposed nuclei::deep cerebellar nuclei\}\} also project to the \{\{c3::magnocellular division::red nucleus division\}\} to influence the \{\{c2::rubrospinal tract::a tract\}\}."!).
+I recently removed most of my ~50,000+ Anki cards. I just backed them up in the cloud because it was causing Anki to take a few seconds to open and close and they were mostly about medicine and anatomy which I don't care about anymore (bye bye "In addition to the \{\{c4::VL::a thalamic nucleus\}\}, the \{\{c1::interposed nuclei::deep cerebellar nuclei\}\} also project to the \{\{c3::magnocellular division::red nucleus division\}\} to influence the \{\{c2::rubrospinal tract::a tract\}\}.").
 
 With a relatively clean Anki slate, I backed up the few Anki notes I still had, deleted them, and added just a few notes to export to look at the data with the schema:
 
@@ -41,17 +41,17 @@ Archive:  日本語.apkg
   inflating: media
 {% endraw %}{% endhighlight %}
 
-Just in case someone reading this wants to look at the same database: [download 日本語.apkg](/assets/anki-schema/日本語.apkg).
+If you want to look at the same database: [download 日本語.apkg](/assets/anki-schema/日本語.apkg).
 
-The following shows the 9 cards that were exported here. There are 6 cards created from 2 "Kanji Vocabulary Type" notes, 1 card created from 1 "Basic" note, and 2 cards created from 1 "Cloze" note. The Kanji Vocabulary Type has three fields: "Meaning," "Kanji," and "Hiragana." Some of the cards were flagged or suspended, and one is also buried.
+The following shows the 9 cards that were exported here. There are six cards from two "Kanji Vocabulary Type" notes, one card from one "Basic" note, and two cards from one "Cloze" note. The Kanji Vocabulary Type has three fields: "Meaning," "Kanji," and "Hiragana." Some of the cards were flagged or suspended, and one is also buried.
 
 ![The single Basic note in Test deck 1](/assets/anki-schema/anki-schema-screenshot-2.png)
 
-The Kanji Vocabulary Type has three custom card types. This explains why 2 notes of this note type create 6 cards.
+The Kanji Vocabulary Type has three custom card types.
 
 ![The card types editor of the Kanji Vocabulary Type](/assets/anki-schema/anki-schema-screenshot-3.png)
 
-One last thing to mention is that I have at times edited the output of the `sqlite3` program below (mostly removing extra whitespace).
+Note that I have sometimes edited the output of the `sqlite3` program below to make it easier to look at (mostly removing extra whitespace).
 
 ## The not yet unzipped database
 
@@ -74,7 +74,13 @@ media
 
 # The collection.anki21 SQLite database
 
-Inspection of `sqlite_master` shows there is a `col` table, a `notes` table, a `cards` table, a `revlog` table, and a `graves` table. There are also two tables called `sqlite_stat1` and `sqlite_stat4` and 7 indexes. The indexes are data structures in the database which allow the database engine to execute certain queries, usually the most common ones, more efficiently. They are similar to the index of a textbook which allows you to see what page numbers mention specific keywords or the index of websites that Google maintains that it uses to serve results. I would guess that `sqlite_stat1` and `sqlite_stat4` are tables used by SQLite.
+Inspection of `sqlite_master` shows there is a `col` table, a `notes` table, a `cards` table, a `revlog` table, and a `graves` table.
+
+There are also two tables called `sqlite_stat1` and `sqlite_stat4` and 7 indexes.
+
+The indexes are data structures in the database which allow the database engine to execute certain queries, usually the most common ones, more efficiently. They are similar to the index of a textbook which allows quick lookup of the pages that mention specific keywords or the index of websites that Google maintains that it uses to serve results quickly.
+
+I would guess that `sqlite_stat1` and `sqlite_stat4` are tables used by SQLite.
 
 {% highlight console %}
 sqlite> .mode box
@@ -793,13 +799,13 @@ id             guid        mid            mod         usn
 
 - id
   - The primary key id of the note record
-  - Based on the time the note was created
+  - It is the number of milliseconds since the 1970 epoch at the time the note was created
 - guid
   - A globally unique id
 - mid
-  - The note's model (note type) id
+  - The id of the note's model (note type)
 - mod
-  - Last time modified?
+  - It is also an integer time since the 1970 epoch, but seconds instead of milliseconds
 - usn
 
 ### The tags column
@@ -857,7 +863,7 @@ How many calories are in one gram of alcohol?
 The second law of thermodynamics states that {{c1::entopy}} will always {{c2::increase::increase or decrease}}.
 {% endraw %}{% endhighlight %}
 
-This stores the specific field which is used for sorting the notes.
+This stores the specific field which is used for sorting the notes. This field is also used to compute a value that Anki uses to detect duplicates. This value is the decimal/integer value of the first 8 hexadecimal digits of the SHA1 hash of the sort field's content stripped of HTML, but possibly leaving HTML attribute values related to the media sources (see [`field_checksum`](https://github.com/ankitects/anki/blob/e5d5d1d4bdecfac326353d154c933e477c4e3eb8/pylib/anki/utils.py#LL155C10-L155C10)).
 
 ### The csum, flags, and data columns
 
@@ -871,7 +877,7 @@ csum        flags  data
 953426987   0
 {% endhighlight %}
 
-The `csum` is some kind of checksum used to detect duplicates.
+The `csum` is the checksum used to detect duplicates that is calculated from the `sfld` value.
 
 ## The cards table
 
@@ -924,10 +930,13 @@ id             nid            did            ord  mod
   - The id of the note that the card is created from
 - did
   - The id of the deck that the card belongs to
+
+All three of these ids are numbers of millisecond since the 1970 epoch.
+
 - ord
   - e.g. a note that creates three cards will create three cards with `oid` 0, 1, and 2
 - mod
-  - last time modified
+  - The last time modified, in seconds since the 1970 epoch
 
 ### The usn, type, queue, and due columns
 
@@ -948,8 +957,11 @@ id             usn  type  queue  due
 
 - usn
 - type
+  - see AnkiDroid document
 - queue
+  - see AnkiDroid document
 - due
+  - see AnkiDroid document
 
 ### The ivl, factor, reps, and lapses columns
 
@@ -969,10 +981,13 @@ id             ivl  factor  reps  lapses
 {% endhighlight %}
 
 - ivl
+  - An interval related to the spaced repetition calculations
 - factor
+  - The ease factor
 - reps
   - The number of times the card has been reviewed
 - lapses
+  - The number of times the card lapsed
 
 ### The left, odue, odid, flags, and data columns
 
@@ -992,12 +1007,14 @@ id             left  odue  odid  flags  data
 {% endraw %}{% endhighlight %}
 
 - left
+  - See AnkiDroid document
 - odue
+  - The original due date of a card in a filtered deck
 - odid
   - The original deck id of a card in a filtered deck
 - flags
   - An integer which represents a flag color such as turquoise
-  - Although I flagged a few cards before the export, there are no flags here
+  - I flagged a few cards before the export but don't see any non-zero values here.
 - data
 
 ## The revlog table
@@ -1193,7 +1210,7 @@ The `collection.anki21` file is a SQLite database. I exported some old cards fro
 
 This shell shows the `sqlite>` prompt to which you can give dot-commands or SQL commands. `.exit` or `.quit` will exit the `sqlite3` interface. `.headers on` and `.mode column` make the output easier to read. `.schema` will output the DDL SQL statements (like `CREATE TABLE`) used to define the database schema. `.dump` dumps all the SQL needed to recreate both the schema and the data. `.read filename` can be used to execute a list of dot-commands and SQL statements from a file. To see a list of all the dot-commands, use `.help`.
 
-### Example
+#### Example
 
 {% highlight console %}
  $ sqlite3 collection.anki21

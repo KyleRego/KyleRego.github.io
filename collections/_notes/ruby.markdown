@@ -3,12 +3,12 @@ layout: post
 title: "Ruby and Rails resources"
 categories: ruby programming
 permalink: /ruby
-emoji: 🍎
+emoji: ❤️
 mathjax: false
 small_title: true
 ---
 
-This page is a collection of links to documentation, articles, libraries, and books related to Ruby and Rails.
+This page is a collection of links to documentation, articles, books, and libraries related to Ruby and Rails.
 
 ## Documentation
 
@@ -26,23 +26,25 @@ This page is a collection of links to documentation, articles, libraries, and bo
 ## Books
 
 - [Design Patterns in Ruby](https://www.amazon.com/Design-Patterns-Ruby-Russ-Olsen/dp/0321490452/ref=sr_1_1?crid=2NPII8XEZBIRI&keywords=design+patterns+ruby&qid=1675739319&s=books&sprefix=design+patterns+ruby%2Cstripbooks%2C100&sr=1-1&ufe=app_do%3Aamzn1.fos.18ed3cb5-28d5-4975-8bc7-93deae8f9840)
-  - Explanations of the 14 (out of the original 23) GoF design patterns that are most useful to Ruby programmers.
+  - Descriptions and Ruby examples of the 14 Gang of Four software design patterns most relevant to Ruby programmers.
 - [Metaprogramming Ruby](https://www.amazon.com/Metaprogramming-Ruby-Program-Like-Pros/dp/1934356476)
   - If you have seen things like `class << self` in your code base and don't know what that means yet, I would read this book.
 - [Practical Object-Oriented Design: An Agile Primer Using Ruby](https://www.amazon.com/Practical-Object-Oriented-Design-Agile-Primer/dp/0134456475/ref=pd_lpo_2?pd_rd_w=fujt0&content-id=amzn1.sym.116f529c-aa4d-4763-b2b6-4d614ec7dc00&pf_rd_p=116f529c-aa4d-4763-b2b6-4d614ec7dc00&pf_rd_r=Z8EPG65DMRBH054G5PM1&pd_rd_wg=XEGYO&pd_rd_r=de83e3d0-a6af-42b1-abbb-3da70ee64f75&pd_rd_i=0134456475&psc=1)
-  - This book changed the way I think about object-oriented programs and their accompanying test suites. The messages between objects, dependencies, and how to test incoming vs. outgoing messages are lessons I have thought about many times since reading this book.
+  - The lessons in this book about messages between objects, dependencies, and how to design tests improved the way I think about object-oriented programming.
 - [Modern Front-End Development for Rails: Hotwire, Stimulus, Turbo, and React (1st Edition)](https://www.amazon.com/Modern-Front-End-Development-Rails-Webpacker/dp/1680507214)
-  - I mainly read this to learn about Hotwire and it exceeded my expectations (it's probably not a bad introduction to React either).
+  - As a primarily backend web developer, I read this to learn about Hotwire and it exceeded my expectations.
 - [Rails Anti-patterns](https://www.amazon.com/Rails-AntiPatterns-Refactoring-Addison-Wesley-Professional/dp/0321604814)
-  - Examples of what not to do in Rails applications. It is a bit old as it focuses on Rails 3, but the common anti-patterns of Rails 3 are anti-patterns in newer versions too.
+  - Examples of what not to do in Rails 3 applications which you should probably try to avoid in newer versions of Rails too.
 - [The RSpec Book](https://www.amazon.com/RSpec-Book-Behaviour-Development-Cucumber/dp/1934356379)
-  - A solid introduction to RSpec, BDD, Cucumber, and more.
+  - A nice introduction to RSpec, BDD, Cucumber, and other tools for testing.
 - [Service-Oriented Design with Ruby and Rails](https://www.amazon.com/Service-Oriented-Design-Rails-Addison-Wesley-Professional/dp/0321659368)
-  - A little old but definitely still worth reading (it's a buy), especially if you are a developer spending your workdays toiling on a Rails monolith and daydreaming about smaller code bases.
+  - This book is a little old but definitely still worth reading, especially if you are a developer spending your workdays toiling on a Rails monolith and daydreaming about smaller code bases.
 
 ## Libraries
 
+- [jekyll](https://github.com/jekyll/jekyll)
 - [rdoc](https://github.com/ruby/rdoc)
+- [rubocop](https://github.com/rubocop/rubocop)
 - [rubyzip](https://github.com/rubyzip/rubyzip)
 - [simplecov](https://github.com/simplecov-ruby/simplecov)
 - [sqlite3](https://github.com/sparklemotion/sqlite3-ruby)
