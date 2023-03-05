@@ -1,9 +1,15 @@
 # KyleRego.github.io
 
-Here are the Markdown files and assets of my Jekyll website found here: [kylerego.github.io](https://kylerego.github.io).
+This repository has the assets of my personal website which can be seen live here: [kylerego.github.io](https://kylerego.github.io).
 
-The original website served at this URI is included as a git submodule and can be seen here: [kylerego.github.io/the-old-website](https://kylerego.github.io/the-old-website).
+The Jekyll theme (a fork of [Swiss](https://github.com/broccolini/swiss)) is in a separate repository: [KyleRego/swiss](https://github.com/KyleRego/swiss).
 
-The AnkiRecord gem documentation is also included as a submodule: [kylerego.github.io/anki_record_docs](https://kylerego.github.io/anki_record_docs).
+The original website served at this URL and AnkiRecord gem API documentation are included as git submodules.
 
-The theme (a fork of [Swiss](https://github.com/broccolini/swiss)) is in a separate repository: [KyleRego/swiss](https://github.com/KyleRego/swiss).
+## git submodule notes
+
+To pull in new commits from the remote submodule repositories:
+
+```
+git submodule update --remote
+```
