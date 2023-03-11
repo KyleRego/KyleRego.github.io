@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Japanese"
+title: "Japanese resources"
 categories: japanese
 permalink: /japanese
 emoji: 🗾
