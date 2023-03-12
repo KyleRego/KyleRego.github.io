@@ -30,6 +30,6 @@ One thing to note is you need to pass assessments to progress to the next topic 
 
 For me, the Launch School course was a worthwhile investment. The topics covered are solid, the amount of practice is more than sufficent, and the assessments guarantee you will not pass without many of the necessary skills to work as a web developer.
 
-There are some topics I might suggest be added to or expanded in the course such as design patterns, object-oriented design theory, and the design of tests. I think it would be good to also cover common branching strategies used by teams and other git topics like squashing commits and merging vs. rebasing. It also could be a cool project to do something that involves implementing an object-relational mapping.
+There are some things I would suggest be expanded on in the course such as object-oriented design theory (and especially the design of tests). It would also be good to describe the common branching strategies used by teams and other Git topics like squashing commits and the differences between merging and rebasing. I also think it would be cool to add a project that involves implementing an object-relational mapping.
 
 If you want to see what they're about for yourself, check out [Launch School's open book shelf](https://launchschool.com/books) which has some short and sweet (and free) books covering topics like the Linux command line, git, HTTP, and regular expressions. My review on this course: it's a buy.

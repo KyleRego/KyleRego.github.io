@@ -15,11 +15,12 @@ small_title: true
 
 # Outline of human nutrition
 
-- **Water**/**Oxygen**
+- **Water**
+- **Oxygen**
 - Proteins
   - **Essential amino acids**
   - Non-essential amino acids
-- Fats (lipids)
+- Fats/lipids
   - Unsaturated fats
     - Monounsaturated fats
     - Polyunsaturated fats
@@ -27,16 +28,17 @@ small_title: true
         - **$$ \alpha $$-Linolenic acid**
       - Omega-6 fatty acids
         - **Linoleic acid**
+    - <span style="font-weight: bold; color: red;">Trans fats</span>
   - Saturated fats
-  - Trans fats
   - Cholesterol
-- **Vitamins**/**Minerals**
-- Fiber
 - Carbohydrates
+- Fiber
+- **Vitamins**
+- **Minerals**
 
 # Sources of essential nutrients
 
-- Essential amino acids - chicken (S), milk (S)
+- Essential amino acids - chicken (S), milk (S), eggs (S)
 - Essential fatty acids
   - $$ \alpha $$-Linolenic acid - flax seeds (S)
   - Linoleic acid - chicken
@@ -77,7 +79,7 @@ small_title: true
     - Copper - potatoes
     - Iodine - iodized salt
 
-CTRL is a meal replacement powder but other ones probably have similar nutritional content.
+CTRL is a meal replacement powder, but I imagine there are other products with similar nutritional content.
 
 # Foods
 
