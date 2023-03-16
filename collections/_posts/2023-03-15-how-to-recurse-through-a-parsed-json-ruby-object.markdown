@@ -8,7 +8,7 @@ emoji: 😎
 mathjax: false
 ---
 
-I had a task today that I figured the easiest thing to do involved iterating through all of the values in some parsed JSON Ruby objects. This problem was very similar to one I solved a long time ago: [counting the number of times a symbol appears in an S-expression](/how-to-design-programs). This post demonstrates the method (after a little refactoring) I wrote today to solve this problem.
+I had to do something today that the easiest way I could think of involved iterating through all of the values in some parsed JSON Ruby objects. This problem was very similar to one I solved a long time ago: [counting the number of times a symbol appears in an S-expression](/how-to-design-programs). This post shows the method (after a little refactoring) I wrote to solve this problem.
 
 *TODO: Is the approach here pretty pointless if a standard library thing I don't know about does the same thing and would be more obvious? Even so, the method here is somewhat interesting and the post is a good review of JSON, recursion, and Ruby closures.*
 
@@ -51,7 +51,7 @@ def recurse_through(arg, &closure)
 end
 ```
 
-That's pretty much it, the following shows it works (I don't know any edge cases yet):
+That's pretty much it. The following shows it works (I don't know any edge cases yet):
 
 ```ruby
 hash1 = {
@@ -136,6 +136,4 @@ puts "There were a total of #{count} values in those 3 objects."
 
 ```
 
-Separating the general logic of recursing through the object from the specific logic of what to do with the values makes this method more generally useful.
-
-Results may vary when it comes to performance. I imagine this could overflow the call stack with a large enough JSON object for example. Hope this helps!
+Results may vary when it comes to performance. I imagine this could overflow the call stack with a large enough JSON object, for example. Hope this helps!

@@ -35,6 +35,7 @@ small_title: true
 - Fiber
 - **Vitamins**
 - **Minerals**
+- **Choline**
 
 # Sources of essential nutrients
 
@@ -79,7 +80,7 @@ small_title: true
     - Copper - potatoes
     - Iodine - iodized salt
 
-CTRL is a meal replacement powder, but I imagine there are other products with similar nutritional content.
+CTRL is a meal replacement powder, but I'm sure there are other products with similar S-tier nutritional content.
 
 # Foods
 
@@ -102,9 +103,31 @@ CTRL is a meal replacement powder, but I imagine there are other products with s
 
 ## Chicken
 
-| Serving           | grams | Calories | Protein (g) |
-| 1 thigh with skin | 135   | 240      | 32          |
-| 1 tenderloin      | 45    | 75       | 14          |
+Chicken thighs are my favorite chicken. They are tasty, cheap, and high in complete protein.
+
+| Serving                                   | grams | Calories | Protein (g) |
+| 1 thigh with skin, cooked, edible portion | 135   | 240      | 32          |
+| 1 tenderloin, cooked, edible portion      | 45    | 75       | 14          |
+
+## Sardines
+
+| Serving     | 100 g   |
+| Calories    | 185     |
+| Protein     | 21 g    |
+| Vitamin B2  | 19% DV  |
+| Vitamin B3  | 28% DV  |
+| Vitamin B5  | 15% DV  |
+| Vitamin B12 | 375% DV |
+| Choline     | 16% DV  |
+| Vitamin D   | 32%     |
+| Calcium     | 24%     |
+| Copper      | 14% DV  |
+| Iron        | 18%     |
+| Magnesium   | 10% DV  |
+| Phosphorus  | 52%     |
+| Selenium    | 58%     |
+| Sodium      | 28%     |
+| Zinc        | 15%     |
 
 ## Peanut Butter
 
@@ -125,7 +148,6 @@ CTRL is a meal replacement powder, but I imagine there are other products with s
 | Vitamin B2 | 16% DV |
 | Vitamin B1 | 12% DV |
 | Potassium  | 12% DV |
-
 
 ## Whole Wheat Bread
 

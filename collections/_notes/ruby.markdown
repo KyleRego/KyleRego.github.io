@@ -26,6 +26,7 @@ This page is a collection of links to documentation, articles, books, and librar
 ## Articles
 
 - [The Case Against Monkey Patching](https://shopify.engineering/the-case-against-monkey-patching)
+- [Feature Tests vs. Integration Tests vs. Unit Tests](https://mixandgo.com/learn/ruby-on-rails/feature-vs-integration-vs-unit-tests)
 
 ## Books
 
