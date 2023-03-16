@@ -51,9 +51,15 @@ Here is my solution (the book encourages writing function signatures and unit te
     [else (count-sl sexp sy) ])))
 {% endhighlight %}
 
-The `count` function completely mirrors the structure of the data type. By the data type definition, an S-expression is one of a number, string, symbol, or list of S-expressions. The function uses a switch statement that checks each of these cases. The first 3 cases are simple. If the S-expression is a number or string, then the number of symbols in it is 0. If it is a symbol, then obviously the number of symbols is 1. If the S-expression is a list, then the work is delegated to the local `count-sl` function.
+The `count` function completely mirrors the structure of the data type. By the data type definition, an S-expression is one of a number, string, symbol, or list of S-expressions. The function uses a switch statement that checks each of these cases.
 
-The `count-sl` function completely mirrors the structure of the `List-of S-expr` data type. The list can be either an empty list or a list with at least one element. If the list is empty, then the count of symbols in it is 0. If it is not empty, then it uses `count` to count the number of S-expressions in the single element, and `count-sl` to count the number of S-expressions in the rest of the list.
+The first 3 cases are simple. If the S-expression is a number or string, then the number of symbols in it is 0. If it is a symbol, then obviously the number of symbols is 1. If the S-expression is a list, then the work is delegated to the local `count-sl` function.
+
+The fourth case, which handles if the S-expression is a list, is delegated to the local `count-sl` function. This local function also completely mirrors the structure of the sub-data type it takes as an argument. The definition of this sub-data type says that the list is either an empty list or a list with at least one S expression. The list with at least one element consists of the first element and a list with the rest of the elements.
+
+The first case here is also very simple. If the list is an empty list, the return value of `count-sl` is 0.
+
+The second case is also pretty simple. It just adds what `count` computes for the first element and what itself computes for the rest of the list.
 
 Yes, that is kind of a lot of recursion. I just think it's really interesting how closely the recursion of the function follows the recursion of the data, but to some this may be obvious.
 
