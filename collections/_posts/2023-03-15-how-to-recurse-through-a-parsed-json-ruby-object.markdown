@@ -8,17 +8,17 @@ emoji: 😎
 mathjax: false
 ---
 
-I had to do something today that the easiest way I could think of involved iterating through all of the values in some parsed JSON Ruby objects. This problem was very similar to one I solved a long time ago: [counting the number of times a symbol appears in an S-expression](/how-to-design-programs). This post shows the method (after a little refactoring) I wrote to solve this problem.
+Today I wanted to recurse through all of the values in some parsed JSON Ruby objects (I had a practical reason for this). I approached the problem in a very similar way as when I solved this problem: [counting the number of times a symbol appears in an S-expression](/how-to-design-programs). This post shows the method (after a little refactoring) I wrote to solve this problem.
 
 *TODO: Is the approach here pretty pointless if a standard library thing I don't know about does the same thing and would be more obvious? Even so, the method here is somewhat interesting and the post is a good review of JSON, recursion, and Ruby closures.*
 
-The first thing is understanding the data type of the argument. `JSON.parse` parses a raw JSON string argument into a Ruby object, so we need to understand JSON, and the return value of `JSON.parse` which will be the argument to our method.
+To understand the method, we need to understand the data type of the argument. The argument is any Ruby object that can be returned by `JSON.parse` passed a valid JSON string.
 
 [JSON](https://en.wikipedia.org/wiki/JSON) is one of the following:
 - an array of values
 - an object of keys and values.
 
-The keys are always strings and the values may be strings, numbers, arrays, objects, or `null`. It is easy to see how each is parsed into Ruby with irb:
+The keys are always strings and the values may be strings, numbers, arrays, objects, or `null`. It is easy to see how `JSON.parse` parses each into Ruby objects with irb:
 
 {% highlight ruby %}
 :001 > require "json"
@@ -37,7 +37,7 @@ The keys are always strings and the values may be strings, numbers, arrays, obje
  => [nil]
 {% endhighlight %}
 
-The method we want to write will take the Ruby object (the parsed JSON object--an array or hash) as argument. However, the values of the array or hash can also be arrays and hashes, which also have values which can be arrays and hashes, and so on. The solution I came up with is straightforward after understanding the recursive data type of the argument (straightforward if you are comfortable with closures in Ruby at least):
+The Ruby object returned by `JSON.parse` is an array or hash with values that can be arrays and hashes that also have values that can be arrays and hashes and so on recursively. The solution is straightforward after understanding this (as long as you agree Ruby closures are straightforward):
 
 ```ruby
 def recurse_through(arg, &closure)
@@ -51,7 +51,7 @@ def recurse_through(arg, &closure)
 end
 ```
 
-That's pretty much it. The following shows it works (I don't know any edge cases yet):
+And that's pretty much it. The following shows some simple uses:
 
 ```ruby
 hash1 = {
