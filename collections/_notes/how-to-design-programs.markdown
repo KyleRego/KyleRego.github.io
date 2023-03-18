@@ -6,11 +6,11 @@ permalink: /how-to-design-programs
 emoji: 😮
 ---
 
-When I was at the beginning of teaching myself programming, I found [teachyourselfcs.com](https://teachyourselfcs.com) which recommended some books for learning programming. The one I ended up reading was [How to Design Programs](https://htdp.org/).
+When I was teaching myself programming, I found [teachyourselfcs.com](https://teachyourselfcs.com), which recommended some books for teaching yourself programming. The one I read was [How to Design Programs](https://htdp.org/).
 
-I think the main idea of this textbook is that the structure of the data informs the structure of the program. Designing or understanding the structure of the data is therefore critical in program design.
+I think the main idea of this textbook is that the structure of the data informs the structure of the program. Designing or understanding the structure of the data is a very important step in program design.
 
-As an example to demonstrate this point, exercise 320 from the book asks you write a function which counts how many times a symbol appears in an S-expression. The definition of the S-expression data type shows that it is recursive:
+As an example to demonstrate this point, consider a function that counts how many times a symbol appears in an S-expression (exercise 320). The data type is recursive by definition:
 
 {% highlight racket %}
 ; An S-expr is one of:
@@ -51,17 +51,7 @@ Here is my solution (the book encourages writing function signatures and unit te
     [else (count-sl sexp sy) ])))
 {% endhighlight %}
 
-The `count` function has a recusrive structure very similar to the data type. According to the data type definition, an S-expression is one of a number, string, symbol, or list of S-expressions. The function uses a switch statement that checks each of these cases.
-
-The first 3 cases are simple. If the S-expression is a number or string, then the number of symbols in it is 0. If it is a symbol, then obviously the number of symbols is 1. If the S-expression is a list, then the work is delegated to the local `count-sl` function.
-
-The `count-sl` function is also very similar to the data type it consumes (the list of S-expressions). The list of S-expressions is an empty list or one S-expression and a list of S-expressions. This function also uses a switch statement to check both cases.
-
-The first case is very simple: if the list is an empty list, then the number of symbols is 0.
-
-The second case is also pretty simple. It just gets how many symbols are in the S-expression with `count` and how many are in the list of S-expressions with itself, and then adds these together.
-
-I just find it interesting how closely the recursion of the function follows the recursion of the data, but to some this may be obvious.
+I find it interesting how similar the recursive logic of the function is to the data type definition (it is essentially identical), but to some this may be obvious.
 
 My review on this book: it's a buy (actually it's free and you can read it at [htdp.org](https://htdp.org/))!
 

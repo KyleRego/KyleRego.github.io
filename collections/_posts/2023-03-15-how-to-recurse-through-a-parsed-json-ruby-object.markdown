@@ -8,9 +8,9 @@ emoji: 😎
 mathjax: false
 ---
 
-Today I wanted to recurse through all of the values in some parsed JSON Ruby objects (I had a practical reason for this). I approached the problem in a very similar way as when I solved this problem: [counting the number of times a symbol appears in an S-expression](/how-to-design-programs). This post shows the method (after a little refactoring) I wrote to solve this problem.
+Today I wanted to recurse through all of the values in some parsed JSON Ruby objects (I had a practical reason for this). I approached the problem in a very similar way as when I solved this other problem: [counting the number of times a symbol appears in an S-expression](/how-to-design-programs). This post shows the method (after a little refactoring) I wrote to solve this problem.
 
-*TODO: Is the approach here pretty pointless if a standard library thing I don't know about does the same thing and would be more obvious? Even so, the method here is somewhat interesting and the post is a good review of JSON, recursion, and Ruby closures.*
+*Is the approach here pretty pointless if a standard library thing I don't know about does the same thing and would be more obvious? Even so, the method here is somewhat interesting and the post is a good review of JSON, recursion, and Ruby closures.*
 
 To understand the method, we need to understand the data type of the argument. The argument is any Ruby object that can be returned by `JSON.parse` passed a valid JSON string.
 
@@ -50,6 +50,8 @@ def recurse_through(arg, &closure)
   end
 end
 ```
+
+*Sidebar on closures: prefixing the last parameter of the method with `&` converts the block argument to that method into a Proc object inside, referenced by that parameter. Prefixing the argument passed into the method with `&` converts the Proc object to a block argument.*
 
 And that's pretty much it. The following shows some simple uses:
 
@@ -136,4 +138,4 @@ puts "There were a total of #{count} values in those 3 objects."
 
 ```
 
-Results may vary when it comes to performance. I imagine this could overflow the call stack with a large enough JSON object, for example. Hope this helps!
+Mileage may vary when it comes to performance. I imagine this could overflow the call stack with a large enough JSON object, for example. Hope this helps!

@@ -1210,8 +1210,6 @@ The `collection.anki21` file is a SQLite database. I exported some old cards fro
 
 This shell shows the `sqlite>` prompt to which you can give dot-commands or SQL commands. `.exit` or `.quit` will exit the `sqlite3` interface. `.headers on` and `.mode column` make the output easier to read. `.schema` will output the DDL SQL statements (like `CREATE TABLE`) used to define the database schema. `.dump` dumps all the SQL needed to recreate both the schema and the data. `.read filename` can be used to execute a list of dot-commands and SQL statements from a file. To see a list of all the dot-commands, use `.help`.
 
-#### Example
-
 {% highlight console %}
  $ sqlite3 collection.anki21
 SQLite version 3.37.2 2022-01-06 13:25:41

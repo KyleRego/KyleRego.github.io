@@ -13,7 +13,7 @@ small_title: true
 - [Illnesses caused by underconsumption and overconsumption](https://en.wikipedia.org/wiki/Human_nutrition#Illnesses_caused_by_underconsumption_and_overconsumption)
 - [Protein leverage hypothesis](https://en.wikipedia.org/wiki/Protein_leverage_hypothesis)
 
-# Outline of human nutrition
+# Human nutrition
 
 - **Water**
 - **Oxygen**
@@ -37,7 +37,7 @@ small_title: true
 - **Minerals**
 - **Choline**
 
-# Sources of essential nutrients
+# Essential nutrients
 
 - Essential amino acids - chicken (S), milk (S), eggs (S)
 - Essential fatty acids
@@ -80,34 +80,22 @@ small_title: true
     - Copper - potatoes
     - Iodine - iodized salt
 
-CTRL is a meal replacement powder, but I'm sure there are other products with similar S-tier nutritional content.
-
 # Foods
 
-## Bananas
-
-| Serving    | 100 g    |
-| Calories   | 90       |
-| Vitamin B6 | 20% DV   |
-| Vitamin C  | 14% DV   |
-| Manganese  | 13%      |
-| Potassium  | 10% DV   |
-
-## Potatoes
-
-| Serving    | 100 g  |
-| Calories   | 80     |
-| Vitamin C  | 32% DV |
-| Vitamin B6 | 15% DV |
-| Potassium  | 12% DV |
-
 ## Chicken
-
-Chicken thighs are my favorite chicken. They are tasty, cheap, and high in complete protein.
 
 | Serving                                   | grams | Calories | Protein (g) |
 | 1 thigh with skin, cooked, edible portion | 135   | 240      | 32          |
 | 1 tenderloin, cooked, edible portion      | 45    | 75       | 14          |
+
+## Bananas and potatoes
+
+| Serving    | 100 g bananas   | 100 g potatoes |
+| Calories   | 90       | 80     |
+| Vitamin B6 | 20% DV   | 15% DV |
+| Vitamin C  | 14% DV   | 32% DV |
+| Manganese  | 13%      |
+| Potassium  | 10% DV   | 12% DV |
 
 ## Sardines
 
