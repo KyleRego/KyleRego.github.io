@@ -32,7 +32,7 @@ This page is a collection of links to resources related to programming and softw
 - [SOLID](https://en.wikipedia.org/wiki/SOLID)
 - [Technical debt](https://en.wikipedia.org/wiki/Technical_debt)
 - [Web service](https://en.wikipedia.org/wiki/Web_service)
-  - A more limited definition of a web service is something that responds to HTTP requests.
+  - The definition here is broader than the definition I use: things that respond to HTTP requests.
 - [World Wide Web](https://en.wikipedia.org/wiki/World_Wide_Web)
 
 ## Books

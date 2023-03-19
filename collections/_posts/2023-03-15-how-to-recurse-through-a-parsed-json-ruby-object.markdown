@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How to recurse through a parsed JSON Ruby object"
+title: "How to recurse through any parsed JSON Ruby object"
 date: 2023-03-15 16:30:00 -0500
 categories: programming ruby
 permalink: /how-to-recurse-through-a-parsed-json-ruby-object
@@ -8,7 +8,7 @@ emoji: 😎
 mathjax: false
 ---
 
-Today I wanted to recurse through all of the values in some parsed JSON Ruby objects (I had a practical reason for this). I approached the problem in a very similar way as when I solved this other problem: [counting the number of times a symbol appears in an S-expression](/how-to-design-programs). This post shows the method (after a little refactoring) I wrote to solve this problem.
+Today I wanted to recurse through all of the values in some parsed JSON Ruby objects (I had a practical reason for this). I approached the problem in a very similar way as when I solved this other problem: [counting the number of times a symbol appears in an S-expression](/how-to-design-programs). This post shows the method (after a little refactoring) I wrote to do this.
 
 *Is the approach here pretty pointless if a standard library thing I don't know about does the same thing and would be more obvious? Even so, the method here is somewhat interesting and the post is a good review of JSON, recursion, and Ruby closures.*
 
@@ -37,7 +37,7 @@ The keys are always strings and the values may be strings, numbers, arrays, obje
  => [nil]
 {% endhighlight %}
 
-The Ruby object returned by `JSON.parse` is an array or hash with values that can be arrays and hashes that also have values that can be arrays and hashes and so on recursively. The solution is straightforward after understanding this (as long as you agree Ruby closures are straightforward):
+The Ruby object returned by `JSON.parse` is an array or hash with values that can be arrays and hashes that also have values that can be arrays and hashes and so on recursively. The solution is straightforward after appreciating the data type:
 
 ```ruby
 def recurse_through(arg, &closure)

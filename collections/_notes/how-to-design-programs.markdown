@@ -8,7 +8,7 @@ emoji: 😮
 
 When I was teaching myself programming, I found [teachyourselfcs.com](https://teachyourselfcs.com), which recommended some books for teaching yourself programming. The one I read was [How to Design Programs](https://htdp.org/).
 
-I think the main idea of this textbook is that the structure of the data informs the structure of the program. Designing or understanding the structure of the data is a very important step in program design.
+I think the main idea of this textbook is the structure of the data informs the structure of the program, and so designing or understanding the data type is fundamental to program design.
 
 As an example to demonstrate this point, consider a function that counts how many times a symbol appears in an S-expression (exercise 320). The data type is recursive by definition:
 
@@ -51,7 +51,7 @@ Here is my solution (the book encourages writing function signatures and unit te
     [else (count-sl sexp sy) ])))
 {% endhighlight %}
 
-I find it interesting how similar the recursive logic of the function is to the data type definition (it is essentially identical), but to some this may be obvious.
+The recursive logic of the function is essentially identical to the recursive structure of the data type. I thought that was really interesting, but to some this may be obvious.
 
 My review on this book: it's a buy (actually it's free and you can read it at [htdp.org](https://htdp.org/))!
 
