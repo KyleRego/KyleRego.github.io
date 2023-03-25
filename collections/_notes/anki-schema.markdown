@@ -7,7 +7,7 @@ emoji: 😋
 mathjax: false
 ---
 
-These are my notes on the Anki database schema and data. They probably will continue to change over time and may include a lot more detail on some parts than others.
+These are my notes on the Anki database schema and data. They probably will continue to change over time and may include a lot more detail on some parts than others. This was mostly part of my initial work developing the [Anki Record](https://github.com/KyleRego/anki_record) gem.
 
 Related:
 - [AnkiDroid document on the Anki schema](https://github.com/ankidroid/Anki-Android/wiki/Database-Structure)
@@ -22,7 +22,7 @@ Unzipping the `*.apkg` file (`unzip 日本語.apkg` with Linux) created by expor
 - `collection.anki21`
 - `media`
 
-The following notes are based on inspection of the data in `collection.anki21.` This is probably the right database to look at for newer versions of Anki.
+The following notes are based on inspection of the data in `collection.anki21.` This is probably the right database to look at for newer versions of Anki. I have noticed that if the include scheduling information checkbox is not checked when exporting a deck from my version (2.1.54), then the zip file only has `collection.anki2` and `media`.
 
 I recently removed most of my ~50,000+ Anki cards. I just backed them up in the cloud because it was causing Anki to take a few seconds to open and close and they were mostly about medicine and anatomy which I don't care about anymore (bye bye "In addition to the \{\{c4::VL::a thalamic nucleus\}\}, the \{\{c1::interposed nuclei::deep cerebellar nuclei\}\} also project to the \{\{c3::magnocellular division::red nucleus division\}\} to influence the \{\{c2::rubrospinal tract::a tract\}\}.").
 
@@ -624,6 +624,93 @@ And this is the real `flds` which are the fields of the note type:
   "description"=>"",
   "media"=>[]}]
 {% endraw %}{% endhighlight %}
+
+### The models tags and vers values
+
+I noticed something about some of the default note types. I wrote this script to look at an exported deck with all 5 default note types and 2 related copies:
+
+{% highlight ruby %}
+# frozen_string_literal: true
+
+# rubocop:disable Metrics/MethodLength
+# rubocop:disable Metrics/AbcSize
+
+require "sqlite3"
+require "json"
+require "zip"
+
+def output_apkg_info(file_path)
+  puts file_path
+  Zip::File.open(file_path) do |zip_file|
+    zip_file.each do |entry|
+      next unless entry.name == "collection.anki21"
+
+      entry.extract
+      anki_21_database = SQLite3::Database.open "collection.anki21"
+
+      col_record = anki_21_database.execute("select * from col").first
+      # decks = col_record[8]
+      # puts "decks:"
+      # p JSON.parse decks
+      # 2.times { puts }
+
+      note_types = col_record[9]
+      puts "note types:"
+      JSON.parse(note_types).each do |nt|
+        p nt
+        2.times { puts }
+      end
+
+      # notes_data = anki_21_database.execute "select * from notes"
+      # puts "notes_data:"
+      # notes_data.each { |nd| p nd }
+      # 2.times { puts }
+
+      # cards_data = anki_21_database.execute "select * from cards"
+      # puts "cards_data:"
+      # cards_data.each { |cd| p cd }
+      # 2.times { puts }
+    end
+  end
+ensure
+  File.delete("collection.anki21")
+end
+
+ARGV.each { |file_path| output_apkg_info(file_path) }
+
+# rubocop:enable Metrics/MethodLength
+# rubocop:enable Metrics/AbcSize
+
+{% endhighlight %}
+
+The output:
+
+{% highlight console %}{% raw %}
+ $ ruby bin/debug.rb test.apkg
+test.apkg
+note types:
+["1676902364661", {"id"=>1676902364661, "name"=>"Basic-bdee9", "type"=>0, "mod"=>0, "usn"=>6014, "sortf"=>0, "did"=>nil, "tmpls"=>[{"name"=>"Card 1", "ord"=>0, "qfmt"=>"{{Front}}", "afmt"=>"{{FrontSide}}\n\n<hr id=answer>\n\n{{Back}}", "bqfmt"=>"", "bafmt"=>"", "did"=>nil, "bfont"=>"", "bsize"=>0}], "flds"=>[{"name"=>"Front", "ord"=>0, "sticky"=>false, "rtl"=>false, "font"=>"Arial", "size"=>20, "description"=>""}, {"name"=>"Back", "ord"=>1, "sticky"=>false, "rtl"=>false, "font"=>"Arial", "size"=>20, "description"=>""}], "css"=>".card {\n    font-family: arial;\n    font-size: 20px;\n    text-align: center;\n    color: black;\n    background-color: white;\n}\n", "latexPre"=>"\\documentclass[12pt]{article}\n\\special{papersize=3in,5in}\n\\usepackage[utf8]{inputenc}\n\\usepackage{amssymb,amsmath}\n\\pagestyle{empty}\n\\setlength{\\parindent}{0in}\n\\begin{document}\n", "latexPost"=>"\\end{document}", "latexsvg"=>false, "req"=>[[0, "any", [0]]], "tags"=>nil, "vers"=>nil}]
+
+
+["1679759032765", {"id"=>1679759032765, "name"=>"Basic (type in the answer)", "type"=>0, "mod"=>1679759032, "usn"=>-1, "sortf"=>0, "did"=>nil, "tmpls"=>[{"name"=>"Card 1", "ord"=>0, "qfmt"=>"{{Front}}\n\n{{type:Back}}", "afmt"=>"{{Front}}\n\n<hr id=answer>\n\n{{type:Back}}", "bqfmt"=>"", "bafmt"=>"", "did"=>nil, "bfont"=>"", "bsize"=>0}], "flds"=>[{"name"=>"Front", "ord"=>0, "sticky"=>false, "rtl"=>false, "font"=>"Arial", "size"=>20, "description"=>""}, {"name"=>"Back", "ord"=>1, "sticky"=>false, "rtl"=>false, "font"=>"Arial", "size"=>20, "description"=>""}], "css"=>".card {\n    font-family: arial;\n    font-size: 20px;\n    text-align: center;\n    color: black;\n    background-color: white;\n}\n", "latexPre"=>"\\documentclass[12pt]{article}\n\\special{papersize=3in,5in}\n\\usepackage[utf8]{inputenc}\n\\usepackage{amssymb,amsmath}\n\\pagestyle{empty}\n\\setlength{\\parindent}{0in}\n\\begin{document}\n", "latexPost"=>"\\end{document}", "latexsvg"=>false, "req"=>[[0, "any", [0, 1]]]}]
+
+
+["1676902364665", {"id"=>1676902364665, "name"=>"Cloze", "type"=>1, "mod"=>0, "usn"=>6014, "sortf"=>0, "did"=>nil, "tmpls"=>[{"name"=>"Cloze", "ord"=>0, "qfmt"=>"{{cloze:Text}}", "afmt"=>"{{cloze:Text}}<br>\n{{Back Extra}}", "bqfmt"=>"", "bafmt"=>"", "did"=>nil, "bfont"=>"", "bsize"=>0}], "flds"=>[{"name"=>"Text", "ord"=>0, "sticky"=>false, "rtl"=>false, "font"=>"Arial", "size"=>20, "description"=>""}, {"name"=>"Back Extra", "ord"=>1, "sticky"=>false, "rtl"=>false, "font"=>"Arial", "size"=>20, "description"=>""}], "css"=>".card {\n    font-family: arial;\n    font-size: 20px;\n    text-align: center;\n    color: black;\n    background-color: white;\n}\n.cloze {\n    font-weight: bold;\n    color: blue;\n}\n.nightMode .cloze {\n    color: lightblue;\n}\n", "latexPre"=>"\\documentclass[12pt]{article}\n\\special{papersize=3in,5in}\n\\usepackage[utf8]{inputenc}\n\\usepackage{amssymb,amsmath}\n\\pagestyle{empty}\n\\setlength{\\parindent}{0in}\n\\begin{document}\n", "latexPost"=>"\\end{document}", "latexsvg"=>false, "req"=>[[0, "any", [0]]], "vers"=>nil, "tags"=>nil}]
+
+
+["1679759046027", {"id"=>1679759046027, "name"=>"Cloze-7f749", "type"=>1, "mod"=>1679759046, "usn"=>-1, "sortf"=>0, "did"=>nil, "tmpls"=>[{"name"=>"Cloze", "ord"=>0, "qfmt"=>"{{cloze:Text}}", "afmt"=>"{{cloze:Text}}<br>\n{{Back Extra}}", "bqfmt"=>"", "bafmt"=>"", "did"=>nil, "bfont"=>"", "bsize"=>0}], "flds"=>[{"name"=>"Text", "ord"=>0, "sticky"=>false, "rtl"=>false, "font"=>"Arial", "size"=>20, "description"=>""}, {"name"=>"Back Extra", "ord"=>1, "sticky"=>false, "rtl"=>false, "font"=>"Arial", "size"=>20, "description"=>""}], "css"=>".card {\n    font-family: arial;\n    font-size: 20px;\n    text-align: center;\n    color: black;\n    background-color: white;\n}\n.cloze {\n    font-weight: bold;\n    color: blue;\n}\n.nightMode .cloze {\n    color: lightblue;\n}\n", "latexPre"=>"\\documentclass[12pt]{article}\n\\special{papersize=3in,5in}\n\\usepackage[utf8]{inputenc}\n\\usepackage{amssymb,amsmath}\n\\pagestyle{empty}\n\\setlength{\\parindent}{0in}\n\\begin{document}\n", "latexPost"=>"\\end{document}", "latexsvg"=>false, "req"=>[[0, "any", [0]]]}]
+
+
+["1679759129726", {"id"=>1679759129726, "name"=>"Basic", "type"=>0, "mod"=>0, "usn"=>0, "sortf"=>0, "did"=>nil, "tmpls"=>[{"name"=>"Card 1", "ord"=>0, "qfmt"=>"{{Front}}", "afmt"=>"{{FrontSide}}\n\n<hr id=answer>\n\n{{Back}}", "bqfmt"=>"", "bafmt"=>"", "did"=>nil, "bfont"=>"", "bsize"=>0}], "flds"=>[{"name"=>"Front", "ord"=>0, "sticky"=>false, "rtl"=>false, "font"=>"Arial", "size"=>20, "description"=>""}, {"name"=>"Back", "ord"=>1, "sticky"=>false, "rtl"=>false, "font"=>"Arial", "size"=>20, "description"=>""}], "css"=>".card {\n    font-family: arial;\n    font-size: 20px;\n    text-align: center;\n    color: black;\n    background-color: white;\n}\n", "latexPre"=>"\\documentclass[12pt]{article}\n\\special{papersize=3in,5in}\n\\usepackage[utf8]{inputenc}\n\\usepackage{amssymb,amsmath}\n\\pagestyle{empty}\n\\setlength{\\parindent}{0in}\n\\begin{document}\n", "latexPost"=>"\\end{document}", "latexsvg"=>false, "req"=>[[0, "any", [0]]]}]
+
+
+["1679759036917", {"id"=>1679759036917, "name"=>"Basic (and reversed card)", "type"=>0, "mod"=>1679759036, "usn"=>-1, "sortf"=>0, "did"=>nil, "tmpls"=>[{"name"=>"Card 1", "ord"=>0, "qfmt"=>"{{Front}}", "afmt"=>"{{FrontSide}}\n\n<hr id=answer>\n\n{{Back}}", "bqfmt"=>"", "bafmt"=>"", "did"=>nil, "bfont"=>"", "bsize"=>0}, {"name"=>"Card 2", "ord"=>1, "qfmt"=>"{{Back}}", "afmt"=>"{{FrontSide}}\n\n<hr id=answer>\n\n{{Front}}", "bqfmt"=>"", "bafmt"=>"", "did"=>nil, "bfont"=>"", "bsize"=>0}], "flds"=>[{"name"=>"Front", "ord"=>0, "sticky"=>false, "rtl"=>false, "font"=>"Arial", "size"=>20, "description"=>""}, {"name"=>"Back", "ord"=>1, "sticky"=>false, "rtl"=>false, "font"=>"Arial", "size"=>20, "description"=>""}], "css"=>".card {\n    font-family: arial;\n    font-size: 20px;\n    text-align: center;\n    color: black;\n    background-color: white;\n}\n", "latexPre"=>"\\documentclass[12pt]{article}\n\\special{papersize=3in,5in}\n\\usepackage[utf8]{inputenc}\n\\usepackage{amssymb,amsmath}\n\\pagestyle{empty}\n\\setlength{\\parindent}{0in}\n\\begin{document}\n", "latexPost"=>"\\end{document}", "latexsvg"=>false, "req"=>[[0, "any", [0]], [1, "any", [1]]]}]
+
+
+["1679759041155", {"id"=>1679759041155, "name"=>"Basic (optional reversed card)", "type"=>0, "mod"=>1679759041, "usn"=>-1, "sortf"=>0, "did"=>nil, "tmpls"=>[{"name"=>"Card 1", "ord"=>0, "qfmt"=>"{{Front}}", "afmt"=>"{{FrontSide}}\n\n<hr id=answer>\n\n{{Back}}", "bqfmt"=>"", "bafmt"=>"", "did"=>nil, "bfont"=>"", "bsize"=>0}, {"name"=>"Card 2", "ord"=>1, "qfmt"=>"{{#Add Reverse}}{{Back}}{{/Add Reverse}}", "afmt"=>"{{FrontSide}}\n\n<hr id=answer>\n\n{{Front}}", "bqfmt"=>"", "bafmt"=>"", "did"=>nil, "bfont"=>"", "bsize"=>0}], "flds"=>[{"name"=>"Front", "ord"=>0, "sticky"=>false, "rtl"=>false, "font"=>"Arial", "size"=>20, "description"=>""}, {"name"=>"Back", "ord"=>1, "sticky"=>false, "rtl"=>false, "font"=>"Arial", "size"=>20, "description"=>""}, {"name"=>"Add Reverse", "ord"=>2, "sticky"=>false, "rtl"=>false, "font"=>"Arial", "size"=>20, "description"=>""}], "css"=>".card {\n    font-family: arial;\n    font-size: 20px;\n    text-align: center;\n    color: black;\n    background-color: white;\n}\n", "latexPre"=>"\\documentclass[12pt]{article}\n\\special{papersize=3in,5in}\n\\usepackage[utf8]{inputenc}\n\\usepackage{amssymb,amsmath}\n\\pagestyle{empty}\n\\setlength{\\parindent}{0in}\n\\begin{document}\n", "latexPost"=>"\\end{document}", "latexsvg"=>false, "req"=>[[0, "any", [0]], [1, "all", [1, 2]]]}]
+{% endraw %}{% endhighlight %}
+
+The thing that I noticed is that the default note types with "Basic" in the name do not have `vers` and `tags` keys in their JSON objects. But the "Basic-bdee9" note type, apparently a different version of the default Basic note type that was imported, does have these.
 
 ### The decks column
 
