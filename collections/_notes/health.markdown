@@ -41,8 +41,7 @@ small_title: true
 
 - Essential amino acids - chicken (S), milk (S), eggs (S)
 - Essential fatty acids
-  - $$ \alpha $$-Linolenic acid - flax seeds (S)
-  - Linoleic acid - chicken
+  - $$ \alpha $$-Linolenic acid - ground flaxseed (S)
 - Vitamins
   - Fat-soluble
     - Vitamin A - CTRL (S), milk (A)
@@ -62,7 +61,6 @@ small_title: true
     - Vitamin C - potatoes (S), CTRL (A), bananas (B)
 - Minerals
   - Macrominerals
-    - Sodium - salt (S)
     - Calcium - milk (S), whole wheat bread (C)
     - Potassium - potatoes (C), bananas (C), milk (C)
     - Phosphorus - milk (B), peanut butter (C)
@@ -75,10 +73,10 @@ small_title: true
     - Selenium - CTRL (S), milk (A)
     - Zinc - CTRL (S), milk (C), peanut butter (C)
     - Iron - peanut butter (C)
-    - Chlorine - salt (S)
-    - Cobalt - Vitamin B12 (S)
     - Copper - potatoes
-    - Iodine - iodized salt
+    - Iodine
+
+Other essential nutrients: water, oxygen, sodium (salt), chlorine (also salt), cobalt (in vitamin B12), linoleic acid (in chicken).
 
 # Foods
 
