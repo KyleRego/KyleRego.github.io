@@ -11,6 +11,7 @@ small_title: true
 This page is a collection of links to resources related to programming and software development.
 
 - [A little bit of slope makes up for a lot of y-intercept](https://gist.github.com/gtallen1187/e83ed02eac6cc8d7e185)
+- [Programming isn't coding](https://occasionallycogent.com/programming_isnt_coding/index.html)
 - [Rich Programmer Food](http://steve-yegge.blogspot.com/2007/06/rich-programmer-food.html)
 - [Signs that you're a bad programmer](http://www.yacoset.com/Home/signs-that-you-re-a-bad-programmer)
 - [Teach yourself CS](https://teachyourselfcs.com/)

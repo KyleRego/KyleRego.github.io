@@ -1322,3 +1322,11 @@ id             tags   sfld
 ## System Catalogs
 
 These are data structures holding system state data. In SQLite, they start with the prefix `sqlite_`. The most important one is the `sqlite_master` table, which has five columns: `type`, `name`, `tbl_name`, `rootpage`, and `sql`. `name` and `tbl_name` will have the same value for tables. The `sql` column usually holds the original SQL statement used to create the object, but it will reflect any modifications, such as if `ALTER TABLE` commands were applied to a table after the original `CREATE TABLE`.
+
+{% include attribution-book.html
+  book_title = "Using SQLite"
+  book_author = "Jay A. Kreibich"
+  book_publisher = "O'Reilly Media"
+  book_isbn = "978-0596521189"
+  book_link = "https://www.amazon.com/Using-SQLite-Small-Reliable-Choose/dp/0596521189"
+%}
