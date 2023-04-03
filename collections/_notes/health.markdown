@@ -84,7 +84,9 @@ Other essential nutrients: water, oxygen, sodium (salt), chlorine (also salt), c
 
 | Serving                                   | grams | Calories | Protein (g) |
 | 1 thigh with skin, cooked, edible portion | 135   | 240      | 32          |
-| 1 tenderloin, cooked, edible portion      | 45    | 75       | 14          |
+| 1 thigh without skin, cooked              | 115   | 210      | 29          |
+| 1 tenderloin, cooked                      | 45    | 75       | 14          |
+| 1 breast, cooked                          | 172   | 285      | 53          |
 
 ## Bananas and potatoes
 
