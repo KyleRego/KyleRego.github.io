@@ -13,6 +13,35 @@ small_title: true
 - [Illnesses caused by underconsumption and overconsumption](https://en.wikipedia.org/wiki/Human_nutrition#Illnesses_caused_by_underconsumption_and_overconsumption)
 - [Protein leverage hypothesis](https://en.wikipedia.org/wiki/Protein_leverage_hypothesis)
 
+<input type="text" id="calculator-input"><label for="calculator-input"> grams</label>
+<br>
+<div id="calculator-output"></div>
+<script>
+  function calculatorOutputTextContent(grams) {
+    numGrams = Number(grams)
+    if (isNaN(numGrams)) {
+      return "Input must be a number";
+    } else {
+      const chickenBreastCalories = numGrams * 285/172;
+      const chickenThighWithSkinCalories = numGrams * 240/135;
+      const chickenThighWithoutSkinCalories = numGrams * 210/115;
+      const chickenTenderloinCalories = numGrams * 75/45;
+      const peanutButterCalories = numGrams * 180/32;
+      result = `Chicken breast - ${chickenBreastCalories.toFixed(1)} calories<br>`;
+      result += `Chicken thighs with skin - ${chickenThighWithSkinCalories.toFixed(1)} calories<br>`;
+      result += `Chicken thighs without skin - ${chickenThighWithoutSkinCalories.toFixed(1)} calories<br>`;
+      result += `Chicken tenderloins - ${chickenTenderloinCalories.toFixed(1)} calories<br>`;
+      result += `Peanut butter - ${peanutButterCalories.toFixed(1)} calories<br>`;
+      return result;
+    }
+  };
+  const calculatorInput = document.querySelector("#calculator-input");
+  const calculatorOutput = document.querySelector("#calculator-output");
+  calculatorInput.addEventListener("input", function() {
+    calculatorOutput.innerHTML = calculatorOutputTextContent(calculatorInput.value);
+  });
+</script>
+
 # Human nutrition
 
 - **Water**
