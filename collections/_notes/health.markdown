@@ -18,20 +18,29 @@ small_title: true
 <div id="calculator-output"></div>
 <script>
   function calculatorOutputTextContent(grams) {
-    numGrams = Number(grams)
+    const numGrams = Number(grams)
     if (isNaN(numGrams)) {
       return "Input must be a number";
     } else {
-      const chickenBreastCalories = numGrams * 285/172;
-      const chickenThighWithSkinCalories = numGrams * 240/135;
-      const chickenThighWithoutSkinCalories = numGrams * 210/115;
-      const chickenTenderloinCalories = numGrams * 75/45;
-      const peanutButterCalories = numGrams * 180/32;
-      result = `Chicken breast - ${chickenBreastCalories.toFixed(1)} calories<br>`;
-      result += `Chicken thighs with skin - ${chickenThighWithSkinCalories.toFixed(1)} calories<br>`;
-      result += `Chicken thighs without skin - ${chickenThighWithoutSkinCalories.toFixed(1)} calories<br>`;
-      result += `Chicken tenderloins - ${chickenTenderloinCalories.toFixed(1)} calories<br>`;
-      result += `Peanut butter - ${peanutButterCalories.toFixed(1)} calories<br>`;
+      const foodNutritionData = {
+        // "Food": [calories per serving, grams per serving, grams protein per serving]
+        "Chicken breast": [285, 172, 53],
+        "Chicken thighs with skin": [240, 135, 32],
+        "Chicken thighs without skin": [210, 115, 29],
+        "Chicken tenderloins": [75, 45, 14],
+        "Peanut butter": [180, 32, 8]
+      };
+      let result = ``;
+      Object.keys(foodNutritionData).forEach(function(food) {
+        const data = foodNutritionData[food];
+        const caloriesPerServing = data[0]
+        const gramsPerServing = data[1]
+        const gramsProteinPerServing = data[2]
+        const servings = numGrams / gramsPerServing;
+        const calories = (servings * caloriesPerServing).toFixed(1);
+        const protein = (servings * gramsProteinPerServing).toFixed(1);
+        result += `${food} - ${calories} calories, ${protein} grams protein<br>`;
+      });
       return result;
     }
   };
