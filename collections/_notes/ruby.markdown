@@ -21,6 +21,10 @@ This page is a collection of links to documentation, articles, books, and librar
 
 ## Articles
 
+- [Better Specs](https://www.betterspecs.org/)
+  - This is a really interesting page on best practices using RSpec to test Rails applications. There are two points that really stood out to me.
+    - The first is that RSpec examples should not use the word "should" (this is enforced by the `rubocop-rspec` RuboCop extension). This is a habit I had for a while after reading The RSpec Book. In the older versions of RSpec, expectations used the keyword `should`. Something I remember from the book was that the tests were expectations of behavior rather than assertions (they describe what should happen, rather than what actually happens). So that's what I was thinking when I wrote should so many times.
+    - The second is about the rule of thumb that every RSpec example should have only one expectation. I think this is a good practice, but I have realized that when testing something that exposes a lot of data manipulation behind a small interface, following this rule and not having to sacrifice performance means using `before(:all)` instead of `let` (to set up the subject of the test once for every example) but [this is not recommended](https://www.rubydoc.info/gems/rspec-core/RSpec%2FCore%2FHooks:before): *It is very tempting to use before(:context) to speed things up, but we recommend that you avoid this as there are a number of gotchas.* Rather than doing that, I think it may be best to break the one expect per example rule for these kinds of integration tests.
 - [The Case Against Monkey Patching](https://shopify.engineering/the-case-against-monkey-patching)
 - [Feature Tests vs. Integration Tests vs. Unit Tests](https://mixandgo.com/learn/ruby-on-rails/feature-vs-integration-vs-unit-tests)
 
@@ -43,12 +47,19 @@ This page is a collection of links to documentation, articles, books, and librar
 
 ## Libraries
 
+- [fuubar](https://jeffkreeftmeijer.com/fuubar-rspec-progress-bar-formatter/)
+  - Adds an option to `rspec` that formats the test output with a progress bar and gives fast feedback.
 - [jekyll](https://github.com/jekyll/jekyll)
   - The static code generator used to build the website you are looking at.
 - [rdoc](https://github.com/ruby/rdoc)
   - Extracts documentation from comments. Also see [sdoc](https://github.com/rails/sdoc).
 - [rubocop](https://github.com/rubocop/rubocop)
   - Code linter for Ruby.
+  - There are extensions to RuboCop that add additional cops to enforce good practices for specific libraries, performance concerns, and other things:
+    - [rubocop-capybara](https://github.com/rubocop/rubocop-capybara)
+    - [rubocop-performance](https://github.com/rubocop/rubocop-performance)
+    - [rubocop-rails](https://github.com/rubocop/rubocop-rails)
+    - [rubocop-rspec](https://github.com/rubocop/rubocop-rspec)
 - [rubyzip](https://github.com/rubyzip/rubyzip)
   - Zip and unzip files with Ruby.
 - [simplecov](https://github.com/simplecov-ruby/simplecov)
