@@ -21,7 +21,9 @@ I had read about ghost methods in Ruby before but this was the first time I used
 ```ruby
 # lib/anki_record/note/note.rb
 def method_missing(method_name, field_content = nil)
-  raise NoMethodError, "##{method_name} is not defined or a ghost method" unless respond_to_missing? method_name
+  unless respond_to_missing? method_name
+    raise NoMethodError, "##{method_name} is not defined or a ghost method"
+  end
 
   method_name = method_name.to_s
   return @field_contents[method_name] unless method_name.end_with?("=")
@@ -61,8 +63,8 @@ This script does not edit the `test.apkg` file. It instead zips a new file with 
 
 ```ruby
 # lib/anki_record/anki_package/anki_package.rb
-def execute_closure_and_zip(object_to_yield, &closure)
-  closure.call(object_to_yield)
+def execute_closure_and_zip(collection, &closure)
+  closure.call(collection)
 rescue StandardError => e
   destroy_temporary_directory
   puts_error_and_standard_message(error: e)
@@ -145,6 +147,22 @@ end
 When I was working on Anki Books later and added the RSpec RuboCop extension, that lead me to realize I should have stuck with the memoized helper methods and just had more than one expect per example.
 
 So I learned some nuance to the one expect per example rule when it comes to RSpec tests which might be considered integration tests.
+
+## RDoc and SDoc
+
+I had lots of opportunities to write API documentation with RDoc (I switched to SDoc later but continued to use RDoc syntax):
+
+```ruby
+module ChecksumHelper
+  ##
+  # Returns the integer representation of the first 8 characters of the SHA-1 digest of the +sfld+ argument
+  def checksum(sfld)
+    Digest::SHA1.hexdigest(sfld)[0...8].to_i(16).to_s
+  end
+end
+```
+
+I like documentation so this was just fun. The SDoc output is really nice: [Anki Record API documentation](https://kylerego.github.io/anki_record_docs).
 
 # Anki Books
 
