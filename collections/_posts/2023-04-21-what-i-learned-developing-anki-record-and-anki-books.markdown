@@ -8,11 +8,7 @@ emoji: 🤔
 mathjax: false
 ---
 
-This is a post on some of the more notable stuff I learned developing [Anki Record](https://github.com/KyleRego/anki_record) and [Anki Books](https://github.com/KyleRego/anki_books). I am still working on both of these so this post is really a draft.
-
-# Anki Record
-
-Anki Record is a Ruby gem providing an API to Anki flashcard deck packages.
+This is a post on some of the more notable stuff I learned developing [Anki Record](https://github.com/KyleRego/anki_record) and [Anki Books](https://github.com/KyleRego/anki_books). I am still working on both of these so this post is really a draft. Anki Record is a Ruby gem providing an API to Anki flashcard deck packages, and Anki Books is a Rails application that eventually will use the Anki Record gem.
 
 ## method_missing and respond_to_missing
 
@@ -75,14 +71,22 @@ end
 
 This method handles the block argument of both `AnkiPackage.new` and `AnkiPackage.open`. It is pretty basic but it did help me appreciate the syntax of changing the block argument to a Proc object as the method is called.
 
-## RSpec integration tests performance
+## RSpec stuff
 
-Anki Record fundamentally has some methods that, even when called only once in a test, needs to have many things checked to test that it happened correctly. For example, saving an updated note to the deck package changes data in many columns across multiple tables due to the Anki data structure.
+I gained a lot of experience with RSpec developing Anki Record due to it being different to design an entire greenfield object-oriented code base in plain Ruby compared to making relatively limited changes in an already enormous Rails monolith. I also learned a lot just by using the RSpec extension to RuboCop.
 
-At first I was following the rule of one expect per example which is generally agreed upon as a good RSpec practice. However, this soon caused the tests to take a long time. Here is a small example (I also learned later when I started using the RSpec RuboCop extension that the examples should not start with the word "should" and should also be followed by a newline):
+### The RSpec RuboCop extension
+
+Early in Anki Books development, I added several RuboCop extensions including the RSpec one. This lead me to realize that I had many habits of breaking best practices such as overly nested example groups, using the word "should" in examples, not having a newline following examples, using the `eq` matcher instead of `be` with a boolean, etc. It lead me to find [this website about RSpec best practices](https://www.betterspecs.org/) which I thought was really helpful.
+
+### Breaking one expect per example (integration tests)
+
+Anki Record has some methods that, even when called only once in a test, need to have many things tested for that one call. For example, saving an updated note to the deck package changes data in many columns across multiple tables due to the Anki data structure.
+
+At first I was following the rule of one expect per example which is generally agreed upon as a good RSpec practice. However, this soon caused the tests to take a long time. Here is a small example:
 
 ```ruby
-# Memoized helper methods and one expect per test makes the tests very expensive.
+# Memoized helper methods and one expect per test make the tests take longer.
 subject(:note_from_existing_record) do
   AnkiRecord::Note.new collection: anki_package.collection, data: note_cards_data
 end
@@ -148,26 +152,23 @@ When I was working on Anki Books later and added the RSpec RuboCop extension, th
 
 So I learned some nuance to the one expect per example rule when it comes to RSpec tests which might be considered integration tests.
 
-## RDoc and SDoc
+## RDoc/SDoc
 
 I had lots of opportunities to write API documentation with RDoc (I switched to SDoc later but continued to use RDoc syntax):
 
 ```ruby
 module ChecksumHelper
   ##
-  # Returns the integer representation of the first 8 characters of the SHA-1 digest of the +sfld+ argument
+  # Returns the integer representation of the first 8
+  # characters of the SHA-1 digest of the +sfld+ argument.
   def checksum(sfld)
     Digest::SHA1.hexdigest(sfld)[0...8].to_i(16).to_s
   end
 end
 ```
 
-I like documentation so this was just fun. The SDoc output is really nice: [Anki Record API documentation](https://kylerego.github.io/anki_record_docs).
-
-# Anki Books
-
-Anki Books is a Rails application that eventually will use the Anki Record gem.
+I like documentation so this was just fun. The Rails-theme SDoc output is really nice: [Anki Record API documentation](https://kylerego.github.io/anki_record_docs).
 
 ## Linux
 
-To have a server running the application in production, I backed up everything on my old college computer and installed Ubuntu on it. This was my first time doing a Linux installation, although I have been using WSL2 every day for a couple years now. Some other stuff that was new to me was setting up the firewall, SSH service, Apache web server, DNS records, and digital certificate.
+To have a server running the Anki Books application in production, I backed up everything on my old college computer and installed Ubuntu on it. This was my first time doing a Linux installation, although I have been using WSL2 every day for a couple years now. Some other stuff that was new to me was setting up the firewall, SSH service, Apache web server, DNS records, and digital certificate.
