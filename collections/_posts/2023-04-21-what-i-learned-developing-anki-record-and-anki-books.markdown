@@ -55,7 +55,7 @@ end
 
 The collection object is yielded to the block argument which is a closure because it carries artifacts that were in scope where it was defined into the method call.
 
-This script does not edit the `test.apkg` file. It instead zips a new file with almost the same name (a timestamp is appended to the name). The new file has the changes due to whatever the block argument does. I designed it in this way because it is necessary to temporarily unzip the original Anki package into multiple SQLite databases and media files while the closure argument is executing, and I wanted to make sure those files would not be left on the system if the script threw an error:
+This script does not edit the `test_1.apkg` file. It instead zips a new file with almost the same name (a timestamp is appended to the name). The new file has the changes due to whatever the block argument does. I designed it in this way because it is necessary to temporarily unzip the original Anki package into multiple SQLite databases and media files while the closure argument is executing, and I wanted to make sure those files would not be left on the system if the script threw an error:
 
 ```ruby
 # lib/anki_record/anki_package/anki_package.rb
@@ -152,6 +152,69 @@ When I was working on Anki Books later and added the RSpec RuboCop extension, th
 
 So I learned some nuance to the one expect per example rule when it comes to RSpec tests which might be considered integration tests.
 
+### Separating specs into more files
+
+At first I tried to make sure there was a one-to-one mapping between the source files and spec files. Then the source files become a little big so I extracted parts of the classes into modules, but I continued to have one spec file per class which made the spec files really big. Then I read in Code Craft that the code should be split into as many files as possible with it making sense. So I started making the specs much more modular.
+
+Instead of these tests being at the end of an 800 LOC spec file, it has its own file:
+
+```ruby
+# spec/anki_record/anki_package/anki_package_zip_spec.rb
+# frozen_string_literal: true
+
+require "./spec/anki_record/support/anki_package_spec_helpers"
+
+RSpec.describe AnkiRecord::AnkiPackage, "#zip" do
+  include_context "anki package helpers"
+
+  let(:new_anki_package_name) { "new_anki_package_file_name" }
+
+  context "with default parameters" do
+    before { anki_package.zip }
+
+    it "deletes the temporary directory" do
+      expect_the_temporary_directory_to_not_exist
+    end
+
+    it "saves one *.apkg file where * is the name argument" do
+      expect(Dir.entries(".").include?("#{new_anki_package_name}.apkg")).to be true
+    end
+  end
+end
+```
+
+In the case of the Rails app, following Rails conventions it looks somewhat different:
+
+```ruby
+# spec/requests/articles/create_spec.rb
+# frozen_string_literal: true
+
+RSpec.describe "Articles" do
+  let(:user) { create(:user) }
+  let(:article) { create(:article) }
+
+  describe "POST /users/:uuid/articles/new" do
+    context "when user is logged in" do
+      before do
+        post login_path, params: { session: { email: user.email, password: TEST_USER_PASSWORD } }
+      end
+
+      it "creates a new article" do
+        expect { post new_article_path(uuid: user.id) }.to change(Article, :count).by 1
+      end
+    end
+
+    context "when not logged in" do
+      it "does not create a new article" do
+        expect { post new_article_path(uuid: user.id) }.not_to change(Article, :count)
+      end
+    end
+  end
+end
+```
+
+After getting some experience doing this (mostly from refactoring larger spec files), I really like this practice.
+
 ## RDoc/SDoc
 
 I had lots of opportunities to write API documentation with RDoc (I switched to SDoc later but continued to use RDoc syntax):
@@ -172,3 +235,7 @@ I like documentation so this was just fun. The Rails-theme SDoc output is really
 ## Linux
 
 To have a server running the Anki Books application in production, I backed up everything on my old college computer and installed Ubuntu on it. This was my first time doing a Linux installation, although I have been using WSL2 every day for a couple years now. Some other stuff that was new to me was setting up the firewall, SSH service, Apache web server, DNS records, and digital certificate.
+
+## Action Text and the Trix editor
+
+I got to use the Action Text part of Rails which uses the Trix editor. This is the article editor of Anki Books. It was pretty easy to get it set up and everything working. It was a bit of work to add subheadings and syntax highlighting features.
