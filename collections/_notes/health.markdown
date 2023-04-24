@@ -77,40 +77,40 @@ small_title: true
 
 # Essential nutrients
 
-- Essential amino acids - chicken (S), milk (S), eggs (S)
+- Essential amino acids - chicken (S), milk (S), eggs (A), sardines (A)
 - Essential fatty acids
   - $$ \alpha $$-Linolenic acid - ground flaxseed (S)
 - Vitamins
   - Fat-soluble
     - Vitamin A - CTRL (S), milk (A)
-    - Vitamin D - CTRL (S), milk (A)
+    - Vitamin D - CTRL (S), sardines (A), milk (A)
     - Vitamin E - CTRL (S), peanut butter (A)
     - Vitamin K - broccoli (A), chicken (B)
   - Water-soluble
     - B vitamins
       - Vitamin B1 (Thiamin) - CTRL (S), peanut butter (C)
-      - Vitamin B2 (Riboflavin) - CTRL (S), milk (A), peanut butter (C)
-      - Vitamin B3 (Niacin) - CTRL (S), peanut butter (S)
+      - Vitamin B2 (Riboflavin) - CTRL (S), milk (A), sardines (B), peanut butter (C)
+      - Vitamin B3 (Niacin) - CTRL (S), peanut butter (S), sardines (A)
       - Vitamin B5 (Pantothenic acid) - CTRL (S), peanut butter (C)
       - Vitamin B6 (Pyridoxine) - CTRL (S), bananas (B), potatoes (B), peanut butter (C), whole wheat bread (C)
       - Vitamin B7 (Biotin) - CTRL (S)
       - Vitamin B9 (Folate) - CTRL (S), peanut butter (C)
-      - Vitamin B12 (Cobalamin) - CTRL (S), milk (S)
+      - Vitamin B12 (Cobalamin) - sardines (S), CTRL (S), milk (S)
     - Vitamin C - potatoes (S), CTRL (A), bananas (B)
 - Minerals
   - Macrominerals
-    - Calcium - milk (S), whole wheat bread (C)
+    - Calcium - milk (S), sardines (A), whole wheat bread (C)
     - Potassium - potatoes (C), bananas (C), milk (C)
-    - Phosphorus - milk (B), peanut butter (C)
+    - Phosphorus - sardines (S), milk (B), peanut butter (C)
     - Magnesium - peanut butter (B), whole wheat bread (B), milk (C)
   - Trace elements
     - Copper - CTRL (S), peanut butter (C)
     - Chromium - CTRL (S)
     - Manganese - CTRL (S), bananas (B)
     - Molybdenum - CTRL (S)
-    - Selenium - CTRL (S), milk (A)
+    - Selenium - sardines (S), CTRL (S), milk (A)
     - Zinc - CTRL (S), milk (C), peanut butter (C)
-    - Iron - peanut butter (C)
+    - Iron - sardines (B), peanut butter (C)
     - Copper - potatoes
     - Iodine
 
@@ -140,20 +140,20 @@ Other essential nutrients: water, oxygen, sodium (salt), chlorine (also salt), c
 | Serving     | 100 g   |
 | Calories    | 185     |
 | Protein     | 21 g    |
-| Vitamin B2  | 19% DV  |
-| Vitamin B3  | 28% DV  |
-| Vitamin B5  | 15% DV  |
 | Vitamin B12 | 375% DV |
+| Selenium    | 58% DV  |
+| Phosphorus  | 52% DV  |
+| Vitamin D   | 32% DV  |
+| Vitamin B3  | 28% DV  |
+| <span style="color: red;">Sodium</span>      | 28% DV  |
+| Calcium     | 24% DV  |
+| Vitamin B2  | 19% DV  |
+| Iron        | 18% DV  |
 | Choline     | 16% DV  |
-| Vitamin D   | 32%     |
-| Calcium     | 24%     |
+| Vitamin B5  | 15% DV  |
+| Zinc        | 15% DV  |
 | Copper      | 14% DV  |
-| Iron        | 18%     |
 | Magnesium   | 10% DV  |
-| Phosphorus  | 52%     |
-| Selenium    | 58%     |
-| Sodium      | 28%     |
-| Zinc        | 15%     |
 
 ## Peanut Butter
 
@@ -165,7 +165,7 @@ Other essential nutrients: water, oxygen, sodium (salt), chlorine (also salt), c
 | Magnesium  | 48% DV |
 | Phosphorus | 48% DV |
 | Vitamin B6 | 34% DV |
-| Sodium     | 29% DV |
+| <span style="color: red;">Sodium</span>     | 29% DV |
 | Zinc       | 27% DV |
 | Vitamin B5 | 22% DV |
 | Vitamin B9 | 22% DV |
