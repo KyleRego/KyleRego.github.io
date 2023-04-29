@@ -12,7 +12,7 @@ This is a post on some of the more notable stuff I learned developing [Anki Reco
 
 ## method_missing and respond_to_missing
 
-I had read about ghost methods in Ruby before but this was the first time I used `method_missing`. In this case, it is what allows setting the values of note fields which can have any name:
+I had read about ghost methods in Ruby before but this was the first time I used `method_missing`. In Anki Record, it is what allows setting the values of a note's note fields, which can have any name because the note's note type is allowed to have arbitrary note fields which can have any name:
 
 ```ruby
 # lib/anki_record/note/note.rb
@@ -39,11 +39,11 @@ end
 
 `method_missing` is a method of `BasicObject` in Ruby that the `Object` class inherits. When a method is called on an object that does not implement the method, `BasicObject#method_missing` is called which throws the usual exception. However, if a different class in the method lookup path has defined `method_missing`, that `method_missing` will be called instead.
 
-The note types can have arbitrarily named fields. `Note#method_missing` here is simply checking if the method call is a getter or setter of the value of one of the note's note type's fields and then getting or setting the field value appropriately. Defining `respond_to_missing?` separately also has the benefit of allowing the note objects to return `true` when asked if they `respond_to?` the ghost methods.
+`Note#method_missing` here is simply checking if the method call is a getter or setter of the value of one of the note's note type's fields and then getting or setting the field value appropriately. Defining `respond_to_missing?` separately also has the benefit of allowing the note objects to return `true` when asked if they `respond_to?` the ghost methods.
 
 ## Closures
 
-I also had an opportunity to do some slightly less non-trivial things with closures. I had to think about them a bit to allow the library to support writing scripts like this:
+I also had an opportunity to do some slightly non-trivial things with closures in Anki Record. I had to think about them a bit to allow the library to support writing scripts like this:
 
 ```ruby
 AnkiRecord::AnkiPackage.open(path: "./test_1.apkg") do |collection|
@@ -53,9 +53,9 @@ AnkiRecord::AnkiPackage.open(path: "./test_1.apkg") do |collection|
 end
 ```
 
-The collection object is yielded to the block argument which is a closure because it carries artifacts that were in scope where it was defined into the method call.
+The collection object which represents the data in the database is yielded to the block argument which is a closure because it carries artifacts that were in scope where it was defined into the method call.
 
-This script does not edit the `test_1.apkg` file. It instead zips a new file with almost the same name (a timestamp is appended to the name). The new file has the changes due to whatever the block argument does. I designed it in this way because it is necessary to temporarily unzip the original Anki package into multiple SQLite databases and media files while the closure argument is executing, and I wanted to make sure those files would not be left on the system if the script threw an error:
+This script does not edit the `test_1.apkg` file. It zips a new file with almost the same name (a timestamp is appended to the name). The new file has the changes due to whatever happens to the collection inside the block argument. I designed it in this way because it is necessary to temporarily unzip the original Anki package file into multiple SQLite databases and media files. This ensures that the files are cleaned up even if the script throws an error:
 
 ```ruby
 # lib/anki_record/anki_package/anki_package.rb
@@ -154,9 +154,9 @@ So I learned some nuance to the one expect per example rule when it comes to RSp
 
 ### Separating specs into more files
 
-At first I tried to make sure there was a one-to-one mapping between the source files and spec files. Then the source files become a little big so I extracted parts of the classes into modules, but I continued to have one spec file per class which made the spec files really big. Then I read in Code Craft that the code should be split into as many files as possible with it making sense. So I started making the specs much more modular.
+At first I tried to make sure there was a one-to-one mapping between the source files and spec files. Then the source files become a little big so I extracted parts of the classes into modules, but I continued to have one spec file per class which made the spec files really big. Then I read in [Code Craft](https://www.amazon.com/Code-Craft-Practice-Writing-Excellent/dp/1593271190) that the code should be split into as many files as possible with it making sense. So I started making the specs much more modular.
 
-Instead of these tests being at the end of an 800 LOC spec file, it has its own file:
+Instead of these tests being at the end of an 800 LoC spec file, it has its own file:
 
 ```ruby
 # spec/anki_record/anki_package/anki_package_zip_spec.rb
