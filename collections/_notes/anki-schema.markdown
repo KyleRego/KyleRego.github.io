@@ -887,8 +887,10 @@ id             guid        mid            mod         usn
 - id
   - The primary key id of the note record
   - It is the number of milliseconds since the 1970 epoch at the time the note was created
+  - It does not seem to be involved in matching a note being imported to a note that already exists.
 - guid
   - A globally unique id
+  - After doing some experiments, I am sure that the guid is used in matching a note being imported to a note that already exists.
 - mid
   - The id of the note's model (note type)
 - mod
