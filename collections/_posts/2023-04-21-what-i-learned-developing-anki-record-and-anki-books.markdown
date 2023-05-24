@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "What I learned developing Anki Record and Anki Books"
+title: "What I learned developing Anki Books"
 date: 2023-04-21 12:15:00 -0500
 categories: programming ruby rails
 permalink: /what-i-learned-developing-anki-record-and-anki-books
@@ -8,7 +8,7 @@ emoji: 🤔
 mathjax: false
 ---
 
-This is a post on some of the more notable stuff I learned developing [Anki Record](https://github.com/KyleRego/anki_record) and [Anki Books](https://github.com/KyleRego/anki_books). I am still working on both of these so this post is really a draft. Anki Record is a Ruby gem providing an API to Anki flashcard deck packages, and Anki Books is a Rails application that eventually will use the Anki Record gem.
+This is a post on some stuff I learned (or just wanted to make a note of) developing [Anki Books](https://github.com/KyleRego/anki_books) which includes the [Anki Record](https://github.com/KyleRego/anki_record) gem (this isolates all of the logic of handling the Anki SQLite databases to a gem). I am still working on both of these so this post is really a draft.
 
 ## method_missing and respond_to_missing
 
@@ -43,7 +43,7 @@ end
 
 ## Closures
 
-I also had an opportunity to do some slightly non-trivial things with closures in Anki Record. I had to think about them a bit to allow the library to support writing scripts like this:
+I also had an opportunity to do some slightly non-trivial things with closures in Anki Record. TODO: Updates to these notes as a lot of this code has changed. I had to think about them a bit to allow the library to support writing scripts like this:
 
 ```ruby
 AnkiRecord::AnkiPackage.open(path: "./test_1.apkg") do |collection|
@@ -73,7 +73,7 @@ This method handles the block argument of both `AnkiPackage.new` and `AnkiPackag
 
 ## RSpec stuff
 
-I gained a lot of experience with RSpec developing Anki Record due to it being different to design an entire greenfield object-oriented code base in plain Ruby compared to making relatively limited changes in an already enormous Rails monolith. I also learned a lot just by using the RSpec extension to RuboCop.
+I learned a lot about RSpec developing this project. It is a lot different to design a new project where you write all the specs from scratch compared to adding to a vast, already enormous Rails monolith. I also used Rubocop with the RSpec extension instead of just standardrb which brought a lot of new things to my attention.
 
 ### The RSpec RuboCop extension
 
@@ -215,6 +215,10 @@ end
 
 After getting some experience doing this (mostly from refactoring larger spec files), I really like this practice.
 
+## The rspec-performance extension
+
+I learned some stuff using this extension, such as to always use `tr` instead of `gsub` when possible for fast code reasons.
+
 ## RDoc/SDoc
 
 I had lots of opportunities to write API documentation with RDoc (I switched to SDoc later but continued to use RDoc syntax):
@@ -239,3 +243,27 @@ To have a server running the Anki Books application in production, I backed up e
 ## Action Text and the Trix editor
 
 I got to use the Action Text part of Rails which uses the Trix editor. This is the article editor of Anki Books. It was pretty easy to get it set up and everything working. It was a bit of work to add subheadings and syntax highlighting features.
+
+## pg_dump
+
+I started using the `pg_dump` Postgres command to make backups of the database.
+
+## Tailwind
+
+I got some experience using Tailwind in a Rails app, and did this thing where you can define new CSS classes out of the existing Tailwind classes:
+
+```css
+@layer components {
+  .trix-content a {
+    @apply text-blue-500;
+  }
+
+  .trix-content a:hover {
+    @apply text-blue-600; 
+  }
+}
+```
+
+## HTML drag and drop API
+
+I got some experience using the HTML drag and drop API for reordering the article's notes which also involved Stimulus. TODO: More notes on this, possibly after refactoring.
