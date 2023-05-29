@@ -8,7 +8,7 @@ emoji: 🤔
 mathjax: false
 ---
 
-This is a post on some stuff I learned (or just wanted to make a note of) developing [Anki Books](https://github.com/KyleRego/anki_books) which includes the [Anki Record](https://github.com/KyleRego/anki_record) gem (this isolates all of the logic of handling the Anki SQLite databases to a gem). I am still working on both of these so this post is really a draft.
+This is a post on some stuff I learned (or just wanted to make a note of) developing [Anki Books](https://github.com/KyleRego/anki_books) which includes the [Anki Record](https://github.com/KyleRego/anki_record) gem (this isolates all of the logic of handling the Anki SQLite databases to a gem).
 
 ## method_missing and respond_to_missing
 
