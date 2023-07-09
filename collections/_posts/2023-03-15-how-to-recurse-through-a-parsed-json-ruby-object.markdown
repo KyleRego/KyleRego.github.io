@@ -39,7 +39,7 @@ The keys are always strings and the values may be strings, numbers, arrays, obje
 
 The Ruby object returned by `JSON.parse` is an array or hash with values that can be arrays and hashes that also have values that can be arrays and hashes and so on recursively. The solution is straightforward after appreciating the data type:
 
-```ruby
+{% highlight ruby %}
 def recurse_through(arg, &closure)
   if arg.instance_of?(Hash)
     arg.each_value { |value| recurse_through(value, &closure) }
@@ -49,13 +49,13 @@ def recurse_through(arg, &closure)
     yield arg
   end
 end
-```
+{% endhighlight %}
 
 *Sidebar on closures: prefixing the last parameter of the method with `&` converts the block argument to that method into a Proc object inside, referenced by that parameter. Prefixing the argument passed into the method with `&` converts the Proc object to a block argument.*
 
 And that's pretty much it. The following shows some simple uses:
 
-```ruby
+{% highlight ruby %}
 hash1 = {
   hello: "world_1",
   world: {
@@ -136,6 +136,6 @@ recurse_through([hash1, hash2, array]) { |_| count += 1 }
 puts "There were a total of #{count} values in those 3 objects."
 # There were a total of 18 values in those 3 objects.
 
-```
+{% endhighlight %}
 
 Mileage may vary when it comes to performance. I imagine this could overflow the call stack with a large enough JSON object, for example. Hope this helps!

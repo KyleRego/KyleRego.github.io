@@ -10,7 +10,7 @@ mathjax: false
 
 I am going to explain the source code of two Anki add-ons that I wrote while I was in medical school, in the hopes that it will be useful to someone new to programming who wants to develop Anki add-ons. Before the examples, I also want to provide some background on what you may need to study to write Anki add-ons in general.
 
-It should be noted that these examples are not meant to show Python best practices or even good software development practices (despite a few comments on general program design). They are largely only intended to provide some examples of Anki add-on code with additional context for non-programmers to learn from.
+It should be noted that these examples are not meant to show Python best practices or even good coding practices (despite a few comments on general program design). They are largely only intended to provide some examples of Anki add-on code with additional context for non-programmers to learn from.
 
 This post condenses the content of three separate posts on this topic. The exact content of the three original posts can be seen in [the commit which deleted them](https://github.com/KyleRego/KyleRego.github.io/commit/f3e5b60c401b72c124ffd693e3dd707b47fd609e).
 
@@ -176,7 +176,7 @@ action.triggered.connect(anki_magnifying_glass_mouse_cursor.handle_zoom_mouse_sh
 mw.form.menuTools.addAction(action)
 {% endhighlight %}
 
-There are two examples here showing how to instantiate an object from a class in Python. `anki_magnifying_glass_mouse_cursor` is an instance of `AnkiMagnifyingGlassMouseCursor`, and `action` is an instance of `QAction` which we get from PyQt/Qt. The reason why `action` is instantiated with some arguments whereas the other object is not has to do with the constructor methods. 
+There are two examples here showing how to instantiate an object from a class in Python. `anki_magnifying_glass_mouse_cursor` is an instance of `AnkiMagnifyingGlassMouseCursor`, and `action` is an instance of `QAction` which we get from PyQt/Qt. The reason why `action` is instantiated with some arguments and the other object is not has to do with the constructor methods. 
 
 The constructor of a class is a method that is called when an object is instantiated from the class, and its purpose is just to set up the object. In Python, the name of the constructor method is `__init__`. If the constructor takes no arguments, then the object will be instantiated with no arguments.
 
@@ -340,7 +340,7 @@ The second add-on we will look at is the [Anki enumeration tool](https://ankiweb
 
 ![A review of the Anki enumeration tool](/assets/anki-add-on-case-studies/anki-enumeration-tool-review.png)
 
-It will hopefully at least provide a good learning example.
+I think it is a good example for this post anyway.
 
 {% highlight Python %}{% raw %}
 from aqt import mw
