@@ -71,7 +71,7 @@ This is the first note:
 
 ![An example of one of the code notes](assets/putting-code-in-anki-with-code/source_code_in_anki1.png)
 
-Here is the beginning of the note it created for the `ApplicationController`:
+Here is part of a longer note:
 
 ![A second example](assets/putting-code-in-anki-with-code/source_code_in_anki2.png)
 
