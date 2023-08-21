@@ -76,3 +76,120 @@ Here is part of a longer note:
 ![A second example](assets/putting-code-in-anki-with-code/source_code_in_anki2.png)
 
 I can tell there are some issues with this first approach (like how to update the notes when the source changes). This should be fine for an initial experiment though. If this idea is a useful thing to do, I'll work out a better way. It may also be a good use case to help me figure out the direction for the Anki Record gem's API.
+
+# 8/21/2023 Update
+
+There have been some good things from trying this out. It motivated me to add some helpful methods to the Anki Record gem (resulting in version 0.4.1) and change the way that the notes table `mod` (last modified time) is handled to make it easier to update an existing Anki package in the correct way with the gem. I did realize at some point that since Anki can import simpler formats than .apkg files (like CSVs), you could probably import code into Anki in a more straightforward way than creating the SQLite databases with code. But obviously this is a little more fun.
+
+The other benefit is that it gets looking at the code more into my usual routine. I have made several refactors after noticing or being reminded of areas that could be improved in the middle of doing Anki reviews. At times I felt silly reading the code in Anki when I was already working on it in a different area and doing Anki while running the automated tests. This is with not doing as much with Anki and these projects as I expected to anyway due to circumstances (randomly entering into .NET world), so the little benefits are a win in my opinion.
+
+These are the scripts to create and update the Anki package in Anki Books, which now use the 0.4.1 version of Anki Record:
+
+{% highlight ruby %}{% raw %}
+# frozen_string_literal: true
+
+# rubocop:disable Naming/ConstantName
+Package_name = "anki_books_source_code_deck"
+Deck_name = "Anki Books source"
+Note_type_name = "Anki Books source type"
+File_extensions_to_keep = [".rb", ".js"].freeze
+Patterns_to_exclude_from = ["db/migrate", "public/assets"].freeze
+# rubocop:enable Naming/ConstantName
+
+def setup_note_type(anki21_database:)
+  note_type = AnkiRecord::NoteType.new(name: Note_type_name, anki21_database:)
+
+  AnkiRecord::NoteField.new(name: "Code", note_type:)
+  AnkiRecord::NoteField.new(name: "File", note_type:)
+
+  card_template = AnkiRecord::CardTemplate.new(name: "Template 1", note_type:)
+  card_template.question_format = "{{Code}}"
+  card_template.answer_format = "{{Code}}<hr id=answer>{{File}}"
+
+  css = <<~CSS
+    .card {
+      font-family: monospace;
+      font-size: 20px;
+      text-align: left;
+      color: black;
+      background-color: white;
+    }
+  CSS
+  note_type.css = css
+  note_type.save
+  note_type
+end
+
+def file_should_be_skipped?(file:)
+  return true unless File_extensions_to_keep.any? { |ext| file.end_with?(ext) }
+
+  return true if Patterns_to_exclude_from.any? { |pat| file.include?(pat) }
+
+  false
+end
+
+{% endraw %}{% endhighlight %}
+
+The `setup_note_type` method is pretty unnecessary since the note type already exists in the database after it's created, but since it is the same it does import into Anki as the same note type. That will probably go the next time I visit these.
+
+{% highlight ruby %}{% raw %}
+# frozen_string_literal: true
+
+require "anki_record"
+require_relative "source_deck_shared"
+
+AnkiRecord::AnkiPackage.create(name: Package_name) do |anki21_database|
+  deck = AnkiRecord::Deck.new(name: Deck_name, anki21_database:)
+  deck.save
+
+  note_type = setup_note_type(anki21_database:)
+
+  Dir.glob("**/*") do |file|
+    next if file_should_be_skipped?(file:)
+
+    file = File.open(file)
+
+    contents = file.read
+    note_code_content = "<pre><code>#{contents}</code></pre>"
+
+    note = AnkiRecord::Note.new(note_type:, deck:)
+    note.file = file.path
+    note.code = note_code_content
+    note.save
+
+    file.close
+  end
+end
+
+{% endraw %}{% endhighlight %}
+
+{% highlight ruby %}{% raw %}
+# frozen_string_literal: true
+
+require "anki_record"
+require_relative "source_deck_shared"
+
+AnkiRecord::AnkiPackage.update(path: "./#{Package_name}.apkg") do |anki21_database|
+  deck = anki21_database.find_deck_by(name: Deck_name)
+  note_type = setup_note_type(anki21_database:)
+
+  Dir.glob("**/*") do |file|
+    next if file_should_be_skipped?(file:)
+
+    file = File.open(file)
+
+    contents = file.read
+    note_code_content = "<pre><code>#{contents}</code></pre>"
+    file_path = file.path
+
+    note = anki21_database.find_notes_by_exact_text_match(text: file_path).first
+    note ||= AnkiRecord::Note.new(note_type:, deck:)
+    note.file = file_path
+    note.code = note_code_content
+    note.save
+
+    file.close
+  end
+end
+
+{% endraw %}{% endhighlight %}
