@@ -193,3 +193,7 @@ AnkiRecord::AnkiPackage.update(path: "./#{Package_name}.apkg") do |anki21_databa
 end
 
 {% endraw %}{% endhighlight %}
+
+# 10/11/2023 Update
+
+I have been pretty inconsistently studying the code cards and adding at most 1 per day for some time now. It is definitely somewhat useful but what I found is it is not an easy habit to keep up. I think the returns on the investment would be better if I limited the code to study to be much more specific to design needs. With such a large number of code notes, the previous approach would never work for doing this with multiple code bases as the same time. It is also inconvenient to keep the cards updated as the code changes with the current gem API. For now I am stopping this but I think the next iteration will be to limit the cards created to a small number of files that are important and maybe set up a Git hook to update the deck at commit time. Before that it may be good to do some refactoring of Anki Record and extending the API.
