@@ -42,3 +42,15 @@ volumes:
 ```
 
 I think this is just using a named volume to effectively exclude the `tmp` directory from being mounted in the first volume. Using `docker exec -it <container_name> bash` to get a Bash shell inside the container, `ls -lA tmp` displayed the usual files in `tmp` owned by root. Exiting the container and inspecting the same files, none were owned by root. This is good enough for me right now, but I am just exploring Docker and not sure this is a great solution.
+
+## 11/26/2023 update
+
+A couple of weeks ago I reinstalled Docker Desktop to check that my app could still correctly run in Docker containers, and I did some refactoring. One thing I realized is  the `.dockerignore` file can be used to make certain files be ignored and not copied into the filesystem of the image. So a much better solution than creating a named volume would be that. This ended up being my `.dockerignore`:
+
+```
+.git
+.gitignore
+
+log/*
+tmp/*
+```
