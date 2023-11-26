@@ -35,3 +35,15 @@ resetting corrupt _global
 ```
 
 But when I closed Anki and invoked `./run` a second time, I didn't see the stack trace again.
+
+## 11/26/2023 update
+
+A couple of weeks ago I reinstalled Docker Desktop to check that my app could still correctly run in Docker containers, and I did some refactoring. One thing I realized is  the `.dockerignore` file can be used to make certain files be ignored and not copied into the filesystem of the image. So a much better solution than creating a named volume would be that. This ended up being my `.dockerignore`:
+
+```
+.git
+.gitignore
+
+log/*
+tmp/*
+```
