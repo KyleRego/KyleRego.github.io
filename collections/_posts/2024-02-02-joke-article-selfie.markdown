@@ -10,6 +10,6 @@ mathjax: true
 
 I just felt like taking a picture today:
 
-![Importing the notes into Anki](assets/selfie_one.png)
+![A selfie taken after my last day at my remote job](assets/selfie_one.png)
 
-I like the GNU Affero GPL version 3. MIT license as well. I am gonna be an open source developer and work on free software. I don't think it's an occupation with much hazards.
+I like the GNU Affero GPL version 3. MIT license as well. I am going to be an open source developer and work on free software for a while while I relocate (and travel and have fun)
