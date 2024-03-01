@@ -5,7 +5,7 @@ date: 2024-02-02 10:15:00 -0500
 categories: blogging
 permalink: /joke-article-selfie-1
 emoji: 😋
-mathjax: true
+mathjax: false
 ---
 
 I just felt like taking a picture today:
