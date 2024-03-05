@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  {% include head.html %}
+
+  <body class="home-colorful-background">
+
+    <div>
+
+      <header>
+
+        <div class="clearfix border-bottom-thick header-border">
+          <ul class="list-reset right py-1 header-text font-smoothing">
+            <li class="inline-block">
+              <a class="align-middle link-primary mr-2" href="https://github.com/{{ site.github_username }}#user-profile-frame">About</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="container mx-auto px-2 mb-2 clearfix header-text">
+          <h1 class="h0 inline-block col-9 sm-width-full header-title">{{ site.title }}</h1>
+
+          <div class="clearfix py-1">
+            <div class="col-4 sm-width-full left border-top-thin">
+              <div class="inline-block mt-3 mr-1">
+                {% include svg-github.html %}
+              </div>
+              <div class="inline-block mt-3 mr-1">
+                {% include svg-linkedin.html %}
+              </div>
+              <div class="inline-block mt-3 mr-1">
+                <a href="mailto:{{ site.email }}" title="Email me😃">{% include svg-email.html %}</a>
+              </div>
+              <div class="border-left-thin inline-block mt-2 pt-1 pl-1">
+                <a href="assets/resume.pdf" title="Resume">{% include svg-resume.html %}</a>
+              </div>
+              <div class="inline-block mt-2 pt-1 pl-1">
+                <a href="#notes" title="Notes">{% include svg-sitemap.html %}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="container px-2 mx-auto prose mt-2">
+        <p>
+          Check out my side project: <a href="https://ankibooks.io">Anki Books</a>, a note-taking and flashcards app that creates Anki deck packages for download.
+        </p>
+      </div>
+      
+      <div class="container mx-auto px-2 py-4">
+
+        {% for post in site.posts %}
+          {% include post-block.html %}
+        {% endfor %}
+
+        <h2 id="notes" class="lh-condensed col-9 mt-4">
+          Notes
+        </h2>
+        <div class="prose sm-width-full">
+        {% include list-notes.html %}
+        </div>
+
+        <h2 class="mt-1">
+          Miscellaneous
+        </h2>
+        <div class="prose sm-width-full">
+          <ul>
+            <li class="mb-1 prose mt-0"><a class="link-primary" href="/anki_record_docs" title="/anki_record_docs">Anki Record API documentation</a></li>
+            <li class="mb-1 prose mt-0"><a class="link-primary" href="/the-old-website" title="The old website">The old website</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    {% include footer.html %}
+
+  </body>
+
+</html>

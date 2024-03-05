@@ -1,0 +1,6 @@
+<ol class="top-nav-list">
+  {% assign all = site.documents | sort: "title" %}
+  {% for post in all %}
+    {% include nav-block.html %}
+  {% endfor %}
+</ol>

@@ -1,0 +1,6 @@
+<ul>
+  {% assign notes = site.notes | sort: "title" %}
+  {% for post in notes %}
+    {% include note-block.html %}
+  {% endfor %}
+</ul>

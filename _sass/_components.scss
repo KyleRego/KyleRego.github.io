@@ -1,0 +1,143 @@
+// Styling markdown output
+
+// Code formatting
+pre {
+  border-left: $spacer-1 solid $color-border;
+  margin: 0 0 $spacer-3 0;
+  padding-left: 16px;
+  width: 100%;
+  overflow: scroll;
+  max-height: 75vh;
+
+  @media (min-width: $breakpoint-lg) {
+    white-space: pre-wrap ;
+    overflow: visible;
+    max-height: none;
+  }
+}
+
+code {
+  color: $color-code;
+  font-size: $body-font-size;
+  padding: 1px 0px;
+}
+
+div.prose > p, div.prose > ul {
+  margin-top: 1em;
+  margin-bottom: 1em;
+
+  @media (min-width: 52em) {
+    width: (10 / 12 * 100%); 
+  }
+}
+
+.prose {
+
+h1, h2, h3, h4, h5, h6 {
+  width: 100%;
+  word-wrap: break-word;
+
+  @media (min-width: $breakpoint-lg) {
+    width: (10 / 12 * 100%);
+  }
+}
+
+a {
+  text-decoration: underline dotted;
+
+  &:hover {
+    text-decoration: underline;
+    color: $blue;
+  }
+}
+
+cite {
+  font-style: normal;
+}
+
+p, ol, ul {
+  font-size: $prose-font-size;
+  width: 100%;
+}
+
+ul, ol {
+  padding-left: 40px;
+}
+
+li {
+  margin-bottom: 0;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  margin: auto;
+}
+
+blockquote {
+  padding-left: 20px;
+  border-left: $spacer-1 solid $color-border;
+  font-style: italic;
+
+  @media (min-width: $breakpoint-lg) {
+    padding-left: $spacer-3;
+  }
+
+}
+
+hr {
+  color: $color-body-text;
+  border-style: solid;
+  border-width: thin;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+dt {
+  font-weight: bold;
+  font-style: italic;
+  line-height: 1.25;
+}
+
+dd {
+  font-style: italic;
+  margin-bottom: 0.5em;
+}
+
+// Markdown tables
+table {
+  border-collapse: collapse;
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  margin: auto;
+  margin-bottom: 1.5em;
+  overflow: auto;
+  // For Firefox to horizontally scroll wider tables.
+  word-break: normal;
+  word-break: keep-all;
+
+  th {
+    font-weight: bold;
+    text-align: left;
+  }
+
+  th,
+  td {
+    padding: $spacer-2 $spacer-3 $spacer-2 2px;
+    border-top: 1px solid $color-body-text;
+    border-bottom: 1px solid $color-body-text;
+  }
+
+  tr {
+    background-color: #fff;
+    border-top: 1px solid $color-body-text;
+  }
+
+  tr th {
+    border-top: 2px solid $color-body-text;
+    border-bottom: 2px solid $color-body-text;
+  }
+}
+
+}

@@ -1,0 +1,48 @@
+<script>
+  const hideSVG = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\" fill=\"currentColor\" class=\"bi bi-arrows-collapse\" viewBox=\"0 0 16 16\"><path fill-rule=\"evenodd\" d=\"M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8Zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0Zm-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793Z\"/></svg>"
+  const showSVG = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\" fill=\"currentColor\" class=\"bi bi-arrows-expand\" viewBox=\"0 0 16 16\"><path fill-rule=\"evenodd\" d=\"M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8ZM7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2ZM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10Z\"/></svg>"
+  const hiddenTitle = "Expand figure";
+  const shownTitle = "Collapse figure";
+  const setupFigureCollapsing = function() {
+    const figures = document.querySelectorAll("figure");
+    figures.forEach( (figure, index) => {
+      const figureHeight = figure.offsetHeight;
+      if (figureHeight > 750) {
+        const extraDiv = document.createElement("div");
+        extraDiv.classList.add("some-extra-space");
+        extraDiv.id = index;
+        figure.prepend(extraDiv);
+        const collapseButtonContainer = document.createElement("div");
+        collapseButtonContainer.classList.add("toggle-figure-collapse-button-container");
+        collapseButtonContainer.classList.add("toggle-figure-collapse-button-container-initial-position");
+
+        const collapseButton = document.createElement("a");
+
+        collapseButton.title = hiddenTitle;
+        collapseButton.classList.add("toggle-figure-collapse-button");
+        collapseButton.href = `#${index}`;
+        collapseButton.innerHTML = hideSVG;
+        
+        collapseButtonContainer.appendChild(collapseButton);
+  
+        const preElement = figure.querySelector("pre");
+        preElement.prepend(collapseButtonContainer);
+
+        const figureChildElementToHide = figure.querySelector("pre code");
+        collapseButton.addEventListener("click", () => {
+          if (figureChildElementToHide.hidden) {
+            figureChildElementToHide.hidden = false;
+            collapseButton.innerHTML = hideSVG;
+            collapseButton.title = shownTitle;
+            collapseButton.removeAttribute("href");
+          } else {
+            figureChildElementToHide.hidden = true;
+            collapseButton.innerHTML = showSVG;
+            collapseButton.title = hiddenTitle;
+            collapseButton.href = `#${index}`;
+          }
+        });
+      }
+    });
+  }
+</script>

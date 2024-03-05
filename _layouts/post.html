@@ -1,0 +1,34 @@
+---
+layout: default
+---
+{% include post-window-onload.html %}
+{% include mathjax.html %}
+{% include collapse-figure.html %}
+<article id="article" class="container px-2 mx-auto mb4" itemscope itemtype="http://schema.org/BlogPosting">
+  {% include nav-menu.html %}
+  {% if page.small_title %}
+  <h1 class="col-9 sm-width-full inline-block" itemprop="name headline">
+    {{ page.title }}
+  </h1>
+  {% else %}
+  <h1 class="h0-small col-9 sm-width-full inline-block" itemprop="name headline">
+    {{ page.title }}
+  </h1>
+  {% endif %}
+
+  {% if page.collection != "linklogs" %}
+  <div class="mb-3 py-2 bold h4 col-4 sm-width-full mt-1 border-top-thin">
+    {% if page.collection == "posts" %}
+    <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b %-d, %Y" }}</time>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  <div class="prose" itemprop="articleBody">
+      {{ content }}
+  </div>
+</article>
+
+<div class="container mx-auto px-2 py-2 clearfix">
+  {% include previous-next.html %}
+</div>

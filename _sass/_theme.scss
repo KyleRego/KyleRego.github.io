@@ -1,0 +1,196 @@
+// Font family
+$body-font-family: "Helvetica Neue", Arial, sans-serif;
+$body-font-size: 16px;
+$prose-font-size: 20px;
+
+// Type scale
+$h0-mobile: 64px;
+$h0-desktop: 128px;
+
+$h1-size: 40px !default;
+$h2-size: 32px !default;
+$h3-size: 24px !default;
+$h4-size: 20px !default;
+$h5-size: 16px !default;
+$h6-size: 12px !default;
+
+// Default border color
+$color-border: #ddd !default;
+
+// Container width
+$container-width: 64em;
+
+// Large breakpoint
+$breakpoint-lg: 52em;
+
+// Spacing unit
+$spacer: 8px !default;
+
+// Spacing scale
+$spacer-1: $spacer !default; // 8px
+$spacer-2: ($spacer * 2) !default; // 16px
+$spacer-3: ($spacer * 4) !default; // 32px
+$spacer-4: ($spacer * 8) !default; // 64px
+
+// Color variables
+$black: #181818;
+$blue: #020083;
+$white: #fff;
+
+// Config
+$color-background: $black !default;
+$color-dot-accent: $blue !default;
+$color-foreground: $black !default;
+$color-title: $black !default;
+$color-body-text: $black !default;
+$color-text-accent: $blue !default;
+$color-code: $blue !default;
+$color-primary-link: $blue !default;
+
+// Import sass partials
+@import
+        "base",
+        "components",
+        "utilities",
+        "syntax-highlighting"
+;
+
+.home-colorful-background { 
+  background: linear-gradient(164deg, 
+   rgba(0, 238, 255, 0.726), rgba(247, 0, 255, 0.466) 75%);
+  background-size: 200% 200%;
+  animation: gradient 30s linear infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+.font-smoothing {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.site-nav-area-container {
+  z-index: 10;
+  margin-top: 0.85em;
+  top: 20px;
+  right: 32px;
+  position: sticky;
+  height: 3rem;
+}
+
+.open-site-nav-button {
+  float: right;
+}
+
+// Nav button and menu at top of post
+.top-nav-area-container {
+  z-index: 10;
+  margin-top: 0.85em;
+  top: 20px;
+  position: sticky;
+  float: right;
+  height: 3rem;
+}
+
+.top-nav-menu {
+  background: rgba(255, 255, 255, 0.95);
+  position: absolute;
+  right: 0;
+  top: 3.5rem;
+  padding: 0.5rem;
+  padding-top: 1rem;
+  margin: 0;
+  -webkit-box-shadow: 0px 0px 10px 0px $black;
+  -moz-box-shadow: 0px 0px 10px 0px $black;
+  box-shadow: 0px 0px 10px 0px $black;
+  max-height: 20rem;
+  overflow-y: scroll;
+  width: max-content;
+  max-width: 90vw;
+
+  @media (min-width: $breakpoint-lg) {
+    max-width: 25rem;
+  }
+}
+
+.menu-article-title {
+  font-size: 18px;
+  font-weight: bold;
+  padding-left: 20px;
+  padding-bottom: 0.5rem;
+}
+
+.top-nav-list {
+  position: relative !important;
+  width: 100% !important;
+  font-size: 16px !important;
+  margin: 0 !important;
+  margin-bottom: 8px !important;
+
+  li {
+    list-style-type: disc;
+    font-size: 16px !important;
+    margin: 0 !important;
+    margin-bottom: 8px !important;
+
+    ol {
+      margin-top: 8px !important;
+      li {
+        list-style-type: circle;
+        font-size: 16px !important;
+        margin: 0 !important;
+        margin-bottom: 8px !important;
+      }
+    }
+  }
+}
+
+.toggle-figure-collapse-button-container {
+  position: sticky;
+  height: 32px;
+  top: 20px;
+  width: calc(100% - 105px);
+}
+
+.some-extra-space {
+  height: 20px;
+}
+
+.toggle-figure-collapse-button {
+  float: right;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  display: none;
+  @media (min-width: $breakpoint-lg) {
+    display: inline;
+  }
+}
+
+// MathJax 
+div.MathJax_Display {
+  font-size: $prose-font-size;
+  margin-bottom: 1em;
+  max-width: 100%;
+  overflow-y: hidden;
+  overflow-x: auto;
+
+  @media (min-width: $breakpoint-lg) {
+    width: (10 / 12 * 100%);
+  }
+}
+
+div.prose > ul {
+  margin-top: 0;
+}
