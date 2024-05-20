@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Anki Books code review"
+title: "Anki Books code overview"
 date: 2024-05-17 00:00:00 -0500
 categories: blogging
 permalink: /ankibooks-codereview-1
