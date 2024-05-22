@@ -41,4 +41,4 @@ public void TextIsInvalidWithoutClozeMarkers()
 }
 {% endhighlight %}
 
-If the `MemberName` property is not set on the `ValidationContext`, `TryValidateProperty` will throw a `NullArgumentException`.
+If the `MemberName` property is not set on the `ValidationContext`, `TryValidateProperty` will throw a `ArgumentNullException`.
