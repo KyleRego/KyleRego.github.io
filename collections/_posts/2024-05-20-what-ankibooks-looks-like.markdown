@@ -67,4 +67,4 @@ public void UpdateSelfAfterRepetition(Grade grade, int successStreak)
     }
 {% endhighlight %}
 
-With the object-oriented design of the algorithm, I don't see a need to include incrementing the repetitions count as part of this like the description on Wikipedia.
+With the current object-oriented design of the algorithm, the success streak is computed from the repetitions in the database, so it's not part of the algorithm here but tracking it as a property of the card is not a bad idea so that may change.

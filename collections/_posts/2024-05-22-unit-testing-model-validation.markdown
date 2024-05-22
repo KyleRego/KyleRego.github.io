@@ -1,14 +1,14 @@
 ---
 layout: post
-title: "Unit testing a validation attribute in ASP.NET Core"
+title: "Unit testing model validation in ASP.NET Core"
 date: 2024-05-22 00:00:00 -0500
 categories: blogging
-permalink: /unit-testing-a-validation-attribute-in-asp-net-core
+permalink: /unit-testing-model-validation-in-asp-net-core
 emoji: 🤔
 mathjax: false
 ---
 
-This is the property and `[RegularExpression]` to unit test:
+This post shows an example of unit testing an ASP.NET Core model validation property. `[RegularExpression]` enforces the property matches the regex:
 
 {% highlight c# %}{% raw %}
 public class ClozeNote : Card
@@ -17,16 +17,16 @@ public class ClozeNote : Card
     [RegularExpression($".*{clozeMarkersRegex}.*", ErrorMessage = "Text must have at least one {{{{c1::cloze test}}}}.")]
     public string Text { get; set; } = "";
 
-    private const string clozeMarkersRegex = "\{\{c\\d::(.*?)\}\}";
+    private const string clozeMarkersRegex = "{{c\\d::(.*?)}}";
     ...
 }
 {% endraw %}{% endhighlight %}
 
-This is what my unit tests ended up looking like:
+Using the attribute is straightforward but the APIs I ran into to write my unit tests were somewhat more confusing. This is what I settled on doing:
 
 {% highlight c# %}
 [Fact]
-public void ClozeValidIsFalseWithoutClozeMarkers()
+public void TextIsInvalidWithoutClozeMarkers()
 {
     ClozeNote cn = new() { Text = "A sentence without cloze markers" };
     ValidationContext context = new(cn, null, null)

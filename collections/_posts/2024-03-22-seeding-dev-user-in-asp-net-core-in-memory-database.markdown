@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Custom initialization login for seeding a user in an ASP.NET Core web API"
+title: "Custom initialization logic for seeding a user in an ASP.NET Core web API"
 date: 2024-03-22 08:15:00 -0500
 categories: blogging
 permalink: /seeding-a-user-in-an-asp-net-core-in-memory-database-for-development
