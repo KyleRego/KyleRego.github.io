@@ -206,4 +206,4 @@ public interface IDeckRepository : IOrderedElementRepository<Deck>
 
 {% endhighlight %}
 
-When updating an ordered element, it's necessary to retrieve the ordinal position of the record to be updated from the database. This can potentially lead to the Change Tracker tracking two instances of the same entity and `SaveChanges` will throw an error.
+When updating an ordered element, it's necessary to retrieve the ordinal position of the record to be updated from the database. This can potentially lead to the Change Tracker tracking two instances of the same entity and `SaveChanges` will throw an error. That is avoided here with a non-tracking query.
