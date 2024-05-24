@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "ArticleElementsRepository in AnkiBooks (refactor of OrderedElementsRepositoryBase)"
+title: "ArticleElementRepository in AnkiBooks (refactor of OrderedElementRepositoryBase)"
 date: 2024-05-24 00:00:00 -0500
 categories: blogging
 permalink: /article-elements-repository-refactor
