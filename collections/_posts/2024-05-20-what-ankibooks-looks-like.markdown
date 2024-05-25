@@ -29,7 +29,7 @@ I'm sure nobody has noticed this but I was trying to write a blog post  every da
 Yea this is definitely not the best implementation, see if you can find the "magic number."
 
 {% highlight c# %}
-public void UpdateSelfAfterRepetition(Grade grade, int successStreak)
+    public void UpdateSelfAfterRepetition(Grade grade, int successStreak)
     {
         if (grade == Grade.Good)
         {
@@ -48,15 +48,14 @@ public void UpdateSelfAfterRepetition(Grade grade, int successStreak)
         }
         else
         {
-            InterRepetitionInterval = 0;
-            EasinessFactor = 0;
+            InterRepetitionInterval = 1;
         }
 
         DueAt = new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds() + InterRepetitionInterval * 86400;
 
-        // If there were 6 grades, q could be 1 to 6 (see SM2 algorithm)
+        // If there were 6 grades, q could be 0 to 5 (see SM2 algorithm)
         // Since Anki Books uses 2 grades, take them to represent 2 and 5
-        int q = grade == Grade.Bad ? 2 : 5;
+        int q = grade == Grade.Bad ? 1 : 4;
 
         EasinessFactor += 0.1F - (5 - q) * (0.08F + (5 - q) * 0.02F);
 
@@ -67,4 +66,4 @@ public void UpdateSelfAfterRepetition(Grade grade, int successStreak)
     }
 {% endhighlight %}
 
-With the current object-oriented design of the algorithm, the success streak is computed from the repetitions in the database, so it's not part of the algorithm here but tracking it as a property of the card is not a bad idea so that may change.
+With the current object-oriented design of the algorithm, the success streak is computed from the repetitions in the database, so resetting or increasing the success streak is not part of the algorithm here. Tracking it as a property of the card is not a bad idea so that may change.
