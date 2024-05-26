@@ -54,7 +54,7 @@ Yea this is definitely not the best implementation, see if you can find the "mag
         DueAt = new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds() + InterRepetitionInterval * 86400;
 
         // If there were 6 grades, q could be 0 to 5 (see SM2 algorithm)
-        // Since Anki Books uses 2 grades, take them to represent 2 and 5
+        // Since Anki Books uses 2 grades, take them to represent 1 and 4
         int q = grade == Grade.Bad ? 1 : 4;
 
         EasinessFactor += 0.1F - (5 - q) * (0.08F + (5 - q) * 0.02F);
