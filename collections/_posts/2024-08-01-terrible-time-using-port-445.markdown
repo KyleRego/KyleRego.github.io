@@ -21,7 +21,6 @@ I didn't find it too hard to make sense of the Apache configuration, make some c
 - I ruled out `ufw` being the issue (`ufw status`).
 - I double checked the network security group settings for the VM on the Azure portal too many times and I restarted the VM a couple times too.
 - I used the troubleshooting tool on the Azure portal (probably somewhere in network settings) but the tests it performed against the VM/port number did not reveal any problems.
-- I tried using my phone with mobile data, which I know appears as the same IP address as my computer, but I may not have carried out that test well enough to say.
 - I switched the port number with one of the working ones and saw my static test HTML at the working port number. Still, I had no idea what the actual issue was.
 
 At last I decided to try a different port number, and I could finally see my static test HTML. I wish I had tried that much sooner than when I did.
