@@ -85,6 +85,16 @@
 .block        { display: block !important; }
 .inline-block { display: inline-block !important; }
 
+@media (max-width: $breakpoint-lg) {
+  .sm-display-none { display: none; }
+  .sm-inline-block { display: inline-block; }
+}
+
+@media (min-width: $breakpoint-lg) {
+  .lg-display-none { display: none; }
+  .lg-inline-block { display: inline-block; }
+}
+
 .table { display: table !important; }
 
 .left { float: left; }
@@ -147,6 +157,10 @@
 
 .mt-0 { margin-top: 0;}
 .mt-6 { margin-top: $spacer-4 * 1.5;}
+
+.text-center {
+  text-align: center;
+}
 
 .margin-equal {
   display: block;

@@ -1,0 +1,13 @@
+.d-flex {
+    display: flex;
+}
+
+@media (max-width: $breakpoint-lg) {
+    .flex-sm-col {
+        flex-direction: column;
+    }
+}
+
+.flex-grow-1 {
+    flex: 1;
+}

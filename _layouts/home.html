@@ -1,96 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  {% include head.html %}
+{% include head.html %}
 
-  <body class="home-colorful-background">
+<body class="home-colorful-background">
 
     <div>
-
-      <header>
-
-        <div class="clearfix border-bottom-thick header-border">
-          <ul class="list-reset right py-1 header-text font-smoothing">
-            <li class="inline-block">
-              <a class="align-middle link-primary mr-2" href="https://github.com/{{ site.github_username }}#user-profile-frame">About</a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="container mx-auto px-2 mb-2 clearfix header-text">
-          <h1 class="h0 inline-block col-9 sm-width-full header-title">{{ site.title }}</h1>
-
-          <div class="clearfix py-1">
-            <div class="col-4 sm-width-full left border-top-thin">
-              <div class="inline-block mt-3 mr-1">
-                {% include svg-github.html %}
-              </div>
-              <div class="inline-block mt-3 mr-1">
-                {% include svg-linkedin.html %}
-              </div>
-              <div class="inline-block mt-3 mr-1">
-                <a href="mailto:{{ site.email }}" title="Email me😃">{% include svg-email.html %}</a>
-              </div>
-              <div class="border-left-thin inline-block mt-2 pt-1 pl-1">
-                <a href="assets/resume.pdf" title="Resume">{% include svg-resume.html %}</a>
-              </div>
-              <div class="inline-block mt-2 pt-1 pl-1">
-                <a href="#notes" title="Notes">{% include svg-sitemap.html %}</a>
-              </div>
+        <header>
+            <div class="clearfix border-bottom-thick header-border">
+                <ul class="list-reset right py-1 header-text font-smoothing">
+                    <li class="inline-block">
+                        <a class="align-middle link-primary mr-2"
+                            href="https://github.com/{{ site.github_username }}#user-profile-frame">About</a>
+                    </li>
+                </ul>
             </div>
-          </div>
+        </header>
+
+        <div class="container mx-auto d-flex flex-sm-col">    
+            <div class="flex-grow-1 mx-auto px-2 mb-2 clearfix header-text">
+                <div class="">
+                    <h1 class="h0 inline-block sm-width-full header-title">{{ site.title }}</h1>
+
+                    <div class="clearfix py-1">
+                        <div class="sm-width-full left border-top-thin">
+                            <div class="inline-block mt-3 mr-1">
+                                {% include svg-github.html %}
+                            </div>
+                            <div class="inline-block mt-3 mr-1">
+                                {% include svg-linkedin.html %}
+                            </div>
+                            <div class="inline-block mt-3 mr-1">
+                                <a href="mailto:{{ site.email }}" title="Email me😃">{% include svg-email.html
+                                    %}</a>
+                            </div>
+                            <div class="border-left-thin inline-block mt-2 pt-1 pl-1">
+                                <a href="assets/resume.pdf" title="Resume">{% include svg-resume.html %}</a>
+                            </div>
+                            <div class="inline-block mt-2 pt-1 pl-1">
+                                <a href="#notes" title="Notes">{% include svg-sitemap.html %}</a>
+                            </div>
+                            <div class="inline-block ml-2 kylerego-net-icon">
+                                <a href="https://kylerego.net">kylerego.net</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mx-auto prose mt-2">
+                    <p>Hello, welcome to my blog!
+                        Posts here are mostly notes on approaches I used to solve problems I encountered
+                        and are not meant to show completely correct ways to do anything.
+                        There are also some other pages on this site:</p>
+                    <ul>
+                        <li><a href="anki_record_docs">Anki Record gem API docs</a></li>
+                        <li><a href="the-old-website">Previous index page of this website</a></li>
+                        <li><a href="the-old-website/react/index.html">Snake game</a></li>
+                        <li><a href="the-old-website/maisie/index.html">Pictures of a pupper</a></li>
+                    </ul>
+                </div>
+
+                <figure class="lg-display-none mt-2" style="text-align: center;">
+                    <img src="/assets/my-eyes-short.png" alt="A picture of my eyes" style="vertical-align: top;" />
+                    <figcaption>A picture of my eyes</figcaption>
+                </figure>
+            </div>
+
+            <figure class="px-2 mt-6 lg-inline-block sm-display-none text-center">
+                <img src="/assets/my-eyes.webp" alt="A picture of my eyes" style="vertical-align: top;" />
+                <figcaption>A picture of my eyes</figcaption>
+            </figure>
         </div>
-      </header>
 
-      <div class="container px-2 mx-auto prose mt-2">
-        <p>
-          I am a software developer, flashcards enjoyer, and gamer. Some stuff I've worked on:
-        </p>
-        <ul>
-          <li>
-            <a href="https://ankibooks.io">Anki Books</a> is a flashcards and note-taking app that creates Anki flashcard deck files to import into Anki. These <a href="https://kylerego.net/books/66b2c0b4-92a4-4326-875d-d205b2ac8db5">.NET notes</a> are a good example of what a book written with this app would look like.
-            I also developed a different version of the app to learn about ASP.NET Core Blazor (many of the below blog posts are related to that).
-          </li>
-          <li>
-            <a href="https://kylerego.github.io/anki_record_docs">Anki Record</a> is a Ruby gem for creating and updating Anki flashcard deck files, which are zip files of SQLite databases. (It is how Anki Books makes Anki flashcard decks.)
-          </li>
-          <li>
-            <a href="https://ankiweb.net/shared/info/842653376">Anki magnifying glass mouse cursor</a> is an Anki add-on that some people have found useful.
-          </li>
-        </ul>
+        <div class="container mx-auto px-2 py-4">
 
-        <p>
-          My current focus is ASP.NET Core/React and solving Leetcode problems.
-        </p>
-      </div>
-      
-      <div class="container mx-auto px-2 py-4">
+            {% for post in site.posts %}
+            {% include post-block.html %}
+            {% endfor %}
 
-        {% for post in site.posts %}
-          {% include post-block.html %}
-        {% endfor %}
+            <h2 id="notes" class="lh-condensed col-9 mt-4">
+                Notes
+            </h2>
+            <div class="prose sm-width-full">
+                {% include list-notes.html %}
+            </div>
 
-        <h2 id="notes" class="lh-condensed col-9 mt-4">
-          Notes
-        </h2>
-        <div class="prose sm-width-full">
-        {% include list-notes.html %}
+            <h2 class="mt-1">
+                Miscellaneous
+            </h2>
+            <div class="prose sm-width-full">
+                <ul>
+                    <li class="mb-1 prose mt-0"><a class="link-primary" href="/anki_record_docs"
+                            title="/anki_record_docs">Anki Record API documentation</a></li>
+                    <li class="mb-1 prose mt-0"><a class="link-primary" href="/the-old-website"
+                            title="The old website">The old website</a></li>
+                </ul>
+            </div>
         </div>
-
-        <h2 class="mt-1">
-          Miscellaneous
-        </h2>
-        <div class="prose sm-width-full">
-          <ul>
-            <li class="mb-1 prose mt-0"><a class="link-primary" href="/anki_record_docs" title="/anki_record_docs">Anki Record API documentation</a></li>
-            <li class="mb-1 prose mt-0"><a class="link-primary" href="/the-old-website" title="The old website">The old website</a></li>
-          </ul>
-        </div>
-      </div>
     </div>
 
     {% include footer.html %}
 
-  </body>
+</body>
 
 </html>

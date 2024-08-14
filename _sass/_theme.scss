@@ -52,7 +52,8 @@ $color-primary-link: $blue !default;
         "base",
         "components",
         "utilities",
-        "syntax-highlighting"
+        "syntax-highlighting",
+        "flex"
 ;
 
 .home-colorful-background { 
@@ -193,4 +194,18 @@ div.MathJax_Display {
 
 div.prose > ul {
   margin-top: 0;
+}
+
+.kylerego-net-icon {
+  padding: 0.25rem 0.5rem;
+  border-radius: 5%;
+  border: 1px solid black;
+  background-color: rgb(255, 167, 240);
+  cursor: pointer;
+  vertical-align: text-bottom;
+}
+
+.kylerego-net-icon:hover {
+  color: white;
+  background-color: rgb(87, 0, 49);
 }
