@@ -8,7 +8,7 @@ emoji: 🤔
 mathjax: false
 ---
 
-While writing this post, a few times I considered a reader might say it does not show the best security practices, which I don't necessary disagree with. In this case, access to the relevant ports was only allowed for my IP address. Also, the environment is a personal VM without anything important.
+While writing this post, a few times I considered a reader might say it does not show the best security practices, and I don't necessarily disagree with that. In this case, access to the relevant ports was only allowed for my IP address. Also, the environment is a personal VM without anything important.
 
 # The real blog post here
 
