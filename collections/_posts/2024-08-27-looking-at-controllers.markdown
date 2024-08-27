@@ -168,7 +168,7 @@ In Rails, the Strong Parameters feature protects against this sort of vulnerabil
 
 ## Using a repository to do database access instead of the DbContext
 
-The next refactor is to implement a Repository pattern for database access. At the very least this provides an interface for mocking the database in unit tests. I've also found it useful for implementing a deep interface for supporting sorting, searching kind of features as an abstract base repository, since those operations that are most efficiently carried out by the database, and also for encapsulating what the standard eager loading behavior is for each entity.
+The next refactor is to implement a Repository pattern for database access. At the very least this provides an interface for mocking the database in unit tests. I've also found it useful for implementing a deep interface for supporting sorting, searching kind of features as an abstract base repository, since those operations are most efficiently carried out by the database, and also for encapsulating what the standard eager loading behavior is for each entity.
 
 {% highlight c# %}
 public interface IBookRepository
@@ -237,6 +237,8 @@ public class BookService(IBookRepository bookRepository) : IBookService
     }
 }
 {% endhighlight %}
+
+Since there is no real business logic for this example, this is kind of just a pass-through method, but this layer is for business logic and can be unit tested by mocking the repository.
 
 ## Putting it all together
 
