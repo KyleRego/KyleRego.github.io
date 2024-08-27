@@ -307,3 +307,7 @@ public class BookRepository(AppDbContext dbContext) : IBookRepository
     }
 }
 {% endhighlight %}
+
+## Bonus Diagram
+
+![Diagram of the controller, service, repository architecture](assets/services-controllers-repository.png)
