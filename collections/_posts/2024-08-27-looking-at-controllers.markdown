@@ -150,14 +150,14 @@ public class BooksController(AppDbContext dbContext) : ControllerBase
     private readonly AppDbContext _dbContext = dbContext;
 
     [HttpPut("{id}")]
-    public async ActionResult<Book> Update(Book book, string id)
+    public async ActionResult Update(Book book, string id)
     {
         if (book.Id != id) return BadRequest();
 
         _dbContext.Entry(book).State = EntityState.Modified;
         await _dbContext.SaveChangesAsync();
 
-        return (book == null) ? NotFound() : book;
+        return Ok();
     }
 }
 {% endhighlight %}
