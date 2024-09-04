@@ -17,10 +17,10 @@
             </div>
         </header>
 
-        <div class="container mx-auto d-flex flex-sm-col">    
-            <div class="flex-grow-1 mx-auto px-2 mb-2 clearfix header-text">
+        <div class="container mx-auto d-flex flex-sm-col px-2" style="align-items: center; column-gap: 1rem; margin-top: 5rem;">    
+            <div class="flex-grow-1 mx-auto clearfix header-text">
                 <div class="">
-                    <h1 class="h0 inline-block sm-width-full header-title">{{ site.title }}</h1>
+                    <h1 class="h0 inline-block sm-width-full header-title" style="margin-top: 0">{{ site.title }}</h1>
 
                     <div class="clearfix py-1">
                         <div class="sm-width-full left border-top-thin">
@@ -47,32 +47,26 @@
                     </div>
                 </div>
 
-                <div class="mx-auto prose mt-2">
-                    <p>Hello, welcome to my blog!
-                        Posts here are mostly notes on approaches I used to solve problems I encountered
-                        and are not meant to show completely correct ways to do anything.
-                        There are also some other pages on this site:</p>
-                    <ul>
+                <div class="mx-auto prose">
+                    <p>Hello, welcome to my GitHub Pages Jekyll blog!
+                        My posts do not necessarily show the correct way to do anything.</p>
+                        <!-- There are also some other pages on this site: -->
+                    <!-- <ul>
                         <li><a href="anki_record_docs">Anki Record gem API docs</a></li>
                         <li><a href="the-old-website">Previous index page of this website</a></li>
                         <li><a href="the-old-website/snake/index.html">Snake game</a></li>
                         <li><a href="the-old-website/maisie/index.html">Pictures of a pupper</a></li>
-                    </ul>
+                    </ul> -->
                 </div>
-
-                <figure class="lg-display-none mt-2" style="text-align: center;">
-                    <img src="/assets/my-eyes-short.png" alt="A picture of my eyes" style="vertical-align: top;" />
-                    <figcaption>A picture of my eyes</figcaption>
-                </figure>
             </div>
 
-            <figure class="px-2 mt-6 lg-inline-block sm-display-none text-center">
-                <img src="/assets/my-eyes.webp" alt="A picture of my eyes" style="vertical-align: top;" />
-                <figcaption>A picture of my eyes</figcaption>
+            <figure class="lg-inline-block text-center">
+                <img src="/assets/new_blog_pic.jpg" alt="A picture of me" style="vertical-align: top; width: 300px;" />
+                <figcaption>A picture of me</figcaption>
             </figure>
         </div>
 
-        <div class="container mx-auto px-2 py-4">
+        <div class="container mx-auto px-2">
 
             {% for post in site.posts %}
             {% include post-block.html %}
