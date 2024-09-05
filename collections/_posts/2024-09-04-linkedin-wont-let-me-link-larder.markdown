@@ -8,12 +8,14 @@ emoji: 🤔
 mathjax: false
 ---
 
-For my new free software project Larder (mainly a practice project but it could be useful to people) I bought the domain name larder.lol for $1.80 plus a less than $6 TLS certificate. Pretty much immediately after buying this domain name and looking at it, I thought maybe it was a mistake, but I wasn't going to buy another domain name that soon.
+Recently I bought the domain name larder.lol for $1.80 (with a $6 TLS certificate too), which I think is a pretty good deal, and I set up my project web app on that domain.
 
-So today I wanted to link to larder.lol in a project on my LinkedIn page, however when I enter it, even if I enter it as https://larder.lol:443, LinkedIn will change the link to kylerego.net.
+Today I wanted to link to larder.lol from a project on my LinkedIn page. I found that when I add the link larder.lol as a media to the project, LinkedIn changes the link to kylerego.net automatically. I tried multiple times and this happened every time.
 
 # Why does that happen?
 
-It's because both websites are running on the same IP address (my $16/month Azure VM, it's in the burstable series) and both are listening to the same port, 443. With Apache named virtual hosts, the ServerName directive (at least this is how it is on Ubuntu) is used to route to the correct one. So I guess LinkedIn must be doing something that results in me not being able to link to my dot lol website domain name, which I would guess must involve some check with the DNS records.
+It's because both websites are running on the same VM that has one IP address--both domain names are pointed to the same IP address. With Apache named virtual hosts, the ServerName directive is used to route requests to the correct virtual host based on the domain name in the request and both virtual hosts are using port 443.
 
-Unfortunately, this experience shows how using .lol domain names might not be the best strategy, even if they are cheap and somewhat whimsical.
+My guess is that LinkedIn must be doing some check with the DNS records, where I enter larder.lol, LinkedIn finds that larder.lol points to the same IP address as kylerego.net, and changes the URL of the project to kylerego.net.
+
+Unfortunately, this unexpected experience is not a good sign to keep using .lol domain names, as cheap as they are.
