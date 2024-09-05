@@ -12,6 +12,12 @@ Recently I bought the domain name larder.lol for $1.80 (with a $6 TLS certificat
 
 Today I wanted to link to larder.lol from a project on my LinkedIn page. I found that when I add the link larder.lol as a media to the project, LinkedIn changes the link to kylerego.net automatically. I tried multiple times and this happened every time.
 
+![Entering larder.lol as the link](assets\larder-domain-mishap\entering-larder-lol.png)
+
+Clicking "Add" in the above results in this (the thumbnail is the picture on kylerego.net):
+
+![After clicking add, it shows an image and title from kylerego.net](assets\larder-domain-mishap\after-clicking-add.png)
+
 # Why does that happen?
 
 It's because both websites are running on the same VM that has one IP address--both domain names are pointed to the same IP address. With Apache named virtual hosts, the ServerName directive is used to route requests to the correct virtual host based on the domain name in the request and both virtual hosts are using port 443.
