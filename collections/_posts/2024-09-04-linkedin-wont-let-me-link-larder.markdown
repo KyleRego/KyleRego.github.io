@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "LinkedIn won't let me link my project to my .lol domain"
+title: "Why LinkedIn won't let me link my project to a .lol domain name"
 date: 2024-09-04 00:00:00 -0500
 categories: blogging
 permalink: /linkedinwontletmelinklarderdotlol
