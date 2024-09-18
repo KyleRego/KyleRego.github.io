@@ -8,7 +8,7 @@ emoji: 😇
 mathjax: false
 ---
 
-A problem I encountered recently was implementing tracking if the user is logged in in a React app that is not being used within a framework. I solved the problem in my situation by utilizing a nice feature of React: a context named `AuthedContext`:
+A problem I encountered recently was implementing tracking if the user is logged in in a React app that is not being used within a framework. I solved the problem in my situation by utilizing a nice feature of React: a context, which I named `AuthedContext`:
 
 {% highlight javascript %}
 import { createContext } from "react";

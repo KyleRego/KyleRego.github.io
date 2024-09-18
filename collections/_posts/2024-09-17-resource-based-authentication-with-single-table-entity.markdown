@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Resource-based authorization with polymorphic UserId (ASP.NET Core, EF Core)"
+title: "Resource-based authorization with polymorphic UserId model (ASP.NET Core, EF Core)"
 date: 2024-09-17 12:30:00 -0500
 categories: programming csharp
 permalink: /resource-based-authorization-with-polymorp-user-id
