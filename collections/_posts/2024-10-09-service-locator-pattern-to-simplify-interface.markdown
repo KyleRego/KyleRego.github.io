@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Service locator pattern to allow derived classes to have a smaller interface with dependency injection (ASP.NET Core)"
+title: "Service Locator Pattern to provide services to an abstract base class (ASP.NET Core)"
 date: 2024-10-08 08:30:00 -0500
 categories: programming csharp
 permalink: /service-locator-pattern-derived-services
@@ -8,7 +8,11 @@ emoji: 😇
 mathjax: false
 ---
 
-It has been bothering me in the back of my mind that in my practice ASP.NET Core project, every service class has to pass two arguments to the constructor of the super class, as this expands the method signature of every class and mocks for both had to be supplied across all of the unit tests, which to me just seemed very inconvenient. This post is regarding [this commit](https://github.com/KyleRego/Larder/commit/9eff3842cabbd7094aaae8bfdf72ac0ece1e8484).
+Today I refactored a base class of service classes in an ASP.NET Core project, so that instead of two services (`IHttpContextAccessor` and `IAuthorizationService` in this example) being injected, an `IServiceProviderWrapper` service is injected instead, and that is used to resolve the two services inside the base class. This is an implementation of the Service Locator Pattern as I understand it in this context.
+
+This refactor was motivated by wanting to simplify the interfaces of all of the classes derived from this base class. Each derived class previously had to have a constructor signature with the two services so that it could pass them to the parent constructor. With the Service Locator Pattern, only the `IServiceProvider` is needed in the constructor signature of all the service classes. 
+
+This post is regarding [this commit](https://github.com/KyleRego/Larder/commit/9eff3842cabbd7094aaae8bfdf72ac0ece1e8484).
 
 Here is what my base service class had previously:
 
