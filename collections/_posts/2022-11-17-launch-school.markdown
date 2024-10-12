@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Launch School (review)"
+date:   2022-11-17 10:00:00 -0500
 categories: programming ruby javascript sql [launch school]
 permalink: /launch-school
 emoji: 🙂
