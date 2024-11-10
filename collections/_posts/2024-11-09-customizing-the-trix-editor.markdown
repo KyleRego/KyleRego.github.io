@@ -8,7 +8,7 @@ emoji: 🐬
 mathjax: false
 ---
 
-I noticed an issue yesterday in the production website for my Ruby on Rails app, Anki Books. I had recently migrated the website from being served from a laptop I had to the Azure VM that I was using for some other websites before I moved, and I somewhat tactically caching to the public facing controller actions. The issue that I realized yesterday was that due to an inline script using a nonce for passing the Content Security Policy, the cached result was including an outdated nonce, so the CSP was failing which was causing all of the JavaScript on the page to not work.
+I noticed an issue yesterday in the production website for my Ruby on Rails app, Anki Books. I had recently migrated the website from being served from a laptop I had to an Azure VM, and to save compute I also somewhat tactically added caching to the public facing controller actions. The issue that I realized yesterday was that due to an inline script using a nonce for the Content Security Policy, the cached action result was including an outdated nonce, so the CSP was failing which was causing all of the JavaScript on the page to not work.
 
 The nonce was needed for a script that was being used to change the Trix configuration. It was something I worked on over a year ago, but after trying other approaches that I think would have been better but I couldn't get to work, ended up an ERB partial `_trix_config.erb` which was being included in the layout of the app in the `<head>`:
 
@@ -52,9 +52,9 @@ The nonce was needed for a script that was being used to change the Trix configu
 <% end -%>
 {% endhighlight %}
 
-I never really felt that approach was an ideal way to do it, but it worked, at least until adding the caching and realizing that the outdated nonce served from the cache was breaking the JavaScript.
+I never really felt that approach was an ideal way to do it, but it worked, at least until adding the caching and realizing that the outdated nonce served from the cache was breaking the JavaScript. Since the nonce is only needed for inline JavaScript like this, I just had to change the approach so that it wasn't an inline script and a nonce wasn't necessary.
 
-So today I tried for a while to get this in a Stimulus controller that in the `connect()` method would add the event listener, but I found it didn't work well. The behavior seemed to vary on different page refreshes and it seemed like the `trix-before-initialize` event was firing before the Stimulus controller connected, so the event was never observed and the Trix object wasn't changed. But it turned out that simply putting this in `app/javascript/application.js` worked well:
+So today I tried for a while to get this in a Stimulus controller that in the `connect()` method would add the event listener, but I found it didn't work well. The behavior seemed to vary on different page refreshes as if there were some race conditions. It seemed like the `trix-before-initialize` event was firing before the Stimulus controller connected sometimes, so the event was never observed and the Trix object wasn't changed. But it turned out that simply putting this in `app/javascript/application.js` worked well:
 
 {% highlight javascript %}
 import Trix from "trix";
@@ -90,9 +90,9 @@ Trix.config.blockAttributes.heading6 = {
 };
 {% endhighlight %}
 
-I was surprised it worked without the event listener as I thought that was necessary from my previous experience. I guess with this way it's changing the `Trix` object for all instances of the Trix editor, so if your app used different Trix editors that needed to have this customized differently, it wouldn't be this simple and you would probably have to customize it using that event.
+I was surprised it worked without the event listener as I thought that was necessary from my previous experience, and I feel like when I was working on this the first time, the above would have been the first thing I tried. Ibelieve with this way it's changing the `Trix` configuration for all instances of the Trix editor though. It may be that if you needed different Trix editors to have different configuration, this wouldn't work, and listening to the `trix-before-initialize` event could be a way to do it that would let you have different configurations.
 
-This modification is used to support adding `h1` through `h6` buttons to the editor, and I also have a Stimulus controller for making various changes to the Trix editor in the DOM. It is connected to a `div` that wraps where Action Text renders the editor:
+The main change this is making is adding `h2` through `h6` buttons to the editor. The other Trix editor changes I am making are changes to its DOM elements, which is done by a Stimulus controller connected to a `div` that wraps where Action Text renders the editor:
 
 {% highlight ruby %}
 <div  data-controller="article-editor"
@@ -102,7 +102,7 @@ This modification is used to support adding `h1` through `h6` buttons to the edi
 </div>
 {% endhighlight %}
 
-And so the changes to the DOM itself happen with this controller, which involves some changes that are very specific to my app, such as setting the `y` position of the toolbar to just below the header:
+And so the changes to the DOM itself happen with this controller, which involves some changes that are very specific to my app, such as setting the `y` position of the toolbar to just below the header, but also adding the additional heading buttons and giving the redo button a keyboard shortcut. 
 
 {% highlight javascript %}
 import { Controller } from "@hotwired/stimulus"
@@ -171,10 +171,12 @@ export default class extends Controller {
 }
 {% endhighlight %}
 
-Also, this is what the Trix editor toolbar ends up looking like in my app (it is mainly what is being changed with the above):
+Unfortunately, most of the work here was from a while ago so it is harder for me to describe what parts of the Trix API I am using in a helpful way.
+
+This is what the Trix editor toolbar ends up looking like in my app (the toolbar is mainly what is being changed with the above):
 
 ![Customized Trix editor toolbar](assets/screenshots/ankibooks-trix-toolbar.png)
 
-And with the H2 selected, other block-level buttons become disabled:
+This shows how using the added heading buttons keep the consistent behavior of disabling the other block-level buttons:
 
 ![Customized Trix editor toolbar with H2 active](assets/screenshots/ankibooks-trix-toolbar-2.png)
