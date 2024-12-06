@@ -8,7 +8,7 @@ emoji: 😇
 mathjax: false
 ---
 
-I made a small realization today about a different way to instantiate EF Core entities compared to what I've been doing. In the past when defining constructor methods for my EF Core entity classes, I encountered some problems with EF Core throwing errors with the constructor not being suitable, which made me avoid defining constructors and instead just use object initialization syntax everywhere like so:
+I had a small realization today about a different way to instantiate EF Core entities compared to what I've been doing. In the past when defining constructor methods for my EF Core entity classes, I encountered some problems with EF Core throwing errors with the constructor not being suitable, which made me avoid defining constructors and instead just use object initialization syntax everywhere like so:
 
 {% highlight C# %}
 RecipeIngredient recipeIngredient = new()
