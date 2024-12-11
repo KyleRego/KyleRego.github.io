@@ -2,7 +2,7 @@
 layout: post
 title: "Realization about clicking checkbox (Selenium WebDriver)"
 date: 2024-12-06 9:25:00 -0500
-categories: programming boostrap selenium
+categories: programming bootstrap selenium
 permalink: /realization-about-clicking-checkbox
 emoji: 😇
 mathjax: false

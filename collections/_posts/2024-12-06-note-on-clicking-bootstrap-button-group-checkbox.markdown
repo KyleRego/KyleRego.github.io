@@ -2,7 +2,7 @@
 layout: post
 title: "Note on clicking checkbox in Bootstrap button group (.NET Selenium WebDriver)"
 date: 2024-12-06 08:25:00 -0500
-categories: programming boostrap selenium
+categories: programming bootstrap selenium
 permalink: /finding-checkbox-bootstrap-button-group
 emoji: 😇
 mathjax: false

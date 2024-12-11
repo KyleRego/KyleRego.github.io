@@ -2,7 +2,7 @@
 layout: post
 title: "Note on mixing constructor and object initialization syntax with EF Core entity classes"
 date: 2024-11-03 08:30:00 -0500
-categories: programming boostrap selenium
+categories: programming bootstrap selenium
 permalink: /ef-core-constructor-and-object-initialization-syntax
 emoji: 😇
 mathjax: false

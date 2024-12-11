@@ -2,7 +2,7 @@
 layout: post
 title: "Note on finding element with Selenium WebDriver where two exist with the same ID (only one visible)"
 date: 2024-11-03 08:25:00 -0500
-categories: programming boostrap selenium
+categories: programming bootstrap selenium
 permalink: /finding-logout-button-in-bootstrap-nav
 emoji: 😇
 mathjax: false
