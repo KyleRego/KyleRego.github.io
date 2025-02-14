@@ -82,9 +82,9 @@ The above would be slightly shorter using the short-circuiting `&&` but it shows
 
 ## How the authentication state is established initially
 
-In my example application, units are fetched from a web API--an ASP.NET Core backend. If the user is unauthenticated based on cookie authentication middleware that is part of ASP.NET Core Identity, there will be a 401 Unauthorized response. (I always thought it was interesting that the annotation in ASP.NET Core that results in authentication getting an "unauthorized" response is `[Authorize]`).
+In my example application, units are fetched from a web API--an ASP.NET Core backend. If the user is unauthenticated based on cookie authentication middleware that is part of ASP.NET Core Identity, there will be a 401 Unauthorized response. (I always thought it was interesting that the annotation in ASP.NET Core that makes the user not being authenticated result in getting an "unauthorized" response is `[Authorize]`).
 
-That can be done in a React effect, something like this in the same component that returns the `<AuthedContext.Provider value={{authed, setAuthed}}></AuthedContext.Provider>`:
+That can be done in a React effect, something like this in the same component that returns the {% raw %}`<AuthedContext.Provider value={{authed, setAuthed}}></AuthedContext.Provider>`{% endraw %}:
 
 {% highlight javascript %}
     useEffect(() => {
