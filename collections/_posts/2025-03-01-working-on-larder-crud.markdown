@@ -12,16 +12,20 @@ There are many issues I've been grappling with in developing a practice project 
 
 - From what layers should dependencies be injected from into other layers (should this service `QuantityService` use `UnitConversionService` or `UnitConversionRepository` to retrieve a unit conversion it needs)?
 - Where to use entities vs data transfer objects (should services only return data transfer objects)?
-- What is the best way to map between DTOs and entities (such as static methods like `public static Quantity FromDto(QuantityDto dto)`, defining explicit cast operators like `public static explicit operator QuantityDto(Quantity quantity)`, a third approach that is part of the example this post is about, and I am also aware of [AutoMapper](https://automapper.org/))?
-- Many design problems regarding the inheritance hierachies (for example [when I changed the parent class of services to inject a `Service Locator` instead of two dependencies](https://kylerego.github.io/service-locator-pattern-derived-services)--update on that post, `AppServiceBase` was changed to not need one of those dependencies anymore, and that change was made easily without having to refactor any of the derived classes as a result of the decision described in that post).
+- How to map between DTOs and entities (such as static methods like `public static Quantity FromDto(QuantityDto dto)`, defining explicit cast operators, by service methods like in the example this post is about, [AutoMapper](https://automapper.org/))?
+- Many design problems regarding the inheritance hierarchies (for example [when I changed the parent class of services to inject a `Service Locator` instead of two dependencies](https://kylerego.github.io/service-locator-pattern-derived-services)--update on that post, `AppServiceBase` was changed to not need one of those dependencies anymore, and that change was made easily without having to refactor any of the derived classes as a result of using the `Service Locator` pattern).
 
-Recently I did some work related to this last issue, specifically using inheritance and generic types to DRY up some of the boilerplate.
+Recently I did some work related to this last issue, specifically using inheritance and generic types to DRY up CRUD functionality.
+
+## Background
 
 In the controller-service-repository architecture, controllers have the responsibility of binding incoming HTTP data and sending HTTP responses (choosing the type of response). Controllers delegate business logic to services, and neither controllers nor services do not do any data access themselves. The repositories are responsible for data access, which allows for fast running unit tests with mock repository implementations or stubbing the return values of the repositories.
 
 In addition to controllers, services, and repositories, data transfer objects and entities are types relevant to the design. Data transfer objects are used to define the API service of the web application, and in ASP.NET Core Model Binding, DTO types used in action method parameters are automatically instantiated from the data in the HTTP requests (400 response given if not possible). Entities refers to types mapped to the database in the Entity Framework Core ORM mapping.
 
 A potential issue with this kind of design is the following. Consider a situation where there are multiple types which need a RESTful controller and CRUD functionality implemented. Any type like that will need a controller with action methods to respond to `GET /books`, `GET /books/id`, `POST /books`, `PUT /books/id`, `DELETE /books/id`, which delegates to a service with 5 methods to be used by those actions, which will use a repository again with 5 methods doing the data access, and the service methods are pretty much just pass-through methods calling the repository method and mapping the entity type to a data transfer object (in the case like my application where services return data transfer objects--in some cases I believe there may be domain specific non-DTO and non-entity types used by services).
+
+## ICrudServiceBase and ICrudRepositoryBase
 
 To avoid this problem of code duplication in my practice project, I decided to implement `ICrudServiceBase<TDto, TEntity>`:
 
@@ -118,7 +122,11 @@ public abstract class CrudServiceBase<TDto, TEntity>
 }
 {% endhighlight %}
 
+### How this restricts services to use services instead of repositories
+
 An implication/intention of this design is also that services will only use services for data access, with the exception that services implementing `ICrudServiceBase` derived from `CrudServiceBase` get a repository implementing `ICrudRepositoryBase` for the entity type relevant to that service.
+
+### Why MapToEntity returns a Task
 
 The reason for `MapToEntity` being asynchronous is due to my design decision in `RecipeService` to create items for ingredients that do not exist already for the user (`ItemDto ingItem = await _itemService.FindOrCreate(ingredientDto.Name);` in the following). In other words, a recipe has many ingredient items, and so it may be necessary to create the ingredient items in mapping the recipe DTO to a recipe entity which includes those items.
 
