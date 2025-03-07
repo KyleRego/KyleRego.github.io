@@ -60,7 +60,7 @@ public class BookService(   IBookRepository repository,
 }
 {% endhighlight %}
 
-With dependency injection the Razor component uses the server implementation in prerendering and the client implementation if the component is rendered from the client. It is an example of dependency inversion too with the Razor component having a dependency only to the interface at compile time.
+With dependency injection the Razor component uses the server implementation in prerendering and the client implementation if the component is rendered from the client. It is a good example of the usefulness of dependency inversion allowing plugging in different implementations of the interface.
 
 This Razor component shows how to use the `PersistentComponentState` to persist the prerendered component's state and retrieve it.
 
