@@ -24,3 +24,6 @@ gem "rouge"
 gem 'jekyll-sitemap'
 
 gem "liquid", ">= 4.0.4"
+
+# css feed
+gem "jekyll-feed"
