@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Working interview for a Merchandizer role in 2025
+title: Working interview for a Merchandizer role
 date: 2025-04-02 01:06:00 -0800
 categories: life
 permalink: /working-interview-merchandizer
