@@ -8,7 +8,7 @@ emoji: 🕸️
 mathjax: false
 ---
 
-Last Saturday I had a "Working Interview (4:30am-6:30am)" scheduled through Indeed after an initial phone interview where the caller (and owner of the "route"--an independent company) told me to show up at a specific grocery store at 4:30am.
+Last Friday I had a "Working Interview (4:30am-6:30am)" scheduled through Indeed after an initial phone interview where the caller (and owner of the "route"--an independent company) told me to show up at a specific grocery store at 4:30am.
 
 At about 8:40am I checked the time; it was way past being a 2 hour interview like I planned for. I had been working the whole time, pallet jacking around pallets, stocking and rotating product which was chips and tortillas, checking dates, facing the labels right, lifting, moving, stacking boxes, using a step ladder.
 
