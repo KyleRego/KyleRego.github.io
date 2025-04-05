@@ -14,4 +14,4 @@ These days, I've been thankful for my pen that Tech Consulting (company who I wo
 
 ![Tech Consulting pen](assets/tech-consulting-pen.jpg)
 
-Tech Consulting for me was one of those short jobs that just didn't work out, I was an employee for 1 month. I had ethical reasons to not continue with the company which for me was very helpful to move states which was what I wanted to do at the time, and that turned out to be a good step forward for me even if the job didn't work out.
+Tech Consulting for me was one of those short jobs that just didn't work out, I was an employee for 1 month. I had ethical reasons to not continue with the company, but they did help me with moving states which was what I wanted to do when I accepted the job. That turned out to be a good step forward for me even if the job didn't work out.
