@@ -19,7 +19,7 @@ Recently I did some work related to this last issue, specifically using inherita
 
 ## Background
 
-In the controller-service-repository architecture, controllers have the responsibility of binding incoming HTTP data and sending HTTP responses (choosing the type of response). Controllers delegate business logic to services, and neither controllers nor services do not do any data access themselves. The repositories are responsible for data access, which allows for fast running unit tests with mock repository implementations or stubbing the return values of the repositories.
+In the controller-service-repository architecture, controllers have the responsibility of binding incoming HTTP data and sending HTTP responses (choosing the type of response). Controllers delegate business logic to services, and neither controllers nor services do any data access themselves. The repositories are responsible for data access, which allows for fast running unit tests with mock repository implementations or stubbing the return values of the repositories.
 
 In addition to controllers, services, and repositories, data transfer objects and entities are types relevant to the design. Data transfer objects are used to define the API service of the web application, and in ASP.NET Core Model Binding, DTO types used in action method parameters are automatically instantiated from the data in the HTTP requests (400 response given if not possible). Entities refers to types mapped to the database in the Entity Framework Core ORM mapping.
 
