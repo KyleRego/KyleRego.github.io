@@ -57,10 +57,4 @@ would indicate that issue was not happening because the `Data` property was not 
 
 ## I still don't completely understand
 
-I guess this implies the constructor is called to instantiate the object, and then JSON assignment happens? But then why the requirement of a `[JsonConstructor]` to case-insensitive match the property names? It must be some other reason I do not know.
-
-## Summary
-
-In short, System.Text.Json deserializes in two steps:
-1. **Constructor call** – it always invokes your public parameterless, sole constructor, or `[JsonConstructor]` constructor.  
-2. **Property population** – it then sets each matching public property from the JSON, overwriting any defaults you set.
+I guess this implies the constructor is called to instantiate the object, and then JSON assignment happens, which makes sense. But then why the requirement of a `[JsonConstructor]` constructor to have parameter names that match (case-insensitively) the type's property names? It must be some other reason I do not know.
