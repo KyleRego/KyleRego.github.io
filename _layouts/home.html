@@ -19,43 +19,22 @@
 
         <div class="container mx-auto d-flex flex-sm-col px-2" style="align-items: center; column-gap: 1rem; margin-top: 5rem;">    
             <div class="flex-grow-1 mx-auto clearfix header-text">
-                <div class="">
-                    <h1 class="h0 inline-block sm-width-full header-title" style="margin-top: 0">{{ site.title }}</h1>
+                <h1 class="h0 inline-block sm-width-full header-title" style="margin-top: 0">
+                    {{ site.title }}
+                </h1>
 
-                    <div class="clearfix py-1">
-                        <div class="sm-width-full left border-top-thin">
-                            <div class="inline-block mt-3 mr-1">
-                                {% include svg-github.html %}
-                            </div>
-                            <!-- <div class="inline-block mt-3 mr-1">
-                                {% include svg-linkedin.html %}
-                            </div> -->
-                            <div class="inline-block mt-3 mr-1">
-                                <a href="mailto:{{ site.email }}" title="Email me😃">{% include svg-email.html
-                                    %}</a>
-                            </div>
-                            <!-- <div class="border-left-thin inline-block mt-2 pt-1 pl-1">
-                                <a href="assets/kylerego_resume.pdf" title="Resume">{% include svg-resume.html %}</a>
-                            </div> -->
-                            <div class="border-left-thin inline-block mt-2 pt-1 pl-1">
-                                <a href="#notes" title="Notes">{% include svg-sitemap.html %}</a>
-                            </div>
-                            <div class="inline-block ml-2 kylerego-net-icon">
-                                <a href="https://kylerego.net">kylerego.net</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mx-auto prose">
-                    <p>Hello, welcome to my blog! I hope you find the information here helpful,
+                <div class="mx-auto prose d-flex column-gap-1 align-items-center">
+                    <p class="my-0">Hello, welcome to my blog! I hope you find the information here helpful,
                         but these posts should not be taken as 100% correct ways to do anything.
                     </p>
+                    <div class="inline-block">
+                            {% include svg-github.html %}
+                        </div>
                 </div>
             </div>
 
             <figure class="lg-inline-block text-center">
-                <img src="/assets/me_in_fife_library.jpg" alt="A picture of me" style="vertical-align: top; width: 300px;" />
+                <img src="assets\me-with-black-pink-grey-clothes.jpg" alt="Me" style="vertical-align: top; width: 300px;" />
                 <figcaption>Me</figcaption>
             </figure>
         </div>
@@ -66,16 +45,20 @@
             {% include post-block.html %}
             {% endfor %}
 
-            <h2 id="notes" class="lh-condensed col-9 mt-4">
-                Notes
+            <h2>
+                More stuff on this site
             </h2>
+
+            <h3 id="notes" class="lh-condensed col-9 mt-4">
+                Notes
+            </h3>
             <div class="prose sm-width-full">
                 {% include list-notes.html %}
             </div>
 
-            <h2 class="mt-1">
+            <h3 class="mt-1">
                 Miscellaneous
-            </h2>
+            </h3>
             <div class="prose sm-width-full">
                 <ul>
                     <li class="mb-1 prose mt-0"><a class="link-primary" href="/anki_record_docs"
