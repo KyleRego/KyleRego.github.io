@@ -97,6 +97,15 @@ To do the image upload, the form has to have the `enctype="multipart/form-data"`
   </form>
 {% endraw %}{% endhighlight %}
 
+This is the form upload control in `_PostForm` that model binding to the page model properties will happen:
+
+{% highlight html %}
+<div class="mt-2">
+    <label for="HeaderImageFile" class="form-label">Header Image</label>
+    <input type="file" class="form-control" id="HeaderImageFile" name="HeaderImageFile" />
+</div>
+{% endhighlight %}
+
 The page model for the page with this needs a property to bind the incoming `IFormFile`:
 
 {% highlight c# %}
