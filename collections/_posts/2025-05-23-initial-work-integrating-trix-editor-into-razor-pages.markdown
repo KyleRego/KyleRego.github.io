@@ -81,6 +81,14 @@ To use the Trix editor to edit the post content, I changed part of the `_PostFor
 
 With this, the `Content` edited with the Trix editor is saved as raw HTML. Razor pages escapes that by default, so to render it as rich HTML, the `ShowPost.cshtml` needed `<p>@Model.Post.Content</p>` to be changed to `<p>@Html.Raw(Model.Post.Content)</p>`. In my case I am not concerned about malicious HTML since I am the only user inputting it.
 
+Later I also realized it was necessary to have the `trix-content` class present for the Trix stylesheet to target the HTML:
+
+{% highlight c# %}
+<div class="trix-content">
+    @Html.Raw(Model.Post.Content)
+</div>
+{% endhighlight %}
+
 ## Image uploads
 
 The way I approached this was very specific to the needs of my hobby website. In my case, I have set this up so I am the only user that is able to log in, so just basic authorization (is this request sent by a logged in user) for image uploads is good enough. As all of the posts will be public, all of the uploaded images can just go in a folder `uploads` inside `wwwroot`. For that, the controller for image uploads is:
@@ -174,3 +182,13 @@ in a file `wwwroot/js/trix-upload.js` included into `_Layout.cshtml` with `<scri
 It was also necessary to add `builder.Services.AddControllers()` and `app.MapControllers()` to `Program.cs` as previously this was a Razor pages web app without controllers.
 
 This is not an airtight approach with regards to removing images; uploads can be removed from the post with the delete image endpoint and event listener to send a fetch request to it above, however if a post with uploads is deleted directly, those uploaded files will remain on the disk. In my case I am the only stakeholder for this hobby website where I am aware of the issue and not too concerned about it. Other ways this could be handled might be a table `PostUploads` keeping track of the uploads, or scanning the content of a post for uploads just before deleting the post.
+
+## Configuring the Trix editor to use H2 for headings instead of H1
+
+By default, the Trix editor toolbar has one heading button and saves the heading as an HTML `h1` element. Since it is a best practice to have only one `h1` per web page, I used the following event listener to make it so the Trix editor will save those as `h2` instead:
+
+{% highlight javascript %}
+addEventListener("trix-initialize", function (event) {
+  Trix.config.blockAttributes.heading1.tagName = "h2";
+});
+{% endhighlight %}
