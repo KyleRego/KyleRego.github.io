@@ -128,7 +128,7 @@ To use that image in the HTML, the Razor pages `<img>` gets a `src` like so:
 }
 {% endhighlight %}
 
-The [data: URLS](data: URLs) MDN article explains the `src` syntax there.
+The [data: URLS](https://developer.mozilla.org/en-US/docs/Web/URI/Reference/Schemes/data) MDN article explains the `src` syntax there.
 
 # Trix editor file uploads and deletes
 
