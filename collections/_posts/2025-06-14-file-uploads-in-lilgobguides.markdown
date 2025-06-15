@@ -22,12 +22,9 @@ For an HTML form or `<input>` to be able to upload a file, the `enctype` attribu
 Then in the form there is this input for file upload:
 
 {% highlight html %}{% raw %}
-<div class="my-2" data-bs-theme="dark">
-    <label for="HeaderImageFile" class="form-label">Post Card Header Image</label>
-    <input type="file" class="form-control" id="HeaderImageFile" name="HeaderImageFile" />
-</div>
-{% endraw %}
-{% endhighlight %}
+<label for="HeaderImageFile" class="form-label">Post Card Header Image</label>
+<input type="file" class="form-control" id="HeaderImageFile" name="HeaderImageFile" />
+{% endraw %}{% endhighlight %}
 
 The page model (like a page controller) has a public property with a public property setter (`set` instead of `private set;`) which gets an `IFormFile` from model binding:
  
