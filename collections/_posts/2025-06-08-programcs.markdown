@@ -109,7 +109,7 @@ Adds ASP.NET Core Identity with your custom `AppUser` and default roles, storing
 {% highlight c# %}
 var app = builder.Build();
 {% endhighlight %}
-Builds the configured web app, including all registered services and middleware.
+Builds the configured web app, including all registered services and middleware. `app` is a `WebApplication`.
 {% highlight c# %}
 using IServiceScope scope = app.Services.CreateScope();
 AppDbContext db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
