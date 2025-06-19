@@ -8,7 +8,55 @@ emoji: 🖤
 mathjax: false
 ---
 
-You’ll often see me refer to Program.cs in my blog posts. It’s the entry point of a .NET executable project and defines how the application is configured and started. In modern C# projects, top-level statements are used here instead of a traditional Main method. If you want to read the entire `Program.cs` in one place, it is at the end.
+You’ll often see me refer to Program.cs in my blog posts. It’s the entry point of a .NET executable project and defines how the application is configured and started. In modern C# projects, top-level statements are used here instead of a traditional Main method. This blog post is an explanation of this `Program.cs` from a Todo list app I've been working on recently:
+
+{% highlight c# %}
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using todolist.Data;
+using todolist.Models;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+builder.Services.AddRazorPages();
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddIdentity<AppUser, IdentityRole>(
+    options => options.SignIn.RequireConfirmedAccount = false)
+        .AddEntityFrameworkStores<AppDbContext>();
+
+var app = builder.Build();
+
+using IServiceScope scope = app.Services.CreateScope();
+AppDbContext db = scope.ServiceProvider
+                .GetRequiredService<AppDbContext>();
+db.Database.Migrate();
+
+// Configure the HTTP request pipeline.
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapRazorPages();
+
+app.Run();
+{% endhighlight %}
+
+# Explanation
 
 {% highlight c# %}
 using Microsoft.AspNetCore.Identity;
@@ -16,7 +64,7 @@ using Microsoft.EntityFrameworkCore;
 using todolist.Data;
 using todolist.Models;
 {% endhighlight %}
-Brings in necessary namespaces for Identity, EF Core, and your project files. Typically namespaces in .NET C# projects follow the folders' structure. Later services using ASP.NET Core Identity and EF Core are added. EF Core is an object-relational mapping (ORM) library for working with databases using C# classes. ASP.NET Core is another application framework that adds authentication, authorization APIs.
+Brings in necessary namespaces for ASP.NET Core Identity, EF Core, and project files. Typically namespaces in .NET C# projects follow the folders' structure. EF Core is an object-relational mapping (ORM) library for working with databases using C# classes. ASP.NET Core is another bread-and-butter .NET framework that adds authentication and authorization APIs/services.
 
 {% highlight c# %}
 var builder = WebApplication.CreateBuilder(args);
@@ -108,53 +156,3 @@ Maps Razor Pages to routes in the app.
 app.Run();
 {% endhighlight %}
 Starts the web application.
-
-# Entire Program.cs
-
-Overall, this is a very simple `Program.cs`:
-
-{% highlight c# %}
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using todolist.Data;
-using todolist.Models;
-
-var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-builder.Services.AddRazorPages();
-
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-builder.Services.AddIdentity<AppUser, IdentityRole>(
-    options => options.SignIn.RequireConfirmedAccount = false)
-        .AddEntityFrameworkStores<AppDbContext>();
-
-var app = builder.Build();
-
-using IServiceScope scope = app.Services.CreateScope();
-AppDbContext db = scope.ServiceProvider
-                .GetRequiredService<AppDbContext>();
-db.Database.Migrate();
-
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
-}
-
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-
-app.UseRouting();
-
-app.UseAuthentication();
-app.UseAuthorization();
-
-app.MapRazorPages();
-
-app.Run();
-{% endhighlight %}
