@@ -8,7 +8,7 @@ emoji: 🤔
 mathjax: false
 ---
 
-Recently I bought the domain name larder.lol for $1.80 (with a $6 TLS certificate too), which I thought was a pretty good deal, and I set up my project web app on that domain.
+Recently I bought the domain name larder.lol for $1.80 and I set up my project web app on that domain.
 
 Today I wanted to link to larder.lol from a project on my LinkedIn page. I found that when I add the link larder.lol as a media to the project, LinkedIn changes the link to kylerego.net automatically. I tried multiple times and this happened every time.
 
