@@ -8,7 +8,7 @@ emoji: 🫡
 mathjax: false
 ---
 
-I spent some time understanding [Resource-based authorization in ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resourcebased?view=aspnetcore-3.1) today and implemented a simple example using it (also see [Policy-based authorization in ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-3.1#security-authorization-policies-based-authorization-handler)). This post is an alternative example to what's in the documentation and some notes for reference.
+I spent some time reading [Resource-based authorization in ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/security/authorization/resourcebased?view=aspnetcore-3.1) today and implemented a simple example using it (also see [Policy-based authorization in ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies?view=aspnetcore-3.1#security-authorization-policies-based-authorization-handler)). This post is an alternative example to what's in the documentation and some notes for reference.
 
 In this example, authorization is a simple check that the `UserId` of the resource (an `Article`) is equal to the ID of the user requesting it. The check happens in a controller action after the resource is retrieved from a database via a repository.
 

@@ -26,7 +26,7 @@ I'm sure nobody has noticed this but I was trying to write a blog post  every da
 
 ## SuperMemo 2 Algorithm
 
-Yea this is definitely not the best implementation, see if you can find the "magic number."
+This implementation has many "magic numbers" (literals that would be better as variables).
 
 {% highlight c# %}
     public void UpdateSelfAfterRepetition(Grade grade, int successStreak)

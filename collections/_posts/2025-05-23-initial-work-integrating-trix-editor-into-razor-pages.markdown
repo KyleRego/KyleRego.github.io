@@ -185,10 +185,4 @@ This is not an airtight approach with regards to removing images; uploads can be
 
 ## Configuring the Trix editor to use H2 for headings instead of H1
 
-By default, the Trix editor toolbar has one heading button and saves the heading as an HTML `h1` element. Since it is a best practice to have only one `h1` per web page, I used the following event listener to make it so the Trix editor will save those as `h2` instead:
-
-{% highlight javascript %}
-addEventListener("trix-initialize", function (event) {
-  Trix.config.blockAttributes.heading1.tagName = "h2";
-});
-{% endhighlight %}
+By default, the Trix editor toolbar has one heading button and saves the heading as an HTML `h1` element. For the changes I made to have the heading button insert an `h2` instead of `h1`, see [Customizing the Trix editor heading button (Razor pages)](/customizing-header-trix-editor-razor-pages).
