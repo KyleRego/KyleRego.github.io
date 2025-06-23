@@ -8,7 +8,7 @@ emoji: 🖤
 mathjax: false
 ---
 
-You’ll often see me refer to Program.cs in my blog posts. It’s the entry point of a .NET executable program and defines how the application is configured and started. In modern C# projects, top-level statements are used here instead of a traditional `Program` class with a `Main` method (this is typically the only file in the project that uses top-level statements, since only one file can contain them in an application). This blog post is an explanation of this `Program.cs` from a Todo list app I've been working on recently:
+You’ll often see me refer to Program.cs in my blog posts. It’s the entry point of a .NET executable program and defines how the application is configured and started. In modern C# projects, top-level statements are used here instead of a traditional `Program` class with a `Main` method (this is typically the only file in the project that uses top-level statements). This blog post is an explanation of this `Program.cs` from a Todo list app I've been working on recently:
 
 {% highlight c# %}
 var builder = WebApplication.CreateBuilder(args);
@@ -55,7 +55,7 @@ This includes some of the comments that come with a new project scaffolded by `d
 
 # Explanation
 
-Program.cs doesn't include individual using statements because they're defined globally in a `GlobalUsings.cs` file:
+This Program.cs doesn't include individual using statements because they're defined globally in a `GlobalUsings.cs` file:
 
 {% highlight c# %}
 global using Microsoft.AspNetCore.Identity;
