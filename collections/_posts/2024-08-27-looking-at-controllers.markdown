@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Controller, service, and repository layers using ASP.NET Core"
+title: "Controller, service, and repository architecture (ASP.NET Core)"
 date: 2024-08-27 00:00:00 -0500
 categories: blogging
 permalink: /comparison-of-ruby-on-rails-asp-net-core-design
