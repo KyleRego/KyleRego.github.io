@@ -8,7 +8,7 @@ emoji: 🕸️
 mathjax: false
 ---
 
-In the past I noted [some thoughts on object initialization syntax vs constructors with Entity Framework Core entities](https://kylerego.github.io/ef-core-constructor-and-object-initialization-syntax). The post was mainly a note that not all properties of an EF Core entity type could be set via a constructor (for example, navigation properties cannot be) and that a mix of object initialization syntax with some properties set by the constructor resulted in a more concise syntax for instantiating objects, for example:
+In the past I noted [some thoughts on object initialization syntax vs constructors with Entity Framework Core entities](/ef-core-constructor-and-object-initialization-syntax). The post was mainly a note that not all properties of an EF Core entity type could be set via a constructor (for example, navigation properties cannot be) and that a mix of object initialization syntax with some properties set by the constructor resulted in a more concise syntax for instantiating objects, for example:
 
 {% highlight c# %}
 Item peanutButter = new(testUserId, "Peanut Butter")

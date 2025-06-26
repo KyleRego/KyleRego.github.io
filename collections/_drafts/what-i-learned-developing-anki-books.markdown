@@ -234,7 +234,7 @@ module ChecksumHelper
 end
 ```
 
-I like documentation so this was just fun. The Rails-theme SDoc output is really nice: [Anki Record API documentation](https://kylerego.github.io/anki_record_docs).
+I like documentation so this was just fun. The Rails-theme SDoc output is really nice: [Anki Record API documentation](/anki_record_docs).
 
 ## Linux
 

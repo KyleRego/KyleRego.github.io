@@ -1,4 +1,4 @@
-# KyleRego.github.io
+# eggrain.blog
 
 This repository has the markdown assets of my personal website.
 

@@ -13,7 +13,7 @@ There are many issues I've been grappling with in developing a practice project 
 - From what layers should dependencies be injected from into other layers (should this service `QuantityService` use `UnitConversionService` or `UnitConversionRepository` to retrieve a unit conversion it needs)?
 - Where to use entities vs data transfer objects (should services only return data transfer objects)?
 - How to map between DTOs and entities (such as static methods like `public static Quantity FromDto(QuantityDto dto)`, defining explicit cast operators, by service methods like in the example this post is about, [AutoMapper](https://automapper.org/))?
-- Many design problems regarding the inheritance hierarchies (for example [when I changed the parent class of services to inject a `Service Locator` instead of two dependencies](https://kylerego.github.io/service-locator-pattern-derived-services)--update on that post, `AppServiceBase` was changed to not need one of those dependencies anymore, and that change was made easily without having to refactor any of the derived classes as a result of using the `Service Locator` pattern).
+- Many design problems regarding the inheritance hierarchies (for example [when I changed the parent class of services to inject a `Service Locator` instead of two dependencies](/service-locator-pattern-derived-services)--update on that post, `AppServiceBase` was changed to not need one of those dependencies anymore, and that change was made easily without having to refactor any of the derived classes as a result of using the `Service Locator` pattern).
 
 Recently I did some work related to this last issue, specifically using inheritance and generic types to DRY up CRUD functionality.
 

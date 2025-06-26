@@ -8,7 +8,7 @@ emoji: 😇
 mathjax: false
 ---
 
-I added resource-based authorization to my ASP.NET Core project today; the approach that I used was to add a property `UserId` to an abstract entity class and then a requirement handler class that takes that type as the resource parameter to compare the current user's ID to. It's not groundbreaking at all, but it is another example of resource-based authorization in ASP.NET Core which I personally find the API to be somewhat confusing in design to use, and overall the approach builds on [my previous example of resource-based authorization in ASP.NET Core](http://kylerego.github.io/asp-net-core-resourced-based-authorization-example).
+I added resource-based authorization to my ASP.NET Core project today; the approach that I used was to add a property `UserId` to an abstract entity class and then a requirement handler class that takes that type as the resource parameter to compare the current user's ID to. It's not groundbreaking at all, but it is another example of resource-based authorization in ASP.NET Core which I personally find the API to be somewhat confusing in design to use, and overall the approach builds on [my previous example of resource-based authorization in ASP.NET Core](/asp-net-core-resourced-based-authorization-example).
 
 With this, authorization will be possible for entity classes derived from this:
 
