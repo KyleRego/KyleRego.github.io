@@ -10,12 +10,12 @@ mathjax: false
 
 ## SCP Syntax
 
-Sometimes I waste time remembering the command to SCP a new TLS certificate to my server:
+Sometimes I waste time remembering the command to SCP a file to my server:
 
-scp ./kylerego_net_new.zip -i "C:\path_to_pem_file\file.pem" username@hostname:directory
+scp -i "C:\path_to_pem_file\file.pem" ./file.zip username@hostname:directory
 
 - scp: secure copy command
-- ./kylerego_net_new.zip: local file being SCPed to the server
+- ./file.zip: local file being SCPed to the server
 - -i "C:\path_to_pem_file\file.pem": private SSH key for authentication, in my case the Azure Portal provides this as a "pem file"
 - username@hostname: your user account name on the remote machine and that machine's IP address or domain name
 - directory: destination path on the server to put the file
