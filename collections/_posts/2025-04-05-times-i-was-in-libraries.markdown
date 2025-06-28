@@ -8,7 +8,7 @@ emoji: 📚
 mathjax: false
 ---
 
-I think the last 2 posts were a little too short and lazily written; I want to write a longer non-code post. So this post is some of my thoughts and appreciation for libraries in my life recently.
+This post is some of my thoughts and appreciation for libraries in my life recently.
 
 At the time I got hired at UPS, I was living in an Airbnb near SeaTac, just after flying to the airport in SeaTac to move to Washington. I was desperate for a job and extremely lucky that UPS was in desperate need of seasonal workers. I was going through the application process where you can schedule your first shift without an interview (that was the best hiring process ever) and reached a point where I needed a second person to verify my identity. I didn't know anybody, and it wasn't an Airbnb where roommates were talking.
 

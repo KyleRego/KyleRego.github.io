@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Couple scattered notes on web administration"
+title: "SCP command note"
 date: 2025-02-11 01:35:00 -0800
 categories: linux
 permalink: /scattered-notes-on-web-administration
@@ -21,7 +21,3 @@ scp -i "C:\path_to_pem_file\file.pem" ./file.zip username@hostname:directory
 - directory: destination path on the server to put the file
 
 If `ssl` is used for `directory` in the above the file will be put in `~/ssl` (directory `ssl` in the user's home directory `~`).
-
-## Apache Ports
-
-If using ports (in my case, opening ports in the Azure Portal network settings to my own IP address and then also editing the Apache virtual hosts configuration) remember to edit `ports.conf` as well, and check both the `<IfModule ssl_module>` and `<IfModule mod_gnutls.c>` blocks
