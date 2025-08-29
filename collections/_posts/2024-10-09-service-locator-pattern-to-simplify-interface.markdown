@@ -12,7 +12,7 @@ Today I refactored a base class of service classes in an ASP.NET Core project, s
 
 This refactor was motivated by wanting to simplify the interfaces of all of the classes derived from this base class. Each derived class previously had to have a constructor signature with the two services so that it could pass them to the parent constructor. With the Service Locator Pattern, only the `IServiceProvider` is needed in the constructor signature of all the service classes. 
 
-This post is regarding [this commit](https://github.com/KyleRego/Larder/commit/9eff3842cabbd7094aaae8bfdf72ac0ece1e8484).
+This post is regarding [this commit](https://github.com/eggrain/Larder/commit/9eff3842cabbd7094aaae8bfdf72ac0ece1e8484).
 
 Here is what my base service class had previously:
 

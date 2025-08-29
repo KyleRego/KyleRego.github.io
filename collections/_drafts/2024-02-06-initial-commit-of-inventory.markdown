@@ -12,9 +12,9 @@ I developed a Rails app pretty quickly for practice, to use, and for fun recentl
 
 ![Picture of inventory's GitHub repo where commits can be viewed with a web browser which you have if you're reading this on my website](assets/inventory.png)
 
-Ok initial commit: [we don't talk about this one](https://github.com/KyleRego/inventory/commit/86268a12854f2b29f26450f8acd65372caede539). That is all written by the Rails framework with a single command and a couple options. If you refer to the very first Rails guide you will see what I mean but realistically it is going to have a very steep learning curve for you if you do not know either Ruby or programming. And it has way too much boilerplate to go over anyway.
+Ok initial commit: [we don't talk about this one](https://github.com/eggrain/inventory/commit/86268a12854f2b29f26450f8acd65372caede539). That is all written by the Rails framework with a single command and a couple options. If you refer to the very first Rails guide you will see what I mean but realistically it is going to have a very steep learning curve for you if you do not know either Ruby or programming. And it has way too much boilerplate to go over anyway.
 
-The second commit: this is just [a license](https://github.com/KyleRego/inventory/commit/781d06b27e21dc7775a45f8bd8549211a83d678e) that I think is funny and I am serious when I put this license on the project because I believe it is an honorable commit. This is not a super serious app anyway, just something I wanted to make before going on an adventure, so it is not meant to be too strong just strongly copyleft.
+The second commit: this is just [a license](https://github.com/eggrain/inventory/commit/781d06b27e21dc7775a45f8bd8549211a83d678e) that I think is funny and I am serious when I put this license on the project because I believe it is an honorable commit. This is not a super serious app anyway, just something I wanted to make before going on an adventure, so it is not meant to be too strong just strongly copyleft.
 
 Right, so the third commit: this is code I scaffolded up by using the Rails command line with very little editing afterwards I am pretty sure:
 

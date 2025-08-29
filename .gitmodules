@@ -1,6 +1,6 @@
 [submodule "the-old-website"]
 	path = the-old-website
-	url = https://github.com/KyleRego/the-old-website
+	url = https://github.com/eggrain/the-old-website
 [submodule "anki_record_docs"]
 	path = anki_record_docs
-	url = https://github.com/KyleRego/anki_record_docs
+	url = https://github.com/eggrain/anki_record_docs

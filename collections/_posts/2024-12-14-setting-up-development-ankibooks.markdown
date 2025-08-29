@@ -13,7 +13,7 @@ I set up my Ruby on Rails app for development on a fresh installation of WSL2 Ub
 First clone the repository from GitHub (you will need `git` installed and public SSH key added in GitHub settings).
 
 {% highlight bash %}
-git clone git@github.com:KyleRego/anki_books.git
+git clone git@github.com:eggrain/anki_books.git
 cd anki_books
 code .
 {% endhighlight %}

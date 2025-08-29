@@ -12,7 +12,7 @@ I am going to explain the source code of two Anki add-ons that I wrote while I w
 
 It should be noted that these examples are not meant to show Python best practices or even good coding practices (despite a few comments on general program design). They are largely only intended to provide some examples of Anki add-on code with additional context for non-programmers to learn from.
 
-This post condenses the content of three separate posts on this topic. The exact content of the three original posts can be seen in [the commit which deleted them](https://github.com/KyleRego/KyleRego.github.io/commit/f3e5b60c401b72c124ffd693e3dd707b47fd609e).
+This post condenses the content of three separate posts on this topic. The exact content of the three original posts can be seen in [the commit which deleted them](https://github.com/eggrain/eggrain.github.io/commit/f3e5b60c401b72c124ffd693e3dd707b47fd609e).
 
 # Background
 

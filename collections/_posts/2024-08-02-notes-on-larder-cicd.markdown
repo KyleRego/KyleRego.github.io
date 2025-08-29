@@ -8,7 +8,7 @@ emoji: 🤔
 mathjax: false
 ---
 
-Recently I did some work to set up continuous deployment for a [practice project (Larder)](https://github.com/KyleRego/Larder/tree/0149000cd8178bd35dcb9222488ccee6c2310374), which is an ASP.NET Core web API with a React app frontend. This post is not intended to be a guide or show best practices, just some notes on how I got along which may provide some helpful hints to someone (probably future me).
+Recently I did some work to set up continuous deployment for a [practice project (Larder)](https://github.com/eggrain/Larder/tree/0149000cd8178bd35dcb9222488ccee6c2310374), which is an ASP.NET Core web API with a React app frontend. This post is not intended to be a guide or show best practices, just some notes on how I got along which may provide some helpful hints to someone (probably future me).
 
 # GitHub action job to build and deploy the React app
 

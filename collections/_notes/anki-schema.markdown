@@ -7,7 +7,7 @@ emoji: 😋
 mathjax: false
 ---
 
-These are my notes on the Anki database schema and data. They probably will continue to change over time and may include a lot more detail on some parts than others. This was mostly part of my initial work developing the [Anki Record](https://github.com/KyleRego/anki_record) gem.
+These are my notes on the Anki database schema and data. They probably will continue to change over time and may include a lot more detail on some parts than others. This was mostly part of my initial work developing the [Anki Record](https://github.com/eggrain/anki_record) gem.
 
 Related:
 - [AnkiDroid document on the Anki schema](https://github.com/ankidroid/Anki-Android/wiki/Database-Structure)

@@ -8,7 +8,7 @@ emoji: 🖤
 mathjax: false
 ---
 
-Today I did some work in order to use the Trix editor (the rich text editor from Rails Action Text) to edit the content of posts in a Razor pages blog app that I started developing recently for a hobby website. This post describes how I initially got this working today and is about [this commit](https://github.com/KyleRego/lilgobguides/commit/800a9d99509c21e533e2fb95e0b8907a7a576c6c).
+Today I did some work in order to use the Trix editor (the rich text editor from Rails Action Text) to edit the content of posts in a Razor pages blog app that I started developing recently for a hobby website. This post describes how I initially got this working today and is about [this commit](https://github.com/eggrain/lilgobguides/commit/800a9d99509c21e533e2fb95e0b8907a7a576c6c).
 
 ## Starting point
 

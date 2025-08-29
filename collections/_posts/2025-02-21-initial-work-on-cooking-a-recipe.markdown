@@ -8,7 +8,7 @@ emoji: 🕸️
 mathjax: false
 ---
 
-Today I decided to do some work on cooking a recipe in Larder, which in the controller-service-repository architecture involved rewriting a method `CookRecipe` of a service class `RecipeService`; I tried to use a test-driven development approach where I wrote the unit test first and like often happens, this lead to several refactors of the design, some of which I thought were noteworthy to document my thought process. There are still many areas of the design I am not quite sure I have got the abstraction right yet. This post is mainly about [this Larder commit](https://github.com/KyleRego/Larder/commit/2360d2b879904e297e462200eb101b87e8577d5d).
+Today I decided to do some work on cooking a recipe in Larder, which in the controller-service-repository architecture involved rewriting a method `CookRecipe` of a service class `RecipeService`; I tried to use a test-driven development approach where I wrote the unit test first and like often happens, this lead to several refactors of the design, some of which I thought were noteworthy to document my thought process. There are still many areas of the design I am not quite sure I have got the abstraction right yet. This post is mainly about [this Larder commit](https://github.com/eggrain/Larder/commit/2360d2b879904e297e462200eb101b87e8577d5d).
 
 ## Parent classes of service test classes to reuse setup
 

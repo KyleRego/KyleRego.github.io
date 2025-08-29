@@ -169,4 +169,4 @@ async postLogin(email, password)
 
 The query string `?useCookies=true` I believe relates to some aspect of the ASP.NET Core Identity API.
 
-While working out this example, I first developed [this more minimal example](https://github.com/KyleRego/react-client-auth-state) which may also be helpful. Anyway, this is how I figured out to do this, if I realize there is a more idiomatic way that may be a future blog post.
+While working out this example, I first developed [this more minimal example](https://github.com/eggrain/react-client-auth-state) which may also be helpful. Anyway, this is how I figured out to do this, if I realize there is a more idiomatic way that may be a future blog post.
