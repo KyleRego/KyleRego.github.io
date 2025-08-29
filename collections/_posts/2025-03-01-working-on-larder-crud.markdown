@@ -8,7 +8,7 @@ emoji: 🕸️
 mathjax: false
 ---
 
-There are many issues I've been grappling with in developing a practice project with controller-service-repository architecture ([Larder](https://larder.lol)), for example:
+There are many issues I've been grappling with in developing a practice project with controller-service-repository architecture ([Larder](https://larder.eggrain.net)), for example:
 
 - From what layers should dependencies be injected from into other layers (should this service `QuantityService` use `UnitConversionService` or `UnitConversionRepository` to retrieve a unit conversion it needs)?
 - Where to use entities vs data transfer objects (should services only return data transfer objects)?
